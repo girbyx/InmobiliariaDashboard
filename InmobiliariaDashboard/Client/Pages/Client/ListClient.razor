@@ -1,0 +1,41 @@
+﻿@page "/client/list"
+@inherits ListClientBase
+
+<h1>Clients</h1>
+
+<div class="text-right">
+    <a href="client/add" class="btn btn-primary"><span class="oi oi-plus"></span> Add client</a>
+</div>
+
+@if (Records == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Client name</th>
+                <th>Email</th>
+                <th>Main phone</th>
+                <th>Main address</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var record in Records)
+        {
+            <tr>
+                <td>@record.Name</td>
+                <td>@record.Email</td>
+                <td>@record.Telephone1</td>
+                <td>@record.Address1</td>
+                <td><a href="client/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

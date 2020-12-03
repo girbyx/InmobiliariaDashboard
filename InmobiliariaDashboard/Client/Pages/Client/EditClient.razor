@@ -1,0 +1,42 @@
+﻿@page "/client/edit/{id}"
+@inherits EditClientBase
+
+<h1>Edit client</h1>
+
+<div class="text-right">
+    <button type="button" class="btn btn-danger" @onclick="OnDeleteClick"><span class="oi oi-delete"></span> Delete client</button>
+</div>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <input type="hidden" class="form-control" @bind="Record.Id" />
+
+    <div class="form-group">
+        <label>Client Name</label>
+        <input type="text" class="form-control" @bind="Record.Name" />
+    </div>
+    <div class="form-group">
+        <label>Email address</label>
+        <input type="email" class="form-control" @bind="Record.Email" />
+    </div>
+    <div class="form-group">
+        <label>Telephone 1</label>
+        <input type="tel" class="form-control" @bind="Record.Telephone1" />
+    </div>
+    <div class="form-group">
+        <label>Telephone 2</label>
+        <input type="tel" class="form-control" @bind="Record.Telephone2" />
+    </div>
+    <div class="form-group">
+        <label>Address 1</label>
+        <input type="text" class="form-control" @bind="Record.Address1" />
+    </div>
+    <div class="form-group">
+        <label>Address 2</label>
+        <input type="text" class="form-control" @bind="Record.Address2" />
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-danger" @onclick="OnCancelClick">Cancel</button>
+</EditForm>
