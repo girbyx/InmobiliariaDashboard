@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InmobiliariaDashboard.Client.Pages.Client;
 
 namespace InmobiliariaDashboard.Client
 {
@@ -18,7 +19,7 @@ namespace InmobiliariaDashboard.Client
 
             builder.Services.Scan(sc =>
                 sc.FromCallingAssembly()
-                    .FromAssemblies(typeof(IBaseService).Assembly)
+                    .FromAssemblies(typeof(IClientService).Assembly)
                     .AddClasses()
                     .AsImplementedInterfaces());
 
