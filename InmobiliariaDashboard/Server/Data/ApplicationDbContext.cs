@@ -51,7 +51,7 @@ namespace InmobiliariaDashboard.Server.Data
                 (entity as ISoftDeleteFields).SoftDelete = true;
             }
 
-            return base.Add(entity);
+            return base.Remove(entity);
         }
 
         public override EntityEntry<TEntity> Update<TEntity>(TEntity entity)
@@ -62,7 +62,7 @@ namespace InmobiliariaDashboard.Server.Data
                 (entity as IAuditFields).UpdatedBy = string.Empty;
             }
 
-            return base.Add(entity);
+            return base.Update(entity);
         }
     }
 }
