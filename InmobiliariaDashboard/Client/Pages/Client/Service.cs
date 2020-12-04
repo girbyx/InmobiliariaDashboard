@@ -4,17 +4,17 @@ using Microsoft.AspNetCore.Components;
 
 namespace InmobiliariaDashboard.Client.Pages.Client
 {
-    public interface IClientService : IBaseCatalogService<ClientViewModel>
+    public interface IService : IBaseCatalogService<ClientViewModel>
     {
 
     }
 
-    public class ClientService : BaseCatalogService<ClientViewModel>, IClientService
+    public class Service : BaseCatalogService<ClientViewModel>, IService
     {
         private readonly HttpClient _httpClient;
         private readonly NavigationManager _navigationManager;
 
-        public ClientService(HttpClient httpClient, NavigationManager navigationManager)
+        public Service(HttpClient httpClient, NavigationManager navigationManager)
             : base(httpClient, navigationManager)
         {
             _httpClient = httpClient;

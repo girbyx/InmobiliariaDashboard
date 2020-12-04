@@ -5,20 +5,20 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace InmobiliariaDashboard.Client.Pages.Client
 {
-    public class AddClientBase : ComponentBase
+    public class AddBase : ComponentBase
     {
-        [Inject] public IClientService ClientService { get; set; }
+        [Inject] public IService Service { get; set; }
         public ClientViewModel Record { get; set; } = new ClientViewModel();
 
         protected async Task HandleValidSubmit()
         {
-            await ClientService.Add(Record);
-            await ClientService.Return();
+            await Service.Add(Record);
+            await Service.Return();
         }
 
         protected async Task OnCancelClick(MouseEventArgs e)
         {
-            await ClientService.Return();
+            await Service.Return();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace InmobiliariaDashboard.Client
 
             builder.Services.Scan(sc =>
                 sc.FromCallingAssembly()
-                    .FromAssemblies(typeof(IClientService).Assembly)
+                    .FromAssemblies(typeof(IService).Assembly)
                     .AddClasses()
                     .AsImplementedInterfaces());
 

@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Components;
 
 namespace InmobiliariaDashboard.Client.Pages.Client
 {
-    public class ListClientBase : ComponentBase
+    public class ListBase : ComponentBase
     {
-        [Inject] public IClientService ClientService { get; set; }
+        [Inject] public IService Service { get; set; }
         public IEnumerable<ClientViewModel> Records;
 
         protected override async Task OnInitializedAsync()
         {
-            Records = await ClientService.GetList();
+            Records = await Service.GetList();
         }
     }
 }

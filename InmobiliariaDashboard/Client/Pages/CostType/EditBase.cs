@@ -3,35 +3,36 @@ using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace InmobiliariaDashboard.Client.Pages.Client
+namespace InmobiliariaDashboard.Client.Pages.CostType
 {
-    public class EditClientBase : ComponentBase
+    public class EditBase : ComponentBase
     {
-        [Inject] public IClientService ClientService { get; set; }
+        [Inject] public IService Service { get; set; }
         [Parameter] public string Id { get; set; }
-        public ClientViewModel Record { get; set; } = new ClientViewModel();
+        public CostTypeViewModel Record { get; set; } = new CostTypeViewModel();
 
         protected override async Task OnInitializedAsync()
         {
             var id = int.Parse(Id);
-            Record = await ClientService.Get(id);
+            Record = await Service.Get(id);
         }
 
         protected async Task HandleValidSubmit()
         {
-            await ClientService.Update(Record);
-            await ClientService.Return();
+            await Service.Update(Record);
+            await Service.Return();
         }
 
         protected async Task OnDeleteClick(MouseEventArgs e)
         {
             var id = int.Parse(Id);
-            await ClientService.Delete(id);
+            await Service.Delete(id);
+            await Service.Return();
         }
 
         protected async Task OnCancelClick(MouseEventArgs e)
         {
-            await ClientService.Return();
+            await Service.Return();
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -18,5 +20,14 @@ namespace InmobiliariaDashboard.Server.Models
 
         // collections
         public virtual ICollection<Cost> Costs { get; set; }
+    }
+
+    public class CostTypeProfile : Profile
+    {
+        public CostTypeProfile()
+        {
+            CreateMap<CostType, CostTypeViewModel>();
+            CreateMap<CostTypeViewModel, CostType>();
+        }
     }
 }

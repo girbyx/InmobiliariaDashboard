@@ -25,9 +25,5 @@
     <ProjectReference Include="..\Shared\InmobiliariaDashboard.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Type\" />
-  </ItemGroup>
-
 
 </Project>
