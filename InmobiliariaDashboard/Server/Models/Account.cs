@@ -10,7 +10,7 @@ namespace InmobiliariaDashboard.Server.Models
         public string Name { get; set; }
         public int? AccountNumber { get; set; }
         public int? CardNumber { get; set; }
-        public string Type { get; set; }
+        public string AccountType { get; set; }
 
         // audit & relationships
         public int ClientId { get; set; }

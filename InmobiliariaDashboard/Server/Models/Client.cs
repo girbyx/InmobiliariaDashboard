@@ -11,10 +11,10 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Telephone1 { get; set; }
-        public string Telephone2 { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
+        public string Cellphone { get; set; }
+        public string Telephone { get; set; }
+        public string Address { get; set; }
+        public string AddressExt { get; set; }
 
         // audit & relationships
         public DateTime Created { get; set; }
@@ -25,7 +25,7 @@ namespace InmobiliariaDashboard.Server.Models
         // collections
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<Contact> Contacts { get; set; }
-        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 
     public class ClientProfile : Profile

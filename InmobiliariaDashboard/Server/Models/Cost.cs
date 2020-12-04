@@ -8,10 +8,17 @@ namespace InmobiliariaDashboard.Server.Models
     {
         public int Id { get; set; }
         public double Value { get; set; }
+        public double? Commission { get; set; }
+        public string CommissionType { get; set; }
+        public string Description { get; set; }
 
         // audit & relationships
+        public int CostTypeId { get; set; }
+        public virtual CostType CostType { get; set; }
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
+        public int AccountId { get; set; }
+        public virtual Account Account { get; set; }
         public DateTime Created { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? Updated { get; set; }
@@ -19,6 +26,5 @@ namespace InmobiliariaDashboard.Server.Models
 
         // collections
         public virtual ICollection<Attachment> Attachments { get; set; }
-        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

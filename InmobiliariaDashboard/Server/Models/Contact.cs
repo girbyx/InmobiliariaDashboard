@@ -13,10 +13,10 @@ namespace InmobiliariaDashboard.Server.Models
         public string LastName { get; set; }
         [NotMapped] public string FullName => string.Join("", SuffixName, FirstName, MiddleName, LastName);
         public string Email { get; set; }
-        public string Telephone1 { get; set; }
-        public string Telephone2 { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
+        public string Cellphone { get; set; }
+        public string Telephone { get; set; }
+        public string Address { get; set; }
+        public string AddressExt { get; set; }
 
         // audit & relationships
         public int ClientId { get; set; }
