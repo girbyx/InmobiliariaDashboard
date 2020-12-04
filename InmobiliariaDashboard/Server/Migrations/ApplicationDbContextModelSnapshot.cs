@@ -118,6 +118,12 @@ namespace InmobiliariaDashboard.Server.Migrations
                     b.Property<string>("Cellphone")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
@@ -130,6 +136,9 @@ namespace InmobiliariaDashboard.Server.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("State")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Telephone")
                         .HasColumnType("TEXT");
 
@@ -138,6 +147,9 @@ namespace InmobiliariaDashboard.Server.Migrations
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Zip")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -159,8 +171,14 @@ namespace InmobiliariaDashboard.Server.Migrations
                     b.Property<string>("Cellphone")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("ClientId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
@@ -180,6 +198,9 @@ namespace InmobiliariaDashboard.Server.Migrations
                     b.Property<string>("MiddleName")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("State")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SuffixName")
                         .HasColumnType("TEXT");
 
@@ -191,6 +212,9 @@ namespace InmobiliariaDashboard.Server.Migrations
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Zip")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
