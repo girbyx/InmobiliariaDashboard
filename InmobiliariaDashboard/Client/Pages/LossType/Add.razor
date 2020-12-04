@@ -1,21 +1,15 @@
-﻿@page "/costtype/edit/{id}"
-@inherits EditBase
+﻿@page "/losstype/add"
+@inherits AddBase
 
-<h1>Edit cost type</h1>
-
-<div class="text-right">
-    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Delete cost type</button>
-</div>
+<h1>Add cost type</h1>
 
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <input type="hidden" class="form-control" @bind="Record.Id" />
-
     <div class="form-row">
         <div class="col form-group">
-            <label>Cost Type</label>
+            <label>Loss Type</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
     </div>

@@ -1,0 +1,37 @@
+﻿@page "/gaintype/list"
+@inherits ListBase
+
+<h1>Gain types</h1>
+
+<div class="text-right">
+    <a href="gaintype/add" class="btn btn-primary"><span class="oi oi-plus"></span> Add gain type</a>
+</div>
+
+@if (Records == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Gain Type</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var record in Records)
+        {
+            <tr>
+                <td>@record.Name</td>
+                <td>@record.Description</td>
+                <td><a href="gaintype/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

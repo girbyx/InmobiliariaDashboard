@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -18,5 +20,14 @@ namespace InmobiliariaDashboard.Server.Models
 
         // collections
         public virtual ICollection<Loss> Losses { get; set; }
+    }
+
+    public class LossTypeProfile : Profile
+    {
+        public LossTypeProfile()
+        {
+            CreateMap<LossType, LossTypeViewModel>();
+            CreateMap<LossTypeViewModel, LossType>();
+        }
     }
 }
