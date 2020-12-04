@@ -7,7 +7,7 @@ namespace InmobiliariaDashboard.Client.Pages.GainType
 {
     public class ListBase : ComponentBase
     {
-        [Inject] public CostType.IService Service { get; set; }
+        [Inject] public IService Service { get; set; }
         public IEnumerable<GainTypeViewModel> Records;
 
         protected override async Task OnInitializedAsync()
