@@ -18,7 +18,7 @@ namespace InmobiliariaDashboard.Server.Models
         public string Country { get; set; }
         public string State { get; set; }
         public string City { get; set; }
-        public int Zip { get; set; }
+        public int? Zip { get; set; }
 
         // audit & relationships
         public DateTime Created { get; set; }

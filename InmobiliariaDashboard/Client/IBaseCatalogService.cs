@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace InmobiliariaDashboard.Client
 {
-    public interface IBaseService<T> where T : class
+    public interface IBaseCatalogService<T> where T : class
     {
         Task<IEnumerable<T>> GetList();
         Task<T> Get(int id);

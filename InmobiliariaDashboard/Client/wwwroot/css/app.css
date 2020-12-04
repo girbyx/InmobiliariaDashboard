@@ -32,7 +32,7 @@ a, .btn-link {
 
 .loading-text {
     margin: auto;
-    top: 40vh;
+    margin-top: 40vh;
 }
 
 #blazor-error-ui {
