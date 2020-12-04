@@ -1,4 +1,4 @@
-﻿namespace InmobiliariaDashboard.Server.Models.Enumerations
+﻿namespace InmobiliariaDashboard.Shared.Enumerations
 {
     public class CommissionType : BaseEnumeration
     {

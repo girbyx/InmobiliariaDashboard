@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace InmobiliariaDashboard.Server.Models.Enumerations
+namespace InmobiliariaDashboard.Shared
 {
     public abstract class BaseEnumeration : IComparable
     {
