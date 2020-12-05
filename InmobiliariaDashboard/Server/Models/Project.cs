@@ -29,12 +29,9 @@ namespace InmobiliariaDashboard.Server.Models
 
     public class ProjectProfile : Profile
     {
-//        public ProjectProfile(IClientService clientService)
         public ProjectProfile()
         {
             CreateMap<Project, ProjectViewModel>();
-//                .ForMember(dest => dest.Clients,
-//                    opt => opt.MapFrom(src => clientService.GetAll()));
             CreateMap<ProjectViewModel, Project>();
         }
     }
