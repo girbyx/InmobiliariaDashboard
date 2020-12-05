@@ -1,0 +1,41 @@
+﻿@page "/project/list"
+@inherits ListBase
+
+<h1>Projects</h1>
+
+<div class="text-right">
+    <a href="project/add" class="btn btn-primary"><span class="oi oi-plus"></span> Add project</a>
+</div>
+
+@if (Records == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Project name</th>
+                <th>Client name</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var record in Records)
+        {
+            <tr>
+                <td>@record.Name</td>
+                <td>@record.ClientName</td>
+                <td>@record.StartDate</td>
+                <td>@(record.EndDate?.ToShortDateString() ?? "-")</td>
+                <td><a href="project/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

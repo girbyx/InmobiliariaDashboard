@@ -1,0 +1,52 @@
+﻿@page "/project/edit/{id}"
+@inherits EditBase
+
+<h1>Edit project</h1>
+
+<div class="text-right">
+    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Delete project</button>
+</div>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <input type="hidden" class="form-control" @bind="Record.Id" />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Project name</label>
+            <input type="text" class="form-control" @bind="Record.Name" />
+        </div>
+        <div class="col form-group">
+            <label>Client</label>
+            @if (Record.Clients.Any())
+            {
+                <select @bind="Record.ClientId">
+                    @foreach (var item in Record.Clients)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <input type="text" class="form-control" disabled="disabled" value="No clients available" />
+            }
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Start date</label>
+            <input type="date" class="form-control" @bind="Record.StartDate" />
+        </div>
+        <div class="col form-group">
+            <label>End date</label>
+            <input type="date" class="form-control" @bind="Record.EndDate" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+</EditForm>

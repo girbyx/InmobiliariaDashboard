@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -23,5 +25,17 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual ICollection<Gain> Gains { get; set; }
         public virtual ICollection<Cost> Costs { get; set; }
         public virtual ICollection<Loss> Losses { get; set; }
+    }
+
+    public class ProjectProfile : Profile
+    {
+//        public ProjectProfile(IClientService clientService)
+        public ProjectProfile()
+        {
+            CreateMap<Project, ProjectViewModel>();
+//                .ForMember(dest => dest.Clients,
+//                    opt => opt.MapFrom(src => clientService.GetAll()));
+            CreateMap<ProjectViewModel, Project>();
+        }
     }
 }
