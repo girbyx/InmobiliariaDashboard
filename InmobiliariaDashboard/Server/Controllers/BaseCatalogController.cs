@@ -19,7 +19,8 @@ namespace InmobiliariaDashboard.Server.Controllers
         private readonly IApplicationDbContext _dbContext;
         private readonly IBaseService<TEntity> _baseService;
 
-        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IApplicationDbContext dbContext, IBaseService<TEntity> baseService)
+        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IApplicationDbContext dbContext,
+            IBaseService<TEntity> baseService)
         {
             _logger = logger;
             _mapper = mapper;
@@ -30,11 +31,8 @@ namespace InmobiliariaDashboard.Server.Controllers
         [HttpGet]
         public IEnumerable<TViewModel> Get()
         {
-            var records = _baseService.GetAll();
-            var result = _dbContext
-                .Set<TEntity>()
-                .Select(_mapper.Map<TViewModel>)
-                .ToList();
+            var result = _baseService.GetAll()
+                .Select(_mapper.Map<TViewModel>);
             return result;
         }
 
