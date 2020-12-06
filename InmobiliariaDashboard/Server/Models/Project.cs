@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Server.Resolvers;
 using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
@@ -31,7 +32,8 @@ namespace InmobiliariaDashboard.Server.Models
     {
         public ProjectProfile()
         {
-            CreateMap<Project, ProjectViewModel>();
+            CreateMap<Project, ProjectViewModel>()
+                .ForMember(dest => dest.Clients, opt => opt.MapFrom<ClientsResolver>());
             CreateMap<ProjectViewModel, Project>();
         }
     }

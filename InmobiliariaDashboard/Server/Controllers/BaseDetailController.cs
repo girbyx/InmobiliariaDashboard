@@ -34,5 +34,12 @@ namespace InmobiliariaDashboard.Server.Controllers
                 .First();
             return result;
         }
+
+        [HttpGet]
+        public TViewModel GetEmpty()
+        {
+            var result = _mapper.Map<TViewModel>(new object() as TEntity);
+            return result;
+        }
     }
 }

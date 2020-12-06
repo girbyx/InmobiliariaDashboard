@@ -13,6 +13,6 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public int ClientName { get; set; }
 
         // select lists
-        public IEnumerable<ClientViewModel> Clients { get; set; } = new List<ClientViewModel>();
+        public IEnumerable<ClientViewModel> Clients { get; set; }
     }
 }

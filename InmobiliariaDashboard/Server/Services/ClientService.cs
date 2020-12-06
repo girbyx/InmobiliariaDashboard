@@ -1,16 +1,14 @@
-﻿using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
-using InmobiliariaDashboard.Shared.ViewModels;
+﻿using InmobiliariaDashboard.Server.Data;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IClientService : IBaseService<ClientViewModel>
+    public interface IClientService : IBaseService<Models.Client>
     {
     }
 
-    public class ClientService : BaseService<Models.Client, ClientViewModel>, IClientService
+    public class ClientService : BaseService<Models.Client>, IClientService
     {
-        public ClientService(IApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        public ClientService(IApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }
