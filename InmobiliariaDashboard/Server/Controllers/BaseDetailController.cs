@@ -9,7 +9,7 @@ namespace InmobiliariaDashboard.Server.Controllers
 {
     public class BaseDetailController<TController, TEntity, TViewModel> : ControllerBase
         where TController : class
-        where TEntity : class
+        where TEntity : class, new()
         where TViewModel : class
     {
         private readonly ILogger<TController> _logger;
@@ -36,9 +36,10 @@ namespace InmobiliariaDashboard.Server.Controllers
         }
 
         [HttpGet]
+        [Route("GetEmpty")]
         public TViewModel GetEmpty()
         {
-            var result = _mapper.Map<TViewModel>(new object() as TEntity);
+            var result = _mapper.Map<TViewModel>(new TEntity());
             return result;
         }
     }
