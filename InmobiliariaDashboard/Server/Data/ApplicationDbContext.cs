@@ -22,8 +22,11 @@ namespace InmobiliariaDashboard.Server.Data
         public DbSet<Models.Client> Clients { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Cost> Costs { get; set; }
+        public DbSet<CostType> CostTypes { get; set; }
         public DbSet<Gain> Gains { get; set; }
+        public DbSet<GainType> GainTypes { get; set; }
         public DbSet<Loss> Losses { get; set; }
+        public DbSet<LossType> LossTypes { get; set; }
         public DbSet<Project> Projects { get; set; }
 
         public ApplicationDbContext(DbContextOptions options)
