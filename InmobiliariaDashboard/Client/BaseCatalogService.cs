@@ -32,6 +32,11 @@ namespace InmobiliariaDashboard.Client
             return await _httpClient.GetFromJsonAsync<TViewModel>($"api/{DetailControllerName}?id={id}");
         }
 
+        public async Task<TViewModel> GetEmpty()
+        {
+            return await _httpClient.GetFromJsonAsync<TViewModel>($"api/{DetailControllerName}/GetEmpty");
+        }
+
         public async Task Add(TViewModel record)
         {
             await _httpClient.PostAsJsonAsync($"api/{ControllerName}", record);
