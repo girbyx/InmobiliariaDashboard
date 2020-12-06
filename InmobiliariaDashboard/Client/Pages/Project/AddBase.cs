@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -9,6 +10,14 @@ namespace InmobiliariaDashboard.Client.Pages.Project
     {
         [Inject] public IService Service { get; set; }
         public ProjectViewModel Record { get; set; } = new ProjectViewModel();
+
+        protected override async Task OnInitializedAsync()
+        {
+            Record = await Service.GetEmpty();
+
+            // defaults
+            Record.StartDate = DateTime.Today;
+        }
 
         protected async Task HandleValidSubmit()
         {

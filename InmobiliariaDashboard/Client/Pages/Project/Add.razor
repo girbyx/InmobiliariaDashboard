@@ -14,9 +14,9 @@
         </div>
         <div class="col form-group">
             <label>Client</label>
-            @if (Record.Clients.Any())
+            @if (Record.Clients != null && Record.Clients.Any())
             {
-                <select @bind="Record.ClientId">
+                <select class="form-control" @bind="Record.ClientId">
                     @foreach (var item in Record.Clients)
                     {
                         <option value="@item.Id">@item.Name</option>
