@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Server.Services
 
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
     {
-        private readonly IApplicationDbContext _dbContext;
+        protected readonly IApplicationDbContext _dbContext;
 
         public BaseService(IApplicationDbContext dbContext)
         {
