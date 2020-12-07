@@ -20,6 +20,7 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
 
             // defaults
             Record.CommissionType = CommissionTypeEnum.FlatCash.Code;
+            Record.Accounts = await Service.GetAccountsByProject(Record.ProjectId);
         }
 
         protected async Task HandleValidSubmit()

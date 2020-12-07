@@ -19,12 +19,20 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
         {
             var id = int.Parse(Id);
             Record = await Service.Get(id);
+
+            // defaults
+            Record.Accounts = await Service.GetAccountsByProject(Record.ProjectId);
         }
 
         protected async Task HandleValidSubmit()
         {
             await Service.Update(Record);
             await Service.Return();
+        }
+
+        protected async Task OnProjectChange(int id)
+        {
+            Record.Accounts = await Service.GetAccountsByProject(id);
         }
 
         protected async Task OnDeleteClick(MouseEventArgs e)
