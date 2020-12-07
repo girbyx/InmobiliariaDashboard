@@ -15,8 +15,9 @@
 }
 else
 {
-    <table class="table table-hover">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>Project name</th>
                 <th>Client name</th>
@@ -24,18 +25,23 @@ else
                 <th>End date</th>
                 <th></th>
             </tr>
-        </thead>
-        <tbody>
-        @foreach (var record in Records)
-        {
-            <tr>
-                <td>@record.Name</td>
-                <td>@record.ClientName</td>
-                <td>@record.StartDate</td>
-                <td>@(record.EndDate?.ToString("yyyy MMMM dd") ?? "-")</td>
-                <td><a href="project/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
-            </tr>
-        }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.Name</td>
+                    <td>@record.ClientName</td>
+                    <td>@record.StartDate</td>
+                    <td>@(record.EndDate?.ToString("yyyy MMMM dd") ?? "-")</td>
+                    <td>
+                        <a href="project/edit/@record.Id">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 }

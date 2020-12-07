@@ -15,23 +15,29 @@
 }
 else
 {
-    <table class="table table-hover">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>Gain Type</th>
                 <th>Description</th>
                 <th></th>
             </tr>
-        </thead>
-        <tbody>
-        @foreach (var record in Records)
-        {
-            <tr>
-                <td>@record.Name</td>
-                <td>@record.Description</td>
-                <td><a href="gaintype/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
-            </tr>
-        }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.Name</td>
+                    <td>@record.Description</td>
+                    <td>
+                        <a href="gaintype/edit/@record.Id">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 }

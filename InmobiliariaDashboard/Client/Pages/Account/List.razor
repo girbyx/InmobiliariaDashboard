@@ -17,8 +17,9 @@
 }
 else
 {
-    <table class="table table-hover">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>Account name</th>
                 <th>Client name</th>
@@ -27,19 +28,24 @@ else
                 <th>Account type</th>
                 <th></th>
             </tr>
-        </thead>
-        <tbody>
-        @foreach (var record in Records)
-        {
-            <tr>
-                <td>@record.Name</td>
-                <td>@record.ClientName</td>
-                <td>@(record.AccountNumber?.ToString() ?? "-")</td>
-                <td>@(record.CardNumber?.ToString() ?? "-")</td>
-                <td>@(BaseEnumeration.FromCode<AccountTypeEnum>(record.AccountType))</td>
-                <td><a href="account/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
-            </tr>
-        }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.Name</td>
+                    <td>@record.ClientName</td>
+                    <td>@(record.AccountNumber?.ToString() ?? "-")</td>
+                    <td>@(record.CardNumber?.ToString() ?? "-")</td>
+                    <td>@(BaseEnumeration.FromCode<AccountTypeEnum>(record.AccountType))</td>
+                    <td>
+                        <a href="account/edit/@record.Id">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 }

@@ -16,8 +16,9 @@
 }
 else
 {
-    <table class="table table-hover">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>For project</th>
                 <th>With account</th>
@@ -27,27 +28,32 @@ else
                 <th>Created on</th>
                 <th></th>
             </tr>
-        </thead>
-        <tbody>
-        @foreach (var record in Records)
-        {
-            <tr>
-                <td>@record.ProjectName</td>
-                <td>@record.AccountName</td>
-                <td>$@record.Value</td>
-                @if (CommissionTypeEnum.FlatCash.Code == record.CommissionType)
-                {
-                    <td>$@record.Commission</td>
-                }
-                else if (CommissionTypeEnum.Percentage.Code == record.CommissionType)
-                {
-                    <td>@record.Commission%</td>
-                }
-                <td>$@record.Total</td>
-                <td>@record.Created.ToString("yyyy MMMM dd")</td>
-                <td><a href="cost/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
-            </tr>
-        }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.ProjectName</td>
+                    <td>@record.AccountName</td>
+                    <td>$@record.Value</td>
+                    @if (CommissionTypeEnum.FlatCash.Code == record.CommissionType)
+                    {
+                        <td>$@record.Commission</td>
+                    }
+                    else if (CommissionTypeEnum.Percentage.Code == record.CommissionType)
+                    {
+                        <td>@record.Commission%</td>
+                    }
+                    <td>$@record.Total</td>
+                    <td>@record.Created.ToString("yyyy MMMM dd")</td>
+                    <td>
+                        <a href="cost/edit/@record.Id">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 }
