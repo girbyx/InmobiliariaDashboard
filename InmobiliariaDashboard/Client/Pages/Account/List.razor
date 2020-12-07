@@ -36,7 +36,7 @@ else
                 <td>@record.ClientName</td>
                 <td>@(record.AccountNumber?.ToString() ?? "-")</td>
                 <td>@(record.CardNumber?.ToString() ?? "-")</td>
-                <td>@(BaseEnumeration.FromCode<AccountType>(record.AccountType))</td>
+                <td>@(BaseEnumeration.FromCode<AccountTypeEnum>(record.AccountType))</td>
                 <td><a href="account/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
             </tr>
         }

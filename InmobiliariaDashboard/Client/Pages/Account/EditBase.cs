@@ -13,7 +13,7 @@ namespace InmobiliariaDashboard.Client.Pages.Account
         [Inject] public IService Service { get; set; }
         [Parameter] public string Id { get; set; }
         public AccountViewModel Record { get; set; } = new AccountViewModel();
-        public IEnumerable<AccountType> AccountTypes => BaseEnumeration.GetAll<AccountType>();
+        public IEnumerable<AccountTypeEnum> AccountTypes => BaseEnumeration.GetAll<AccountTypeEnum>();
 
         protected override async Task OnInitializedAsync()
         {

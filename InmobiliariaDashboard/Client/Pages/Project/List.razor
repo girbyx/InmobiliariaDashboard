@@ -32,7 +32,7 @@ else
                 <td>@record.Name</td>
                 <td>@record.ClientName</td>
                 <td>@record.StartDate</td>
-                <td>@(record.EndDate?.ToShortDateString() ?? "-")</td>
+                <td>@(record.EndDate?.ToString("yyyy MMMM dd") ?? "-")</td>
                 <td><a href="project/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
             </tr>
         }
