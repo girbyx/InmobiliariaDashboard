@@ -48,7 +48,6 @@ namespace InmobiliariaDashboard.Server.Data
             modelBuilder.Entity<Models.Client>().HasMany(p => p.Projects).WithOne(b => b.Client);
             modelBuilder.Entity<Models.Client>().HasMany(p => p.Contacts).WithOne(b => b.Client);
             modelBuilder.Entity<Models.Client>().HasMany(p => p.Accounts).WithOne(b => b.Client);
-            modelBuilder.Entity<Models.Client>().Navigation(b => b.Projects).UsePropertyAccessMode(PropertyAccessMode.Property);
 
             modelBuilder.Entity<Contact>().HasOne(p => p.Client).WithMany(b => b.Contacts).HasForeignKey(p => p.ClientId).IsRequired();
 
@@ -71,7 +70,6 @@ namespace InmobiliariaDashboard.Server.Data
             modelBuilder.Entity<Project>().HasMany(p => p.Gains).WithOne(b => b.Project);
             modelBuilder.Entity<Project>().HasMany(p => p.Costs).WithOne(b => b.Project);
             modelBuilder.Entity<Project>().HasMany(p => p.Losses).WithOne(b => b.Project);
-            modelBuilder.Entity<Project>().Navigation(b => b.Client).UsePropertyAccessMode(PropertyAccessMode.Property);
         }
 
         public override EntityEntry<TEntity> Add<TEntity>(TEntity entity)
