@@ -56,15 +56,21 @@ namespace InmobiliariaDashboard.Server.Data
             modelBuilder.Entity<Cost>().HasOne(p => p.Account).WithMany(b => b.Costs).HasForeignKey(p => p.AccountId).IsRequired();
             modelBuilder.Entity<Cost>().HasMany(p => p.Attachments).WithOne(b => b.Cost);
 
+            modelBuilder.Entity<CostType>().HasMany(p => p.Costs).WithOne(b => b.CostType);
+
             modelBuilder.Entity<Gain>().HasOne(p => p.GainType).WithMany(b => b.Gains).HasForeignKey(p => p.GainTypeId).IsRequired();
             modelBuilder.Entity<Gain>().HasOne(p => p.Project).WithMany(b => b.Gains).HasForeignKey(p => p.ProjectId).IsRequired();
             modelBuilder.Entity<Gain>().HasOne(p => p.Account).WithMany(b => b.Gains).HasForeignKey(p => p.AccountId).IsRequired();
             modelBuilder.Entity<Gain>().HasMany(p => p.Attachments).WithOne(b => b.Gain);
 
+            modelBuilder.Entity<GainType>().HasMany(p => p.Gains).WithOne(b => b.GainType);
+
             modelBuilder.Entity<Loss>().HasOne(p => p.LossType).WithMany(b => b.Losses).HasForeignKey(p => p.LossTypeId).IsRequired();
             modelBuilder.Entity<Loss>().HasOne(p => p.Project).WithMany(b => b.Losses).HasForeignKey(p => p.ProjectId).IsRequired();
             modelBuilder.Entity<Loss>().HasOne(p => p.Account).WithMany(b => b.Losses).HasForeignKey(p => p.AccountId).IsRequired();
             modelBuilder.Entity<Loss>().HasMany(p => p.Attachments).WithOne(b => b.Loss);
+
+            modelBuilder.Entity<LossType>().HasMany(p => p.Losses).WithOne(b => b.LossType);
 
             modelBuilder.Entity<Project>().HasOne(p => p.Client).WithMany(b => b.Projects).HasForeignKey(p => p.ClientId).IsRequired();
             modelBuilder.Entity<Project>().HasMany(p => p.Gains).WithOne(b => b.Project);
