@@ -4,12 +4,11 @@ using Microsoft.AspNetCore.Components;
 
 namespace InmobiliariaDashboard.Client.Pages.Cost
 {
-    public interface IService : IBaseCatalogService<CostViewModel>
+    public interface IService : IBaseCatalogService<CostViewModel>, IBaseDependentService
     {
-
     }
 
-    public class Service : BaseCatalogService<CostViewModel>, IService
+    public class Service : BaseDependentService<CostViewModel>, IService
     {
         public Service(HttpClient httpClient, NavigationManager navigationManager)
             : base(httpClient, navigationManager)

@@ -8,6 +8,7 @@ namespace InmobiliariaDashboard.Server.Services
 {
     public interface IAccountService : IBaseService<Account>
     {
+        IEnumerable<Account> GetByProject(int id);
     }
 
     public class AccountService : IAccountService
@@ -30,6 +31,14 @@ namespace InmobiliariaDashboard.Server.Services
         public IEnumerable<Account> GetAllForResolver()
         {
             var records = _dbContext.Set<Account>().ToList();
+            return records;
+        }
+
+        public IEnumerable<Account> GetByProject(int id)
+        {
+            var records = _dbContext.Set<Account>()
+                .Where(x => x.Client.Projects.Any(y => y.Id == id))
+                .ToList();
             return records;
         }
     }
