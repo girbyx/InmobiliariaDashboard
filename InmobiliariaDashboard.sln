@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InmobiliariaDashboard.Server", "InmobiliariaDashboard\Server\InmobiliariaDashboard.Server.csproj", "{FC028B7E-5AC8-4C73-9664-BB501764C560}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InmobiliariaDashboard.Server", "InmobiliariaDashboard\Server\InmobiliariaDashboard.Server.csproj", "{FC028B7E-5AC8-4C73-9664-BB501764C560}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InmobiliariaDashboard.Client", "InmobiliariaDashboard\Client\InmobiliariaDashboard.Client.csproj", "{AA5A58D4-F6AD-4E48-8AFF-E409669C47DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InmobiliariaDashboard.Client", "InmobiliariaDashboard\Client\InmobiliariaDashboard.Client.csproj", "{AA5A58D4-F6AD-4E48-8AFF-E409669C47DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InmobiliariaDashboard.Shared", "InmobiliariaDashboard\Shared\InmobiliariaDashboard.Shared.csproj", "{307E51FA-F5D4-4BC5-AA9C-D674A2DF9D0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InmobiliariaDashboard.Shared", "InmobiliariaDashboard\Shared\InmobiliariaDashboard.Shared.csproj", "{307E51FA-F5D4-4BC5-AA9C-D674A2DF9D0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

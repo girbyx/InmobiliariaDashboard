@@ -5,7 +5,14 @@ using System.Reflection;
 
 namespace InmobiliariaDashboard.Shared
 {
-    public abstract class BaseEnumeration : IComparable
+    public interface IBaseEnumeration
+    {
+        int Value { get; }
+        string Code { get; }
+        string DisplayName { get; }
+    }
+
+    public abstract class BaseEnumeration : IComparable, IBaseEnumeration
     {
         private readonly int _value;
         private readonly string _code;
@@ -23,8 +30,8 @@ namespace InmobiliariaDashboard.Shared
         }
 
         public int Value => _value;
-        public string DisplayName => _displayName;
         public string Code => _code;
+        public string DisplayName => _displayName;
 
         public override string ToString()
         {

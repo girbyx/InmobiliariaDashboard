@@ -4,7 +4,7 @@ using InmobiliariaDashboard.Shared.Enumerations;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class AccountViewModel
+    public class AccountViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         [Required]
