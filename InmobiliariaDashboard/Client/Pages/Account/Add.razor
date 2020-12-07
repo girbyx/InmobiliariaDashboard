@@ -1,0 +1,62 @@
+﻿@page "/account/add"
+@inherits AddBase
+
+<h1>Add account</h1>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Account name</label>
+            <input type="text" class="form-control" @bind="Record.Name" />
+        </div>
+        <div class="col form-group">
+            <label>Client</label>
+            @if (Record.Clients != null && Record.Clients.Any())
+            {
+                <select class="form-control" @bind="Record.ClientId">
+                    @foreach (var item in Record.Clients)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <input type="text" class="form-control" disabled="disabled" value="No clients available" />
+            }
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Account number</label>
+            <input type="number" class="form-control" @bind="Record.AccountNumber" />
+        </div>
+        <div class="col form-group">
+            <label>Card number</label>
+            <input type="number" class="form-control" @bind="Record.CardNumber" />
+        </div>
+        <div class="col form-group">
+            <label>Account type</label>
+            @if (AccountTypes != null && AccountTypes.Any())
+            {
+                <select class="form-control" @bind="Record.AccountType">
+                    @foreach (var item in AccountTypes)
+                    {
+                        <option value="@item.Code">@item.DisplayName</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <input type="text" class="form-control" disabled="disabled" value="No account types available" />
+            }
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+</EditForm>
