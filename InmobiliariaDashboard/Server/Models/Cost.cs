@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Server.Resolvers;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -26,5 +29,17 @@ namespace InmobiliariaDashboard.Server.Models
 
         // collections
         public virtual ICollection<Attachment> Attachments { get; set; }
+    }
+
+    public class CostProfile : Profile
+    {
+        public CostProfile()
+        {
+            CreateMap<Cost, CostViewModel>()
+                .ForMember(dest => dest.CostTypes, opt => opt.MapFrom<CostTypesResolver>())
+                .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>())
+                .ForMember(dest => dest.Accounts, opt => opt.MapFrom<AccountsResolver>());
+            CreateMap<CostViewModel, Cost>();
+        }
     }
 }
