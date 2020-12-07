@@ -17,6 +17,9 @@ namespace InmobiliariaDashboard.Client.Pages.Account
         protected override async Task OnInitializedAsync()
         {
             Record = await Service.GetEmpty();
+
+            // defaults
+            Record.AccountType = AccountTypeEnum.FlatCash.Code;
         }
 
         protected async Task HandleValidSubmit()

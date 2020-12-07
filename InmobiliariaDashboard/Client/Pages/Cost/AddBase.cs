@@ -17,6 +17,9 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
         protected override async Task OnInitializedAsync()
         {
             Record = await Service.GetEmpty();
+
+            // defaults
+            Record.CommissionType = CommissionTypeEnum.FlatCash.Code;
         }
 
         protected async Task HandleValidSubmit()
