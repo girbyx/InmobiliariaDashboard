@@ -24,7 +24,7 @@
     </div>
 
     <div class="form-row">
-        <FormSelectRecord @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Projects"></FormSelectRecord>
+        <FormSelectRecord OnChangeCallback="OnProjectChange" @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Projects"></FormSelectRecord>
         <FormSelectRecord @bind-Value="Record.AccountId" Records="Record.Accounts" Title="Accounts"></FormSelectRecord>
     </div>
 

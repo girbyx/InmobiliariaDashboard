@@ -32,9 +32,13 @@
     [Parameter]
     public EventCallback<int> ValueChanged { get; set; }
 
+    [Parameter]
+    public EventCallback<int> OnChangeCallback { get; set; }
+
     private Task OnValueChanged(ChangeEventArgs e)
     {
         Value = Convert.ToInt32(e.Value);
+        OnChangeCallback.InvokeAsync(Value);
         return ValueChanged.InvokeAsync(Value);
     }
 

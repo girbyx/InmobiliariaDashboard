@@ -28,6 +28,11 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
             await Service.Return();
         }
 
+        protected async Task OnProjectChange(int id)
+        {
+            Record.Accounts = await Service.GetAccountsByProject(id);
+        }
+
         protected async Task OnCancelClick(MouseEventArgs e)
         {
             await Service.Return();
