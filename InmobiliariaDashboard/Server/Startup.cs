@@ -82,6 +82,10 @@ namespace InmobiliariaDashboard.Server
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
+
+            using var scope = app.ApplicationServices.CreateScope();
+            using var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+            context.Database.Migrate();
         }
     }
 }
