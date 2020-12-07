@@ -1,0 +1,93 @@
+﻿@page "/cost/add"
+@inherits AddBase
+
+<h1>Add cost</h1>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Value</label>
+            <input type="number" class="form-control" @bind="Record.Value" />
+        </div>
+        <div class="col form-group">
+            <label>Cost type</label>
+            @if (Record.CostTypes != null && Record.CostTypes.Any())
+            {
+                <select class="form-control" @bind="Record.CostTypeId">
+                    @foreach (var item in Record.CostTypes)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <input type="text" class="form-control" disabled="disabled" value="No cost types available" />
+            }
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Commission</label>
+            <input type="number" class="form-control" @bind="Record.Commission" />
+        </div>
+        <div class="col form-group">
+            <label>Commission type</label>
+            <select class="form-control" @bind="Record.CommissionType">
+                @foreach (var item in CommissionTypes)
+                {
+                    <option value="@item.Code">@item.DisplayName</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Project</label>
+            @if (Record.Projects != null && Record.Projects.Any())
+            {
+                <select class="form-control" @bind="Record.ProjectId">
+                    @foreach (var item in Record.Projects)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <input type="text" class="form-control" disabled="disabled" value="No project available" />
+            }
+        </div>
+        <div class="col form-group">
+            <label>Account</label>
+            @if (Record.Accounts != null && Record.Accounts.Any())
+            {
+                <select class="form-control" @bind="Record.AccountId">
+                    @foreach (var item in Record.Accounts)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <input type="text" class="form-control" disabled="disabled" value="No accounts available" />
+            }
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" @bind="Record.Description" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+</EditForm>

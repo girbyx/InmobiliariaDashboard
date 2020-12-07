@@ -1,0 +1,53 @@
+﻿@page "/cost/list"
+@using InmobiliariaDashboard.Shared.Enumerations
+@inherits ListBase
+
+<h1>Costs</h1>
+
+<div class="text-right">
+    <a href="cost/add" class="btn btn-primary"><span class="oi oi-plus"></span> Add cost</a>
+</div>
+
+@if (Records == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Project name</th>
+                <th>Account name</th>
+                <th>Value</th>
+                <th>Commission</th>
+                <th>Total</th>
+                <th>Created on</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var record in Records)
+        {
+            <tr>
+                <td>@record.ProjectName</td>
+                <td>@record.AccountName</td>
+                <td>$@record.Value</td>
+                @if (CommissionTypeEnum.FlatCash.Code == record.CommissionType)
+                {
+                    <td>$@record.Commission</td>
+                }
+                else if (CommissionTypeEnum.Percentage.Code == record.CommissionType)
+                {
+                    <td>@record.Commission%</td>
+                }
+                <td>$@record.Total</td>
+                <td>@record.Created.ToString("yyyy MMMM dd")</td>
+                <td><a href="cost/edit/@record.Id"><span class="oi oi-pencil"></span></a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
