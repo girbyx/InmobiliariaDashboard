@@ -12,8 +12,8 @@ namespace InmobiliariaDashboard.Server.Controllers.Cost
     public class CostDetailController : BaseDetailController<CostDetailController, Models.Cost, CostViewModel>
     {
         public CostDetailController(ILogger<CostDetailController> logger, IMapper mapper,
-            IApplicationDbContext dbContext, ICostService baseService) : base(logger, mapper, dbContext,
-            baseService)
+            IApplicationDbContext dbContext, ICostService baseService)
+            : base(logger, mapper, dbContext, baseService)
         {
         }
     }
