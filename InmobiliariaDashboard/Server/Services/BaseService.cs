@@ -7,6 +7,7 @@ namespace InmobiliariaDashboard.Server.Services
     public interface IBaseService<out TEntity> where TEntity : class
     {
         IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAllForResolver();
     }
 
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
@@ -19,6 +20,12 @@ namespace InmobiliariaDashboard.Server.Services
         }
 
         public IEnumerable<TEntity> GetAll()
+        {
+            var records = _dbContext.Set<TEntity>().ToList();
+            return records;
+        }
+
+        public IEnumerable<TEntity> GetAllForResolver()
         {
             var records = _dbContext.Set<TEntity>().ToList();
             return records;

@@ -26,5 +26,11 @@ namespace InmobiliariaDashboard.Server.Services
                 .ToList();
             return records;
         }
+
+        public IEnumerable<Account> GetAllForResolver()
+        {
+            var records = _dbContext.Set<Account>().ToList();
+            return records;
+        }
     }
 }

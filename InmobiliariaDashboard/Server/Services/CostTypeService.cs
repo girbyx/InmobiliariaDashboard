@@ -6,29 +6,30 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IProjectService : IBaseService<Project>
+    public interface ICostTypeService : IBaseService<CostType>
     {
     }
 
-    public class ProjectService : IProjectService
+    public class CostTypeService : ICostTypeService
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public ProjectService(IApplicationDbContext dbContext)
+        public CostTypeService(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Project> GetAll()
+        public IEnumerable<CostType> GetAll()
         {
-            var records = _dbContext.Set<Project>()
-                .Include(x => x.Client)
+            var records = _dbContext.Set<CostType>()
+                .Include(x => x.Costs)
                 .ToList();
             return records;
         }
-        public IEnumerable<Project> GetAllForResolver()
+
+        public IEnumerable<CostType> GetAllForResolver()
         {
-            var records = _dbContext.Set<Project>().ToList();
+            var records = _dbContext.Set<CostType>().ToList();
             return records;
         }
     }
