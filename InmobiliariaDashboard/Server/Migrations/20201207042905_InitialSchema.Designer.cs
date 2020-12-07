@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InmobiliariaDashboard.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201206235707_InitialSchema")]
+    [Migration("20201207042905_InitialSchema")]
     partial class InitialSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,13 +24,13 @@ namespace InmobiliariaDashboard.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AccountNumber")
+                    b.Property<long?>("AccountNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AccountType")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("CardNumber")
+                    b.Property<long?>("CardNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ClientId")
@@ -234,7 +234,7 @@ namespace InmobiliariaDashboard.Server.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double?>("Commission")
+                    b.Property<double>("Commission")
                         .HasColumnType("REAL");
 
                     b.Property<string>("CommissionType")

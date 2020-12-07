@@ -94,8 +94,8 @@ namespace InmobiliariaDashboard.Server.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    AccountNumber = table.Column<int>(type: "INTEGER", nullable: true),
-                    CardNumber = table.Column<int>(type: "INTEGER", nullable: true),
+                    AccountNumber = table.Column<long>(type: "INTEGER", nullable: true),
+                    CardNumber = table.Column<long>(type: "INTEGER", nullable: true),
                     AccountType = table.Column<string>(type: "TEXT", nullable: true),
                     ClientId = table.Column<int>(type: "INTEGER", nullable: false),
                     Created = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -183,7 +183,7 @@ namespace InmobiliariaDashboard.Server.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Value = table.Column<double>(type: "REAL", nullable: false),
-                    Commission = table.Column<double>(type: "REAL", nullable: true),
+                    Commission = table.Column<double>(type: "REAL", nullable: false),
                     CommissionType = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     CostTypeId = table.Column<int>(type: "INTEGER", nullable: false),
