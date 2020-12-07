@@ -11,14 +11,9 @@ namespace InmobiliariaDashboard.Client.Pages.Project
 
     public class Service : BaseCatalogService<ProjectViewModel>, IService
     {
-        private readonly HttpClient _httpClient;
-        private readonly NavigationManager _navigationManager;
-
         public Service(HttpClient httpClient, NavigationManager navigationManager)
             : base(httpClient, navigationManager)
         {
-            _httpClient = httpClient;
-            _navigationManager = navigationManager;
             ControllerName = "Project";
             DetailControllerName = "ProjectDetail";
         }
