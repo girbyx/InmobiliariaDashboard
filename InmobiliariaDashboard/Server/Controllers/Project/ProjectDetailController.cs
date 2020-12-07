@@ -12,19 +12,10 @@ namespace InmobiliariaDashboard.Server.Controllers.Project
     public class
         ProjectDetailController : BaseDetailController<ProjectDetailController, Models.Project, ProjectViewModel>
     {
-        private readonly ILogger<ProjectDetailController> _logger;
-        private readonly IMapper _mapper;
-        private readonly IApplicationDbContext _dbContext;
-        private readonly IBaseService<Models.Project> _baseService;
-
         public ProjectDetailController(ILogger<ProjectDetailController> logger, IMapper mapper,
             IApplicationDbContext dbContext, IBaseService<Models.Project> baseService) : base(logger, mapper, dbContext,
             baseService)
         {
-            _logger = logger;
-            _mapper = mapper;
-            _dbContext = dbContext;
-            _baseService = baseService;
         }
     }
 }

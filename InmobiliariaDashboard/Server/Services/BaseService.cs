@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Server.Services
 
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
     {
-        protected readonly IApplicationDbContext _dbContext;
+        private readonly IApplicationDbContext _dbContext;
 
         public BaseService(IApplicationDbContext dbContext)
         {
@@ -20,7 +20,8 @@ namespace InmobiliariaDashboard.Server.Services
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _dbContext.Set<TEntity>().ToList();
+            var records = _dbContext.Set<TEntity>().ToList();
+            return records;
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using InmobiliariaDashboard.Server.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using InmobiliariaDashboard.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace InmobiliariaDashboard.Server.Services
 {
@@ -6,10 +9,19 @@ namespace InmobiliariaDashboard.Server.Services
     {
     }
 
-    public class ClientService : BaseService<Models.Client>, IClientService
+    public class ClientService : IClientService
     {
-        public ClientService(IApplicationDbContext dbContext) : base(dbContext)
+        private readonly IApplicationDbContext _dbContext;
+
+        public ClientService(IApplicationDbContext dbContext)
         {
+            _dbContext = dbContext;
+        }
+
+        public IEnumerable<Models.Client> GetAll()
+        {
+            var records = _dbContext.Set<Models.Client>().Include(x => x.Projects).ToList();
+            return records;
         }
     }
 }

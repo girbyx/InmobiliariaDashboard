@@ -11,19 +11,10 @@ namespace InmobiliariaDashboard.Server.Controllers.Project
     [Route("api/[controller]")]
     public class ProjectController : BaseCatalogController<ProjectController, Models.Project, ProjectViewModel>
     {
-        private readonly ILogger<ProjectController> _logger;
-        private readonly IMapper _mapper;
-        private readonly IApplicationDbContext _dbContext;
-        private readonly IBaseService<Models.Project> _baseService;
-
         public ProjectController(ILogger<ProjectController> logger, IMapper mapper, IApplicationDbContext dbContext,
-            IBaseService<Models.Project> baseService)
+            IProjectService baseService)
             : base(logger, mapper, dbContext, baseService)
         {
-            _logger = logger;
-            _mapper = mapper;
-            _dbContext = dbContext;
-            _baseService = baseService;
         }
     }
 }

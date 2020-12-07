@@ -11,19 +11,10 @@ namespace InmobiliariaDashboard.Server.Controllers.Client
     [Route("api/[controller]")]
     public class ClientController : BaseCatalogController<ClientController, Models.Client, ClientViewModel>
     {
-        private readonly ILogger<ClientController> _logger;
-        private readonly IMapper _mapper;
-        private readonly IApplicationDbContext _dbContext;
-        private readonly IBaseService<Models.Client> _baseService;
-
         public ClientController(ILogger<ClientController> logger, IMapper mapper, IApplicationDbContext dbContext,
-            IBaseService<Models.Client> baseService)
+            IClientService baseService)
             : base(logger, mapper, dbContext, baseService)
         {
-            _logger = logger;
-            _mapper = mapper;
-            _dbContext = dbContext;
-            _baseService = baseService;
         }
     }
 }
