@@ -1,0 +1,41 @@
+﻿@using InmobiliariaDashboard.Shared
+@typeparam TEnumeration
+
+<div class="col form-group">
+    <label>@Title</label>
+    @if (Records != null && Records.Any())
+    {
+        <select class="form-control" value="@Value" @onchange="OnValueChanged">
+            @foreach (var item in Records)
+            {
+                <option value="@((item as IBaseEnumeration)?.Code)">@((item as IBaseEnumeration)?.DisplayName)</option>
+            }
+        </select>
+    }
+    else
+    {
+        <input type="text" class="form-control" disabled="disabled" value="No @Title.ToLower() available" />
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public IEnumerable<TEnumeration> Records { get; set; }
+
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    private Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value.ToString();
+        return ValueChanged.InvokeAsync(Value);
+    } 
+
+}
