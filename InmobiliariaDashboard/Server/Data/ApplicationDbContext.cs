@@ -34,50 +34,6 @@ namespace InmobiliariaDashboard.Server.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Account>().HasOne(p => p.Client).WithMany(b => b.Accounts).HasForeignKey(p => p.ClientId).IsRequired();
-            modelBuilder.Entity<Account>().HasMany(p => p.Gains).WithOne(b => b.Account);
-            modelBuilder.Entity<Account>().HasMany(p => p.Costs).WithOne(b => b.Account);
-            modelBuilder.Entity<Account>().HasMany(p => p.Losses).WithOne(b => b.Account);
-
-            modelBuilder.Entity<Attachment>().HasOne(p => p.Gain).WithMany(b => b.Attachments).HasForeignKey(p => p.GainId);
-            modelBuilder.Entity<Attachment>().HasOne(p => p.Cost).WithMany(b => b.Attachments).HasForeignKey(p => p.CostId);
-            modelBuilder.Entity<Attachment>().HasOne(p => p.Loss).WithMany(b => b.Attachments).HasForeignKey(p => p.LossId);
-
-            modelBuilder.Entity<Models.Client>().HasMany(p => p.Projects).WithOne(b => b.Client);
-            modelBuilder.Entity<Models.Client>().HasMany(p => p.Contacts).WithOne(b => b.Client);
-            modelBuilder.Entity<Models.Client>().HasMany(p => p.Accounts).WithOne(b => b.Client);
-
-            modelBuilder.Entity<Contact>().HasOne(p => p.Client).WithMany(b => b.Contacts).HasForeignKey(p => p.ClientId).IsRequired();
-
-            modelBuilder.Entity<Cost>().HasOne(p => p.CostType).WithMany(b => b.Costs).HasForeignKey(p => p.CostTypeId).IsRequired();
-            modelBuilder.Entity<Cost>().HasOne(p => p.Project).WithMany(b => b.Costs).HasForeignKey(p => p.ProjectId).IsRequired();
-            modelBuilder.Entity<Cost>().HasOne(p => p.Account).WithMany(b => b.Costs).HasForeignKey(p => p.AccountId).IsRequired();
-            modelBuilder.Entity<Cost>().HasMany(p => p.Attachments).WithOne(b => b.Cost);
-
-            modelBuilder.Entity<CostType>().HasMany(p => p.Costs).WithOne(b => b.CostType);
-
-            modelBuilder.Entity<Gain>().HasOne(p => p.GainType).WithMany(b => b.Gains).HasForeignKey(p => p.GainTypeId).IsRequired();
-            modelBuilder.Entity<Gain>().HasOne(p => p.Project).WithMany(b => b.Gains).HasForeignKey(p => p.ProjectId).IsRequired();
-            modelBuilder.Entity<Gain>().HasOne(p => p.Account).WithMany(b => b.Gains).HasForeignKey(p => p.AccountId).IsRequired();
-            modelBuilder.Entity<Gain>().HasMany(p => p.Attachments).WithOne(b => b.Gain);
-
-            modelBuilder.Entity<GainType>().HasMany(p => p.Gains).WithOne(b => b.GainType);
-
-            modelBuilder.Entity<Loss>().HasOne(p => p.LossType).WithMany(b => b.Losses).HasForeignKey(p => p.LossTypeId).IsRequired();
-            modelBuilder.Entity<Loss>().HasOne(p => p.Project).WithMany(b => b.Losses).HasForeignKey(p => p.ProjectId).IsRequired();
-            modelBuilder.Entity<Loss>().HasOne(p => p.Account).WithMany(b => b.Losses).HasForeignKey(p => p.AccountId).IsRequired();
-            modelBuilder.Entity<Loss>().HasMany(p => p.Attachments).WithOne(b => b.Loss);
-
-            modelBuilder.Entity<LossType>().HasMany(p => p.Losses).WithOne(b => b.LossType);
-
-            modelBuilder.Entity<Project>().HasOne(p => p.Client).WithMany(b => b.Projects).HasForeignKey(p => p.ClientId).IsRequired();
-            modelBuilder.Entity<Project>().HasMany(p => p.Gains).WithOne(b => b.Project);
-            modelBuilder.Entity<Project>().HasMany(p => p.Costs).WithOne(b => b.Project);
-            modelBuilder.Entity<Project>().HasMany(p => p.Losses).WithOne(b => b.Project);
-        }
-
         public override EntityEntry<TEntity> Add<TEntity>(TEntity entity)
         {
             if (entity is IAuditFields)
