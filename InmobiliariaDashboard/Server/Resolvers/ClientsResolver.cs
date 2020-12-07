@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Resolvers
 {
-    public class ClientsResolver : IValueResolver<Project, ProjectViewModel, IEnumerable<ClientViewModel>>
+    public class ClientsResolver : IValueResolver<object, object, IEnumerable<ClientViewModel>>
     {
         private readonly IMapper _mapper;
         private readonly IClientService _clientService;
@@ -18,7 +17,7 @@ namespace InmobiliariaDashboard.Server.Resolvers
             _clientService = clientService;
         }
 
-        public IEnumerable<ClientViewModel> Resolve(Project source, ProjectViewModel destination,
+        public IEnumerable<ClientViewModel> Resolve(object source, object destination,
             IEnumerable<ClientViewModel> destMember,
             ResolutionContext context)
         {
