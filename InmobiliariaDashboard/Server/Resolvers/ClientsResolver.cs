@@ -9,19 +9,19 @@ namespace InmobiliariaDashboard.Server.Resolvers
     public class ClientsResolver : IValueResolver<object, object, IEnumerable<ClientViewModel>>
     {
         private readonly IMapper _mapper;
-        private readonly IClientService _clientService;
+        private readonly IClientService _service;
 
-        public ClientsResolver(IMapper mapper, IClientService clientService)
+        public ClientsResolver(IMapper mapper, IClientService service)
         {
             _mapper = mapper;
-            _clientService = clientService;
+            _service = service;
         }
 
         public IEnumerable<ClientViewModel> Resolve(object source, object destination,
             IEnumerable<ClientViewModel> destMember,
             ResolutionContext context)
         {
-            return _clientService.GetAll().Select(_mapper.Map<ClientViewModel>);
+            return _service.GetAllForResolver().Select(_mapper.Map<ClientViewModel>);
         }
     }
 }
