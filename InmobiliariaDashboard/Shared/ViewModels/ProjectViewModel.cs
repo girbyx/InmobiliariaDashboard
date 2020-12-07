@@ -12,7 +12,8 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required]
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "The field {0} must be greater than {1}.")]
+
+        [Range(1, int.MaxValue, ErrorMessage = "Please, select a client")]
         public int ClientId { get; set; }
         public string ClientName { get; set; }
 
