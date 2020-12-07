@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Server.Resolvers;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -8,8 +11,8 @@ namespace InmobiliariaDashboard.Server.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int? AccountNumber { get; set; }
-        public int? CardNumber { get; set; }
+        public long? AccountNumber { get; set; }
+        public long? CardNumber { get; set; }
         public string AccountType { get; set; }
 
         // audit & relationships
@@ -24,5 +27,15 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual ICollection<Gain> Gains { get; set; }
         public virtual ICollection<Cost> Costs { get; set; }
         public virtual ICollection<Loss> Losses { get; set; }
+    }
+
+    public class AccountProfile : Profile
+    {
+        public AccountProfile()
+        {
+            CreateMap<Account, AccountViewModel>()
+                .ForMember(dest => dest.Clients, opt => opt.MapFrom<ClientsResolver>());
+            CreateMap<AccountViewModel, Account>();
+        }
     }
 }
