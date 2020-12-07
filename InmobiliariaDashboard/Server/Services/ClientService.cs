@@ -20,7 +20,10 @@ namespace InmobiliariaDashboard.Server.Services
 
         public IEnumerable<Models.Client> GetAll()
         {
-            var records = _dbContext.Set<Models.Client>().Include(x => x.Projects).ToList();
+            var records = _dbContext.Set<Models.Client>()
+                .Include(x => x.Projects)
+                .Include(x => x.Accounts)
+                .ToList();
             return records;
         }
     }
