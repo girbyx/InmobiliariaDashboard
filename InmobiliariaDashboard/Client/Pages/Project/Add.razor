@@ -12,22 +12,7 @@
             <label>Project name</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
-        <div class="col form-group">
-            <label>Client</label>
-            @if (Record.Clients != null && Record.Clients.Any())
-            {
-                <select class="form-control" @bind="Record.ClientId">
-                    @foreach (var item in Record.Clients)
-                    {
-                        <option value="@item.Id">@item.Name</option>
-                    }
-                </select>
-            }
-            else
-            {
-                <input type="text" class="form-control" disabled="disabled" value="No clients available" />
-            }
-        </div>
+        <FormSelectRecord @bind-Value="Record.ClientId" Records="Record.Clients" Title="Clients"></FormSelectRecord>
     </div>
 
     <div class="form-row">
