@@ -17,16 +17,18 @@ namespace InmobiliariaDashboard.Server.Data
 
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        public DbSet<MonetaryAgent> MonetaryAgents { get; set; }
+        public DbSet<Asset> Assets { get; set; }
+        public DbSet<AssetType> AssetTypes { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
-        public DbSet<Enterprise> Enterprises { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Cost> Costs { get; set; }
         public DbSet<CostType> CostTypes { get; set; }
+        public DbSet<Enterprise> Enterprises { get; set; }
         public DbSet<Gain> Gains { get; set; }
         public DbSet<GainType> GainTypes { get; set; }
         public DbSet<Loss> Losses { get; set; }
         public DbSet<LossType> LossTypes { get; set; }
+        public DbSet<MonetaryAgent> MonetaryAgents { get; set; }
         public DbSet<Project> Projects { get; set; }
 
         public ApplicationDbContext(DbContextOptions options)
