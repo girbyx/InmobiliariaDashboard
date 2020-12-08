@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using InmobiliariaDashboard.Client.Pages.Client;
+using InmobiliariaDashboard.Client.Pages.Enterprise;
 
 namespace InmobiliariaDashboard.Client
 {
