@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using InmobiliariaDashboard.Shared.Enumerations;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
@@ -12,7 +11,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public string Description { get; set; }
         public long? AccountNumber { get; set; }
         public long? CardNumber { get; set; }
-        [Required] public string MonetaryAgentType { get; set; } = MonetaryAgentTypeEnum.Money.Code;
+        [Required] public string MonetaryAgentType { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]
         public int EnterpriseId { get; set; }

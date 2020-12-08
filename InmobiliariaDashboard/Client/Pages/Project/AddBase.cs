@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using InmobiliariaDashboard.Shared.Enumerations;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -17,6 +18,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
 
             // defaults
             Record.StartDate = DateTime.Today;
+            Record.ProjectType = ProjectTypeEnum.FixedAsset.Code;
         }
 
         protected async Task HandleValidSubmit()
