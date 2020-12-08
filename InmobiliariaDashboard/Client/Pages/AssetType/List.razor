@@ -1,0 +1,43 @@
+﻿@page "/assettype/list"
+@inherits ListBase
+
+<h1>Tipos de activo</h1>
+
+<div class="text-right">
+    <a href="assettype/add" class="btn btn-primary"><span class="oi oi-plus"></span> Agregar tipo de activo</a>
+</div>
+
+@if (Records == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Tipo de activo</th>
+                <th>Descripcion</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.Name</td>
+                    <td>@record.Description</td>
+                    <td>
+                        <a href="assettype/edit/@record.Id">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
