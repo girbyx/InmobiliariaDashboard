@@ -24,7 +24,7 @@ namespace InmobiliariaDashboard.Server.Services
             var records = _dbContext.Set<Cost>()
                 .Include(x => x.CostType)
                 .Include(x => x.Project)
-                .Include(x => x.Account)
+                .Include(x => x.MonetaryAgent)
                 .ToList();
             return records;
         }

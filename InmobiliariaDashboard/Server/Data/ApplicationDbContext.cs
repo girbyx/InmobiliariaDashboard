@@ -17,9 +17,9 @@ namespace InmobiliariaDashboard.Server.Data
 
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        public DbSet<Account> Accounts { get; set; }
+        public DbSet<MonetaryAgent> MonetaryAgents { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
-        public DbSet<Models.Client> Clients { get; set; }
+        public DbSet<Enterprise> Enterprises { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Cost> Costs { get; set; }
         public DbSet<CostType> CostTypes { get; set; }

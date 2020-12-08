@@ -7,17 +7,18 @@ using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
-    public class Account : IIdentityFields, IAuditFields
+    public class MonetaryAgent : IIdentityFields, IAuditFields
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public long? AccountNumber { get; set; }
         public long? CardNumber { get; set; }
-        public string AccountType { get; set; }
+        public string MonetaryAgentType { get; set; }
 
         // audit & relationships
-        public int ClientId { get; set; }
-        public virtual Client Client { get; set; }
+        public int EnterpriseId { get; set; }
+        public virtual Enterprise Enterprise { get; set; }
         public DateTime Created { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? Updated { get; set; }
@@ -29,13 +30,13 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual ICollection<Loss> Losses { get; set; }
     }
 
-    public class AccountProfile : Profile
+    public class MonetaryAgentProfile : Profile
     {
-        public AccountProfile()
+        public MonetaryAgentProfile()
         {
-            CreateMap<Account, AccountViewModel>()
-                .ForMember(dest => dest.Clients, opt => opt.MapFrom<ClientsResolver>());
-            CreateMap<AccountViewModel, Account>();
+            CreateMap<MonetaryAgent, MonetaryAgentViewModel>()
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>());
+            CreateMap<MonetaryAgentViewModel, MonetaryAgent>();
         }
     }
 }

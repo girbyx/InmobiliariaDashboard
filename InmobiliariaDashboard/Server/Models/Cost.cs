@@ -17,7 +17,7 @@ namespace InmobiliariaDashboard.Server.Models
         public string CommissionType { get; set; }
         public string Description { get; set; }
         [NotMapped]
-        public double Total => CommissionTypeEnum.FlatCash.Code == CommissionType ? (Value + Commission) :
+        public double Total => CommissionTypeEnum.Money.Code == CommissionType ? (Value + Commission) :
             CommissionTypeEnum.Percentage.Code == CommissionType ? (Value * (1 + (Commission / 100))) : Value;
 
         // audit & relationships
@@ -25,8 +25,8 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual CostType CostType { get; set; }
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
-        public int AccountId { get; set; }
-        public virtual Account Account { get; set; }
+        public int MonetaryAgentId { get; set; }
+        public virtual MonetaryAgent MonetaryAgent { get; set; }
         public DateTime Created { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? Updated { get; set; }

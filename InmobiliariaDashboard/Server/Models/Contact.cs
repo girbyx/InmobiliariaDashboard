@@ -23,8 +23,8 @@ namespace InmobiliariaDashboard.Server.Models
         public int? Zip { get; set; }
 
         // audit & relationships
-        public int ClientId { get; set; }
-        public virtual Client Client { get; set; }
+        public int EnterpriseId { get; set; }
+        public virtual Enterprise Enterprise { get; set; }
         public DateTime Created { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? Updated { get; set; }

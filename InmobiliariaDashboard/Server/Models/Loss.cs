@@ -17,8 +17,8 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual LossType LossType { get; set; }
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
-        public int AccountId { get; set; }
-        public virtual Account Account { get; set; }
+        public int MonetaryAgentId { get; set; }
+        public virtual MonetaryAgent MonetaryAgent { get; set; }
         public DateTime Created { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? Updated { get; set; }

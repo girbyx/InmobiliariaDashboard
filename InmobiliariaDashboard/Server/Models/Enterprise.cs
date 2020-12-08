@@ -6,7 +6,7 @@ using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
-    public class Client : IIdentityFields, IAuditFields
+    public class Enterprise : IIdentityFields, IAuditFields
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -19,6 +19,7 @@ namespace InmobiliariaDashboard.Server.Models
         public string State { get; set; }
         public string City { get; set; }
         public int? Zip { get; set; }
+        public string Description { get; set; }
 
         // audit & relationships
         public DateTime Created { get; set; }
@@ -29,15 +30,15 @@ namespace InmobiliariaDashboard.Server.Models
         // collections
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<Contact> Contacts { get; set; }
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<MonetaryAgent> MonetaryAgents { get; set; }
     }
 
-    public class ClientProfile : Profile
+    public class EnterpriseProfile : Profile
     {
-        public ClientProfile()
+        public EnterpriseProfile()
         {
-            CreateMap<Client, ClientViewModel>();
-            CreateMap<ClientViewModel, Client>();
+            CreateMap<Enterprise, EnterpriseViewModel>();
+            CreateMap<EnterpriseViewModel, Enterprise>();
         }
     }
 }

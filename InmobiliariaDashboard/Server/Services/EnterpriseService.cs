@@ -5,31 +5,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IClientService : IBaseService<Models.Client>
+    public interface IEnterpriseService : IBaseService<Models.Enterprise>
     {
     }
 
-    public class ClientService : IClientService
+    public class EnterpriseService : IEnterpriseService
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public ClientService(IApplicationDbContext dbContext)
+        public EnterpriseService(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Models.Client> GetAll()
+        public IEnumerable<Models.Enterprise> GetAll()
         {
-            var records = _dbContext.Set<Models.Client>()
+            var records = _dbContext.Set<Models.Enterprise>()
                 .Include(x => x.Projects)
                 .Include(x => x.Accounts)
                 .ToList();
             return records;
         }
 
-        public IEnumerable<Models.Client> GetAllForResolver()
+        public IEnumerable<Models.Enterprise> GetAllForResolver()
         {
-            var records = _dbContext.Set<Models.Client>().ToList();
+            var records = _dbContext.Set<Models.Enterprise>().ToList();
             return records;
         }
     }

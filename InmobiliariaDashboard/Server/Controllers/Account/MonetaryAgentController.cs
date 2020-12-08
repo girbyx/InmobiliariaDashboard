@@ -11,13 +11,13 @@ namespace InmobiliariaDashboard.Server.Controllers.Account
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AccountController : BaseCatalogController<AccountController, Models.Account, AccountViewModel>
+    public class MonetaryAgentController : BaseCatalogController<MonetaryAgentController, Models.MonetaryAgent, MonetaryAgentViewModel>
     {
         private readonly IMapper _mapper;
-        private readonly IAccountService _baseService;
+        private readonly IMonetaryAgentService _baseService;
 
-        public AccountController(ILogger<AccountController> logger, IMapper mapper, IApplicationDbContext dbContext,
-            IAccountService baseService)
+        public MonetaryAgentController(ILogger<MonetaryAgentController> logger, IMapper mapper, IApplicationDbContext dbContext,
+            IMonetaryAgentService baseService)
             : base(logger, mapper, dbContext, baseService)
         {
             _mapper = mapper;
@@ -25,9 +25,9 @@ namespace InmobiliariaDashboard.Server.Controllers.Account
         }
 
         [Route("ByProject")]
-        public IEnumerable<AccountViewModel> ByProject(int id)
+        public IEnumerable<MonetaryAgentViewModel> ByProject(int id)
         {
-            var result = _baseService.GetByProject(id).Select(_mapper.Map<AccountViewModel>);
+            var result = _baseService.GetByProject(id).Select(_mapper.Map<MonetaryAgentViewModel>);
             return result;
         }
     }

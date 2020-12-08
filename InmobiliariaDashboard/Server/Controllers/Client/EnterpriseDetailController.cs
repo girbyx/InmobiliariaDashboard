@@ -9,10 +9,10 @@ namespace InmobiliariaDashboard.Server.Controllers.Client
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ClientDetailController : BaseDetailController<ClientDetailController, Models.Client, ClientViewModel>
+    public class EnterpriseDetailController : BaseDetailController<EnterpriseDetailController, Models.Enterprise, EnterpriseViewModel>
     {
-        public ClientDetailController(ILogger<ClientDetailController> logger, IMapper mapper,
-            IApplicationDbContext dbContext, IBaseService<Models.Client> baseService) : base(logger, mapper, dbContext,
+        public EnterpriseDetailController(ILogger<EnterpriseDetailController> logger, IMapper mapper,
+            IApplicationDbContext dbContext, IBaseService<Models.Enterprise> baseService) : base(logger, mapper, dbContext,
             baseService)
         {
         }

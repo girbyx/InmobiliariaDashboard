@@ -10,10 +10,10 @@ namespace InmobiliariaDashboard.Server.Controllers.Account
     [ApiController]
     [Route("api/[controller]")]
     public class
-        AccountDetailController : BaseDetailController<AccountDetailController, Models.Account, AccountViewModel>
+        MonetaryAgentDetailController : BaseDetailController<MonetaryAgentDetailController, Models.MonetaryAgent, MonetaryAgentViewModel>
     {
-        public AccountDetailController(ILogger<AccountDetailController> logger, IMapper mapper,
-            IApplicationDbContext dbContext, IAccountService baseService) : base(logger, mapper,
+        public MonetaryAgentDetailController(ILogger<MonetaryAgentDetailController> logger, IMapper mapper,
+            IApplicationDbContext dbContext, IMonetaryAgentService baseService) : base(logger, mapper,
             dbContext, baseService)
         {
         }
