@@ -19,8 +19,8 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
             Record = await Service.GetEmpty();
 
             // defaults
-            Record.CommissionType = CommissionTypeEnum.FlatCash.Code;
-            Record.Accounts = await Service.GetAccountsByProject(Record.ProjectId);
+            Record.CommissionType = CommissionTypeEnum.Money.Code;
+            Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(Record.ProjectId);
         }
 
         protected async Task HandleValidSubmit()
@@ -31,7 +31,7 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
 
         protected async Task OnProjectChange(int id)
         {
-            Record.Accounts = await Service.GetAccountsByProject(id);
+            Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(id);
         }
 
         protected async Task OnCancelClick(MouseEventArgs e)

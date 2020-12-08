@@ -21,7 +21,7 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
             Record = await Service.Get(id);
 
             // defaults
-            Record.Accounts = await Service.GetAccountsByProject(Record.ProjectId);
+            Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(Record.ProjectId);
         }
 
         protected async Task HandleValidSubmit()
@@ -32,7 +32,7 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
 
         protected async Task OnProjectChange(int id)
         {
-            Record.Accounts = await Service.GetAccountsByProject(id);
+            Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(id);
         }
 
         protected async Task OnDeleteClick(MouseEventArgs e)
