@@ -12,11 +12,12 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public double Value { get; set; }
         public double Commission { get; set; }
         [Required]
-        public string CommissionType { get; set; } = CommissionTypeEnum.FlatCash.Code;
+        public string CommissionType { get; set; } = CommissionTypeEnum.Money.Code;
         [Required]
         public string Description { get; set; }
         public int Total { get; set; }
         public DateTime Created { get; set; }
+        public DateTime Updated { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Please, select a cost type")]
         public int CostTypeId { get; set; }
@@ -25,12 +26,12 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Please, select an account")]
-        public int AccountId { get; set; }
-        public string AccountName { get; set; }
+        public int MonetaryAgentId { get; set; }
+        public string MonetaryAgentName { get; set; }
 
         // select lists
         public IEnumerable<CostTypeViewModel> CostTypes { get; set; }
         public IEnumerable<ProjectViewModel> Projects { get; set; }
-        public IEnumerable<AccountViewModel> Accounts { get; set; }
+        public IEnumerable<MonetaryAgentViewModel> MonetaryAgents { get; set; }
     }
 }

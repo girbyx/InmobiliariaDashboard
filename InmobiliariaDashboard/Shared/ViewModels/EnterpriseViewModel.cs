@@ -2,7 +2,7 @@
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class ClientViewModel : ISelectableViewModel
+    public class EnterpriseViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         [Required]
@@ -16,5 +16,6 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public string State { get; set; }
         public string City { get; set; }
         public int Zip { get; set; }
+        public string Description { get; set; }
     }
 }

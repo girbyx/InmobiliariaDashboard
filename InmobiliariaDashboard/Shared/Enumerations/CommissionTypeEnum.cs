@@ -2,8 +2,8 @@
 {
     public class CommissionTypeEnum : BaseEnumeration
     {
-        public static readonly CommissionTypeEnum FlatCash = new CommissionTypeEnum(1, "F", "Flat cash");
-        public static readonly CommissionTypeEnum Percentage = new CommissionTypeEnum(2, "P", "Percentage");
+        public static readonly CommissionTypeEnum Money = new CommissionTypeEnum(1, "E", "Efectivo");
+        public static readonly CommissionTypeEnum Percentage = new CommissionTypeEnum(2, "P", "Porcentaje");
 
         public CommissionTypeEnum() { }
         public CommissionTypeEnum(int id, string code, string name)
