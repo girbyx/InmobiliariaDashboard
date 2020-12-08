@@ -7,7 +7,7 @@ using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace InmobiliariaDashboard.Server.Controllers.Account
+namespace InmobiliariaDashboard.Server.Controllers.MonetaryAgent
 {
     [ApiController]
     [Route("api/[controller]")]

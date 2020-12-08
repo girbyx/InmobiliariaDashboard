@@ -15,9 +15,9 @@ namespace InmobiliariaDashboard.Client
         {
         }
 
-        public async Task<IEnumerable<AccountViewModel>> GetAccountsByProject(int id)
+        public async Task<IEnumerable<MonetaryAgentViewModel>> GetMonetaryAgentsByProject(int id)
         {
-            return await HttpClient.GetFromJsonAsync<IEnumerable<AccountViewModel>>($"api/Account/ByProject?id={id}");
+            return await HttpClient.GetFromJsonAsync<IEnumerable<MonetaryAgentViewModel>>($"api/MonetaryAgent/ByProject?id={id}");
         }
     }
 }
