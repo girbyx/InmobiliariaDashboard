@@ -17,7 +17,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public string Description { get; set; }
         public int Total { get; set; }
         public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
+        public DateTime? Updated { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un tipo de costo")]
         public int CostTypeId { get; set; }
