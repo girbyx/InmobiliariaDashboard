@@ -1,10 +1,10 @@
-﻿@page "/client/list"
+﻿@page "/enterprise/list"
 @inherits ListBase
 
-<h1>Clients</h1>
+<h1>Empresas</h1>
 
 <div class="text-right">
-    <a href="client/add" class="btn btn-primary"><span class="oi oi-plus"></span> Add client</a>
+    <a href="enterprise/add" class="btn btn-primary"><span class="oi oi-plus"></span> Agregar empresa</a>
 </div>
 
 @if (Records == null)
@@ -19,10 +19,10 @@ else
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Client name</th>
+                <th>Empresa</th>
                 <th>Email</th>
-                <th>Cellphone</th>
-                <th>Address</th>
+                <th>Celular</th>
+                <th>Direccion</th>
                 <th></th>
             </tr>
             </thead>
@@ -35,7 +35,7 @@ else
                     <td>@record.Cellphone</td>
                     <td>@record.Address</td>
                     <td>
-                        <a href="client/edit/@record.Id">
+                        <a href="enterprise/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
                         </a>
                     </td>

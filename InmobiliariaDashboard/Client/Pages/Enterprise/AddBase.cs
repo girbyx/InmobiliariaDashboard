@@ -3,12 +3,12 @@ using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace InmobiliariaDashboard.Client.Pages.Client
+namespace InmobiliariaDashboard.Client.Pages.Enterprise
 {
     public class AddBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public ClientViewModel Record { get; set; } = new ClientViewModel();
+        public EnterpriseViewModel Record { get; set; } = new EnterpriseViewModel();
 
         protected async Task HandleValidSubmit()
         {

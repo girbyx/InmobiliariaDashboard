@@ -6,14 +6,14 @@ using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace InmobiliariaDashboard.Client.Pages.Account
+namespace InmobiliariaDashboard.Client.Pages.MonetaryAgent
 {
     public class EditBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
         [Parameter] public string Id { get; set; }
-        public AccountViewModel Record { get; set; } = new AccountViewModel();
-        public IEnumerable<AccountTypeEnum> AccountTypes => BaseEnumeration.GetAll<AccountTypeEnum>();
+        public MonetaryAgentViewModel Record { get; set; } = new MonetaryAgentViewModel();
+        public IEnumerable<MonetaryAgentTypeEnum> MonetaryAgentTypes => BaseEnumeration.GetAll<MonetaryAgentTypeEnum>();
 
         protected override async Task OnInitializedAsync()
         {

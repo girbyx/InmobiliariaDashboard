@@ -1,7 +1,7 @@
-﻿@page "/account/add"
+﻿@page "/monetaryagent/add"
 @inherits AddBase
 
-<h1>Add account</h1>
+<h1>Agregar agente monetario</h1>
 
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -9,24 +9,24 @@
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Account name</label>
+            <label>Agente monetario</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
-        <FormSelectRecord @bind-Value="Record.ClientId" Records="Record.Clients" Title="Clients"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
     </div>
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Account number</label>
+            <label>Numero de cuenta</label>
             <input type="number" class="form-control" @bind="Record.AccountNumber" />
         </div>
         <div class="col form-group">
-            <label>Card number</label>
+            <label>Numero de tarjeta</label>
             <input type="number" class="form-control" @bind="Record.CardNumber" />
         </div>
-        <FormSelectEnum @bind-Value="Record.AccountType" Records="AccountTypes" Title="Account types"></FormSelectEnum>
+        <FormSelectEnum @bind-Value="Record.MonetaryAgentType" Records="MonetaryAgentTypes" Title="Tipos de agentes monetarios"></FormSelectEnum>
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
-    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>

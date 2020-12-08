@@ -1,70 +1,64 @@
-﻿@page "/client/edit/{id}"
-@inherits EditBase
+﻿@page "/enterprise/add"
+@inherits AddBase
 
-<h1>Edit client</h1>
-
-<div class="text-right">
-    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Delete client</button>
-</div>
+<h1>Agregar empresa</h1>
 
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <input type="hidden" class="form-control" @bind="Record.Id" />
-
     <div class="form-row">
         <div class="col form-group">
-            <label>Client name</label>
+            <label>Empresa</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
         <div class="col form-group">
-            <label>Email address</label>
+            <label>Email</label>
             <input type="email" class="form-control" @bind="Record.Email" />
         </div>
     </div>
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Cellphone</label>
+            <label>Celular</label>
             <input type="tel" class="form-control" @bind="Record.Cellphone" />
         </div>
         <div class="col form-group">
-            <label>Telephone</label>
+            <label>Telefono</label>
             <input type="tel" class="form-control" @bind="Record.Telephone" />
         </div>
     </div>
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Address</label>
+            <label>Direccion</label>
             <input type="text" class="form-control" @bind="Record.Address" />
         </div>
         <div class="col form-group">
-            <label>Address ext.</label>
+            <label>Direccion cont.</label>
             <input type="text" class="form-control" @bind="Record.AddressExt" />
         </div>
         <div class="col form-group">
-            <label>Country</label>
+            <label>Pais</label>
             <input type="text" class="form-control" @bind="Record.Country" />
         </div>
     </div>
 
     <div class="form-row">
         <div class="col form-group">
-            <label>State</label>
+            <label>Estado</label>
             <input type="text" class="form-control" @bind="Record.State" />
         </div>
         <div class="col form-group">
-            <label>City</label>
+            <label>Ciudad</label>
             <input type="text" class="form-control" @bind="Record.City" />
         </div>
         <div class="col form-group">
-            <label>Zip</label>
+            <label>C.P.</label>
             <input type="number" class="form-control" @bind="Record.Zip" />
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
-    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>

@@ -1,0 +1,38 @@
+﻿@page "/monetaryagent/edit/{id}"
+@inherits EditBase
+
+<h1>Editar agente monetario</h1>
+
+<div class="text-right">
+    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Borrar</button>
+</div>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <input type="hidden" class="form-control" @bind="Record.Id" />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Agente monetario</label>
+            <input type="text" class="form-control" @bind="Record.Name" />
+        </div>
+        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Numero de cuenta</label>
+            <input type="number" class="form-control" @bind="Record.AccountNumber" />
+        </div>
+        <div class="col form-group">
+            <label>Numero de tarjeta</label>
+            <input type="number" class="form-control" @bind="Record.CardNumber" />
+        </div>
+        <FormSelectEnum @bind-Value="Record.MonetaryAgentType" Records="MonetaryAgentTypes" Title="Tipos de agentes monetarios"></FormSelectEnum>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
+</EditForm>

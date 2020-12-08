@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 
-namespace InmobiliariaDashboard.Client.Pages.Client
+namespace InmobiliariaDashboard.Client.Pages.Enterprise
 {
     public class ListBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public IEnumerable<ClientViewModel> Records;
+        public IEnumerable<EnterpriseViewModel> Records;
 
         protected override async Task OnInitializedAsync()
         {
