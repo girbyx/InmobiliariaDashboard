@@ -15,36 +15,36 @@
         </li>*@
 
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="client/list">
-                <span class="oi oi-people" aria-hidden="true"></span> Clients
+            <NavLink class="nav-link" href="enterprise/list">
+                <span class="oi oi-people" aria-hidden="true"></span> Empresas
             </NavLink>
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="project/list">
-                <span class="oi oi-project" aria-hidden="true"></span> Projects
+                <span class="oi oi-project" aria-hidden="true"></span> Proyectos
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="account/list">
-                <span class="oi oi-credit-card" aria-hidden="true"></span> Accounts
+            <NavLink class="nav-link" href="monetaryagent/list">
+                <span class="oi oi-credit-card" aria-hidden="true"></span> Agentes monetarios
             </NavLink>
         </li>
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.CostSubMenu = !SubMenuNavigation.CostSubMenu" class="nav-link">
-                <span class="oi oi-dollar" aria-hidden="true"></span> Costs
+                <span class="oi oi-dollar" aria-hidden="true"></span> Costos
             </NavLink>
         </li>
         @if (SubMenuNavigation.CostSubMenu)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="cost/list">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Costs
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Costos
                 </NavLink>
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="costtype/list">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Cost types
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Tipos de costos
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
@@ -52,14 +52,14 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.GainSubMenu = !SubMenuNavigation.GainSubMenu" class="nav-link">
-                <span class="oi oi-thumb-up" aria-hidden="true"></span> Gains
+                <span class="oi oi-thumb-up" aria-hidden="true"></span> Ingresos
             </NavLink>
         </li>
         @if (SubMenuNavigation.GainSubMenu)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="gaintype/list">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Gain types
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Tipos de ingresos
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
@@ -67,14 +67,14 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.LossSubMenu = !SubMenuNavigation.LossSubMenu" class="nav-link">
-                <span class="oi oi-thumb-down" aria-hidden="true"></span> Losses
+                <span class="oi oi-thumb-down" aria-hidden="true"></span> Egresos
             </NavLink>
         </li>
         @if (SubMenuNavigation.LossSubMenu)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="losstype/list">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Loss types
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Tipos de egresos
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
@@ -82,29 +82,29 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.ReportSubMenu = !SubMenuNavigation.ReportSubMenu" class="nav-link">
-                <span class="oi oi-document" aria-hidden="true"></span> Reports
+                <span class="oi oi-document" aria-hidden="true"></span> Reportes
             </NavLink>
         </li>
         @if (SubMenuNavigation.ReportSubMenu)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="report/cost">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Costs report
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Reporte de costos
                 </NavLink>
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="report/gain">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Gains report
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Reporte de ingresos
                 </NavLink>
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="report/loss">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Losses report
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Reporte de egresos
                 </NavLink>
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="report/general">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> General balance
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Reporte de balance general
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
