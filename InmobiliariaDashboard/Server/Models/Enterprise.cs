@@ -32,6 +32,7 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<Contact> Contacts { get; set; }
         public virtual ICollection<MonetaryAgent> MonetaryAgents { get; set; }
+        public virtual ICollection<Asset> Assets { get; set; }
     }
 
     public class EnterpriseProfile : Profile
