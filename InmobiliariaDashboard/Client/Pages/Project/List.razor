@@ -1,10 +1,10 @@
 ﻿@page "/project/list"
 @inherits ListBase
 
-<h1>Projects</h1>
+<h1>Proyectos</h1>
 
 <div class="text-right">
-    <a href="project/add" class="btn btn-primary"><span class="oi oi-plus"></span> Add project</a>
+    <a href="project/add" class="btn btn-primary"><span class="oi oi-plus"></span> Agregar proyecto</a>
 </div>
 
 @if (Records == null)
@@ -19,10 +19,10 @@ else
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Project name</th>
-                <th>Client name</th>
-                <th>Start date</th>
-                <th>End date</th>
+                <th>Proyecto</th>
+                <th>Empresa</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de fin</th>
                 <th></th>
             </tr>
             </thead>
@@ -31,7 +31,7 @@ else
             {
                 <tr>
                     <td>@record.Name</td>
-                    <td>@record.ClientName</td>
+                    <td>@record.EnterpriseName</td>
                     <td>@record.StartDate</td>
                     <td>@(record.EndDate?.ToString("yyyy MMMM dd") ?? "-")</td>
                     <td>

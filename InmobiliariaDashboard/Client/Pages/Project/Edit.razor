@@ -1,10 +1,10 @@
 ﻿@page "/project/edit/{id}"
 @inherits EditBase
 
-<h1>Edit project</h1>
+<h1>Editar proyecto</h1>
 
 <div class="text-right">
-    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Delete project</button>
+    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Borrar</button>
 </div>
 
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
@@ -15,23 +15,23 @@
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Project name</label>
+            <label>Proyecto</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
-        <FormSelectRecord @bind-Value="Record.ClientId" Records="Record.Clients" Title="Clients"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
     </div>
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Start date</label>
+            <label>Fecha de inicio</label>
             <input type="date" class="form-control" @bind="Record.StartDate" />
         </div>
         <div class="col form-group">
-            <label>End date</label>
+            <label>Fecha de fin</label>
             <input type="date" class="form-control" @bind="Record.EndDate" />
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
-    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>
