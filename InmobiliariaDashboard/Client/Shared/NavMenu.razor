@@ -31,6 +31,26 @@
         </li>
 
         <li class="nav-item px-3">
+            <NavLink @onclick="()=> SubMenuNavigation.AssetSubMenu = !SubMenuNavigation.AssetSubMenu" class="nav-link">
+                <span class="oi oi-briefcase" aria-hidden="true"></span> Activos
+            </NavLink>
+        </li>
+        @if (SubMenuNavigation.AssetSubMenu)
+        {
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="asset/list">
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Activos
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="assettype/list">
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Tipos de activos
+                </NavLink>
+            </li>
+            <li class="nav-item px-3"><hr /></li>
+        }
+
+        <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.CostSubMenu = !SubMenuNavigation.CostSubMenu" class="nav-link">
                 <span class="oi oi-dollar" aria-hidden="true"></span> Costos
             </NavLink>

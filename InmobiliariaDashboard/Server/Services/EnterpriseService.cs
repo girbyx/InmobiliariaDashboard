@@ -22,7 +22,7 @@ namespace InmobiliariaDashboard.Server.Services
         {
             var records = _dbContext.Set<Models.Enterprise>()
                 .Include(x => x.Projects)
-                .Include(x => x.Accounts)
+                .Include(x => x.MonetaryAgents)
                 .ToList();
             return records;
         }
