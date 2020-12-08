@@ -18,6 +18,10 @@
             <label>Proyecto</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
+        <div class="col form-group">
+            <label>Codigo</label>
+            <input type="text" class="form-control" @bind="Record.Code" />
+        </div>
         <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
     </div>
 
