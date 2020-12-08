@@ -1,0 +1,35 @@
+﻿@page "/asset/add"
+@inherits AddBase
+
+<h1>Agregar activo</h1>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" @bind="Record.Name" />
+        </div>
+        <div class="col form-group">
+            <label>Valor</label>
+            <input type="text" class="form-control" @bind="Record.Value" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.AssetTypeId" Records="Record.AssetTypes" Title="Tipos de activos"></FormSelectRecord>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Descripcion</label>
+            <input type="text" class="form-control" @bind="Record.Description" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
+</EditForm>

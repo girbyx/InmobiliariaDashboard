@@ -1,0 +1,47 @@
+﻿@page "/asset/list"
+@inherits ListBase
+
+<h1>Activos</h1>
+
+<div class="text-right">
+    <a href="asset/add" class="btn btn-primary"><span class="oi oi-plus"></span> Agregar activo</a>
+</div>
+
+@if (Records == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Activo</th>
+                <th>Valor</th>
+                <th>Empresa</th>
+                <th>Tipo de activo</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.Name</td>
+                    <td>@record.Value</td>
+                    <td>@record.EnterpriseName</td>
+                    <td>@record.AssetTypeName</td>
+                    <td>
+                        <a href="asset/edit/@record.Id">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
