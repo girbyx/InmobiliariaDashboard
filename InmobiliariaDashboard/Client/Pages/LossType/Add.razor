@@ -1,7 +1,7 @@
 ﻿@page "/losstype/add"
 @inherits AddBase
 
-<h1>Add cost type</h1>
+<h1>Agregar tipo de costo</h1>
 
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -9,18 +9,18 @@
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Loss type</label>
+            <label>Tipo de egreso</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
     </div>
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Description</label>
+            <label>Descripcion</label>
             <input type="text" class="form-control" @bind="Record.Description" />
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
-    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>

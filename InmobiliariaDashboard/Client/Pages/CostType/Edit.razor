@@ -1,10 +1,10 @@
 ﻿@page "/costtype/edit/{id}"
 @inherits EditBase
 
-<h1>Edit cost type</h1>
+<h1>Editar cost type</h1>
 
 <div class="text-right">
-    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Delete cost type</button>
+    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Borrar</button>
 </div>
 
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
@@ -15,18 +15,18 @@
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Cost type</label>
+            <label>Tipo de costo</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
     </div>
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Description</label>
+            <label>Descripcion</label>
             <input type="text" class="form-control" @bind="Record.Description" />
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
-    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>
