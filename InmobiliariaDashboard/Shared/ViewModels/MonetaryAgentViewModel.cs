@@ -14,7 +14,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public long? CardNumber { get; set; }
         [Required] public string MonetaryAgentType { get; set; } = MonetaryAgentTypeEnum.Money.Code;
 
-        [Range(1, int.MaxValue, ErrorMessage = "Please, select a client")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]
         public int EnterpriseId { get; set; }
         public string EnterpriseName { get; set; }
 

@@ -19,13 +19,13 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Please, select a cost type")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un tipo de costo")]
         public int CostTypeId { get; set; }
         public string CostTypeName { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "Please, select a project")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un proyecto")]
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "Please, select an account")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un agente monetario")]
         public int MonetaryAgentId { get; set; }
         public string MonetaryAgentName { get; set; }
 
