@@ -1,0 +1,30 @@
+﻿@page "/balance/list"
+@inherits ListBase
+
+<div class="text-center alert alert-secondary mt-4">
+    <h1>Balances generales</h1>
+</div>
+<div class="row">
+    @if (Records != null && Records.Any())
+    {
+        foreach (var item in Records)
+        {
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-title">@item.EnterpriseName</div>
+                    <div class="card-body">
+                        <div class="card-header">Activos</div>
+                        <div class="card-text">@item.AssetValue</div>
+                        <div class="card-header">Costos</div>
+                        <div class="card-text">@item.CostValue</div>
+                        <div class="card-header">Ingresos</div>
+                        <div class="card-text">@item.GainValue</div>
+                        <div class="card-header">Egresos</div>
+                        <div class="card-text">@item.LossValue</div>
+                    </div>
+                    <div class="card-footer"><h3>@item.TotalBalance</h3></div>
+                </div>
+            </div>
+        }
+    }
+</div>

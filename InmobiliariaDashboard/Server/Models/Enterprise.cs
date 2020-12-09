@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Shared.ViewModels;
@@ -41,6 +42,11 @@ namespace InmobiliariaDashboard.Server.Models
         {
             CreateMap<Enterprise, EnterpriseViewModel>();
             CreateMap<EnterpriseViewModel, Enterprise>();
+            CreateMap<Enterprise, BalanceViewModel>()
+                .ForMember(dest => dest.AssetValue, opt => opt.MapFrom(src => src.Assets.Sum(y => y.Value)))
+                .ForMember(dest => dest.CostValue, opt => opt.MapFrom(src => src.Projects.Sum(y => y.Costs.Sum(z => z.Value))))
+                .ForMember(dest => dest.CostValue, opt => opt.MapFrom(src => src.Projects.Sum(y => y.Gains.Sum(z => z.Value))))
+                .ForMember(dest => dest.CostValue, opt => opt.MapFrom(src => src.Projects.Sum(y => y.Losses.Sum(z => z.Value))));
         }
     }
 }

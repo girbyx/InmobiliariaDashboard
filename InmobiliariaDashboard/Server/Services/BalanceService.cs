@@ -30,15 +30,7 @@ namespace InmobiliariaDashboard.Server.Services
                 .Include(x => x.Projects).ThenInclude(x => x.Costs)
                 .Include(x => x.Projects).ThenInclude(x => x.Gains)
                 .Include(x => x.Projects).ThenInclude(x => x.Losses)
-                .ToList()
-                .Select(x => new BalanceViewModel
-                {
-                    EnterpriseName = x.Name,
-                    AssetValue = x.Assets.Sum(y => y.Value),
-                    CostValue = x.Projects.Sum(y => y.Costs.Sum(z => z.Value)),
-                    GainValue = x.Projects.Sum(y => y.Gains.Sum(z => z.Value)),
-                    LossValue = x.Projects.Sum(y => y.Losses.Sum(z => z.Value))
-                });
+                .ToList().Select(_mapper.Map<BalanceViewModel>);
             return records;
         }
     }

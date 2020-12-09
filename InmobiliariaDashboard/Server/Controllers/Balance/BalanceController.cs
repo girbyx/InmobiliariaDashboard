@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 
 namespace InmobiliariaDashboard.Server.Controllers.Balance
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class BalanceController : ControllerBase
     {
         private readonly ILogger<BalanceController> _logger;

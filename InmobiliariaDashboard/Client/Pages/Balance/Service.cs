@@ -5,19 +5,19 @@ using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 
-namespace InmobiliariaDashboard.Client.Shared.Complex
+namespace InmobiliariaDashboard.Client.Pages.Balance
 {
-    public interface IEnterpriseBalancesService
+    public interface IService
     {
         Task<IEnumerable<BalanceViewModel>> GetList();
     }
 
-    public class EnterpriseBalancesService : IEnterpriseBalancesService
+    public class Service : IService
     {
         private readonly HttpClient _httpClient;
         private readonly NavigationManager _navigationManager;
 
-        public EnterpriseBalancesService(HttpClient httpClient, NavigationManager navigationManager)
+        public Service(HttpClient httpClient, NavigationManager navigationManager)
         {
             _httpClient = httpClient;
             _navigationManager = navigationManager;

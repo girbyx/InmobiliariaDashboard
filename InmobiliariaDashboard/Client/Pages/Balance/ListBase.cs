@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 
-namespace InmobiliariaDashboard.Client.Shared.Complex
+namespace InmobiliariaDashboard.Client.Pages.Balance
 {
-    public class EnterpriseBalancesBase : ComponentBase
+    public class ListBase : ComponentBase
     {
-        [Inject] public IEnterpriseBalancesService Service { get; set; }
+        [Inject] public IService Service { get; set; }
         public IEnumerable<BalanceViewModel> Records;
 
         protected override async Task OnInitializedAsync()
