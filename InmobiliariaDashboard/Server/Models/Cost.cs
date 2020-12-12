@@ -29,9 +29,9 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual Project Project { get; set; }
         public int MonetaryAgentId { get; set; }
         public virtual MonetaryAgent MonetaryAgent { get; set; }
-        public DateTime Created { get; set; }
+        public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime? Updated { get; set; }
+        public DateTime? UpdatedOn { get; set; }
         public string UpdatedBy { get; set; }
 
         // collections

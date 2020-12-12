@@ -4,9 +4,9 @@ namespace InmobiliariaDashboard.Server.Models.Interfaces
 {
     interface IAuditFields
     {
-        DateTime Created { get; set; }
+        DateTime CreatedOn { get; set; }
         string CreatedBy { get; set; }
-        DateTime? Updated { get; set; }
+        DateTime? UpdatedOn { get; set; }
         string UpdatedBy { get; set; }
     }
 }

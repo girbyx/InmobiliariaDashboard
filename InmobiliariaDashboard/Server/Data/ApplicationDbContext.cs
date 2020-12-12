@@ -41,7 +41,7 @@ namespace InmobiliariaDashboard.Server.Data
         {
             if (entity is IAuditFields)
             {
-                (entity as IAuditFields).Created = DateTime.Now;
+                (entity as IAuditFields).CreatedOn = DateTime.Now;
                 (entity as IAuditFields).CreatedBy = string.Empty;
             }
 
@@ -50,11 +50,11 @@ namespace InmobiliariaDashboard.Server.Data
 
         public override EntityEntry<TEntity> Remove<TEntity>(TEntity entity)
         {
-            if (entity is ISoftDeleteFields)
+            if (entity is ICanBeArchived)
             {
-                (entity as ISoftDeleteFields).Deleted = DateTime.Now;
-                (entity as ISoftDeleteFields).DeletedBy = string.Empty;
-                (entity as ISoftDeleteFields).SoftDelete = true;
+                (entity as ICanBeArchived).ArchivedOn = DateTime.Now;
+                (entity as ICanBeArchived).ArchivedBy = string.Empty;
+                (entity as ICanBeArchived).Archived = true;
             }
 
             return base.Remove(entity);
@@ -64,7 +64,7 @@ namespace InmobiliariaDashboard.Server.Data
         {
             if (entity is IAuditFields)
             {
-                (entity as IAuditFields).Updated = DateTime.Now;
+                (entity as IAuditFields).UpdatedOn = DateTime.Now;
                 (entity as IAuditFields).UpdatedBy = string.Empty;
             }
 

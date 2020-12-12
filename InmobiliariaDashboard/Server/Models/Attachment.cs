@@ -17,9 +17,9 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual Cost Cost { get; set; }
         public int? LossId { get; set; }
         public virtual Loss Loss { get; set; }
-        public DateTime Created { get; set; }
+        public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime? Updated { get; set; }
+        public DateTime? UpdatedOn { get; set; }
         public string UpdatedBy { get; set; }
     }
 }
