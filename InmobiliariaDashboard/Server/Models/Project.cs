@@ -21,6 +21,8 @@ namespace InmobiliariaDashboard.Server.Models
         // audit & relationships
         public int EnterpriseId { get; set; }
         public virtual Enterprise Enterprise { get; set; }
+        public int ProjectSubTypeId { get; set; }
+        public virtual ProjectSubType ProjectSubType { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
@@ -43,7 +45,8 @@ namespace InmobiliariaDashboard.Server.Models
         public ProjectProfile()
         {
             CreateMap<Project, ProjectViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>());
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>())
+                .ForMember(dest => dest.ProjectSubTypes, opt => opt.MapFrom<ProjectSubTypesResolver>());
             CreateMap<ProjectViewModel, Project>();
         }
     }

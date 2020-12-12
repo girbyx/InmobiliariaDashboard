@@ -19,7 +19,12 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public int EnterpriseId { get; set; }
         public string EnterpriseName { get; set; }
 
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un sub-tipo")]
+        public int ProjectSubTypeId { get; set; }
+        public string ProjectSubTypeName { get; set; }
+
         // select lists
         public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
+        public IEnumerable<ProjectSubTypeViewModel> ProjectSubTypes { get; set; }
     }
 }
