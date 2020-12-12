@@ -9,6 +9,8 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public int Id { get; set; }
         [Required]
         public double Value { get; set; }
+        public int Quantity { get; set; }
+        public double SubTotal { get; set; }
         public double Commission { get; set; }
         [Required]
         public string CommissionType { get; set; }

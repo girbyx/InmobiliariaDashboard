@@ -14,6 +14,7 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public double Value { get; set; }
         public int Quantity { get; set; }
+        [NotMapped] public double SubTotal => Value * Quantity;
         public double Commission { get; set; }
         public string CommissionType { get; set; }
         public string Description { get; set; }

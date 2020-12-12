@@ -23,6 +23,8 @@ else
                 <th>Proyecto</th>
                 <th>Agente monetario</th>
                 <th>Valor</th>
+                <th>Cantidad</th>
+                <th>Sub total</th>
                 <th>Comision</th>
                 <th>Total</th>
                 <th>Creado en</th>
@@ -37,6 +39,8 @@ else
                     <td>@record.ProjectName</td>
                     <td>@record.MonetaryAgentName</td>
                     <td>$@record.Value</td>
+                    <td>$@record.Quantity</td>
+                    <td>$@record.SubTotal</td>
                     @if (CommissionTypeEnum.Money.Code == record.CommissionType)
                     {
                         <td>$@record.Commission</td>
