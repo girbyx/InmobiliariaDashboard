@@ -355,6 +355,42 @@ namespace InmobiliariaDashboard.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProjectsHistory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Code = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    ProjectType = table.Column<string>(type: "TEXT", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    EnterpriseId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedBy = table.Column<string>(type: "TEXT", nullable: true),
+                    Updated = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "TEXT", nullable: true),
+                    OriginalId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectsHistory", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectsHistory_Enterprises_EnterpriseId",
+                        column: x => x.EnterpriseId,
+                        principalTable: "Enterprises",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjectsHistory_Projects_OriginalId",
+                        column: x => x.OriginalId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Attachments",
                 columns: table => new
                 {
@@ -478,6 +514,16 @@ namespace InmobiliariaDashboard.Server.Migrations
                 name: "IX_Projects_EnterpriseId",
                 table: "Projects",
                 column: "EnterpriseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectsHistory_EnterpriseId",
+                table: "ProjectsHistory",
+                column: "EnterpriseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectsHistory_OriginalId",
+                table: "ProjectsHistory",
+                column: "OriginalId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -490,6 +536,9 @@ namespace InmobiliariaDashboard.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "Contacts");
+
+            migrationBuilder.DropTable(
+                name: "ProjectsHistory");
 
             migrationBuilder.DropTable(
                 name: "AssetTypes");

@@ -580,6 +580,57 @@ namespace InmobiliariaDashboard.Server.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("InmobiliariaDashboard.Server.Models.ProjectHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EnterpriseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OriginalId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ProjectType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnterpriseId");
+
+                    b.HasIndex("OriginalId");
+
+                    b.ToTable("ProjectsHistory");
+                });
+
             modelBuilder.Entity("InmobiliariaDashboard.Server.Models.Asset", b =>
                 {
                     b.HasOne("InmobiliariaDashboard.Server.Models.AssetType", "AssetType")
@@ -589,7 +640,7 @@ namespace InmobiliariaDashboard.Server.Migrations
                         .IsRequired();
 
                     b.HasOne("InmobiliariaDashboard.Server.Models.Enterprise", "Enterprise")
-                        .WithMany()
+                        .WithMany("Assets")
                         .HasForeignKey("EnterpriseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -734,6 +785,25 @@ namespace InmobiliariaDashboard.Server.Migrations
                     b.Navigation("Enterprise");
                 });
 
+            modelBuilder.Entity("InmobiliariaDashboard.Server.Models.ProjectHistory", b =>
+                {
+                    b.HasOne("InmobiliariaDashboard.Server.Models.Enterprise", "Enterprise")
+                        .WithMany()
+                        .HasForeignKey("EnterpriseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InmobiliariaDashboard.Server.Models.Project", "Original")
+                        .WithMany("History")
+                        .HasForeignKey("OriginalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Enterprise");
+
+                    b.Navigation("Original");
+                });
+
             modelBuilder.Entity("InmobiliariaDashboard.Server.Models.AssetType", b =>
                 {
                     b.Navigation("Assets");
@@ -751,6 +821,8 @@ namespace InmobiliariaDashboard.Server.Migrations
 
             modelBuilder.Entity("InmobiliariaDashboard.Server.Models.Enterprise", b =>
                 {
+                    b.Navigation("Assets");
+
                     b.Navigation("Contacts");
 
                     b.Navigation("MonetaryAgents");
@@ -792,6 +864,8 @@ namespace InmobiliariaDashboard.Server.Migrations
                     b.Navigation("Costs");
 
                     b.Navigation("Gains");
+
+                    b.Navigation("History");
 
                     b.Navigation("Losses");
                 });
