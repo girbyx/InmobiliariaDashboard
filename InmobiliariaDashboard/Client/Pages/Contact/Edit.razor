@@ -16,7 +16,7 @@
     <div class="form-row">
         <div class="col form-group">
             <label>Sufijo</label>
-            <input type="text" class="form-control" @bind="Record.FirstName" />
+            <input type="text" class="form-control" @bind="Record.SuffixName" />
         </div>
         <div class="col form-group">
             <label>Primer nombre</label>
@@ -33,6 +33,10 @@
         <div class="col form-group">
             <label>Apellido(s)</label>
             <input type="text" class="form-control" @bind="Record.LastName" />
+        </div>
+        <div class="text-center col-2 form-group">
+            <label>Prospecto</label>
+            <input type="checkbox" class="form-control" @bind="Record.Prospect" />
         </div>
     </div>
 
