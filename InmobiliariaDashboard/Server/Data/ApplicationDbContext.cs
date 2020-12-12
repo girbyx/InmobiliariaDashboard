@@ -30,6 +30,7 @@ namespace InmobiliariaDashboard.Server.Data
         public DbSet<LossType> LossTypes { get; set; }
         public DbSet<MonetaryAgent> MonetaryAgents { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectHistory> ProjectsHistory { get; set; }
 
         public ApplicationDbContext(DbContextOptions options)
             : base(options)

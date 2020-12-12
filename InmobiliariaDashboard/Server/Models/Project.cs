@@ -7,7 +7,7 @@ using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
-    public class Project : IIdentityFields, IAuditFields
+    public class Project : IIdentityFields, IAuditFields, IHaveHistory<Project, ProjectHistory>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -29,6 +29,9 @@ namespace InmobiliariaDashboard.Server.Models
         public virtual ICollection<Gain> Gains { get; set; }
         public virtual ICollection<Cost> Costs { get; set; }
         public virtual ICollection<Loss> Losses { get; set; }
+
+        // history
+        public virtual ICollection<ProjectHistory> History { get; set; }
     }
 
     public class ProjectProfile : Profile
