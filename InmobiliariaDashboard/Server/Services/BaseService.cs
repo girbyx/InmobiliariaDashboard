@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
@@ -54,13 +55,15 @@ namespace InmobiliariaDashboard.Server.Services
             else
                 _dbContext.Update(entity);
 
-            // history
+            // history update
             if (typeof(THistory).Name.ToLower() != "object" && typeof(THistory).Name.ToLower() != "dynamic")
             {
                 _dbContext.SaveChanges();
                 var historyRecord = _mapper.Map<THistory>(entity);
                 (historyRecord as IIAmHistory<TEntity>).Id = 0;
                 (historyRecord as IIAmHistory<TEntity>).OriginalId = (entity as IIdentityFields).Id;
+                (historyRecord as IAuditFields).CreatedOn = DateTime.Now;
+                (historyRecord as IAuditFields).CreatedBy = string.Empty;
                 _dbContext.Add(historyRecord);
             }
 
