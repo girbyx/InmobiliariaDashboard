@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +15,8 @@ namespace InmobiliariaDashboard.Server.Controllers.MonetaryAgent
         private readonly IMapper _mapper;
         private readonly IMonetaryAgentService _baseService;
 
-        public MonetaryAgentController(ILogger<MonetaryAgentController> logger, IMapper mapper, IApplicationDbContext dbContext,
-            IMonetaryAgentService baseService)
-            : base(logger, mapper, dbContext, baseService)
+        public MonetaryAgentController(ILogger<MonetaryAgentController> logger, IMapper mapper, IMonetaryAgentService baseService)
+            : base(logger, mapper, baseService)
         {
             _mapper = mapper;
             _baseService = baseService;

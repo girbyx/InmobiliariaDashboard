@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +13,21 @@ namespace InmobiliariaDashboard.Server.Controllers.Balance
     public class BalanceController : ControllerBase
     {
         private readonly ILogger<BalanceController> _logger;
+        private readonly IMapper _mapper;
         private readonly IBalanceService _baseService;
 
-        public BalanceController(ILogger<BalanceController> logger, IBalanceService baseService)
+        public BalanceController(ILogger<BalanceController> logger, IMapper mapper, IBalanceService baseService)
         {
             _logger = logger;
+            _mapper = mapper;
             _baseService = baseService;
         }
 
         public IEnumerable<BalanceViewModel> Get()
         {
-            var result = _baseService.GetAll();
+            var result = _baseService
+                .GetAll()
+                .Select(_mapper.Map<BalanceViewModel>);
             return result;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +10,8 @@ namespace InmobiliariaDashboard.Server.Controllers.Cost
     [Route("api/[controller]")]
     public class CostController : BaseCatalogController<CostController, Models.Cost, CostViewModel>
     {
-        public CostController(ILogger<CostController> logger, IMapper mapper, IApplicationDbContext dbContext,
-            ICostService baseService)
-            : base(logger, mapper, dbContext, baseService)
+        public CostController(ILogger<CostController> logger, IMapper mapper, ICostService baseService)
+            : base(logger, mapper, baseService)
         {
         }
     }

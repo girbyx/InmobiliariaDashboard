@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +10,8 @@ namespace InmobiliariaDashboard.Server.Controllers.GainType
     [Route("api/[controller]")]
     public class GainTypeController : BaseCatalogController<GainTypeController, Models.GainType, GainTypeViewModel>
     {
-        public GainTypeController(ILogger<GainTypeController> logger, IMapper mapper, IApplicationDbContext dbContext,
-            IBaseService<Models.GainType> baseService)
-            : base(logger, mapper, dbContext, baseService)
+        public GainTypeController(ILogger<GainTypeController> logger, IMapper mapper, IBaseService<Models.GainType> baseService)
+            : base(logger, mapper, baseService)
         {
         }
     }

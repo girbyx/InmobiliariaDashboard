@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +10,8 @@ namespace InmobiliariaDashboard.Server.Controllers.Asset
     [Route("api/[controller]")]
     public class AssetController : BaseCatalogController<AssetController, Models.Asset, AssetViewModel>
     {
-        public AssetController(ILogger<AssetController> logger, IMapper mapper, IApplicationDbContext dbContext,
-            IBaseService<Models.Asset> baseService)
-            : base(logger, mapper, dbContext, baseService)
+        public AssetController(ILogger<AssetController> logger, IMapper mapper, IBaseService<Models.Asset> baseService)
+            : base(logger, mapper, baseService)
         {
         }
     }

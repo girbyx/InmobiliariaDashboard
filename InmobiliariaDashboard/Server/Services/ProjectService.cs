@@ -2,6 +2,7 @@
 using System.Linq;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Server.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InmobiliariaDashboard.Server.Services
@@ -30,6 +31,25 @@ namespace InmobiliariaDashboard.Server.Services
         {
             var records = _dbContext.Set<Project>().ToList();
             return records;
+        }
+
+        public int Save(Project entity)
+        {
+            if ((entity as IIdentityFields).Id == 0)
+                _dbContext.Add(entity);
+            else
+                _dbContext.Update(entity);
+
+            return _dbContext.SaveChanges();
+        }
+
+        public int Delete(int id)
+        {
+            var record = _dbContext
+                .Set<Project>()
+                .First(x => (x as IIdentityFields).Id == id);
+            _dbContext.Remove(record);
+            return _dbContext.SaveChanges();
         }
     }
 }
