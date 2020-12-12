@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using InmobiliariaDashboard.Shared;
 using InmobiliariaDashboard.Shared.Enumerations;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
@@ -11,6 +13,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
     {
         [Inject] public IService Service { get; set; }
         public ProjectViewModel Record { get; set; } = new ProjectViewModel();
+        public IEnumerable<ProjectTypeEnum> ProjectTypes => BaseEnumeration.GetAll<ProjectTypeEnum>();
 
         protected override async Task OnInitializedAsync()
         {

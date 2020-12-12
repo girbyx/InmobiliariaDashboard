@@ -30,6 +30,12 @@
         </div>
     </div>
 
+    <div class="form-row">
+        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
+        <FormSelectEnum @bind-Value="Record.ProjectType" Records="ProjectTypes" Title="Tipos de proyectos"></FormSelectEnum>
+        <FormSelectRecord @bind-Value="Record.ProjectSubTypeId" Records="Record.ProjectSubTypes" Title="Sub-tipos de proyectos"></FormSelectRecord>
+    </div>
+
     <button type="submit" class="btn btn-success">Guardar</button>
     <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>
