@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
@@ -7,12 +6,11 @@ using InmobiliariaDashboard.Server.Models.Interfaces;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IBaseService<TEntity, THistory> 
-        where TEntity : class
-        where THistory : class
+    public interface IBaseService<TEntity, THistory> where TEntity : class
     {
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> GetAllForResolver();
+        TEntity Get(int id);
         int Save(TEntity entity);
         int Delete(int id);
         int Archive(int id);
@@ -40,6 +38,12 @@ namespace InmobiliariaDashboard.Server.Services
         public virtual IEnumerable<TEntity> GetAllForResolver()
         {
             var records = _dbContext.Set<TEntity>().ToList();
+            return records;
+        }
+
+        public TEntity Get(int id)
+        {
+            var records = _dbContext.Set<TEntity>().Single(x => (x as IIdentityFields).Id == id);
             return records;
         }
 

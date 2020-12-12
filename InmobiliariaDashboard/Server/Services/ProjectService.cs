@@ -14,12 +14,10 @@ namespace InmobiliariaDashboard.Server.Services
     public class ProjectService : BaseService<Project, ProjectHistory>, IProjectService
     {
         private readonly IApplicationDbContext _dbContext;
-        private readonly IMapper _mapper;
 
         public ProjectService(IApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
             _dbContext = dbContext;
-            _mapper = mapper;
         }
 
         public override IEnumerable<Project> GetAll()
