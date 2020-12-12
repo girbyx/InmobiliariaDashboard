@@ -30,6 +30,13 @@ namespace InmobiliariaDashboard.Client.Pages.Project
             await Service.Return();
         }
 
+        protected async Task OnArchiveClick(MouseEventArgs e)
+        {
+            var id = int.Parse(Id);
+            await Service.Archive(id);
+            await Service.Return();
+        }
+
         protected async Task OnCancelClick(MouseEventArgs e)
         {
             await Service.Return();
