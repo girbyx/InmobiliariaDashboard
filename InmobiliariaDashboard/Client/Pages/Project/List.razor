@@ -1,4 +1,6 @@
 ﻿@page "/project/list"
+@using InmobiliariaDashboard.Shared
+@using InmobiliariaDashboard.Shared.Enumerations
 @inherits ListBase
 
 <h1>Proyectos</h1>
@@ -21,6 +23,8 @@ else
             <tr>
                 <th>Proyecto</th>
                 <th>Empresa</th>
+                <th>Tipo</th>
+                <th>Sub-tipo</th>
                 <th>Fecha de inicio</th>
                 <th>Fecha de fin</th>
                 <th></th>
@@ -32,6 +36,8 @@ else
                 <tr>
                     <td>@record.Name</td>
                     <td>@record.EnterpriseName</td>
+                    <td>@(BaseEnumeration.FromCode<ProjectTypeEnum>(record.ProjectType).DisplayName)</td>
+                    <td>@record.ProjectSubTypeName</td>
                     <td>@record.StartDate</td>
                     <td>@(record.EndDate?.ToString("yyyy MMMM dd") ?? "-")</td>
                     <td>

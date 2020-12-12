@@ -25,7 +25,7 @@ else
                 <th>Empresa</th>
                 <th>Numero de cuenta</th>
                 <th>Numero de tarjeta</th>
-                <th>Tipos de agentes monetarios</th>
+                <th>Tipo</th>
                 <th></th>
             </tr>
             </thead>
@@ -37,7 +37,7 @@ else
                     <td>@record.EnterpriseName</td>
                     <td>@(record.AccountNumber?.ToString() ?? "-")</td>
                     <td>@(record.CardNumber?.ToString() ?? "-")</td>
-                    <td>@(BaseEnumeration.FromCode<MonetaryAgentTypeEnum>(record.MonetaryAgentType))</td>
+                    <td>@(BaseEnumeration.FromCode<MonetaryAgentTypeEnum>(record.MonetaryAgentType).DisplayName)</td>
                     <td>
                         <a href="monetaryagent/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
