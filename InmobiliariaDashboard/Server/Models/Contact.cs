@@ -1,6 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Server.Resolvers;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -30,5 +33,15 @@ namespace InmobiliariaDashboard.Server.Models
         public string CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public string UpdatedBy { get; set; }
+    }
+
+    public class ContactProfile : Profile
+    {
+        public ContactProfile()
+        {
+            CreateMap<Contact, ContactViewModel>()
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>());
+            CreateMap<ContactViewModel, Contact>();
+        }
     }
 }

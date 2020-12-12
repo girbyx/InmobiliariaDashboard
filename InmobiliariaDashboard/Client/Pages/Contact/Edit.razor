@@ -1,0 +1,86 @@
+﻿@page "/contact/edit/{id}"
+@inherits EditBase
+
+<h1>Editar contacto</h1>
+
+<div class="text-right">
+    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Borrar</button>
+</div>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <input type="hidden" class="form-control" @bind="Record.Id" />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Sufijo</label>
+            <input type="text" class="form-control" @bind="Record.FirstName" />
+        </div>
+        <div class="col form-group">
+            <label>Primer nombre</label>
+            <input type="text" class="form-control" @bind="Record.FirstName" />
+        </div>
+        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Segundo nombre</label>
+            <input type="text" class="form-control" @bind="Record.MiddleName" />
+        </div>
+        <div class="col form-group">
+            <label>Apellido(s)</label>
+            <input type="text" class="form-control" @bind="Record.LastName" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" @bind="Record.Email" />
+        </div>
+        <div class="col form-group">
+            <label>Celular</label>
+            <input type="tel" class="form-control" @bind="Record.Cellphone" />
+        </div>
+        <div class="col form-group">
+            <label>Telefono</label>
+            <input type="tel" class="form-control" @bind="Record.Telephone" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Direccion</label>
+            <input type="text" class="form-control" @bind="Record.Address" />
+        </div>
+        <div class="col form-group">
+            <label>Direccion cont.</label>
+            <input type="text" class="form-control" @bind="Record.AddressExt" />
+        </div>
+        <div class="col form-group">
+            <label>C.P.</label>
+            <input type="number" class="form-control" @bind="Record.Zip" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Pais</label>
+            <input type="text" class="form-control" @bind="Record.Country" />
+        </div>
+        <div class="col form-group">
+            <label>Estado</label>
+            <input type="text" class="form-control" @bind="Record.State" />
+        </div>
+        <div class="col form-group">
+            <label>Ciudad</label>
+            <input type="text" class="form-control" @bind="Record.City" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
+</EditForm>
