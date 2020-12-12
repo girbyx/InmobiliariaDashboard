@@ -1,21 +1,25 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using InmobiliariaDashboard.Server.Models.Interfaces;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace InmobiliariaDashboard.Server.Models
+namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class Contact : IIdentityFields, IAuditFields
+    public class ContactViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         public string SuffixName { get; set; }
+        [Required]
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
+        [Required]
         public string LastName { get; set; }
         public bool Prospect { get; set; }
-        [NotMapped] public string Name => string.Join("", SuffixName, FirstName, MiddleName, LastName);
+        public string Name { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Cellphone { get; set; }
         public string Telephone { get; set; }
+        [Required]
         public string Address { get; set; }
         public string AddressExt { get; set; }
         public string Country { get; set; }
@@ -23,12 +27,11 @@ namespace InmobiliariaDashboard.Server.Models
         public string City { get; set; }
         public int? Zip { get; set; }
 
-        // audit & relationships
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]
         public int EnterpriseId { get; set; }
-        public virtual Enterprise Enterprise { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? UpdatedOn { get; set; }
-        public string UpdatedBy { get; set; }
+        public string EnterpriseName { get; set; }
+
+        // select lists
+        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
     }
 }
