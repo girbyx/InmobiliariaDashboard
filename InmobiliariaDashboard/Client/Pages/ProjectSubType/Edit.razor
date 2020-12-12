@@ -1,0 +1,32 @@
+﻿@page "/projectsubtype/edit/{id}"
+@inherits EditBase
+
+<h1>Editar sub-tipo de proyecto</h1>
+
+<div class="text-right">
+    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Borrar</button>
+</div>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <input type="hidden" class="form-control" @bind="Record.Id" />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Tipo de costo</label>
+            <input type="text" class="form-control" @bind="Record.Name" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Descripcion</label>
+            <input type="text" class="form-control" @bind="Record.Description" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
+</EditForm>

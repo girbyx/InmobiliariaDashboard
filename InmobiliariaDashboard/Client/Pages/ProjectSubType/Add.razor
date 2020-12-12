@@ -1,0 +1,26 @@
+﻿@page "/projectsubtype/add"
+@inherits AddBase
+
+<h1>Agregar sub-tipo de proyecto</h1>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Sub-tipo de proyecto</label>
+            <input type="text" class="form-control" @bind="Record.Name" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Descripcion</label>
+            <input type="text" class="form-control" @bind="Record.Description" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
+</EditForm>
