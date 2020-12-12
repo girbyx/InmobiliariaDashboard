@@ -7,16 +7,17 @@ using Microsoft.Extensions.Logging;
 
 namespace InmobiliariaDashboard.Server.Controllers
 {
-    public class BaseCatalogController<TController, TEntity, TViewModel> : ControllerBase
+    public class BaseCatalogController<TController, TEntity, THistory, TViewModel> : ControllerBase
         where TController : class
         where TEntity : class
+        where THistory : class
         where TViewModel : class
     {
         private readonly ILogger<TController> _logger;
         private readonly IMapper _mapper;
-        private readonly IBaseService<TEntity, object> _baseService;
+        private readonly IBaseService<TEntity, THistory> _baseService;
 
-        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity, object> baseService)
+        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity, THistory> baseService)
         {
             _logger = logger;
             _mapper = mapper;

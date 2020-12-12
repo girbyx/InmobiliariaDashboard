@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +9,11 @@ namespace InmobiliariaDashboard.Server.Controllers.MonetaryAgent
     [ApiController]
     [Route("api/[controller]")]
     public class
-        MonetaryAgentDetailController : BaseDetailController<MonetaryAgentDetailController, Models.MonetaryAgent, MonetaryAgentViewModel>
+        MonetaryAgentDetailController : BaseDetailController<MonetaryAgentDetailController, Models.MonetaryAgent, object
+            , MonetaryAgentViewModel>
     {
         public MonetaryAgentDetailController(ILogger<MonetaryAgentDetailController> logger, IMapper mapper,
-            IApplicationDbContext dbContext, IMonetaryAgentService baseService) : base(logger, mapper,
-            dbContext, baseService)
+            IMonetaryAgentService baseService) : base(logger, mapper, baseService)
         {
         }
     }

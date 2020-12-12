@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +8,11 @@ namespace InmobiliariaDashboard.Server.Controllers.Enterprise
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EnterpriseDetailController : BaseDetailController<EnterpriseDetailController, Models.Enterprise, EnterpriseViewModel>
+    public class EnterpriseDetailController : BaseDetailController<EnterpriseDetailController, Models.Enterprise, object
+        , EnterpriseViewModel>
     {
         public EnterpriseDetailController(ILogger<EnterpriseDetailController> logger, IMapper mapper,
-            IApplicationDbContext dbContext, IBaseService<Models.Enterprise> baseService) : base(logger, mapper, dbContext,
-            baseService)
+            IEnterpriseService baseService) : base(logger, mapper, baseService)
         {
         }
     }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +9,11 @@ namespace InmobiliariaDashboard.Server.Controllers.LossType
     [ApiController]
     [Route("api/[controller]")]
     public class
-        LossTypeDetailController : BaseDetailController<LossTypeDetailController, Models.LossType, LossTypeViewModel>
+        LossTypeDetailController : BaseDetailController<LossTypeDetailController, Models.LossType, object,
+            LossTypeViewModel>
     {
         public LossTypeDetailController(ILogger<LossTypeDetailController> logger, IMapper mapper,
-            IApplicationDbContext dbContext, IBaseService<Models.LossType> baseService) : base(logger, mapper,
-            dbContext, baseService)
+            IBaseService<Models.LossType, object> baseService) : base(logger, mapper, baseService)
         {
         }
     }

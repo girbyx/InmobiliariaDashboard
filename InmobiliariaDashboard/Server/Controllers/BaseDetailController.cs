@@ -1,40 +1,31 @@
-﻿using System.Linq;
-using AutoMapper;
-using InmobiliariaDashboard.Server.Data;
-using InmobiliariaDashboard.Server.Models.Interfaces;
+﻿using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace InmobiliariaDashboard.Server.Controllers
 {
-    public class BaseDetailController<TController, TEntity, TViewModel> : ControllerBase
+    public class BaseDetailController<TController, TEntity, THistory, TViewModel> : ControllerBase
         where TController : class
         where TEntity : class, new()
+        where THistory : class
         where TViewModel : class
     {
         private readonly ILogger<TController> _logger;
         private readonly IMapper _mapper;
-        private readonly IApplicationDbContext _dbContext;
-        private readonly IBaseService<TEntity, object> _baseService;
+        private readonly IBaseService<TEntity, THistory> _baseService;
 
-        public BaseDetailController(ILogger<TController> logger, IMapper mapper, IApplicationDbContext dbContext, IBaseService<TEntity, object> baseService)
+        public BaseDetailController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity, THistory> baseService)
         {
             _logger = logger;
             _mapper = mapper;
-            _dbContext = dbContext;
             _baseService = baseService;
         }
 
         [HttpGet]
         public TViewModel Get(int id)
         {
-            var result = _dbContext
-                .Set<TEntity>()
-                .Where(x => (x as IIdentityFields).Id == id)
-                .AsEnumerable()
-                .Select(_mapper.Map<TViewModel>)
-                .First();
+            var result = _mapper.Map<TViewModel>(_baseService.Get(id));
             return result;
         }
 
