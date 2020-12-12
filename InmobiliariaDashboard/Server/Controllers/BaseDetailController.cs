@@ -16,9 +16,9 @@ namespace InmobiliariaDashboard.Server.Controllers
         private readonly ILogger<TController> _logger;
         private readonly IMapper _mapper;
         private readonly IApplicationDbContext _dbContext;
-        private readonly IBaseService<TEntity> _baseService;
+        private readonly IBaseService<TEntity, object> _baseService;
 
-        public BaseDetailController(ILogger<TController> logger, IMapper mapper, IApplicationDbContext dbContext, IBaseService<TEntity> baseService)
+        public BaseDetailController(ILogger<TController> logger, IMapper mapper, IApplicationDbContext dbContext, IBaseService<TEntity, object> baseService)
         {
             _logger = logger;
             _mapper = mapper;

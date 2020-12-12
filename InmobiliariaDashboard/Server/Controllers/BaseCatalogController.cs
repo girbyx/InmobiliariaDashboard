@@ -14,9 +14,9 @@ namespace InmobiliariaDashboard.Server.Controllers
     {
         private readonly ILogger<TController> _logger;
         private readonly IMapper _mapper;
-        private readonly IBaseService<TEntity> _baseService;
+        private readonly IBaseService<TEntity, object> _baseService;
 
-        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity> baseService)
+        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity, object> baseService)
         {
             _logger = logger;
             _mapper = mapper;
@@ -41,6 +41,13 @@ namespace InmobiliariaDashboard.Server.Controllers
         public int Delete(int id)
         {
             return _baseService.Delete(id);
+        }
+
+        [HttpDelete]
+        [Route("Archive")]
+        public int Archive(int id)
+        {
+            return _baseService.Archive(id);
         }
 
         [HttpPut]
