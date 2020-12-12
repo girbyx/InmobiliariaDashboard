@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Server.Models.Interfaces;
@@ -14,10 +15,12 @@ namespace InmobiliariaDashboard.Server.Services
     public class ProjectService : IProjectService
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public ProjectService(IApplicationDbContext dbContext)
+        public ProjectService(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public IEnumerable<Project> GetAll()
@@ -35,10 +38,21 @@ namespace InmobiliariaDashboard.Server.Services
 
         public int Save(Project entity)
         {
+            var historyRecord = _mapper.Map<ProjectHistory>(entity);
+            historyRecord.Id = 0;
             if ((entity as IIdentityFields).Id == 0)
+            {
                 _dbContext.Add(entity);
+                _dbContext.SaveChanges();
+                historyRecord.OriginalId = entity.Id;
+                _dbContext.Add(historyRecord);
+            }
             else
+            {
                 _dbContext.Update(entity);
+                historyRecord.OriginalId = entity.Id;
+                _dbContext.Update(historyRecord);
+            }
 
             return _dbContext.SaveChanges();
         }
