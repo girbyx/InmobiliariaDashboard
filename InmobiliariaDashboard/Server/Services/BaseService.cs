@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IBaseService<TEntity> where TEntity : class
+    public interface IBaseService<TEntity, THistory> 
+        where TEntity : class
+        where THistory : class
     {
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> GetAllForResolver();
@@ -13,38 +16,51 @@ namespace InmobiliariaDashboard.Server.Services
         int Delete(int id);
     }
 
-    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
+    public class BaseService<TEntity, THistory> : IBaseService<TEntity, THistory>
+        where TEntity : class
+        where THistory : class
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public BaseService(IApplicationDbContext dbContext)
+        public BaseService(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             var records = _dbContext.Set<TEntity>().ToList();
             return records;
         }
 
-        public IEnumerable<TEntity> GetAllForResolver()
+        public virtual IEnumerable<TEntity> GetAllForResolver()
         {
             var records = _dbContext.Set<TEntity>().ToList();
             return records;
         }
 
-        public int Save(TEntity entity)
+        public virtual int Save(TEntity entity)
         {
             if ((entity as IIdentityFields).Id == 0)
                 _dbContext.Add(entity);
             else
                 _dbContext.Update(entity);
 
+            // history
+            if (typeof(THistory).IsAssignableFrom(typeof(IIAmHistory<TEntity>)))
+            {
+                _dbContext.SaveChanges();
+                var historyRecord = _mapper.Map<THistory>(entity);
+                (historyRecord as IIAmHistory<TEntity>).Id = 0;
+                (historyRecord as IIAmHistory<TEntity>).OriginalId = (entity as IIdentityFields).Id;
+            }
+
             return _dbContext.SaveChanges();
         }
 
-        public int Delete(int id)
+        public virtual int Delete(int id)
         {
             var record = _dbContext
                 .Set<TEntity>()

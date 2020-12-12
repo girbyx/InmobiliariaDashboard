@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
-using InmobiliariaDashboard.Server.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface ICostService : IBaseService<Cost>
+    public interface ICostService : IBaseService<Cost, object>
     {
     }
 
-    public class CostService : ICostService
+    public class CostService : BaseService<Cost, object>, ICostService
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public CostService(IApplicationDbContext dbContext)
+        public CostService(IApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Cost> GetAll()
+        public override IEnumerable<Cost> GetAll()
         {
             var records = _dbContext.Set<Cost>()
                 .Include(x => x.CostType)
@@ -28,31 +28,6 @@ namespace InmobiliariaDashboard.Server.Services
                 .Include(x => x.MonetaryAgent)
                 .ToList();
             return records;
-        }
-
-        public IEnumerable<Cost> GetAllForResolver()
-        {
-            var records = _dbContext.Set<Cost>().ToList();
-            return records;
-        }
-
-        public int Save(Cost entity)
-        {
-            if ((entity as IIdentityFields).Id == 0)
-                _dbContext.Add(entity);
-            else
-                _dbContext.Update(entity);
-
-            return _dbContext.SaveChanges();
-        }
-
-        public int Delete(int id)
-        {
-            var record = _dbContext
-                .Set<Cost>()
-                .First(x => (x as IIdentityFields).Id == id);
-            _dbContext.Remove(record);
-            return _dbContext.SaveChanges();
         }
     }
 }
