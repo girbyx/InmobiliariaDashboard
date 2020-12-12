@@ -10,7 +10,6 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required] public string Name { get; set; }
         [Required] public string Code { get; set; }
         public string Description { get; set; }
-
         [Required] public string ProjectType { get; set; }
         public bool Sold { get; set; }
         [Required] public DateTime StartDate { get; set; }
@@ -18,7 +17,6 @@ namespace InmobiliariaDashboard.Shared.ViewModels
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]
         public int EnterpriseId { get; set; }
-
         public string EnterpriseName { get; set; }
 
         // select lists
