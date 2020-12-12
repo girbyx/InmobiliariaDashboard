@@ -55,7 +55,7 @@ namespace InmobiliariaDashboard.Server.Services
                 _dbContext.Update(entity);
 
             // history
-            if (typeof(THistory).IsAssignableFrom(typeof(IIAmHistory<TEntity>)))
+            if (typeof(THistory).Name.ToLower() != "object" && typeof(THistory).Name.ToLower() != "dynamic")
             {
                 _dbContext.SaveChanges();
                 var historyRecord = _mapper.Map<THistory>(entity);
