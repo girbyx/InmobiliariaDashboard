@@ -61,6 +61,7 @@ namespace InmobiliariaDashboard.Server.Services
                 var historyRecord = _mapper.Map<THistory>(entity);
                 (historyRecord as IIAmHistory<TEntity>).Id = 0;
                 (historyRecord as IIAmHistory<TEntity>).OriginalId = (entity as IIdentityFields).Id;
+                _dbContext.Add(historyRecord);
             }
 
             return _dbContext.SaveChanges();
