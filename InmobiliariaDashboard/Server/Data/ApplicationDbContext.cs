@@ -11,6 +11,7 @@ namespace InmobiliariaDashboard.Server.Data
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class;
         EntityEntry<TEntity> Remove<TEntity>(TEntity entity) where TEntity : class;
+        EntityEntry<TEntity> Archive<TEntity>(TEntity entity) where TEntity : class;
         EntityEntry<TEntity> Update<TEntity>(TEntity entity) where TEntity : class;
         int SaveChanges();
     }
@@ -48,16 +49,16 @@ namespace InmobiliariaDashboard.Server.Data
             return base.Add(entity);
         }
 
-        public override EntityEntry<TEntity> Remove<TEntity>(TEntity entity)
+        public EntityEntry<TEntity> Archive<TEntity>(TEntity entity) where TEntity : class
         {
             if (entity is ICanBeArchived)
             {
+                (entity as ICanBeArchived).Archived = true;
                 (entity as ICanBeArchived).ArchivedOn = DateTime.Now;
                 (entity as ICanBeArchived).ArchivedBy = string.Empty;
-                (entity as ICanBeArchived).Archived = true;
             }
 
-            return base.Remove(entity);
+            return Update(entity);
         }
 
         public override EntityEntry<TEntity> Update<TEntity>(TEntity entity)

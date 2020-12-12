@@ -10,6 +10,7 @@ namespace InmobiliariaDashboard.Client
         Task<TViewModel> GetEmpty();
         Task Add(TViewModel record);
         Task Delete(int id);
+        Task Archive(int id);
         Task Update(TViewModel record);
         Task Return();
     }

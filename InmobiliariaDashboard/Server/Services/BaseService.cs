@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
@@ -14,6 +15,7 @@ namespace InmobiliariaDashboard.Server.Services
         IEnumerable<TEntity> GetAllForResolver();
         int Save(TEntity entity);
         int Delete(int id);
+        int Archive(int id);
     }
 
     public class BaseService<TEntity, THistory> : IBaseService<TEntity, THistory>
@@ -66,6 +68,15 @@ namespace InmobiliariaDashboard.Server.Services
                 .Set<TEntity>()
                 .First(x => (x as IIdentityFields).Id == id);
             _dbContext.Remove(record);
+            return _dbContext.SaveChanges();
+        }
+
+        public virtual int Archive(int id)
+        {
+            var record = _dbContext
+                .Set<TEntity>()
+                .First(x => (x as IIdentityFields).Id == id);
+            _dbContext.Archive(record);
             return _dbContext.SaveChanges();
         }
     }

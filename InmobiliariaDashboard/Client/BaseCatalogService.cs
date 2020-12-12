@@ -47,6 +47,11 @@ namespace InmobiliariaDashboard.Client
             await HttpClient.DeleteAsync($"api/{ControllerName}?id={id}");
         }
 
+        public async Task Archive(int id)
+        {
+            await HttpClient.DeleteAsync($"api/{ControllerName}/Archive?id={id}");
+        }
+
         public async Task Update(TViewModel record)
         {
             await HttpClient.PutAsJsonAsync($"api/{ControllerName}", record);
