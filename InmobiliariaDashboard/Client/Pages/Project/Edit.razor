@@ -35,6 +35,10 @@
             <label>Fecha de fin</label>
             <input type="date" class="form-control" @bind="Record.EndDate" />
         </div>
+        <div class="col form-group">
+            <label>Vendido</label>
+            <input type="checkbox" class="form-control" @bind="Record.Sold" />
+        </div>
     </div>
 
     <button type="submit" class="btn btn-success">Guardar</button>
