@@ -1,28 +1,26 @@
 ﻿@using InmobiliariaDashboard.Shared.ViewModels
 
-<div class="text-right container-fluid">
-    <div class="row">
-        <p>Archivos adjuntos</p>
-    </div>
+<br />
+
+<div class="text-right">
+    <h3>Archivos adjuntos</h3>
 
     @if (Records == null)
     {
-        <div class="row">
-            <p>
-                <em>Cargando...</em>
-            </p>
-        </div>
+        <p>
+            <em>Cargando...</em>
+        </p>
     }
     else
     {
-        <div class="row">
+        <ul>
             @foreach (var record in Records)
             {
-                <div class="col">
+                <li>
                     <a href="@record.Url">@record.Url</a>
-                </div>
+                </li>
             }
-        </div>
+        </ul>
     }
 </div>
 
