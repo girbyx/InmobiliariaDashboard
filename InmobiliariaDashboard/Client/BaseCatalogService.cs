@@ -4,12 +4,14 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace InmobiliariaDashboard.Client
 {
     public class BaseCatalogService<TViewModel> : IBaseCatalogService<TViewModel> where TViewModel : class
     {
+        protected const long MaxFileSize = 10240000; // 10 mb
+
         protected string ControllerName;
         protected string DetailControllerName;
 
@@ -46,14 +48,22 @@ namespace InmobiliariaDashboard.Client
             return id;
         }
 
-        //public async Task AddFiles(int id, IEnumerable<IFormFile> record)
-        //{
-        //    var form = new MultipartFormDataContent
-        //    {
-        //        {new StringContent(id.ToString()), "id"}
-        //    };
-        //    await HttpClient.PostAsync($"api/{ControllerName}", form);
-        //}
+        public async Task AddFiles(int id, IBrowserFile[] files)
+        {
+            var form = new MultipartFormDataContent
+            {
+                {new StringContent(id.ToString()), "id"}
+            };
+
+            for (var i = 0; i < files.Length; i++)
+            {
+                var buffer = new byte[files[i].Size];
+                await files[i].OpenReadStream(MaxFileSize).ReadAsync(buffer);
+                form.Add(new StringContent(Convert.ToBase64String(buffer)), $"files[{i}]");
+            }
+
+            await HttpClient.PostAsync($"api/{ControllerName}/PostFiles", form);
+        }
 
         public async Task Delete(int id)
         {

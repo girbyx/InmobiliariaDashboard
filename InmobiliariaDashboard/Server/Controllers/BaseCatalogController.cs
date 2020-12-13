@@ -44,7 +44,7 @@ namespace InmobiliariaDashboard.Server.Controllers
 
         [HttpPost]
         [Route("PostFiles")]
-        public int PostFiles([FromForm] string id, [FromForm] IEnumerable<IFormFile> files)
+        public int PostFiles([FromForm] string id, [FromForm] string[] files)
         {
             var result = 0;
             if (files.Any() && typeof(TViewModel).IsAssignableFrom(typeof(IUploadFiles)))

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using AutoMapper;
 using CG.Web.MegaApiClient;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -38,40 +38,43 @@ namespace InmobiliariaDashboard.Server.Services
             return records;
         }
 
-        public override int SaveAttachments(IEnumerable<IFormFile> files, int projectId)
+        public override int SaveAttachments(string[] files, int projectId)
         {
             MegaApiClient client = new MegaApiClient();
             foreach (var file in files)
             {
                 if (file.Length > 0)
                 {
-                    var filePath = Path.GetTempFileName();
+                    var bytes = Convert.FromBase64String(file);
+                    using MemoryStream stream = new MemoryStream();
+                    stream.Write(bytes, 0, bytes.Length);
+                    stream.Seek(0, SeekOrigin.Begin);
 
-                    using var stream = File.Create(filePath);
-                    file.CopyTo(stream);
+                    // determine file name
+                    var fileName = Guid.NewGuid().ToString();
 
                     // mega.nz connection
                     string megaUsername = _configuration[UsernameConfigPath];
                     string megaPassword = _configuration[PasswordConfigPath];
-                    client.Login(megaUsername, megaPassword);
-                    IEnumerable<INode> nodes = client.GetNodes();
-                    INode root = nodes.Single(x => x.Type == NodeType.Root);
-                    INode myFolder = client.CreateFolder($"{UploadFolderPath}{projectId}", root);
-                    INode myFile = client.Upload(stream, file.FileName, myFolder);
-                    Uri downloadLink = client.GetDownloadLink(myFile);
+                    //client.Login(megaUsername, megaPassword);
+                    //IEnumerable<INode> nodes = client.GetNodes();
+                    //INode root = nodes.Single(x => x.Type == NodeType.Root);
+                    //INode cloudFolder = client.CreateFolder($"{UploadFolderPath}{projectId}", root);
+                    //INode cloudFile = client.Upload(stream, fileName, cloudFolder);
+                    //Uri downloadLink = client.GetDownloadLink(cloudFile);
 
-                    // prepare entity
-                    var entity = new Attachment
-                    {
-                        Name = file.FileName,
-                        Url = downloadLink.AbsoluteUri,
-                        ProjectId = projectId,
-                        Type = string.Empty
-                    };
-                    _dbContext.Add(entity);
+                    //// prepare entity
+                    //var entity = new Attachment
+                    //{
+                    //    Name = fileName,
+                    //    Url = downloadLink.AbsoluteUri,
+                    //    ProjectId = projectId,
+                    //    Type = string.Empty
+                    //};
+                    //_dbContext.Add(entity);
                 }
             }
-            client.Logout();
+            //client.Logout();
 
             return _dbContext.SaveChanges();
         }
