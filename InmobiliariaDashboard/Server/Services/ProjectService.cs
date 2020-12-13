@@ -21,7 +21,8 @@ namespace InmobiliariaDashboard.Server.Services
         private readonly IApplicationDbContext _dbContext;
         private readonly IConfiguration _configuration;
 
-        public ProjectService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(dbContext, mapper)
+        public ProjectService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
+            dbContext, mapper)
         {
             _dbContext = dbContext;
             _configuration = configuration;
@@ -51,49 +52,12 @@ namespace InmobiliariaDashboard.Server.Services
             string megaUsername = _configuration[Constants.UsernameConfigPath];
             string megaPassword = _configuration[Constants.PasswordConfigPath];
             client.Login(megaUsername, megaPassword);
-            foreach (var file in files)
+
+            if (files != null && files.Any())
             {
-                if (file.Length > 0)
-                {
-                    // prepare string
-                    var splitString = file.Split("||");
-                    var fileBase64String = splitString.First();
-                    var extension = splitString.Last();
-
-                    // prepare file
-                    var bytes = Convert.FromBase64String(fileBase64String);
-                    using MemoryStream stream = new MemoryStream();
-                    stream.Write(bytes, 0, bytes.Length);
-                    stream.Seek(0, SeekOrigin.Begin);
-
-                    // determine file name
-                    var fileName = Guid.NewGuid().ToString();
-
-                    // save file to mega.nz
-                    var projectFolderName = $"{Constants.ProjectFolderPath}{projectId}";
-                    IEnumerable<INode> nodes = client.GetNodes();
-                    INode cloudFolder = nodes.SingleOrDefault(x => x.Type == NodeType.Directory && x.Name == projectFolderName);
-
-                    if (cloudFolder == null)
-                    {
-                        INode root = nodes.Single(x => x.Type == NodeType.Root);
-                        cloudFolder = client.CreateFolder(projectFolderName, root);
-                    }
-
-                    INode cloudFile = client.Upload(stream, $"{fileName}.{extension}", cloudFolder);
-                    Uri downloadLink = client.GetDownloadLink(cloudFile);
-
-                    // prepare entity
-                    var entity = new Attachment
-                    {
-                        Name = fileName,
-                        Url = downloadLink.AbsoluteUri,
-                        ProjectId = projectId,
-                        ExtensionType = extension
-                    };
-                    _dbContext.Add(entity);
-                }
+                SaveToFileHosting(client, files, projectId, Constants.ProjectFolderPath);
             }
+
             // close mega.nz connection
             client.Logout();
 
