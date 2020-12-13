@@ -40,7 +40,7 @@ namespace InmobiliariaDashboard.Server.Services
             IEnumerable<INode> nodes = client.GetNodes();
             INode cloudFile = nodes.SingleOrDefault(x => x.Type == NodeType.File && x.Name == fileName);
             if(cloudFile != null)
-                client.Delete(cloudFile);
+                client.Delete(cloudFile, false);
             client.Logout();
 
             _dbContext.Remove(record);
