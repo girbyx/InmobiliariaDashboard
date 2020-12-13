@@ -3,7 +3,7 @@
 
 <h1>Agregar proyecto</h1>
 
-<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit" enctype="multipart/form-data">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -35,12 +35,12 @@
         <FormSelectRecord @bind-Value="Record.ProjectSubTypeId" Records="Record.ProjectSubTypes" Title="Sub-tipos de proyectos"></FormSelectRecord>
     </div>
 
-    @*<div class="form-row">
+    <div class="form-row">
         <div class="col form-group">
             <label>Adjuntos</label>
-            <input type="file" class="form-control" @bind="Record.Files" multiple />
+            <input id="files" name="files" type="file" class="form-control" multiple />
         </div>
-    </div>*@
+    </div>
 
     <button type="submit" class="btn btn-success">Guardar</button>
     <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>

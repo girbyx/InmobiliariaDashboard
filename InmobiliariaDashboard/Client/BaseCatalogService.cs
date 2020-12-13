@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
 
 namespace InmobiliariaDashboard.Client
 {
@@ -40,6 +41,12 @@ namespace InmobiliariaDashboard.Client
         public async Task Add(TViewModel record)
         {
             await HttpClient.PostAsJsonAsync($"api/{ControllerName}", record);
+        }
+
+        public async Task AddFiles(IEnumerable<IFormFile> record)
+        {
+            var form = new MultipartFormDataContent();
+            await HttpClient.PostAsync($"api/{ControllerName}", form);
         }
 
         public async Task Delete(int id)

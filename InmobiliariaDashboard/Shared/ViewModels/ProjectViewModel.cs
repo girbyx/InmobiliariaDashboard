@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
@@ -15,7 +14,6 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public bool Sold { get; set; }
         [Required] public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        //public IEnumerable<IFormFile> Files { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]
         public int EnterpriseId { get; set; }
