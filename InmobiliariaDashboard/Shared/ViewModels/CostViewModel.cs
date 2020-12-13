@@ -9,6 +9,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public int Id { get; set; }
         [Required]
         public double Value { get; set; }
+        [Required]
         public int Quantity { get; set; }
         public double SubTotal { get; set; }
         public double Commission { get; set; }
@@ -17,8 +18,8 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required]
         public string Description { get; set; }
         public int Total { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime? Updated { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un tipo de costo")]
         public int CostTypeId { get; set; }
