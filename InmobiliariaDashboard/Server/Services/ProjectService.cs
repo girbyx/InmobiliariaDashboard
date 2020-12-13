@@ -6,6 +6,7 @@ using AutoMapper;
 using CG.Web.MegaApiClient;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -17,9 +18,6 @@ namespace InmobiliariaDashboard.Server.Services
 
     public class ProjectService : BaseService<Project, ProjectHistory>, IProjectService
     {
-        private const string UploadFolderPath = "ProjectUploads_ProjectID_";
-        private const string UsernameConfigPath = "MegaClientApi:Credentials:Username";
-        private const string PasswordConfigPath = "MegaClientApi:Credentials:Password";
         private readonly IApplicationDbContext _dbContext;
         private readonly IConfiguration _configuration;
 
@@ -50,8 +48,8 @@ namespace InmobiliariaDashboard.Server.Services
         {
             // open mega.nz connection
             MegaApiClient client = new MegaApiClient();
-            string megaUsername = _configuration[UsernameConfigPath];
-            string megaPassword = _configuration[PasswordConfigPath];
+            string megaUsername = _configuration[Constants.UsernameConfigPath];
+            string megaPassword = _configuration[Constants.PasswordConfigPath];
             client.Login(megaUsername, megaPassword);
             foreach (var file in files)
             {
@@ -72,7 +70,7 @@ namespace InmobiliariaDashboard.Server.Services
                     var fileName = Guid.NewGuid().ToString();
 
                     // save file to mega.nz
-                    var projectFolderName = $"{UploadFolderPath}{projectId}";
+                    var projectFolderName = $"{Constants.ProjectFolderPath}{projectId}";
                     IEnumerable<INode> nodes = client.GetNodes();
                     INode cloudFolder = nodes.SingleOrDefault(x => x.Type == NodeType.Directory && x.Name == projectFolderName);
 

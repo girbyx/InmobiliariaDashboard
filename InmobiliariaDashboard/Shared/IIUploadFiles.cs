@@ -1,6 +1,6 @@
 ﻿namespace InmobiliariaDashboard.Shared
 {
-    public interface  IUploadFiles
+    public interface  IIUploadFiles
     {
     }
 }

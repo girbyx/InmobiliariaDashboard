@@ -12,6 +12,7 @@ namespace InmobiliariaDashboard.Client
         Task<int> Add(TViewModel record);
         Task AddFiles(int id, IBrowserFile[] files);
         Task Delete(int id);
+        Task DeleteAttachment(int id);
         Task Archive(int id);
         Task<int> Update(TViewModel record);
         Task Return();

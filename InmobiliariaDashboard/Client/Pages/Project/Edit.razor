@@ -6,7 +6,9 @@
 @if (Saving)
 {
     <div class="alert alert-info mt-4">
-        <h6>Guardando... El proceso demorara dependiendo el tamaño de los archivos adjuntos, por favor, espere.</h6>
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Guardando...</span>
+        </div>
     </div>
 }
 
@@ -64,4 +66,27 @@
     <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>
 
-<AttachmentsTable Records="Record.Attachments"></AttachmentsTable>
+<div class="container text-right">
+    <h4>Adjuntos</h4>
+
+    @if (Record.Attachments == null)
+    {
+        <div class="row">
+            <div class="col">
+                <em>Cargando...</em>
+            </div>
+        </div>
+    }
+    else
+    {
+        @foreach (var record in Record.Attachments)
+        {
+            <div class="row">
+                <div class="col">
+                    <a href="@record.Url">@($"{record.Name}.{record.ExtensionType}")</a>
+                    <button class="btn btn-danger" disabled="@Saving" @onclick="() => OnDeleteAttachmentClick(record.Id)" ><span class="oi oi-delete"></span></button>
+                </div>
+            </div>
+        }
+    }
+</div>

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class ProjectViewModel : ISelectableViewModel, IUploadFiles
+    public class ProjectViewModel : ISelectableViewModel, IIUploadFiles
     {
         public int Id { get; set; }
         [Required] public string Name { get; set; }

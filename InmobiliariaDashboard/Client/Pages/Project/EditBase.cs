@@ -40,6 +40,14 @@ namespace InmobiliariaDashboard.Client.Pages.Project
             await Service.Return();
         }
 
+        protected async Task OnDeleteAttachmentClick(int id)
+        {
+            Saving = true;
+            //await Service.DeleteAttachment(id);
+            Record.Attachments = Record.Attachments.Where(x => x.Id != id);
+            Saving = false;
+        }
+
         protected async Task OnDeleteClick(MouseEventArgs e)
         {
             var id = int.Parse(Id);
