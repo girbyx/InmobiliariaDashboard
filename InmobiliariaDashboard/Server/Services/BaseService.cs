@@ -12,7 +12,7 @@ namespace InmobiliariaDashboard.Server.Services
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> GetAllForResolver();
         TEntity Get(int id);
-        int Save(TEntity entity);
+        int Save(TEntity entity, out int id);
         int Delete(int id);
         int Archive(int id);
     }
@@ -48,7 +48,7 @@ namespace InmobiliariaDashboard.Server.Services
             return records;
         }
 
-        public virtual int Save(TEntity entity)
+        public virtual int Save(TEntity entity, out int id)
         {
             if ((entity as IIdentityFields).Id == 0)
                 _dbContext.Add(entity);
@@ -67,6 +67,7 @@ namespace InmobiliariaDashboard.Server.Services
                 _dbContext.Add(historyRecord);
             }
 
+            id = (entity as IIdentityFields).Id;
             return _dbContext.SaveChanges();
         }
 
