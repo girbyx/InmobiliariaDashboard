@@ -9,7 +9,7 @@
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Agente monetario</label>
+            <label>Nombre</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
         <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
@@ -17,11 +17,11 @@
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Numero de cuenta</label>
+            <label>Cuenta</label>
             <input type="number" class="form-control" @bind="Record.AccountNumber" />
         </div>
         <div class="col form-group">
-            <label>Numero de tarjeta</label>
+            <label>Tarjeta</label>
             <input type="number" class="form-control" @bind="Record.CardNumber" />
         </div>
         <FormSelectEnum @bind-Value="Record.MonetaryAgentType" Records="MonetaryAgentTypes" Title="Tipos de agentes monetarios"></FormSelectEnum>
