@@ -1,0 +1,34 @@
+﻿@using InmobiliariaDashboard.Shared.ViewModels
+
+<div class="text-right container-fluid">
+    <div class="row">
+        <p>Archivos adjuntos</p>
+    </div>
+
+    @if (Records == null)
+    {
+        <div class="row">
+            <p>
+                <em>Cargando...</em>
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var record in Records)
+            {
+                <div class="col">
+                    <a href="@record.Url">@record.Url</a>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<AttachmentViewModel> Records { get; set; }
+
+}
