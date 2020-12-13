@@ -35,6 +35,13 @@
         <FormSelectRecord @bind-Value="Record.ProjectSubTypeId" Records="Record.ProjectSubTypes" Title="Sub-tipos de proyectos"></FormSelectRecord>
     </div>
 
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Adjuntos</label>
+            <input type="file" class="form-control" @bind="Record.Files" multiple />
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-success">Guardar</button>
     <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>

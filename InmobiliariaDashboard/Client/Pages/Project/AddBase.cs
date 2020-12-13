@@ -6,6 +6,7 @@ using InmobiliariaDashboard.Shared.Enumerations;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace InmobiliariaDashboard.Client.Pages.Project
 {
@@ -22,6 +23,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
             // defaults
             Record.StartDate = DateTime.Today;
             Record.ProjectType = ProjectTypeEnum.FixedAsset.Code;
+            Record.Files = new List<IFormFile>();
         }
 
         protected async Task HandleValidSubmit()
