@@ -47,7 +47,7 @@ namespace InmobiliariaDashboard.Server.Controllers
         public int PostFiles([FromForm] string id, [FromForm] string[] files)
         {
             var result = 0;
-            if (files.Any() && typeof(TViewModel).IsAssignableFrom(typeof(IUploadFiles)))
+            if (files.Any())
                 result = _baseService.SaveAttachments(files, Convert.ToInt32(id));
             return result;
         }
