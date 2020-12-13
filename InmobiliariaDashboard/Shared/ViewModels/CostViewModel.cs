@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class CostViewModel
+    public class CostViewModel : IIUploadFiles
     {
         public int Id { get; set; }
         [Required]
@@ -34,5 +34,8 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public IEnumerable<CostTypeViewModel> CostTypes { get; set; }
         public IEnumerable<ProjectViewModel> Projects { get; set; }
         public IEnumerable<MonetaryAgentViewModel> MonetaryAgents { get; set; }
+
+        // lists
+        public IEnumerable<AttachmentViewModel> Attachments { get; set; }
     }
 }

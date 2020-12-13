@@ -9,9 +9,11 @@ namespace InmobiliariaDashboard.Server.Controllers.ProjectSubType
     [ApiController]
     [Route("api/[controller]")]
     public class
-        ProjectSubTypeController : BaseCatalogController<ProjectSubTypeController, Models.ProjectSubType, object, ProjectSubTypeViewModel>
+        ProjectSubTypeController : BaseCatalogController<ProjectSubTypeController, Models.ProjectSubType, object,
+            ProjectSubTypeViewModel>
     {
-        public ProjectSubTypeController(ILogger<ProjectSubTypeController> logger, IMapper mapper, IProjectSubTypeService baseService)
+        public ProjectSubTypeController(ILogger<ProjectSubTypeController> logger, IMapper mapper,
+            IProjectSubTypeService baseService)
             : base(logger, mapper, baseService)
         {
         }

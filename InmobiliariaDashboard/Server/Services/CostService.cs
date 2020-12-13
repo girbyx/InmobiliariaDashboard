@@ -3,7 +3,9 @@ using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Shared;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
 {
@@ -15,7 +17,8 @@ namespace InmobiliariaDashboard.Server.Services
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public CostService(IApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        public CostService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
+            dbContext, mapper, configuration)
         {
             _dbContext = dbContext;
         }
@@ -28,6 +31,16 @@ namespace InmobiliariaDashboard.Server.Services
                 .Include(x => x.MonetaryAgent)
                 .ToList();
             return records;
+        }
+
+        public override int SaveAttachments(string[] files, int costId)
+        {
+            if (files != null && files.Any())
+            {
+                return SaveToFileHosting(files, costId, Constants.CostFolderPath);
+            }
+
+            return 0;
         }
     }
 }

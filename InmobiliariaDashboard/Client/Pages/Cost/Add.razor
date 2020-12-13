@@ -3,6 +3,14 @@
 
 <h1>Agregar costo</h1>
 
+@if (Saving)
+{
+    <div class="alert alert-info mt-4">
+        <div class="spinner-border ml-auto text-primary" role="status" aria-hidden="true"></div>
+        <string>Guardando...</string>
+    </div>
+}
+
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -12,7 +20,7 @@
             <label>Valor</label>
             <input type="number" class="form-control" @bind="Record.Value" />
         </div>
-        <FormSelectRecord @bind-Value="Record.CostTypeId" Records="Record.CostTypes" Title="Tipos de costos"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.CostTypeId" Records="Record.CostTypes" Title="Tipos"></FormSelectRecord>
     </div>
 
     <div class="form-row">
@@ -20,12 +28,12 @@
             <label>Comision</label>
             <input type="number" class="form-control" @bind="Record.Commission" />
         </div>
-        <FormSelectEnum @bind-Value="Record.CommissionType" Records="CommissionTypes" Title="Tipos de comision"></FormSelectEnum>
+        <FormSelectEnum @bind-Value="Record.CommissionType" Records="CommissionTypes" Title="Comisiones"></FormSelectEnum>
     </div>
 
     <div class="form-row">
         <FormSelectRecord OnChangeCallback="OnProjectChange" @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Proyectos"></FormSelectRecord>
-        <FormSelectRecord @bind-Value="Record.MonetaryAgentId" Records="Record.MonetaryAgents" Title="Agentes monetarios"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.MonetaryAgentId" Records="Record.MonetaryAgents" Title="Agentes"></FormSelectRecord>
     </div>
 
     <div class="form-row">
@@ -35,6 +43,13 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Guardar</button>
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Adjuntos</label>
+            <InputFile OnChange="HandleFileSelection" class="form-control" multiple />
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-success" disabled="@Saving">Guardar</button>
     <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
@@ -35,7 +36,18 @@ namespace InmobiliariaDashboard.Server.Controllers
         [HttpPost]
         public int Post(TViewModel dto)
         {
-            return _baseService.Save(_mapper.Map<TEntity>(dto));
+            _baseService.Save(_mapper.Map<TEntity>(dto), out int id);
+            return id;
+        }
+
+        [HttpPost]
+        [Route("PostFiles")]
+        public int PostFiles([FromForm] string id, [FromForm] string[] files)
+        {
+            var result = 0;
+            if (files.Any())
+                result = _baseService.SaveAttachments(files, Convert.ToInt32(id));
+            return result;
         }
 
         [HttpDelete]
@@ -54,7 +66,8 @@ namespace InmobiliariaDashboard.Server.Controllers
         [HttpPut]
         public int Put(TViewModel dto)
         {
-            return _baseService.Save(_mapper.Map<TEntity>(dto));
+            _baseService.Save(_mapper.Map<TEntity>(dto), out int id);
+            return id;
         }
     }
 }

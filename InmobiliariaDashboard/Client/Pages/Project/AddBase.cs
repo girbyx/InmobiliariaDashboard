@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared;
 using InmobiliariaDashboard.Shared.Enumerations;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace InmobiliariaDashboard.Client.Pages.Project
@@ -12,8 +14,10 @@ namespace InmobiliariaDashboard.Client.Pages.Project
     public class AddBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
+        public bool Saving { get; set; }
         public ProjectViewModel Record { get; set; } = new ProjectViewModel();
         public IEnumerable<ProjectTypeEnum> ProjectTypes => BaseEnumeration.GetAll<ProjectTypeEnum>();
+        public IBrowserFile[] Files { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -24,9 +28,18 @@ namespace InmobiliariaDashboard.Client.Pages.Project
             Record.ProjectType = ProjectTypeEnum.FixedAsset.Code;
         }
 
+        protected async Task HandleFileSelection(InputFileChangeEventArgs e)
+        {
+            Files = e.GetMultipleFiles().ToArray();
+        }
+
         protected async Task HandleValidSubmit()
         {
-            await Service.Add(Record);
+            Saving = true;
+            var id = await Service.Add(Record);
+            if(Files != null && Files.Any())
+                await Service.AddFiles(id, Files);
+            Saving = false;
             await Service.Return();
         }
 

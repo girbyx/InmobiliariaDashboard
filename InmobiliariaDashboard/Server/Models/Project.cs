@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Server.Resolvers;
@@ -32,6 +33,7 @@ namespace InmobiliariaDashboard.Server.Models
         public string ArchivedBy { get; set; }
 
         // collections
+        public virtual ICollection<Attachment> Attachments { get; set; }
         public virtual ICollection<Gain> Gains { get; set; }
         public virtual ICollection<Cost> Costs { get; set; }
         public virtual ICollection<Loss> Losses { get; set; }
