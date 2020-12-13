@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class ProjectViewModel : ISelectableViewModel
+    public class ProjectViewModel : ISelectableViewModel, IUploadFiles
     {
         public int Id { get; set; }
         [Required] public string Name { get; set; }
