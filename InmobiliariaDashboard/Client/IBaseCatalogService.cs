@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace InmobiliariaDashboard.Client
 {
@@ -8,7 +9,8 @@ namespace InmobiliariaDashboard.Client
         Task<IEnumerable<TViewModel>> GetList();
         Task<TViewModel> Get(int id);
         Task<TViewModel> GetEmpty();
-        Task Add(TViewModel record);
+        Task<int> Add(TViewModel record);
+        //Task AddFiles(int id, IEnumerable<IFormFile> record);
         Task Delete(int id);
         Task Archive(int id);
         Task Update(TViewModel record);

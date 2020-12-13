@@ -6,6 +6,7 @@ using InmobiliariaDashboard.Shared.Enumerations;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace InmobiliariaDashboard.Client.Pages.Project
 {
@@ -26,7 +27,8 @@ namespace InmobiliariaDashboard.Client.Pages.Project
 
         protected async Task HandleValidSubmit()
         {
-            await Service.Add(Record);
+            var id = await Service.Add(Record);
+            //await Service.AddFiles(id, new List<IFormFile>());
             await Service.Return();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -38,16 +39,21 @@ namespace InmobiliariaDashboard.Client
             return await HttpClient.GetFromJsonAsync<TViewModel>($"api/{DetailControllerName}/GetEmpty");
         }
 
-        public async Task Add(TViewModel record)
+        public async Task<int> Add(TViewModel record)
         {
-            await HttpClient.PostAsJsonAsync($"api/{ControllerName}", record);
+            var response = await HttpClient.PostAsJsonAsync($"api/{ControllerName}", record);
+            var id = Convert.ToInt32(await response.Content.ReadAsStringAsync());
+            return id;
         }
 
-        public async Task AddFiles(IEnumerable<IFormFile> record)
-        {
-            var form = new MultipartFormDataContent();
-            await HttpClient.PostAsync($"api/{ControllerName}", form);
-        }
+        //public async Task AddFiles(int id, IEnumerable<IFormFile> record)
+        //{
+        //    var form = new MultipartFormDataContent
+        //    {
+        //        {new StringContent(id.ToString()), "id"}
+        //    };
+        //    await HttpClient.PostAsync($"api/{ControllerName}", form);
+        //}
 
         public async Task Delete(int id)
         {
