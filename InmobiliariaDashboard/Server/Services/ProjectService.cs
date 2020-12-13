@@ -39,12 +39,22 @@ namespace InmobiliariaDashboard.Server.Services
 
         public override int SaveAttachments(string[] files, int projectId)
         {
+            // open mega.nz connection
             MegaApiClient client = new MegaApiClient();
+            string megaUsername = _configuration[UsernameConfigPath];
+            string megaPassword = _configuration[PasswordConfigPath];
+            client.Login(megaUsername, megaPassword);
             foreach (var file in files)
             {
                 if (file.Length > 0)
                 {
-                    var bytes = Convert.FromBase64String(file);
+                    // prepare string
+                    var splitString = file.Split("||");
+                    var fileBase64String = splitString.First();
+                    var extension = splitString.Last();
+
+                    // prepare file
+                    var bytes = Convert.FromBase64String(fileBase64String);
                     using MemoryStream stream = new MemoryStream();
                     stream.Write(bytes, 0, bytes.Length);
                     stream.Seek(0, SeekOrigin.Begin);
@@ -52,14 +62,11 @@ namespace InmobiliariaDashboard.Server.Services
                     // determine file name
                     var fileName = Guid.NewGuid().ToString();
 
-                    // mega.nz connection
-                    string megaUsername = _configuration[UsernameConfigPath];
-                    string megaPassword = _configuration[PasswordConfigPath];
-                    client.Login(megaUsername, megaPassword);
+                    // save file to mega.nz
                     IEnumerable<INode> nodes = client.GetNodes();
                     INode root = nodes.Single(x => x.Type == NodeType.Root);
                     INode cloudFolder = client.CreateFolder($"{UploadFolderPath}{projectId}", root);
-                    INode cloudFile = client.Upload(stream, fileName, cloudFolder);
+                    INode cloudFile = client.Upload(stream, $"{fileName}.{extension}", cloudFolder);
                     Uri downloadLink = client.GetDownloadLink(cloudFile);
 
                     // prepare entity
@@ -73,6 +80,7 @@ namespace InmobiliariaDashboard.Server.Services
                     _dbContext.Add(entity);
                 }
             }
+            // close mega.nz connection
             client.Logout();
 
             return _dbContext.SaveChanges();

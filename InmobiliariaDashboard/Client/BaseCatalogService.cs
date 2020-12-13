@@ -60,8 +60,7 @@ namespace InmobiliariaDashboard.Client
             {
                 var buffer = new byte[files[i].Size];
                 await files[i].OpenReadStream(MaxFileSize).ReadAsync(buffer);
-                var stringContent =
-                    $"ContentType:{files[i].ContentType}||Base64:{Convert.ToBase64String(buffer)}||FileExtension:{files[i].Name.Split('.').Last()}";
+                var stringContent = $"{Convert.ToBase64String(buffer)}||{files[i].Name.Split('.').Last()}";
                 form.Add(new StringContent(stringContent), $"files[{i}]");
             }
 
