@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -59,7 +60,9 @@ namespace InmobiliariaDashboard.Client
             {
                 var buffer = new byte[files[i].Size];
                 await files[i].OpenReadStream(MaxFileSize).ReadAsync(buffer);
-                form.Add(new StringContent(Convert.ToBase64String(buffer)), $"files[{i}]");
+                var stringContent =
+                    $"ContentType:{files[i].ContentType}||Base64:{Convert.ToBase64String(buffer)}||FileExtension:{files[i].Name.Split('.').Last()}";
+                form.Add(new StringContent(stringContent), $"files[{i}]");
             }
 
             await HttpClient.PostAsync($"api/{ControllerName}/PostFiles", form);
