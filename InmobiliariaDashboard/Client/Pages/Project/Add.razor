@@ -3,6 +3,13 @@
 
 <h1>Agregar proyecto</h1>
 
+@if (Saving)
+{
+    <div class="alert alert-info mt-4">
+        <h6>Guardando... El proceso demorara dependiendo el tamaño de los archivos adjuntos, por favor, espere.</h6>
+    </div>
+}
+
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit" enctype="multipart/form-data">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -38,17 +45,10 @@
     <div class="form-row">
         <div class="col form-group">
             <label>Adjuntos</label>
-            <InputFile OnChange="HandleFileSelection" multiple />
+            <InputFile OnChange="HandleFileSelection" class="form-control" multiple />
         </div>
     </div>
 
-    @if (Saving)
-    {
-        <button class="btn btn-success" type="submit" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Guardando...</button>
-    }
-    else
-    {
-        <button type="submit" class="btn btn-success">Guardar</button>
-    }
+    <button type="submit" class="btn btn-success" disabled="@Saving">Guardar</button>
     <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>
