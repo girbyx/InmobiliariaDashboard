@@ -91,7 +91,7 @@ namespace InmobiliariaDashboard.Server.Services
                         Name = fileName,
                         Url = downloadLink.AbsoluteUri,
                         ProjectId = projectId,
-                        Type = string.Empty
+                        ExtensionType = extension
                     };
                     _dbContext.Add(entity);
                 }

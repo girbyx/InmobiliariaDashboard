@@ -1,9 +1,7 @@
 ﻿@using InmobiliariaDashboard.Shared.ViewModels
 
-<br />
-
 <div class="text-right">
-    <h3>Archivos adjuntos</h3>
+    <h4>Adjuntos</h4>
 
     @if (Records == null)
     {
@@ -13,14 +11,14 @@
     }
     else
     {
-        <ul>
-            @foreach (var record in Records)
-            {
-                <li>
-                    <a href="@record.Url">@record.Url</a>
-                </li>
-            }
-        </ul>
+        @foreach (var record in Records)
+        {
+            <div class="row">
+                <div class="col">
+                    <a href="@record.Url">@($"{record.Name}.{record.ExtensionType}")</a>
+                </div>
+            </div>
+        }
     }
 </div>
 
