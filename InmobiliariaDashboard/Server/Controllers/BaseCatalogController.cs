@@ -66,7 +66,8 @@ namespace InmobiliariaDashboard.Server.Controllers
         [HttpPut]
         public int Put(TViewModel dto)
         {
-            return _baseService.Save(_mapper.Map<TEntity>(dto), out _);
+            _baseService.Save(_mapper.Map<TEntity>(dto), out int id);
+            return id;
         }
     }
 }

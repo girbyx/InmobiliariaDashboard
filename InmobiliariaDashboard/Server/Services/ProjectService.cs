@@ -63,9 +63,16 @@ namespace InmobiliariaDashboard.Server.Services
                     var fileName = Guid.NewGuid().ToString();
 
                     // save file to mega.nz
+                    var projectFolderName = $"{UploadFolderPath}{projectId}";
                     IEnumerable<INode> nodes = client.GetNodes();
-                    INode root = nodes.Single(x => x.Type == NodeType.Root);
-                    INode cloudFolder = client.CreateFolder($"{UploadFolderPath}{projectId}", root);
+                    INode cloudFolder = nodes.SingleOrDefault(x => x.Type == NodeType.Directory && x.Name == projectFolderName);
+
+                    if (cloudFolder == null)
+                    {
+                        INode root = nodes.Single(x => x.Type == NodeType.Root);
+                        cloudFolder = client.CreateFolder(projectFolderName, root);
+                    }
+
                     INode cloudFile = client.Upload(stream, $"{fileName}.{extension}", cloudFolder);
                     Uri downloadLink = client.GetDownloadLink(cloudFile);
 
