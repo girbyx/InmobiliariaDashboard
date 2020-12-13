@@ -66,7 +66,7 @@
     <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>
 
-<div class="container text-right">
+<div class="container-fluid text-right">
     <h4>Adjuntos</h4>
 
     @if (Record.Attachments == null)
@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col">
                     <a href="@record.Url">@($"{record.Name}.{record.ExtensionType}")</a>
-                    <button class="btn btn-danger" disabled="@Saving" @onclick="() => OnDeleteAttachmentClick(record.Id)" ><span class="oi oi-delete"></span></button>
+                    <button class="btn btn-danger" disabled="@Saving" @onclick="() => OnDeleteAttachmentClick(record.Id)">x</button>
                 </div>
             </div>
         }
