@@ -13,7 +13,7 @@ namespace InmobiliariaDashboard.Client
         Task AddFiles(int id, IBrowserFile[] files);
         Task Delete(int id);
         Task Archive(int id);
-        Task Update(TViewModel record);
+        Task<int> Update(TViewModel record);
         Task Return();
     }
 }
