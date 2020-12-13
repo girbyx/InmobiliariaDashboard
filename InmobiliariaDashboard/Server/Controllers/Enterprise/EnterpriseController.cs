@@ -12,8 +12,8 @@ namespace InmobiliariaDashboard.Server.Controllers.Enterprise
         EnterpriseViewModel>
     {
         public EnterpriseController(ILogger<EnterpriseController> logger, IMapper mapper,
-            IEnterpriseService baseService, IAttachmentService attachmentService)
-            : base(logger, mapper, baseService, attachmentService)
+            IEnterpriseService baseService)
+            : base(logger, mapper, baseService)
         {
         }
     }

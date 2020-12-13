@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
@@ -18,14 +19,12 @@ namespace InmobiliariaDashboard.Server.Controllers
         private readonly ILogger<TController> _logger;
         private readonly IMapper _mapper;
         private readonly IBaseService<TEntity, THistory> _baseService;
-        private readonly IAttachmentService _attachmentService;
 
-        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity, THistory> baseService, IAttachmentService attachmentService)
+        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity, THistory> baseService)
         {
             _logger = logger;
             _mapper = mapper;
             _baseService = baseService;
-            _attachmentService = attachmentService;
         }
 
         [HttpGet]
@@ -45,11 +44,11 @@ namespace InmobiliariaDashboard.Server.Controllers
 
         [HttpPost]
         [Route("PostFiles")]
-        public int PostFiles([FromForm] int id, [FromForm] IEnumerable<IFormFile> files)
+        public int PostFiles([FromForm] string id, [FromForm] IEnumerable<IFormFile> files)
         {
             var result = 0;
-            if(typeof(TEntity).IsAssignableFrom(typeof(IUploadFiles)))
-                result = _attachmentService.SaveAttachments(files, id);
+            if (files.Any() && typeof(TViewModel).IsAssignableFrom(typeof(IUploadFiles)))
+                result = _baseService.SaveAttachments(files, Convert.ToInt32(id));
             return result;
         }
 

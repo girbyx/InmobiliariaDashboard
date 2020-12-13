@@ -13,8 +13,8 @@ namespace InmobiliariaDashboard.Server.Controllers.ProjectSubType
             ProjectSubTypeViewModel>
     {
         public ProjectSubTypeController(ILogger<ProjectSubTypeController> logger, IMapper mapper,
-            IProjectSubTypeService baseService, IAttachmentService attachmentService)
-            : base(logger, mapper, baseService, attachmentService)
+            IProjectSubTypeService baseService)
+            : base(logger, mapper, baseService)
         {
         }
     }

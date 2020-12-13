@@ -11,9 +11,8 @@ namespace InmobiliariaDashboard.Server.Controllers.CostType
     public class
         CostTypeController : BaseCatalogController<CostTypeController, Models.CostType, object, CostTypeViewModel>
     {
-        public CostTypeController(ILogger<CostTypeController> logger, IMapper mapper, ICostTypeService baseService,
-            IAttachmentService attachmentService)
-            : base(logger, mapper, baseService, attachmentService)
+        public CostTypeController(ILogger<CostTypeController> logger, IMapper mapper, ICostTypeService baseService)
+            : base(logger, mapper, baseService)
         {
         }
     }

@@ -12,8 +12,8 @@ namespace InmobiliariaDashboard.Server.Controllers.GainType
         GainTypeController : BaseCatalogController<GainTypeController, Models.GainType, object, GainTypeViewModel>
     {
         public GainTypeController(ILogger<GainTypeController> logger, IMapper mapper,
-            IBaseService<Models.GainType, object> baseService, IAttachmentService attachmentService)
-            : base(logger, mapper, baseService, attachmentService)
+            IBaseService<Models.GainType, object> baseService)
+            : base(logger, mapper, baseService)
         {
         }
     }
