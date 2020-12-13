@@ -42,10 +42,6 @@
             <label>Fin</label>
             <input type="date" class="form-control" @bind="Record.EndDate" />
         </div>
-        <div class="text-center col form-group">
-            <label>Vendido</label>
-            <input type="checkbox" class="form-control" @bind="Record.Sold" />
-        </div>
     </div>
 
     <div class="form-row">
@@ -58,6 +54,10 @@
         <div class="col form-group">
             <label>Adjuntos</label>
             <InputFile OnChange="HandleFileSelection" class="form-control" multiple />
+        </div>
+        <div class="text-center col-4 form-group">
+            <label>Vendido</label>
+            <input type="checkbox" class="form-control" @bind="Record.Sold" />
         </div>
     </div>
 
@@ -78,14 +78,26 @@
     }
     else
     {
-        @foreach (var record in Record.Attachments)
+        @if (Record.Attachments.Any())
+        {
+            foreach (var record in Record.Attachments)
+            {
+                <div class="row">
+                    <div class="col">
+                        <a href="@record.Url">@($"{record.Name}.{record.ExtensionType}")</a>
+                        <button type="button" class="btn btn-outline-danger" disabled="@Saving" @onclick="() => OnDeleteAttachmentClick(record.Id)"><span class="oi oi-x"></span></button>
+                    </div>
+                </div>
+            }
+        }
+        else
         {
             <div class="row">
                 <div class="col">
-                    <a href="@record.Url">@($"{record.Name}.{record.ExtensionType}")</a>
-                    <button class="btn btn-danger" disabled="@Saving" @onclick="() => OnDeleteAttachmentClick(record.Id)">x</button>
+                    <i>Ninguno</i>
                 </div>
             </div>
         }
+
     }
 </div>

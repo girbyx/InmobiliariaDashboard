@@ -37,7 +37,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
         {
             Saving = true;
             var id = await Service.Add(Record);
-            if(Files.Any())
+            if(Files != null && Files.Any())
                 await Service.AddFiles(id, Files);
             Saving = false;
             await Service.Return();

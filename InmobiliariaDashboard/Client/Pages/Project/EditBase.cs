@@ -34,7 +34,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
         {
             Saving = true;
             var id = await Service.Update(Record);
-            if (Files.Any())
+            if (Files != null && Files.Any())
                 await Service.AddFiles(id, Files);
             Saving = false;
             await Service.Return();
@@ -43,7 +43,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
         protected async Task OnDeleteAttachmentClick(int id)
         {
             Saving = true;
-            //await Service.DeleteAttachment(id);
+            await Service.DeleteAttachment(id);
             Record.Attachments = Record.Attachments.Where(x => x.Id != id);
             Saving = false;
         }

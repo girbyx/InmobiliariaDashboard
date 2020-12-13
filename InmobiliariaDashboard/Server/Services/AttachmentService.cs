@@ -38,8 +38,9 @@ namespace InmobiliariaDashboard.Server.Services
             string megaPassword = _configuration[Constants.PasswordConfigPath];
             client.Login(megaUsername, megaPassword);
             IEnumerable<INode> nodes = client.GetNodes();
-            INode cloudFile = nodes.Single(x => x.Type == NodeType.File && x.Name == fileName);
-            client.Delete(cloudFile);
+            INode cloudFile = nodes.SingleOrDefault(x => x.Type == NodeType.File && x.Name == fileName);
+            if(cloudFile != null)
+                client.Delete(cloudFile);
             client.Logout();
 
             _dbContext.Remove(record);
