@@ -43,7 +43,7 @@ namespace InmobiliariaDashboard.Server.Services
             return records;
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             var records = _dbContext.Set<TEntity>().Single(x => (x as IIdentityFields).Id == id);
             return records;

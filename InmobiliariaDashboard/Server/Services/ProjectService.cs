@@ -33,7 +33,16 @@ namespace InmobiliariaDashboard.Server.Services
         {
             var records = _dbContext.Set<Project>()
                 .Include(x => x.Enterprise)
+                .Include(x => x.Attachments)
                 .ToList();
+            return records;
+        }
+
+        public override Project Get(int id)
+        {
+            var records = _dbContext.Set<Project>()
+                .Include(x => x.Attachments)
+                .Single(x => x.Id == id);
             return records;
         }
 

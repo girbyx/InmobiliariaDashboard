@@ -1,5 +1,7 @@
 ﻿using System;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -23,5 +25,14 @@ namespace InmobiliariaDashboard.Server.Models
         public string CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public string UpdatedBy { get; set; }
+    }
+
+    public class AttachmentProfile : Profile
+    {
+        public AttachmentProfile()
+        {
+            CreateMap<Attachment, AttachmentViewModel>();
+            CreateMap<AttachmentViewModel, Attachment>();
+        }
     }
 }
