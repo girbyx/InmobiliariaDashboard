@@ -5,6 +5,6 @@ namespace InmobiliariaDashboard.Shared
 {
     public interface  IUploadFiles
     {
-        IEnumerable<IFormFile> Files { get; set; }
+        //IEnumerable<IFormFile> Files { get; set; }
     }
 }

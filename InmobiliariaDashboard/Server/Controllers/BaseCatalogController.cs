@@ -39,8 +39,8 @@ namespace InmobiliariaDashboard.Server.Controllers
         public int Post(TViewModel dto)
         {
             _baseService.Save(_mapper.Map<TEntity>(dto), out int id);
-            if(dto is IUploadFiles)
-                _attachmentService.SaveProjectAttachments((dto as IUploadFiles).Files, id); // projects only
+            //if(dto is IUploadFiles)
+            //    _attachmentService.SaveProjectAttachments((dto as IUploadFiles).Files, id); // projects only
             return id;
         }
 

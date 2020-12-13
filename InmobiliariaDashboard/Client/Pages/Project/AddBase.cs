@@ -23,7 +23,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
             // defaults
             Record.StartDate = DateTime.Today;
             Record.ProjectType = ProjectTypeEnum.FixedAsset.Code;
-            Record.Files = new List<IFormFile>();
+            //Record.Files = new List<IFormFile>();
         }
 
         protected async Task HandleValidSubmit()
