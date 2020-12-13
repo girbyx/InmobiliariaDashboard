@@ -63,10 +63,11 @@ namespace InmobiliariaDashboard.Server.Services
             else
                 _dbContext.Update(entity);
 
+            _dbContext.SaveChanges();
+
             // history update
             if (typeof(THistory).Name.ToLower() != "object" && typeof(THistory).Name.ToLower() != "dynamic")
             {
-                _dbContext.SaveChanges();
                 var historyRecord = _mapper.Map<THistory>(entity);
                 (historyRecord as IIAmHistory<TEntity>).Id = 0;
                 (historyRecord as IIAmHistory<TEntity>).OriginalId = (entity as IIdentityFields).Id;
