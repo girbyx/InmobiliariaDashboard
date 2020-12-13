@@ -42,6 +42,16 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Guardar</button>
+    @if (Saving)
+    {
+        <button class="btn btn-success" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Guardando...
+        </button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-success">Guardar</button>
+    }
     <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
 </EditForm>

@@ -12,6 +12,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
     {
         [Inject] public IService Service { get; set; }
         [Parameter] public string Id { get; set; }
+        public bool Saving { get; set; }
         public ProjectViewModel Record { get; set; } = new ProjectViewModel();
         public IEnumerable<ProjectTypeEnum> ProjectTypes => BaseEnumeration.GetAll<ProjectTypeEnum>();
 
@@ -23,7 +24,9 @@ namespace InmobiliariaDashboard.Client.Pages.Project
 
         protected async Task HandleValidSubmit()
         {
+            Saving = true;
             await Service.Update(Record);
+            Saving = false;
             await Service.Return();
         }
 

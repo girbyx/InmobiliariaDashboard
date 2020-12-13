@@ -14,6 +14,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
     public class AddBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
+        public bool Saving { get; set; }
         public ProjectViewModel Record { get; set; } = new ProjectViewModel();
         public IEnumerable<ProjectTypeEnum> ProjectTypes => BaseEnumeration.GetAll<ProjectTypeEnum>();
         public IBrowserFile[] Files { get; set; }
@@ -34,9 +35,11 @@ namespace InmobiliariaDashboard.Client.Pages.Project
 
         protected async Task HandleValidSubmit()
         {
+            Saving = true;
             var id = await Service.Add(Record);
             if(Files.Any())
                 await Service.AddFiles(id, Files);
+            Saving = false;
             await Service.Return();
         }
 
