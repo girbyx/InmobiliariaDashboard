@@ -17,8 +17,8 @@ namespace InmobiliariaDashboard.Server.Controllers.MonetaryAgent
         private readonly IMonetaryAgentService _baseService;
 
         public MonetaryAgentController(ILogger<MonetaryAgentController> logger, IMapper mapper,
-            IMonetaryAgentService baseService)
-            : base(logger, mapper, baseService)
+            IMonetaryAgentService baseService, IAttachmentService attachmentService)
+            : base(logger, mapper, baseService, attachmentService)
         {
             _mapper = mapper;
             _baseService = baseService;

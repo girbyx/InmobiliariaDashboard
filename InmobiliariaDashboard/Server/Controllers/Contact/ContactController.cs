@@ -11,8 +11,9 @@ namespace InmobiliariaDashboard.Server.Controllers.Contact
     public class ContactController : BaseCatalogController<ContactController, Models.Contact, object,
         ContactViewModel>
     {
-        public ContactController(ILogger<ContactController> logger, IMapper mapper, IContactService baseService)
-            : base(logger, mapper, baseService)
+        public ContactController(ILogger<ContactController> logger, IMapper mapper, IContactService baseService,
+            IAttachmentService attachmentService)
+            : base(logger, mapper, baseService, attachmentService)
         {
         }
     }

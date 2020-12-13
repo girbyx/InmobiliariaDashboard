@@ -12,8 +12,8 @@ namespace InmobiliariaDashboard.Server.Controllers.LossType
         LossTypeController : BaseCatalogController<LossTypeController, Models.LossType, object, LossTypeViewModel>
     {
         public LossTypeController(ILogger<LossTypeController> logger, IMapper mapper,
-            IBaseService<Models.LossType, object> baseService)
-            : base(logger, mapper, baseService)
+            IBaseService<Models.LossType, object> baseService, IAttachmentService attachmentService)
+            : base(logger, mapper, baseService, attachmentService)
         {
         }
     }

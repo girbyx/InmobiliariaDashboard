@@ -2,6 +2,7 @@
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
+using InmobiliariaDashboard.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -16,12 +17,14 @@ namespace InmobiliariaDashboard.Server.Controllers
         private readonly ILogger<TController> _logger;
         private readonly IMapper _mapper;
         private readonly IBaseService<TEntity, THistory> _baseService;
+        private readonly IAttachmentService _attachmentService;
 
-        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity, THistory> baseService)
+        public BaseCatalogController(ILogger<TController> logger, IMapper mapper, IBaseService<TEntity, THistory> baseService, IAttachmentService attachmentService)
         {
             _logger = logger;
             _mapper = mapper;
             _baseService = baseService;
+            _attachmentService = attachmentService;
         }
 
         [HttpGet]
@@ -35,7 +38,10 @@ namespace InmobiliariaDashboard.Server.Controllers
         [HttpPost]
         public int Post(TViewModel dto)
         {
-            return _baseService.Save(_mapper.Map<TEntity>(dto));
+            _baseService.Save(_mapper.Map<TEntity>(dto), out int id);
+            if(dto is IUploadFiles)
+                _attachmentService.SaveProjectAttachments((dto as IUploadFiles).Files, id); // projects only
+            return id;
         }
 
         [HttpDelete]
@@ -54,7 +60,7 @@ namespace InmobiliariaDashboard.Server.Controllers
         [HttpPut]
         public int Put(TViewModel dto)
         {
-            return _baseService.Save(_mapper.Map<TEntity>(dto));
+            return _baseService.Save(_mapper.Map<TEntity>(dto), out _);
         }
     }
 }

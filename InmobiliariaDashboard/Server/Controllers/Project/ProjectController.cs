@@ -12,8 +12,11 @@ namespace InmobiliariaDashboard.Server.Controllers.Project
     public class ProjectController : BaseCatalogController<ProjectController, Models.Project, ProjectHistory,
         ProjectViewModel>
     {
-        public ProjectController(ILogger<ProjectController> logger, IMapper mapper, IProjectService baseService) : base(
-            logger, mapper, baseService)
+        private readonly IAttachmentService _attachmentService;
+
+        public ProjectController(ILogger<ProjectController> logger, IMapper mapper, IProjectService baseService,
+            IAttachmentService attachmentService) : base(
+            logger, mapper, baseService, attachmentService)
         {
         }
     }

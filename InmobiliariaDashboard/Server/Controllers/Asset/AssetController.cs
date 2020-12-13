@@ -11,8 +11,8 @@ namespace InmobiliariaDashboard.Server.Controllers.Asset
     public class AssetController : BaseCatalogController<AssetController, Models.Asset, object, AssetViewModel>
     {
         public AssetController(ILogger<AssetController> logger, IMapper mapper,
-            IBaseService<Models.Asset, object> baseService)
-            : base(logger, mapper, baseService)
+            IBaseService<Models.Asset, object> baseService, IAttachmentService attachmentService)
+            : base(logger, mapper, baseService, attachmentService)
         {
         }
     }
