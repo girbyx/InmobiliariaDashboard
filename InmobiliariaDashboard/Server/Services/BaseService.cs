@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace InmobiliariaDashboard.Server.Services
 {
@@ -13,6 +14,7 @@ namespace InmobiliariaDashboard.Server.Services
         IEnumerable<TEntity> GetAllForResolver();
         TEntity Get(int id);
         int Save(TEntity entity, out int id);
+        int SaveAttachments(IEnumerable<IFormFile> files, int id);
         int Delete(int id);
         int Archive(int id);
     }
@@ -69,6 +71,11 @@ namespace InmobiliariaDashboard.Server.Services
 
             id = (entity as IIdentityFields).Id;
             return _dbContext.SaveChanges();
+        }
+
+        public virtual int SaveAttachments(IEnumerable<IFormFile> files, int id)
+        {
+            throw new NotImplementedException();
         }
 
         public virtual int Delete(int id)

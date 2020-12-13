@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -39,9 +40,17 @@ namespace InmobiliariaDashboard.Server.Controllers
         public int Post(TViewModel dto)
         {
             _baseService.Save(_mapper.Map<TEntity>(dto), out int id);
-            //if(dto is IUploadFiles)
-            //    _attachmentService.SaveProjectAttachments((dto as IUploadFiles).Files, id); // projects only
             return id;
+        }
+
+        [HttpPost]
+        [Route("PostFiles")]
+        public int PostFiles([FromForm] int id, [FromForm] IEnumerable<IFormFile> files)
+        {
+            var result = 0;
+            if(typeof(TEntity).IsAssignableFrom(typeof(IUploadFiles)))
+                result = _attachmentService.SaveAttachments(files, id);
+            return result;
         }
 
         [HttpDelete]
