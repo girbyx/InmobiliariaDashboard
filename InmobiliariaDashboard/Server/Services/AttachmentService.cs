@@ -18,7 +18,8 @@ namespace InmobiliariaDashboard.Server.Services
         private readonly IApplicationDbContext _dbContext;
         private readonly IConfiguration _configuration;
 
-        public AttachmentService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(dbContext, mapper)
+        public AttachmentService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
+            dbContext, mapper, configuration)
         {
             _dbContext = dbContext;
             _configuration = configuration;
@@ -39,7 +40,7 @@ namespace InmobiliariaDashboard.Server.Services
             client.Login(megaUsername, megaPassword);
             IEnumerable<INode> nodes = client.GetNodes();
             INode cloudFile = nodes.SingleOrDefault(x => x.Type == NodeType.File && x.Name == fileName);
-            if(cloudFile != null)
+            if (cloudFile != null)
                 client.Delete(cloudFile, false);
             client.Logout();
 

@@ -8,6 +8,7 @@ using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Shared;
+using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
 {
@@ -28,11 +29,13 @@ namespace InmobiliariaDashboard.Server.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public BaseService(IApplicationDbContext dbContext, IMapper mapper)
+        public BaseService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
         public virtual IEnumerable<TEntity> GetAll()
@@ -99,9 +102,14 @@ namespace InmobiliariaDashboard.Server.Services
             return _dbContext.SaveChanges();
         }
 
-        protected void SaveToFileHosting(MegaApiClient client, string[] files, int id, string folderPathConst)
+        protected int SaveToFileHosting(string[] files, int id, string folderPathConst)
         {
             // open mega.nz connection
+            MegaApiClient client = new MegaApiClient();
+            string megaUsername = _configuration[Constants.UsernameConfigPath];
+            string megaPassword = _configuration[Constants.PasswordConfigPath];
+            client.Login(megaUsername, megaPassword);
+
             foreach (var file in files)
             {
                 if (file.Length > 0)
@@ -147,6 +155,11 @@ namespace InmobiliariaDashboard.Server.Services
                     _dbContext.Add(entity);
                 }
             }
+
+            // close mega.nz connection
+            client.Logout();
+
+            return _dbContext.SaveChanges();
         }
 
         protected void DetermineEntityNavigation(Attachment entity, string folderPathConst, int id)

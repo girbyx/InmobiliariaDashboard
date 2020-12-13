@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
 {
@@ -14,7 +15,8 @@ namespace InmobiliariaDashboard.Server.Services
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public EnterpriseService(IApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        public EnterpriseService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
+            dbContext, mapper, configuration)
         {
             _dbContext = dbContext;
         }

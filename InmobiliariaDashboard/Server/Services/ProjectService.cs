@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using CG.Web.MegaApiClient;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Shared;
@@ -22,7 +19,7 @@ namespace InmobiliariaDashboard.Server.Services
         private readonly IConfiguration _configuration;
 
         public ProjectService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
-            dbContext, mapper)
+            dbContext, mapper, configuration)
         {
             _dbContext = dbContext;
             _configuration = configuration;
@@ -47,21 +44,12 @@ namespace InmobiliariaDashboard.Server.Services
 
         public override int SaveAttachments(string[] files, int projectId)
         {
-            // open mega.nz connection
-            MegaApiClient client = new MegaApiClient();
-            string megaUsername = _configuration[Constants.UsernameConfigPath];
-            string megaPassword = _configuration[Constants.PasswordConfigPath];
-            client.Login(megaUsername, megaPassword);
-
             if (files != null && files.Any())
             {
-                SaveToFileHosting(client, files, projectId, Constants.ProjectFolderPath);
+                return SaveToFileHosting(files, projectId, Constants.ProjectFolderPath);
             }
 
-            // close mega.nz connection
-            client.Logout();
-
-            return _dbContext.SaveChanges();
+            return 0;
         }
     }
 }
