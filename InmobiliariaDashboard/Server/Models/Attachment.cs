@@ -11,6 +11,8 @@ namespace InmobiliariaDashboard.Server.Models
         public string Type { get; set; }
 
         // audit & relationships
+        public int? ProjectId { get; set; }
+        public virtual Project Project { get; set; }
         public int? GainId { get; set; }
         public virtual Gain Gain { get; set; }
         public int? CostId { get; set; }
