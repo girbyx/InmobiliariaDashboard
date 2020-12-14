@@ -9,20 +9,30 @@
     {
         foreach (var item in Records)
         {
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-title">@item.EnterpriseName</div>
-                    <div class="card-body">
-                        <div class="card-header">Activos</div>
-                        <div class="card-text">@item.AssetValue</div>
-                        <div class="card-header">Costos</div>
-                        <div class="card-text">@item.CostValue</div>
-                        <div class="card-header">Ingresos</div>
-                        <div class="card-text">@item.GainValue</div>
-                        <div class="card-header">Egresos</div>
-                        <div class="card-text">@item.LossValue</div>
+            <div class="col-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>@item.Name</h2>
+                        </div>
                     </div>
-                    <div class="card-footer"><h3>@item.TotalBalance</h3></div>
+                    <div class="card-body">
+                        <div class="card-title text-left">Activos</div>
+                        <div class="card-text">$@item.AssetValue</div>
+                        <br />
+                        <div class="card-title text-left">Costos</div>
+                        <div class="card-text">$@item.CostValue</div>
+                        <br />
+                        <div class="card-title text-left">Ingresos</div>
+                        <div class="card-text">$@item.GainValue</div>
+                        <br />
+                        <div class="card-title text-left">Egresos</div>
+                        <div class="card-text">$@item.LossValue</div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <h3>Total: $@item.TotalBalance</h3>
+                        <button type="button" class="btn btn-primary">Corte</button>
+                    </div>
                 </div>
             </div>
         }

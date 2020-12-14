@@ -25,9 +25,8 @@ namespace InmobiliariaDashboard.Server.Controllers.Balance
 
         public IEnumerable<BalanceViewModel> Get()
         {
-            var result = _baseService
-                .GetAll()
-                .Select(_mapper.Map<BalanceViewModel>);
+            var records = _baseService.GetAll();
+            var result = records.Select(_mapper.Map<BalanceViewModel>);
             return result;
         }
     }
