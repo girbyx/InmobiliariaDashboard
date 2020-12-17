@@ -19,16 +19,17 @@ namespace InmobiliariaDashboard.Server.Controllers.Report
             _baseService = baseService;
         }
 
+        #region General
         [HttpGet]
-        [Route("BaseEnterpriseReport")]
-        public async Task<IActionResult> BaseEnterpriseReport(int id)
+        [Route("DetailBaseEnterpriseReport")]
+        public async Task<IActionResult> DetailBaseEnterpriseReport(int id)
         {
             string fileName;
             var memoryStream = new MemoryStream();
             using (var package = new ExcelPackage())
             {
                 // get the report
-                fileName = await _baseService.BaseEnterpriseReport(package, id);
+                fileName = await _baseService.DetailBaseEnterpriseReport(package, id);
                 await package.SaveAsAsync(memoryStream);
             }
 
@@ -36,5 +37,24 @@ namespace InmobiliariaDashboard.Server.Controllers.Report
             memoryStream.Position = 0;
             return File(memoryStream.ToArray(), Constants.ExcelMimeType, fileName);
         }
+
+        [HttpGet]
+        [Route("SimpleBaseEnterpriseReport")]
+        public async Task<IActionResult> SimpleBaseEnterpriseReport(int id)
+        {
+            string fileName;
+            var memoryStream = new MemoryStream();
+            using (var package = new ExcelPackage())
+            {
+                // get the report
+                fileName = await _baseService.SimpleBaseEnterpriseReport(package, id);
+                await package.SaveAsAsync(memoryStream);
+            }
+
+            // process the stream
+            memoryStream.Position = 0;
+            return File(memoryStream.ToArray(), Constants.ExcelMimeType, fileName);
+        }
+        #endregion
     }
 }
