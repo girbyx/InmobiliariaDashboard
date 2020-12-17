@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 
 namespace InmobiliariaDashboard.Server.Models
@@ -9,6 +10,7 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public double Value { get; set; }
         public int Quantity { get; set; }
+        [NotMapped] public double SubTotal => Value * Quantity;
         public string Description { get; set; }
 
         // audit & relationships

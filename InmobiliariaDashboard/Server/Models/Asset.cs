@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Server.Resolvers;
@@ -11,6 +12,8 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public double Value { get; set; }
+        public int Quantity { get; set; }
+        [NotMapped] public double SubTotal => Value * Quantity;
         public string Description { get; set; }
 
         // audit & relationships

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Shared.Enumerations;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -9,9 +11,13 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public double Value { get; set; }
         public int Quantity { get; set; }
-        public double? Commission { get; set; }
+        [NotMapped] public double SubTotal => Value * Quantity;
+        public double Commission { get; set; }
         public string CommissionType { get; set; }
         public string Description { get; set; }
+        [NotMapped]
+        public double Total => CommissionTypeEnum.Money.Code == CommissionType ? (SubTotal + Commission) :
+            CommissionTypeEnum.Percentage.Code == CommissionType ? (SubTotal * (1 + (Commission / 100))) : SubTotal;
 
         // audit & relationships
         public int LossTypeId { get; set; }
