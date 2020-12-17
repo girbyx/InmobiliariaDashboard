@@ -74,7 +74,8 @@ namespace InmobiliariaDashboard.Server.Services
                           "<h3>Adjuntos:</h3>";
             foreach (var attachment in project.Attachments)
             {
-                message += $"<a href='{attachment.Url}'>{attachment.Name}.{attachment.ExtensionType}</a>";
+                message += $"<a href='{attachment.Url}'>{attachment.Name}.{attachment.ExtensionType}</a>" +
+                           "<br/>";
             }
 
             message += @"</body>" +
