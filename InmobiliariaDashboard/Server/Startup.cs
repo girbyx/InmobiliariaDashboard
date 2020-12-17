@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using InmobiliariaDashboard.Server.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 
 namespace InmobiliariaDashboard.Server
 {
@@ -86,6 +87,8 @@ namespace InmobiliariaDashboard.Server
             using var scope = app.ApplicationServices.CreateScope();
             using var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
             context.Database.Migrate();
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }
     }
 }
