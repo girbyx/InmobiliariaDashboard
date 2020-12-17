@@ -66,24 +66,28 @@ namespace InmobiliariaDashboard.Server.Services
             var contact = _dbContext.Set<Contact>().First(x => x.Id == dto.ContactId);
 
             // build message
-            var subject = $"{dto.Subject} || {BaseEnumeration.FromCode<ProjectTypeEnum>(project.ProjectType)} - {project.Name}";
-            var message = $@"{dto.Message}
-                            
-                            Adjuntos:";
+            var subject =
+                $"{dto.Subject} || {BaseEnumeration.FromCode<ProjectTypeEnum>(project.ProjectType)} - {project.Name}";
+            var message = "<html>" +
+                          "<body>" +
+                          $"<div>{dto.Message}</div>" +
+                          "<h3>Adjuntos:</h3>";
             foreach (var attachment in project.Attachments)
             {
-                message = $@"{message}
-                            <a href='{attachment.Url}'>{attachment.Name}</a>";
+                message += $"<a href='{attachment.Url}'>{attachment.Name}.{attachment.ExtensionType}</a>";
             }
 
+            message += @"</body>" +
+                       "</html>";
+
             // setup email client
-            var apiKey = _configuration["SendGrid:SENDGRID_API_KEY"];
-            var replyEmail = _configuration["SendGrid:ReplyEmail"];
-            var replyName = _configuration["SendGrid:ReplyName"];
+            var apiKey = _configuration[Constants.SendGridApiKey];
+            var replyEmail = _configuration[Constants.ReplyEmail];
+            var replyName = _configuration[Constants.ReplyName];
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(replyEmail, replyName);
             var to = new EmailAddress(contact.Email, contact.Name);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, null, message);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, string.Empty, message);
             var response = await client.SendEmailAsync(msg);
             return response.IsSuccessStatusCode;
         }
