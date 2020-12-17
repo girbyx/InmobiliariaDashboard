@@ -28,6 +28,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public IEnumerable<ProjectSubTypeViewModel> ProjectSubTypes { get; set; }
 
         // lists
+        public IEnumerable<ContactViewModel> EnterpriseContacts { get; set; }
         public IEnumerable<AttachmentViewModel> Attachments { get; set; }
     }
 }
