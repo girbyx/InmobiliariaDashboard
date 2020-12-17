@@ -9,5 +9,9 @@
         public static string CostFolderPath = "CostUploads_CostID_";
         public static string GainFolderPath = "GainUploads_GainID_";
         public static string LossFolderPath = "LossUploads_LossID_";
+
+        public static string SendGridApiKey = "SendGrid:SENDGRID_API_KEY";
+        public static string ReplyEmail = "SendGrid:ReplyEmail";
+        public static string ReplyName = "SendGrid:ReplyName";
     }
 }

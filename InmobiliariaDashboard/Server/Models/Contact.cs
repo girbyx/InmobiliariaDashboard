@@ -15,7 +15,7 @@ namespace InmobiliariaDashboard.Server.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public bool Prospect { get; set; }
-        [NotMapped] public string Name => string.Join("", SuffixName, FirstName, MiddleName, LastName);
+        [NotMapped] public string Name => string.Join(" ", SuffixName, FirstName, MiddleName, LastName);
         public string Email { get; set; }
         public string Cellphone { get; set; }
         public string Telephone { get; set; }

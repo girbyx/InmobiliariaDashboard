@@ -24,6 +24,7 @@ namespace InmobiliariaDashboard.Server.Controllers.MonetaryAgent
             _baseService = baseService;
         }
 
+        [HttpGet]
         [Route("ByProject")]
         public IEnumerable<MonetaryAgentViewModel> ByProject(int id)
         {
