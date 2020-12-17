@@ -1,9 +1,7 @@
 ﻿using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using InmobiliariaDashboard.Server.Services;
+using InmobiliariaDashboard.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OfficeOpenXml;
@@ -23,7 +21,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Report
 
         [HttpGet]
         [Route("BaseEnterpriseReport")]
-        public async Task<HttpResponseMessage> BaseEnterpriseReport(int id)
+        public async Task<IActionResult> BaseEnterpriseReport(int id)
         {
             string fileName;
             var memoryStream = new MemoryStream();
@@ -36,21 +34,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Report
 
             // process the stream
             memoryStream.Position = 0;
-            var result = new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new ByteArrayContent(memoryStream.ToArray())
-            };
-
-            // set proper headers
-            result.Content.Headers.ContentDisposition =
-                new ContentDispositionHeaderValue("attachment")
-                {
-                    FileName = fileName
-                };
-            result.Content.Headers.ContentType =
-                new MediaTypeHeaderValue("application/vnd.ms-excel");
-
-            return result;
+            return File(memoryStream.ToArray(), Constants.ExcelMimeType, fileName);
         }
     }
 }

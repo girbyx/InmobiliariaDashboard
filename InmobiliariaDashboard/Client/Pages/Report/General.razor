@@ -8,7 +8,7 @@
         <FormSelectRecord @bind-Value="Record.Id" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
     </div>
 
-    <a href="api/Report/BaseEnterpriseReport?id=@(Record.Id)" download="BaseEnterpriseReport_@(DateTime.Now.ToShortDateString()).xlsx" target="_top" class="btn btn-success">
+    <a href="api/Report/BaseEnterpriseReport?id=@(Record.Id)" download target="_top" class="btn btn-success">
         <span class="oi oi-data-transfer-download"></span> Descargar
     </a>
 </form>
