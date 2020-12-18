@@ -12,9 +12,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IBaseService<TEntity, THistory> where TEntity : class
+    public interface IBaseService<TEntity, out THistory> where TEntity : class where THistory : class
     {
         IEnumerable<TEntity> GetAll();
+        IEnumerable<THistory> GetHistory();
         IEnumerable<TEntity> GetAllForResolver();
         TEntity Get(int id);
         int Save(TEntity entity, out int id);
@@ -41,6 +42,12 @@ namespace InmobiliariaDashboard.Server.Services
         public virtual IEnumerable<TEntity> GetAll()
         {
             var records = _dbContext.Set<TEntity>().ToList();
+            return records;
+        }
+
+        public IEnumerable<THistory> GetHistory()
+        {
+            var records = _dbContext.Set<THistory>().ToList();
             return records;
         }
 

@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -34,6 +36,15 @@ namespace InmobiliariaDashboard.Server.Controllers
         public TViewModel GetEmpty()
         {
             var result = _mapper.Map<TViewModel>(new TEntity());
+            return result;
+        }
+
+        [HttpGet]
+        [Route("GetHistory")]
+        public IEnumerable<TViewModel> GetHistory()
+        {
+            var result = _baseService.GetHistory()
+                .Select(_mapper.Map<TViewModel>);
             return result;
         }
     }
