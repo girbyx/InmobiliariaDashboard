@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Server.Resolvers;
 using InmobiliariaDashboard.Shared.Enumerations;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -33,5 +36,16 @@ namespace InmobiliariaDashboard.Server.Models
 
         // collections
         public virtual ICollection<Attachment> Attachments { get; set; }
+    }
+
+    public class LossProfile : Profile
+    {
+        public LossProfile()
+        {
+            CreateMap<Loss, LossViewModel>()
+                .ForMember(dest => dest.LossTypes, opt => opt.MapFrom<LossTypesResolver>())
+                .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
+            CreateMap<LossViewModel, Loss>();
+        }
     }
 }
