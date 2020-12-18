@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Server.Resolvers;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -27,5 +30,16 @@ namespace InmobiliariaDashboard.Server.Models
 
         // collections
         public virtual ICollection<Attachment> Attachments { get; set; }
+    }
+
+    public class GainProfile : Profile
+    {
+        public GainProfile()
+        {
+            CreateMap<Gain, GainViewModel>()
+                .ForMember(dest => dest.GainTypes, opt => opt.MapFrom<GainTypesResolver>())
+                .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
+            CreateMap<GainViewModel, Gain>();
+        }
     }
 }
