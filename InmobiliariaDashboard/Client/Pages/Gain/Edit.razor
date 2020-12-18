@@ -1,0 +1,87 @@
+﻿@page "/gain/edit/{id}"
+@inherits EditBase
+
+<h1>Editar ingreso</h1>
+
+@if (Saving)
+{
+    <div class="alert alert-info mt-4">
+        <div class="spinner-border ml-auto text-primary" role="status" aria-hidden="true"></div>
+        <string>Guardando...</string>
+    </div>
+}
+
+<div class="text-right">
+    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Borrar</button>
+</div>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <input type="hidden" class="form-control" @bind="Record.Id" />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Valor</label>
+            <input type="number" class="form-control" @bind="Record.Value" />
+        </div>
+        <FormSelectRecord @bind-Value="Record.GainTypeId" Records="Record.GainTypes" Title="Tipos"></FormSelectRecord>
+        <div class="col form-group">
+            <label>Cantidad</label>
+            <input type="number" class="form-control" @bind="Record.Quantity" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <FormSelectRecord OnChangeCallback="OnProjectChange" @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Proyectos"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.MonetaryAgentId" Records="Record.MonetaryAgents" Title="Agentes"></FormSelectRecord>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Descripcion</label>
+            <input type="text" class="form-control" @bind="Record.Description" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" disabled="@Saving">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
+</EditForm>
+
+<div class="container-fluid text-right">
+    <h4>Adjuntos</h4>
+
+    @if (Record.Attachments == null)
+    {
+        <div class="row">
+            <div class="col">
+                <em>Cargando...</em>
+            </div>
+        </div>
+    }
+    else
+    {
+        @if (Record.Attachments.Any())
+        {
+            foreach (var record in Record.Attachments)
+            {
+                <div class="row">
+                    <div class="col">
+                        <a href="@record.Url">@($"{record.Name}.{record.ExtensionType}")</a>
+                        <button type="button" class="btn btn-outline-danger" disabled="@Saving" @onclick="() => OnDeleteAttachmentClick(record.Id)"><span class="oi oi-x"></span></button>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    <i>Ninguno</i>
+                </div>
+            </div>
+        }
+
+    }
+</div>

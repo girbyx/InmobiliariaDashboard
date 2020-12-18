@@ -6,7 +6,6 @@ namespace InmobiliariaDashboard.Client.Pages.Project
 {
     public interface IService : IBaseCatalogService<ProjectViewModel>, IBaseDependentService
     {
-
     }
 
     public class Service : BaseDependentService<ProjectViewModel>, IService

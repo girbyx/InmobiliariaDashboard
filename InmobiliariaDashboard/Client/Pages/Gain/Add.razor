@@ -1,0 +1,51 @@
+﻿@page "/gain/add"
+@inherits AddBase
+
+<h1>Agregar ingreso</h1>
+
+@if (Saving)
+{
+    <div class="alert alert-info mt-4">
+        <div class="spinner-border ml-auto text-primary" role="status" aria-hidden="true"></div>
+        <string>Guardando...</string>
+    </div>
+}
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Valor</label>
+            <input type="number" class="form-control" @bind="Record.Value" />
+        </div>
+        <FormSelectRecord @bind-Value="Record.GainTypeId" Records="Record.GainTypes" Title="Tipos"></FormSelectRecord>
+        <div class="col form-group">
+            <label>Cantidad</label>
+            <input type="number" class="form-control" @bind="Record.Quantity" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <FormSelectRecord OnChangeCallback="OnProjectChange" @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Proyectos"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.MonetaryAgentId" Records="Record.MonetaryAgents" Title="Agentes"></FormSelectRecord>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Descripcion</label>
+            <input type="text" class="form-control" @bind="Record.Description" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Adjuntos</label>
+            <InputFile OnChange="HandleFileSelection" class="form-control" multiple />
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-success" disabled="@Saving">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancelar</button>
+</EditForm>
