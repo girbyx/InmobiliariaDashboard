@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
@@ -29,15 +28,6 @@ namespace InmobiliariaDashboard.Server.Services
         {
             _dbContext = dbContext;
             _configuration = configuration;
-        }
-
-        public override IEnumerable<Project> GetAll()
-        {
-            var records = _dbContext.Set<Project>()
-                .Include(x => x.Enterprise)
-                .Include(x => x.Attachments)
-                .ToList();
-            return records;
         }
 
         public override Project Get(int id)

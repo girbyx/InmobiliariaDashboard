@@ -3,7 +3,6 @@ using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
@@ -21,14 +20,6 @@ namespace InmobiliariaDashboard.Server.Services
             base(dbContext, mapper, configuration)
         {
             _dbContext = dbContext;
-        }
-
-        public override IEnumerable<MonetaryAgent> GetAll()
-        {
-            var records = _dbContext.Set<MonetaryAgent>()
-                .Include(x => x.Enterprise)
-                .ToList();
-            return records;
         }
 
         public IEnumerable<MonetaryAgent> GetByProject(int id)
