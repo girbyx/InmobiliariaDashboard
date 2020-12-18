@@ -27,6 +27,8 @@ namespace InmobiliariaDashboard.Server.Services
             _configuration = configuration;
         }
 
+        #region general
+
         public async Task<string> DetailBaseEnterpriseReport(ExcelPackage package, int id)
         {
             // get selected enterprise and setup vars
@@ -57,7 +59,8 @@ namespace InmobiliariaDashboard.Server.Services
             }
 
             // iterate by project movable assets
-            var movableAssets = projects.OrderBy(x => x.ProjectSubTypeId).Where(x => x.ProjectType == ProjectTypeEnum.MovableAsset.Code).ToList();
+            var movableAssets = projects.OrderBy(x => x.ProjectSubTypeId)
+                .Where(x => x.ProjectType == ProjectTypeEnum.MovableAsset.Code).ToList();
             var projectSubTypes = movableAssets.Select(x => x.ProjectSubTypeId).ToList();
             foreach (var projectSubType in projectSubTypes)
             {
@@ -84,5 +87,7 @@ namespace InmobiliariaDashboard.Server.Services
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

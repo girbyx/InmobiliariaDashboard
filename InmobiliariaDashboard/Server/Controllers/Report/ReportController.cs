@@ -19,7 +19,8 @@ namespace InmobiliariaDashboard.Server.Controllers.Report
             _baseService = baseService;
         }
 
-        #region General
+        #region general
+
         [HttpGet]
         [Route("DetailBaseEnterpriseReport")]
         public async Task<IActionResult> DetailBaseEnterpriseReport(int id)
@@ -55,6 +56,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Report
             memoryStream.Position = 0;
             return File(memoryStream.ToArray(), Constants.ExcelMimeType, fileName);
         }
+
         #endregion
     }
 }
