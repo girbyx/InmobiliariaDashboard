@@ -5,6 +5,7 @@ using System.Linq;
 using AutoMapper;
 using CG.Web.MegaApiClient;
 using InmobiliariaDashboard.Server.Data;
+using InmobiliariaDashboard.Server.Extensions;
 using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Shared;
@@ -41,7 +42,9 @@ namespace InmobiliariaDashboard.Server.Services
 
         public virtual IEnumerable<TEntity> GetAll()
         {
-            var records = _dbContext.Set<TEntity>().ToList();
+            var records = _dbContext.Set<TEntity>()
+                .IncludeAll()
+                .ToList();
             return records;
         }
 
@@ -56,13 +59,17 @@ namespace InmobiliariaDashboard.Server.Services
 
         public virtual IEnumerable<TEntity> GetAllForResolver()
         {
-            var records = _dbContext.Set<TEntity>().ToList();
+            var records = _dbContext.Set<TEntity>()
+                .IncludeAll()
+                .ToList();
             return records;
         }
 
         public virtual TEntity Get(int id)
         {
-            var records = _dbContext.Set<TEntity>().Single(x => (x as IIdentityFields).Id == id);
+            var records = _dbContext.Set<TEntity>()
+                .IncludeAll()
+                .Single(x => (x as IIdentityFields).Id == id);
             return records;
         }
 
