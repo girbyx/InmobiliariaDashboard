@@ -1,9 +1,8 @@
 ﻿namespace InmobiliariaDashboard.Server.Models.Interfaces
 {
-    public interface IIAmHistory<TEntity>
+    public interface IIAmHistory<TEntity> : IIdentityFields
         where TEntity : class
     {
-        int Id { get; set; }
         int OriginalId { get; set; }
         TEntity Original { get; set; }
     }

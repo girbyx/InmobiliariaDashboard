@@ -41,9 +41,9 @@ namespace InmobiliariaDashboard.Server.Controllers
 
         [HttpGet]
         [Route("GetHistory")]
-        public IEnumerable<TViewModel> GetHistory()
+        public IEnumerable<TViewModel> GetHistory(int id)
         {
-            var result = _baseService.GetHistory()
+            var result = _baseService.GetHistory(id)
                 .Select(_mapper.Map<TViewModel>);
             return result;
         }

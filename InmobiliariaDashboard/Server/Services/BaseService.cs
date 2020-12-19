@@ -15,7 +15,7 @@ namespace InmobiliariaDashboard.Server.Services
     public interface IBaseService<TEntity, out THistory> where TEntity : class where THistory : class
     {
         IEnumerable<TEntity> GetAll();
-        IEnumerable<THistory> GetHistory();
+        IEnumerable<THistory> GetHistory(int id);
         IEnumerable<TEntity> GetAllForResolver();
         TEntity Get(int id);
         int Save(TEntity entity, out int id);
@@ -45,9 +45,12 @@ namespace InmobiliariaDashboard.Server.Services
             return records;
         }
 
-        public IEnumerable<THistory> GetHistory()
+        public IEnumerable<THistory> GetHistory(int id)
         {
-            var records = _dbContext.Set<THistory>().ToList();
+            var records = _dbContext.Set<THistory>()
+                .Where(x => (x as IIAmHistory<TEntity>).OriginalId == id)
+                .OrderByDescending(x => (x as IAuditFields).CreatedOn)
+                .ToList();
             return records;
         }
 
