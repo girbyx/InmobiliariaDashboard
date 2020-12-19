@@ -1,13 +1,9 @@
-﻿@page "/project/list"
+﻿@page "/project/history/{id}"
 @using InmobiliariaDashboard.Shared
 @using InmobiliariaDashboard.Shared.Enumerations
-@inherits ListBase
+@inherits HistoryBase
 
-<h1>Proyectos</h1>
-
-<div class="text-right">
-    <a href="project/add" class="btn btn-primary"><span class="oi oi-plus"></span> Agregar proyecto</a>
-</div>
+<h1>Historial</h1>
 
 @if (Records == null)
 {
@@ -27,8 +23,6 @@ else
                 <th>Sub-tipo</th>
                 <th>Inicio</th>
                 <th>Fin</th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -41,16 +35,6 @@ else
                     <td>@record.ProjectSubTypeName</td>
                     <td>@record.StartDate</td>
                     <td>@(record.EndDate?.ToString("yyyy MMMM dd") ?? "-")</td>
-                    <td>
-                        <a href="project/edit/@record.Id">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="project/history/@record.Id">
-                            <span class="oi oi-file"></span>
-                        </a>
-                    </td>
                 </tr>
             }
             </tbody>
