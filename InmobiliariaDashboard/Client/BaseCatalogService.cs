@@ -32,6 +32,11 @@ namespace InmobiliariaDashboard.Client
             return await HttpClient.GetFromJsonAsync<IEnumerable<TViewModel>>($"api/{ControllerName}");
         }
 
+        public async Task<IEnumerable<TViewModel>> GetHistory(int id)
+        {
+            return await HttpClient.GetFromJsonAsync<IEnumerable<TViewModel>>($"api/{DetailControllerName}/GetHistory?id={id}");
+        }
+
         public async Task<TViewModel> Get(int id)
         {
             return await HttpClient.GetFromJsonAsync<TViewModel>($"api/{DetailControllerName}?id={id}");
