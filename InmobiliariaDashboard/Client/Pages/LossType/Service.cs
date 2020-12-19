@@ -14,8 +14,8 @@ namespace InmobiliariaDashboard.Client.Pages.LossType
         public Service(HttpClient httpClient, NavigationManager navigationManager)
             : base(httpClient, navigationManager)
         {
-            ControllerName = "GainType";
-            DetailControllerName = "GainTypeDetail";
+            ControllerName = "LossType";
+            DetailControllerName = "LossTypeDetail";
         }
     }
 }
