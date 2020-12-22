@@ -9,7 +9,8 @@ namespace InmobiliariaDashboard.Client.Pages.Balance
 {
     public interface IService
     {
-        Task<IEnumerable<BalanceViewModel>> GetList();
+        Task<IEnumerable<EnterpriseBalanceViewModel>> GetEnterpriseList();
+        Task<IEnumerable<MonetaryAgentBalanceViewModel>> GetMonetaryAgentList();
     }
 
     public class Service : IService
@@ -23,9 +24,14 @@ namespace InmobiliariaDashboard.Client.Pages.Balance
             _navigationManager = navigationManager;
         }
 
-        public async Task<IEnumerable<BalanceViewModel>> GetList()
+        public async Task<IEnumerable<EnterpriseBalanceViewModel>> GetEnterpriseList()
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<BalanceViewModel>>("api/Balance");
+            return await _httpClient.GetFromJsonAsync<IEnumerable<EnterpriseBalanceViewModel>>("api/Balance/GetEnterprise");
+        }
+
+        public async Task<IEnumerable<MonetaryAgentBalanceViewModel>> GetMonetaryAgentList()
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<MonetaryAgentBalanceViewModel>>("api/Balance/GetMonetaryAgent");
         }
     }
 }

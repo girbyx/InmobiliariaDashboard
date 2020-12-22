@@ -23,10 +23,21 @@ namespace InmobiliariaDashboard.Server.Controllers.Balance
             _baseService = baseService;
         }
 
-        public IEnumerable<BalanceViewModel> Get()
+        [HttpGet]
+        [Route("GetEnterprise")]
+        public IEnumerable<EnterpriseBalanceViewModel> GetEnterprise()
         {
-            var records = _baseService.GetAll();
-            var result = records.Select(_mapper.Map<BalanceViewModel>);
+            var records = _baseService.GetEnterpriseBalances();
+            var result = records.Select(_mapper.Map<EnterpriseBalanceViewModel>);
+            return result;
+        }
+
+        [HttpGet]
+        [Route("GetMonetaryAgent")]
+        public IEnumerable<MonetaryAgentBalanceViewModel> GetMonetaryAgent()
+        {
+            var records = _baseService.GetMonetaryAgentBalances();
+            var result = records.Select(_mapper.Map<MonetaryAgentBalanceViewModel>);
             return result;
         }
     }
