@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class AssetTypeViewModel : ISelectableViewModel
+    public class AssetTypeViewModel : IISelectableViewModel
     {
         public int Id { get; set; }
         [Required]

@@ -5,6 +5,7 @@ using System.Linq;
 using AutoMapper;
 using CG.Web.MegaApiClient;
 using InmobiliariaDashboard.Server.Data;
+using InmobiliariaDashboard.Server.Extensions;
 using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Shared;
@@ -12,9 +13,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IBaseService<TEntity, THistory> where TEntity : class
+    public interface IBaseService<TEntity, out THistory> where TEntity : class where THistory : class
     {
         IEnumerable<TEntity> GetAll();
+        IEnumerable<THistory> GetHistory(int id);
         IEnumerable<TEntity> GetAllForResolver();
         TEntity Get(int id);
         int Save(TEntity entity, out int id);
@@ -40,19 +42,35 @@ namespace InmobiliariaDashboard.Server.Services
 
         public virtual IEnumerable<TEntity> GetAll()
         {
-            var records = _dbContext.Set<TEntity>().ToList();
+            var records = _dbContext.Set<TEntity>()
+                .IncludeAll()
+                .ToList();
+            return records;
+        }
+
+        public IEnumerable<THistory> GetHistory(int id)
+        {
+            var records = _dbContext.Set<THistory>()
+                .IncludeAll()
+                .Where(x => (x as IIAmHistory<TEntity>).OriginalId == id)
+                .OrderByDescending(x => (x as IAuditFields).CreatedOn)
+                .ToList();
             return records;
         }
 
         public virtual IEnumerable<TEntity> GetAllForResolver()
         {
-            var records = _dbContext.Set<TEntity>().ToList();
+            var records = _dbContext.Set<TEntity>()
+                .IncludeAll()
+                .ToList();
             return records;
         }
 
         public virtual TEntity Get(int id)
         {
-            var records = _dbContext.Set<TEntity>().Single(x => (x as IIdentityFields).Id == id);
+            var records = _dbContext.Set<TEntity>()
+                .IncludeAll()
+                .Single(x => (x as IIdentityFields).Id == id);
             return records;
         }
 
@@ -118,7 +136,6 @@ namespace InmobiliariaDashboard.Server.Services
                     // prepare string
                     var splitString = file.Split("||");
                     var fileBase64String = splitString.First();
-                    var extension = splitString.Last();
 
                     // prepare file
                     var bytes = Convert.FromBase64String(fileBase64String);
@@ -127,7 +144,7 @@ namespace InmobiliariaDashboard.Server.Services
                     stream.Seek(0, SeekOrigin.Begin);
 
                     // determine file name
-                    var fileName = Guid.NewGuid().ToString();
+                    var fileName = splitString.Length > 2 ? splitString[1] : Guid.NewGuid().ToString();
 
                     // save file to mega.nz
                     var folderPath = $"{folderPathConst}{id}";
@@ -141,6 +158,7 @@ namespace InmobiliariaDashboard.Server.Services
                         cloudFolder = client.CreateFolder(folderPath, root);
                     }
 
+                    var extension = splitString.Last();
                     INode cloudFile = client.Upload(stream, $"{fileName}.{extension}", cloudFolder);
                     Uri downloadLink = client.GetDownloadLink(cloudFile);
 

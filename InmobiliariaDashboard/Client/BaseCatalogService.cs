@@ -32,6 +32,11 @@ namespace InmobiliariaDashboard.Client
             return await HttpClient.GetFromJsonAsync<IEnumerable<TViewModel>>($"api/{ControllerName}");
         }
 
+        public async Task<IEnumerable<TViewModel>> GetHistory(int id)
+        {
+            return await HttpClient.GetFromJsonAsync<IEnumerable<TViewModel>>($"api/{DetailControllerName}/GetHistory?id={id}");
+        }
+
         public async Task<TViewModel> Get(int id)
         {
             return await HttpClient.GetFromJsonAsync<TViewModel>($"api/{DetailControllerName}?id={id}");
@@ -60,7 +65,8 @@ namespace InmobiliariaDashboard.Client
             {
                 var buffer = new byte[files[i].Size];
                 await files[i].OpenReadStream(MaxFileSize).ReadAsync(buffer);
-                var stringContent = $"{Convert.ToBase64String(buffer)}||{files[i].Name.Split('.').Last()}";
+                // [0]: file, [1]: fileName, [2]: fileExtension
+                var stringContent = $"{Convert.ToBase64String(buffer)}||{files[i].Name.Split('.').First()}||{files[i].Name.Split('.').Last()}";
                 form.Add(new StringContent(stringContent), $"files[{i}]");
             }
 

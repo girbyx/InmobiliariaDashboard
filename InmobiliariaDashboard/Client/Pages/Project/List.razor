@@ -17,16 +17,22 @@
 }
 else
 {
+    <div class="text-left">
+        <input placeholder="Buscar..." type="text" @oninput="FilterRecords" />
+    </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Nombre</th>
                 <th>Empresa</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
                 <th>Tipo</th>
-                <th>Sub-tipo</th>
+                <th>Compra</th>
+                <th>Venta min.</th>
+                <th>Venta max.</th>
                 <th>Inicio</th>
-                <th>Fin</th>
+                <th></th>
                 <th></th>
             </tr>
             </thead>
@@ -34,15 +40,22 @@ else
             @foreach (var record in Records)
             {
                 <tr>
-                    <td>@record.Name</td>
                     <td>@record.EnterpriseName</td>
+                    <td>@record.Code</td>
+                    <td>@record.Name</td>
                     <td>@(BaseEnumeration.FromCode<ProjectTypeEnum>(record.ProjectType).DisplayName)</td>
-                    <td>@record.ProjectSubTypeName</td>
-                    <td>@record.StartDate</td>
-                    <td>@(record.EndDate?.ToString("yyyy MMMM dd") ?? "-")</td>
+                    <td>$@record.PurchasePrice</td>
+                    <td>$@record.MinimumSellingPrice</td>
+                    <td>$@record.MaximumSellingPrice</td>
+                    <td>@record.StartDate.ToString("d")</td>
                     <td>
                         <a href="project/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="project/history/@record.Id">
+                            <span class="oi oi-file"></span>
                         </a>
                     </td>
                 </tr>

@@ -1,6 +1,6 @@
 ﻿namespace InmobiliariaDashboard.Server.Models.Interfaces
 {
-    interface IIdentityFields
+    public interface IIdentityFields
     {
         int Id { get; set; }
     }

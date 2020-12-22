@@ -1,14 +1,14 @@
-﻿@using InmobiliariaDashboard.Shared
+﻿@using InmobiliariaDashboard.Shared.Interfaces
 @typeparam TViewModel
 
 <div class="col form-group">
     <label>@Title</label>
     @if (Records != null && Records.Any())
     {
-        <select class="form-control" value="@Value" @onchange="OnValueChanged">
+        <select class="custom-select" value="@Value" @onchange="OnValueChanged">
             @foreach (var item in Records)
             {
-                <option value="@((item as ISelectableViewModel)?.Id)">@((item as ISelectableViewModel)?.Name)</option>
+                <option value="@((item as IISelectableViewModel)?.Id)">@((item as IISelectableViewModel)?.Name)</option>
             }
         </select>
     }

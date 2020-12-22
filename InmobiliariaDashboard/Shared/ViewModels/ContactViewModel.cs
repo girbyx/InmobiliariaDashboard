@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class ContactViewModel : ISelectableViewModel
+    public class ContactViewModel : IISelectableViewModel
     {
         public int Id { get; set; }
         public string SuffixName { get; set; }

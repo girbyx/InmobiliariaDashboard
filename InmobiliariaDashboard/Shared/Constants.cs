@@ -2,6 +2,8 @@
 {
     public static class Constants
     {
+        public static string ExcelMimeType = "application/vnd.ms-excel";
+
         public static string UsernameConfigPath = "MegaClientApi:Credentials:Username";
         public static string PasswordConfigPath = "MegaClientApi:Credentials:Password";
 

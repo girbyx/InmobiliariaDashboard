@@ -1,0 +1,68 @@
+﻿@page "/loss/list"
+@using InmobiliariaDashboard.Shared.Enumerations
+@inherits ListBase
+
+<h1>Egresos</h1>
+
+<div class="text-right">
+    <a href="loss/add" class="btn btn-primary"><span class="oi oi-plus"></span> Agregar egreso</a>
+</div>
+
+@if (Records == null)
+{
+    <p>
+        <em>Cargando...</em>
+    </p>
+}
+else
+{
+    <div class="text-left">
+        <input placeholder="Buscar..." type="text" @oninput="FilterRecords" />
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Proyecto</th>
+                <th>Agente monetario</th>
+                <th>Valor</th>
+                <th>Cantidad</th>
+                <th>Sub total</th>
+                <th>Comision</th>
+                <th>Total</th>
+                <th>Fecha</th>
+                <th>Actualizado en</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.ProjectName</td>
+                    <td>@record.MonetaryAgentName</td>
+                    <td>$@record.Value</td>
+                    <td>@record.Quantity</td>
+                    <td>$@record.SubTotal</td>
+                    @if (CommissionTypeEnum.Money.Code == record.CommissionType)
+                    {
+                        <td>$@record.Commission</td>
+                    }
+                    else if (CommissionTypeEnum.Percentage.Code == record.CommissionType)
+                    {
+                        <td>@record.Commission%</td>
+                    }
+                    <td>$@record.Total</td>
+                    <td>@record.Date.ToString("d")</td>
+                    <td>@(record.UpdatedOn?.ToString("d") ?? "-")</td>
+                    <td>
+                        <a href="loss/edit/@record.Id">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

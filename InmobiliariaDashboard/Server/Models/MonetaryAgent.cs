@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Server.Resolvers;
@@ -37,6 +38,10 @@ namespace InmobiliariaDashboard.Server.Models
             CreateMap<MonetaryAgent, MonetaryAgentViewModel>()
                 .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>());
             CreateMap<MonetaryAgentViewModel, MonetaryAgent>();
+            CreateMap<MonetaryAgent, MonetaryAgentBalanceViewModel>()
+                .ForMember(dest => dest.LossValue, opt => opt.MapFrom(src => src.Losses.Sum(x => x.Total)))
+                .ForMember(dest => dest.CostValue, opt => opt.MapFrom(src => src.Costs.Sum(x => x.Total)))
+                .ForMember(dest => dest.GainValue, opt => opt.MapFrom(src => src.Gains.Sum(x => x.SubTotal)));
         }
     }
 }

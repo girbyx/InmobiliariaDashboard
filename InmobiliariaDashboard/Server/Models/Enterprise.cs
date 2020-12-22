@@ -42,11 +42,12 @@ namespace InmobiliariaDashboard.Server.Models
         {
             CreateMap<Enterprise, EnterpriseViewModel>();
             CreateMap<EnterpriseViewModel, Enterprise>();
-            CreateMap<Enterprise, BalanceViewModel>()
+            CreateMap<Enterprise, EnterpriseBalanceViewModel>()
                 .ForMember(dest => dest.AssetValue, opt => opt.MapFrom(src => src.Assets.Sum(y => y.Value)))
+                .ForMember(dest => dest.ProjectPurchasePrice, opt => opt.MapFrom(src => src.Projects.Sum(y => y.PurchasePrice)))
+                .ForMember(dest => dest.LossValue, opt => opt.MapFrom(src => src.Projects.Sum(y => y.Losses.Sum(z => z.Value))))
                 .ForMember(dest => dest.CostValue, opt => opt.MapFrom(src => src.Projects.Sum(y => y.Costs.Sum(z => z.Total))))
-                .ForMember(dest => dest.GainValue, opt => opt.MapFrom(src => src.Projects.Sum(y => y.Gains.Sum(z => z.Value))))
-                .ForMember(dest => dest.LossValue, opt => opt.MapFrom(src => src.Projects.Sum(y => y.Losses.Sum(z => z.Value))));
+                .ForMember(dest => dest.GainValue, opt => opt.MapFrom(src => src.Projects.Sum(y => y.Gains.Sum(z => z.Value))));
         }
     }
 }

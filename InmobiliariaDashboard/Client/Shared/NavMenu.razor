@@ -104,6 +104,11 @@
         @if (SubMenuNavigation.GainSubMenu)
         {
             <li class="nav-item px-3">
+                <NavLink class="nav-link" href="gain/list">
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Ingresos
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
                 <NavLink class="nav-link" href="gaintype/list">
                     <span class="oi oi-caret-right" aria-hidden="true"></span> Tipos de ingresos
                 </NavLink>
@@ -119,6 +124,11 @@
         @if (SubMenuNavigation.LossSubMenu)
         {
             <li class="nav-item px-3">
+                <NavLink class="nav-link" href="loss/list">
+                    <span class="oi oi-caret-right" aria-hidden="true"></span> Egresos
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
                 <NavLink class="nav-link" href="losstype/list">
                     <span class="oi oi-caret-right" aria-hidden="true"></span> Tipos de egresos
                 </NavLink>
@@ -133,21 +143,6 @@
         </li>
         @if (SubMenuNavigation.ReportSubMenu)
         {
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="report/cost">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Costos
-                </NavLink>
-            </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="report/gain">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Ingresos
-                </NavLink>
-            </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="report/loss">
-                    <span class="oi oi-caret-right" aria-hidden="true"></span> Egresos
-                </NavLink>
-            </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="report/general">
                     <span class="oi oi-caret-right" aria-hidden="true"></span> Balance general

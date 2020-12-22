@@ -22,18 +22,18 @@
             <label>Nombre</label>
             <input type="text" class="form-control" @bind="Record.FirstName" />
         </div>
-        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
-    </div>
-
-    <div class="form-row">
         <div class="col form-group">
             <label>Segundo nombre</label>
             <input type="text" class="form-control" @bind="Record.MiddleName" />
         </div>
+    </div>
+
+    <div class="form-row">
         <div class="col form-group">
             <label>Apellido(s)</label>
             <input type="text" class="form-control" @bind="Record.LastName" />
         </div>
+        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
         <div class="text-center col-2 form-group">
             <label>Prospecto</label>
             <input type="checkbox" class="form-control" @bind="Record.Prospect" />

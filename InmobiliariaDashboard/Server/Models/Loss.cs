@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Server.Resolvers;
+using InmobiliariaDashboard.Shared.Enumerations;
+using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
 {
@@ -9,9 +14,14 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public double Value { get; set; }
         public int Quantity { get; set; }
-        public double? Commission { get; set; }
+        [NotMapped] public double SubTotal => Value * Quantity;
+        public double Commission { get; set; }
         public string CommissionType { get; set; }
         public string Description { get; set; }
+        public DateTime Date { get; set; }
+        [NotMapped]
+        public double Total => CommissionTypeEnum.Money.Code == CommissionType ? (SubTotal + Commission) :
+            CommissionTypeEnum.Percentage.Code == CommissionType ? (SubTotal * (1 + (Commission / 100))) : SubTotal;
 
         // audit & relationships
         public int LossTypeId { get; set; }
@@ -27,5 +37,16 @@ namespace InmobiliariaDashboard.Server.Models
 
         // collections
         public virtual ICollection<Attachment> Attachments { get; set; }
+    }
+
+    public class LossProfile : Profile
+    {
+        public LossProfile()
+        {
+            CreateMap<Loss, LossViewModel>()
+                .ForMember(dest => dest.LossTypes, opt => opt.MapFrom<LossTypesResolver>())
+                .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
+            CreateMap<LossViewModel, Loss>();
+        }
     }
 }

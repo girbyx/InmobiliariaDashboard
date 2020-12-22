@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class MonetaryAgentViewModel : ISelectableViewModel
+    public class MonetaryAgentViewModel : IISelectableViewModel
     {
         public int Id { get; set; }
         [Required]

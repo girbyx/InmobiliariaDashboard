@@ -21,6 +21,8 @@ else
             <tr>
                 <th>Activo</th>
                 <th>Valor</th>
+                <th>Cantidad</th>
+                <th>Sub total</th>
                 <th>Empresa</th>
                 <th>Tipo</th>
                 <th></th>
@@ -31,7 +33,9 @@ else
             {
                 <tr>
                     <td>@record.Name</td>
-                    <td>@record.Value</td>
+                    <td>$@record.Value</td>
+                    <td>@record.Quantity</td>
+                    <td>$@record.SubTotal</td>
                     <td>@record.EnterpriseName</td>
                     <td>@record.AssetTypeName</td>
                     <td>

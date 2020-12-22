@@ -28,6 +28,11 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
             Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(Record.ProjectId);
         }
 
+        protected async Task HandleFileSelection(InputFileChangeEventArgs e)
+        {
+            Files = e.GetMultipleFiles().ToArray();
+        }
+
         protected async Task HandleValidSubmit()
         {
             Saving = true;

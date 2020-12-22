@@ -1,0 +1,47 @@
+﻿@page "/project/history/{id}"
+@using InmobiliariaDashboard.Shared
+@using InmobiliariaDashboard.Shared.Enumerations
+@inherits HistoryBase
+
+<h1>Historial</h1>
+
+@if (Records == null)
+{
+    <p>
+        <em>Cargando...</em>
+    </p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Empresa</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Compra</th>
+                <th>Venta min.</th>
+                <th>Venta max.</th>
+                <th>Inicio</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.EnterpriseName</td>
+                    <td>@record.Code</td>
+                    <td>@record.Name</td>
+                    <td>@(BaseEnumeration.FromCode<ProjectTypeEnum>(record.ProjectType).DisplayName)</td>
+                    <td>$@record.PurchasePrice</td>
+                    <td>$@record.MinimumSellingPrice</td>
+                    <td>$@record.MaximumSellingPrice</td>
+                    <td>@record.StartDate.ToString("d")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
