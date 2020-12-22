@@ -1,4 +1,4 @@
-﻿namespace InmobiliariaDashboard.Shared
+﻿namespace InmobiliariaDashboard.Shared.Interfaces
 {
     public interface  IISendEmail
     {
