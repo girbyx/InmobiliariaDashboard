@@ -228,6 +228,8 @@ namespace InmobiliariaDashboard.Server.Services
                     ExcelHorizontalAlignment.Center;
                 worksheet.Cells[$"E{currentRow}"].Value = $"Ganancia venta maxima estimada (${nonMovableAsset.MaximumSellingPrice})";
                 worksheet.Cells[$"F{currentRow}"].Value = $"${projectValue + nonMovableAsset.MaximumSellingPrice}";
+
+                worksheet.Cells[$"A1:K{currentRow}"].AutoFitColumns();
             }
 
             // iterate by project movable assets
@@ -306,6 +308,8 @@ namespace InmobiliariaDashboard.Server.Services
                         currentRow++;
                     }
                 }
+
+                worksheet.Cells[$"A1:K{currentRow}"].AutoFitColumns();
             }
 
             {
@@ -366,6 +370,8 @@ namespace InmobiliariaDashboard.Server.Services
                     ExcelHorizontalAlignment.Center;
                 worksheet.Cells[$"E{currentRow}"].Value = "Total inventario";
                 worksheet.Cells[$"F{currentRow}"].Value = $"${assets.Sum(x => x.SubTotal)}";
+
+                worksheet.Cells[$"A1:K{currentRow}"].AutoFitColumns();
             }
 
             // set quick balance sheet
@@ -430,6 +436,8 @@ namespace InmobiliariaDashboard.Server.Services
                                                               - nonMovableAsset.PurchasePrice}";
                     currentRow++;
                 }
+
+                worksheet.Cells[$"A1:K{currentRow}"].AutoFitColumns();
             }
 
             return $"BalanceDetallado_{enterprise.Name}_{DateTime.Now.ToShortDateString()}.xlsx";
