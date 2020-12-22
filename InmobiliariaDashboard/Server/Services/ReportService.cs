@@ -97,14 +97,14 @@ namespace InmobiliariaDashboard.Server.Services
                         .SetColor(Color.PaleVioletRed);
                     worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                     worksheet.Cells[$"A{currentRow}"].Value = loss.LossType.Name;
-                    worksheet.Cells[$"B{currentRow}"].Value = $"${loss.Value}";
+                    worksheet.Cells[$"B{currentRow}"].Value = $"${loss.Value:C}";
                     worksheet.Cells[$"C{currentRow}"].Value = loss.Quantity;
-                    worksheet.Cells[$"D{currentRow}"].Value = $"${loss.SubTotal}";
+                    worksheet.Cells[$"D{currentRow}"].Value = $"${loss.SubTotal:C}";
                     var commission = loss.CommissionType == CommissionTypeEnum.Money.Code
-                        ? $"${loss.Commission}"
-                        : $"{loss.Commission}%";
+                        ? $"${loss.Commission:C}"
+                        : $"{loss.Commission:C}%";
                     worksheet.Cells[$"E{currentRow}"].Value = commission;
-                    worksheet.Cells[$"F{currentRow}"].Value = $"${loss.Total}";
+                    worksheet.Cells[$"F{currentRow}"].Value = $"${loss.Total:C}";
                     worksheet.Cells[$"G{currentRow}"].Value = loss.MonetaryAgent.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = loss.Description;
                     currentRow++;
@@ -114,7 +114,7 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
                 worksheet.Cells[$"E{currentRow}"].Value = "Total egresos";
-                worksheet.Cells[$"F{currentRow}"].Value = $"${losses.Sum(x => x.Total)}";
+                worksheet.Cells[$"F{currentRow}"].Value = $"${losses.Sum(x => x.Total):C}";
                 currentRow++;
                 currentRow++;
 
@@ -137,14 +137,14 @@ namespace InmobiliariaDashboard.Server.Services
                         .SetColor(Color.PaleGoldenrod);
                     worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                     worksheet.Cells[$"A{currentRow}"].Value = cost.CostType.Name;
-                    worksheet.Cells[$"B{currentRow}"].Value = $"${cost.Value}";
+                    worksheet.Cells[$"B{currentRow}"].Value = $"${cost.Value:C}";
                     worksheet.Cells[$"C{currentRow}"].Value = cost.Quantity;
-                    worksheet.Cells[$"D{currentRow}"].Value = $"${cost.SubTotal}";
+                    worksheet.Cells[$"D{currentRow}"].Value = $"${cost.SubTotal:C}";
                     var commission = cost.CommissionType == CommissionTypeEnum.Money.Code
-                        ? $"${cost.Commission}"
-                        : $"{cost.Commission}%";
+                        ? $"${cost.Commission:C}"
+                        : $"{cost.Commission:C}%";
                     worksheet.Cells[$"E{currentRow}"].Value = commission;
-                    worksheet.Cells[$"F{currentRow}"].Value = $"${cost.Total}";
+                    worksheet.Cells[$"F{currentRow}"].Value = $"${cost.Total:C}";
                     worksheet.Cells[$"G{currentRow}"].Value = cost.MonetaryAgent.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = cost.Description;
                     currentRow++;
@@ -154,7 +154,7 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
                 worksheet.Cells[$"E{currentRow}"].Value = "Total costos";
-                worksheet.Cells[$"F{currentRow}"].Value = $"${costs.Sum(x => x.Total)}";
+                worksheet.Cells[$"F{currentRow}"].Value = $"${costs.Sum(x => x.Total):C}";
                 currentRow++;
                 currentRow++;
 
@@ -177,11 +177,11 @@ namespace InmobiliariaDashboard.Server.Services
                         .SetColor(Color.PaleGreen);
                     worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                     worksheet.Cells[$"A{currentRow}"].Value = gain.GainType.Name;
-                    worksheet.Cells[$"B{currentRow}"].Value = $"${gain.Value}";
+                    worksheet.Cells[$"B{currentRow}"].Value = $"${gain.Value:C}";
                     worksheet.Cells[$"C{currentRow}"].Value = gain.Quantity;
-                    worksheet.Cells[$"D{currentRow}"].Value = $"${gain.SubTotal}";
+                    worksheet.Cells[$"D{currentRow}"].Value = $"${gain.SubTotal:C}";
                     worksheet.Cells[$"E{currentRow}"].Value = "0%";
-                    worksheet.Cells[$"F{currentRow}"].Value = $"${gain.SubTotal}";
+                    worksheet.Cells[$"F{currentRow}"].Value = $"${gain.SubTotal:C}";
                     worksheet.Cells[$"G{currentRow}"].Value = gain.MonetaryAgent.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = gain.Description;
                     currentRow++;
@@ -191,7 +191,7 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
                 worksheet.Cells[$"E{currentRow}"].Value = "Total ingresos";
-                worksheet.Cells[$"F{currentRow}"].Value = $"${gains.Sum(x => x.SubTotal)}";
+                worksheet.Cells[$"F{currentRow}"].Value = $"${gains.Sum(x => x.SubTotal):C}";
                 currentRow++;
                 currentRow++;
 
@@ -199,28 +199,28 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 worksheet.Cells[$"E{currentRow}"].Value = "Valor adquisicion";
-                worksheet.Cells[$"F{currentRow}"].Value = $"${nonMovableAsset.PurchasePrice}";
+                worksheet.Cells[$"F{currentRow}"].Value = $"${nonMovableAsset.PurchasePrice:C}";
                 currentRow++;
 
                 // min
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 worksheet.Cells[$"E{currentRow}"].Value = "Venta minima estimada";
-                worksheet.Cells[$"F{currentRow}"].Value = $"${nonMovableAsset.MinimumSellingPrice}";
+                worksheet.Cells[$"F{currentRow}"].Value = $"${nonMovableAsset.MinimumSellingPrice:C}";
                 currentRow++;
 
                 // max
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 worksheet.Cells[$"E{currentRow}"].Value = "Venta maxima estimada";
-                worksheet.Cells[$"F{currentRow}"].Value = $"${nonMovableAsset.MaximumSellingPrice}";
+                worksheet.Cells[$"F{currentRow}"].Value = $"${nonMovableAsset.MaximumSellingPrice:C}";
                 currentRow++;
 
                 // general balance
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 worksheet.Cells[$"E{currentRow}"].Value = "Balance total";
-                worksheet.Cells[$"F{currentRow}"].Value = $"${projectValue}";
+                worksheet.Cells[$"F{currentRow}"].Value = $"${projectValue:C}";
                 currentRow++;
                 currentRow++;
 
@@ -250,15 +250,15 @@ namespace InmobiliariaDashboard.Server.Services
 
                     worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleVioletRed);
-                    worksheet.Cells[$"B{currentRow}"].Value = monetaryAgentLosses;
+                    worksheet.Cells[$"B{currentRow}"].Value = $"${monetaryAgentLosses:C}";
 
                     worksheet.Cells[$"C{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"C{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGoldenrod);
-                    worksheet.Cells[$"C{currentRow}"].Value = monetaryAgentCosts;
+                    worksheet.Cells[$"C{currentRow}"].Value = $"${monetaryAgentCosts:C}";
 
                     worksheet.Cells[$"D{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"D{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGreen);
-                    worksheet.Cells[$"D{currentRow}"].Value = monetaryAgentGains;
+                    worksheet.Cells[$"D{currentRow}"].Value = $"${monetaryAgentGains:C}";
                     currentRow++;
                 }
 
@@ -320,20 +320,20 @@ namespace InmobiliariaDashboard.Server.Services
                         worksheet.Cells[$"A{currentRow}"].Value = $"{movableAsset.Code} - {movableAsset.Name}";
                         worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                         worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleTurquoise);
-                        worksheet.Cells[$"B{currentRow}"].Value = $"${movableAsset.PurchasePrice}";
+                        worksheet.Cells[$"B{currentRow}"].Value = $"${movableAsset.PurchasePrice:C}";
                         worksheet.Cells[$"C{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                         worksheet.Cells[$"C{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleVioletRed);
-                        worksheet.Cells[$"C{currentRow}"].Value = $"${movableAsset.Losses.Sum(x => x.Total)}";
+                        worksheet.Cells[$"C{currentRow}"].Value = $"${movableAsset.Losses.Sum(x => x.Total):C}";
                         worksheet.Cells[$"D{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                         worksheet.Cells[$"D{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGoldenrod);
-                        worksheet.Cells[$"D{currentRow}"].Value = $"${movableAsset.Costs.Sum(x => x.Total)}";
+                        worksheet.Cells[$"D{currentRow}"].Value = $"${movableAsset.Costs.Sum(x => x.Total):C}";
                         worksheet.Cells[$"E{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                         worksheet.Cells[$"E{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGreen);
-                        worksheet.Cells[$"E{currentRow}"].Value = $"${movableAsset.Gains.Sum(x => x.SubTotal)}";
-                        worksheet.Cells[$"F{currentRow}"].Value = $@"${movableAsset.Gains.Sum(x => x.SubTotal)
+                        worksheet.Cells[$"E{currentRow}"].Value = $"${movableAsset.Gains.Sum(x => x.SubTotal):C}";
+                        worksheet.Cells[$"F{currentRow}"].Value = $@"${(movableAsset.Gains.Sum(x => x.SubTotal)
                                                                        - movableAsset.Costs.Sum(x => x.Total)
                                                                        - movableAsset.Losses.Sum(x => x.Total)
-                                                                       - movableAsset.PurchasePrice}";
+                                                                       - movableAsset.PurchasePrice):C}";
                         currentRow++;
                         currentRow++;
                     }
@@ -385,16 +385,16 @@ namespace InmobiliariaDashboard.Server.Services
                     worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGreen);
 
                     worksheet.Cells[$"A{currentRow}"].Value = asset.Name;
-                    worksheet.Cells[$"B{currentRow}"].Value = $"${asset.Value}";
+                    worksheet.Cells[$"B{currentRow}"].Value = $"${asset.Value:C}";
                     worksheet.Cells[$"C{currentRow}"].Value = asset.Quantity;
-                    worksheet.Cells[$"D{currentRow}"].Value = $"${asset.SubTotal}";
+                    worksheet.Cells[$"D{currentRow}"].Value = $"${asset.SubTotal:C}";
                     worksheet.Cells[$"E{currentRow}"].Value = asset.Description;
                     currentRow++;
                 }
 
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}"].Value = "Total inventario";
-                worksheet.Cells[$"F{currentRow}"].Value = $"${assets.Sum(x => x.SubTotal)}";
+                worksheet.Cells[$"F{currentRow}"].Value = $"${assets.Sum(x => x.SubTotal):C}";
 
                 worksheet.Cells[$"A1:K{currentRow}"].AutoFitColumns();
                 worksheet.Cells[$"A1:K{currentRow}"].Style.HorizontalAlignment =
@@ -442,20 +442,20 @@ namespace InmobiliariaDashboard.Server.Services
                     worksheet.Cells[$"A{currentRow}"].Value = $"{project.Code} - {project.Name}";
                     worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleTurquoise);
-                    worksheet.Cells[$"B{currentRow}"].Value = $"${project.PurchasePrice}";
+                    worksheet.Cells[$"B{currentRow}"].Value = $"${project.PurchasePrice:C}";
                     worksheet.Cells[$"C{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"C{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleVioletRed);
-                    worksheet.Cells[$"C{currentRow}"].Value = $"${project.Losses.Sum(x => x.Total)}";
+                    worksheet.Cells[$"C{currentRow}"].Value = $"${project.Losses.Sum(x => x.Total):C}";
                     worksheet.Cells[$"D{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"D{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGoldenrod);
-                    worksheet.Cells[$"D{currentRow}"].Value = $"${project.Costs.Sum(x => x.Total)}";
+                    worksheet.Cells[$"D{currentRow}"].Value = $"${project.Costs.Sum(x => x.Total):C}";
                     worksheet.Cells[$"E{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"E{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGreen);
-                    worksheet.Cells[$"E{currentRow}"].Value = $"${project.Gains.Sum(x => x.SubTotal)}";
-                    worksheet.Cells[$"F{currentRow}"].Value = $@"${project.Gains.Sum(x => x.SubTotal)
+                    worksheet.Cells[$"E{currentRow}"].Value = $"${project.Gains.Sum(x => x.SubTotal):C}";
+                    worksheet.Cells[$"F{currentRow}"].Value = $@"${(project.Gains.Sum(x => x.SubTotal)
                                                                    - project.Costs.Sum(x => x.Total)
                                                                    - project.Losses.Sum(x => x.Total)
-                                                                   - project.PurchasePrice}";
+                                                                   - project.PurchasePrice):C}";
                     currentRow++;
                 }
 
