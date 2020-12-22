@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared;
@@ -25,6 +26,7 @@ namespace InmobiliariaDashboard.Client.Pages.Cost
             // defaults
             Record.CommissionType = CommissionTypeEnum.Money.Code;
             Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(Record.ProjectId);
+            Record.Date = DateTime.Now;
         }
 
         protected async Task HandleFileSelection(InputFileChangeEventArgs e)

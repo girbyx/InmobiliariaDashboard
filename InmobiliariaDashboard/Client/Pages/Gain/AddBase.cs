@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
@@ -20,6 +21,7 @@ namespace InmobiliariaDashboard.Client.Pages.Gain
 
             // defaults
             Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(Record.ProjectId);
+            Record.Date = DateTime.Now;
         }
 
         protected async Task HandleFileSelection(InputFileChangeEventArgs e)

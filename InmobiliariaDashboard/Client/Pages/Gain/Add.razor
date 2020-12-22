@@ -28,6 +28,10 @@
     </div>
 
     <div class="form-row">
+        <div class="col form-group">
+            <label>Fecha</label>
+            <input type="date" class="form-control" @bind="Record.Date" />
+        </div>
         <FormSelectRecord OnChangeCallback="OnProjectChange" @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Proyectos"></FormSelectRecord>
         <FormSelectRecord @bind-Value="Record.MonetaryAgentId" Records="Record.MonetaryAgents" Title="Agentes"></FormSelectRecord>
     </div>

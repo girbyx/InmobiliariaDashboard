@@ -27,7 +27,7 @@ else
                 <th>Valor</th>
                 <th>Cantidad</th>
                 <th>Sub total</th>
-                <th>Creado en</th>
+                <th>Fecha</th>
                 <th>Actualizado en</th>
                 <th></th>
             </tr>
@@ -41,8 +41,8 @@ else
                     <td>$@record.Value</td>
                     <td>@record.Quantity</td>
                     <td>$@record.SubTotal</td>
-                    <td>@record.CreatedOn.ToString("G")</td>
-                    <td>@(record.UpdatedOn?.ToString("G") ?? "-")</td>
+                    <td>@record.Date.ToString("d")</td>
+                    <td>@(record.UpdatedOn?.ToString("d") ?? "-")</td>
                     <td>
                         <a href="gain/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
