@@ -18,6 +18,7 @@ namespace InmobiliariaDashboard.Server.Models
         public double Commission { get; set; }
         public string CommissionType { get; set; }
         public string Description { get; set; }
+        public DateTime Date { get; set; }
         [NotMapped]
         public double Total => CommissionTypeEnum.Money.Code == CommissionType ? (SubTotal + Commission) :
             CommissionTypeEnum.Percentage.Code == CommissionType ? (SubTotal * (1 + (Commission / 100))) : SubTotal;

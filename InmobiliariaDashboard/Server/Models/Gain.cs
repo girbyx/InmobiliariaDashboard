@@ -15,6 +15,7 @@ namespace InmobiliariaDashboard.Server.Models
         public int Quantity { get; set; }
         [NotMapped] public double SubTotal => Value * Quantity;
         public string Description { get; set; }
+        public DateTime Date { get; set; }
 
         // audit & relationships
         public int GainTypeId { get; set; }

@@ -17,6 +17,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public string CommissionType { get; set; }
         [Required]
         public string Description { get; set; }
+        public DateTime Date { get; set; }
         public int Total { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

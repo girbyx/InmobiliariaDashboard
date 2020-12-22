@@ -14,6 +14,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public double SubTotal { get; set; }
         [Required]
         public string Description { get; set; }
+        public DateTime Date { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
 
