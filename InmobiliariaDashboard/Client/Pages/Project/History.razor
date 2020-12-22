@@ -17,24 +17,28 @@ else
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Nombre</th>
                 <th>Empresa</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
                 <th>Tipo</th>
-                <th>Sub-tipo</th>
+                <th>Compra</th>
+                <th>Venta min.</th>
+                <th>Venta max.</th>
                 <th>Inicio</th>
-                <th>Fin</th>
             </tr>
             </thead>
             <tbody>
             @foreach (var record in Records)
             {
                 <tr>
-                    <td>@record.Name</td>
                     <td>@record.EnterpriseName</td>
+                    <td>@record.Code</td>
+                    <td>@record.Name</td>
                     <td>@(BaseEnumeration.FromCode<ProjectTypeEnum>(record.ProjectType).DisplayName)</td>
-                    <td>@record.ProjectSubTypeName</td>
-                    <td>@record.StartDate</td>
-                    <td>@(record.EndDate?.ToString("yyyy MMMM dd") ?? "-")</td>
+                    <td>$@record.PurchasePrice</td>
+                    <td>$@record.MinimumSellingPrice</td>
+                    <td>$@record.MaximumSellingPrice</td>
+                    <td>@record.StartDate.ToString("G")</td>
                 </tr>
             }
             </tbody>
