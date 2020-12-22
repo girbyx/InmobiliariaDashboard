@@ -51,6 +51,7 @@ namespace InmobiliariaDashboard.Server.Services
         public IEnumerable<THistory> GetHistory(int id)
         {
             var records = _dbContext.Set<THistory>()
+                .IncludeAll()
                 .Where(x => (x as IIAmHistory<TEntity>).OriginalId == id)
                 .OrderByDescending(x => (x as IAuditFields).CreatedOn)
                 .ToList();
