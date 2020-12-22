@@ -17,12 +17,15 @@
 }
 else
 {
+    <div class="text-left">
+        <input placeholder="Buscar..." type="text" @oninput="FilterRecords" />
+    </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Nombre</th>
                 <th>Empresa</th>
+                <th>Nombre</th>
                 <th>Cuenta</th>
                 <th>Tarjeta</th>
                 <th>Tipo</th>
@@ -33,8 +36,8 @@ else
             @foreach (var record in Records)
             {
                 <tr>
-                    <td>@record.Name</td>
                     <td>@record.EnterpriseName</td>
+                    <td>@record.Name</td>
                     <td>@(record.AccountNumber?.ToString() ?? "-")</td>
                     <td>@(record.CardNumber?.ToString() ?? "-")</td>
                     <td>@(BaseEnumeration.FromCode<MonetaryAgentTypeEnum>(record.MonetaryAgentType).DisplayName)</td>
