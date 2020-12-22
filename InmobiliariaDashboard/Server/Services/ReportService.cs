@@ -44,7 +44,8 @@ namespace InmobiliariaDashboard.Server.Services
                 .Include(x => x.Projects).ThenInclude(x => x.ProjectSubType)
                 .Include(x => x.Assets)
                 .First(x => x.Id == id);
-            var projects = enterprise.Projects.ToList();
+            var projects = enterprise.Projects.OrderBy(x => x.ProjectType).ThenBy(x => x.ProjectSubType)
+                .ThenBy(x => x.Code).ToList();
 
             // iterate by project non-movable assets
             var nonMovableAssets = projects.Where(x => x.ProjectType != ProjectTypeEnum.MovableAsset.Code).ToList();
@@ -212,6 +213,7 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 worksheet.Cells[$"E{currentRow}"].Value = "Venta maxima estimada";
                 worksheet.Cells[$"F{currentRow}"].Value = $"${nonMovableAsset.MaximumSellingPrice}";
+                currentRow++;
 
                 // general balance
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
@@ -219,6 +221,44 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"E{currentRow}"].Value = "Balance total";
                 worksheet.Cells[$"F{currentRow}"].Value = $"${projectValue}";
                 currentRow++;
+                currentRow++;
+
+                // monetary agents for project
+                var monetaryAgents = enterprise.MonetaryAgents.Where(x =>
+                    x.Losses.Any(y => y.ProjectId == nonMovableAsset.Id)
+                    || x.Costs.Any(y => y.ProjectId == nonMovableAsset.Id)
+                    || x.Gains.Any(y => y.ProjectId == nonMovableAsset.Id));
+
+                worksheet.Cells[$"A{currentRow}"].Value = "Agente Monetario";
+                worksheet.Cells[$"B{currentRow}"].Value = "Egresos";
+                worksheet.Cells[$"C{currentRow}"].Value = "Costos";
+                worksheet.Cells[$"D{currentRow}"].Value = "Ingresos";
+
+                foreach (var monetaryAgent in monetaryAgents)
+                {
+                    var monetaryAgentLosses = monetaryAgent.Losses.Where(x => x.ProjectId == nonMovableAsset.Id)
+                        .Sum(x => x.Total);
+                    var monetaryAgentCosts = monetaryAgent.Costs.Where(x => x.ProjectId == nonMovableAsset.Id)
+                        .Sum(x => x.Total);
+                    var monetaryAgentGains = monetaryAgent.Gains.Where(x => x.ProjectId == nonMovableAsset.Id)
+                        .Sum(x => x.SubTotal);
+                    worksheet.Cells[$"A{currentRow}:D{currentRow}"].Style.Font.Bold = true;
+                    worksheet.Cells[$"A{currentRow}:D{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                    worksheet.Cells[$"A{currentRow}"].Value = monetaryAgent.Name;
+
+                    worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleVioletRed);
+                    worksheet.Cells[$"B{currentRow}"].Value = monetaryAgentLosses;
+
+                    worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGoldenrod);
+                    worksheet.Cells[$"C{currentRow}"].Value = monetaryAgentCosts;
+
+                    worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGreen);
+                    worksheet.Cells[$"D{currentRow}"].Value = monetaryAgentGains;
+                    currentRow++;
+                }
 
                 worksheet.Cells[$"A1:K{currentRow}"].AutoFitColumns();
                 worksheet.Cells[$"A1:K{currentRow}"].Style.HorizontalAlignment =
@@ -364,7 +404,7 @@ namespace InmobiliariaDashboard.Server.Services
                 var currentRow = 1;
 
                 // set title
-                var worksheet = package.Workbook.Worksheets.Add("Resumen inmuebles");
+                var worksheet = package.Workbook.Worksheets.Add("Resumen");
                 worksheet.Cells[$"A{currentRow}:F{currentRow}"].Merge = true;
                 worksheet.Cells[$"A{currentRow}:F{currentRow}"].Value =
                     string.Join(" - ", enterprise.Code, enterprise.Name);
@@ -394,26 +434,26 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"F{currentRow}"].Value = "Balance total";
                 currentRow++;
 
-                foreach (var nonMovableAsset in nonMovableAssets)
+                foreach (var project in projects)
                 {
                     worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                    worksheet.Cells[$"A{currentRow}"].Value = $"{nonMovableAsset.Code} - {nonMovableAsset.Name}";
+                    worksheet.Cells[$"A{currentRow}"].Value = $"{project.Code} - {project.Name}";
                     worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleTurquoise);
-                    worksheet.Cells[$"B{currentRow}"].Value = $"${nonMovableAsset.PurchasePrice}";
+                    worksheet.Cells[$"B{currentRow}"].Value = $"${project.PurchasePrice}";
                     worksheet.Cells[$"C{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"C{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleVioletRed);
-                    worksheet.Cells[$"C{currentRow}"].Value = $"${nonMovableAsset.Losses.Sum(x => x.Total)}";
+                    worksheet.Cells[$"C{currentRow}"].Value = $"${project.Losses.Sum(x => x.Total)}";
                     worksheet.Cells[$"D{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"D{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGoldenrod);
-                    worksheet.Cells[$"D{currentRow}"].Value = $"${nonMovableAsset.Costs.Sum(x => x.Total)}";
+                    worksheet.Cells[$"D{currentRow}"].Value = $"${project.Costs.Sum(x => x.Total)}";
                     worksheet.Cells[$"E{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     worksheet.Cells[$"E{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGreen);
-                    worksheet.Cells[$"E{currentRow}"].Value = $"${nonMovableAsset.Gains.Sum(x => x.SubTotal)}";
-                    worksheet.Cells[$"F{currentRow}"].Value = $@"${nonMovableAsset.Gains.Sum(x => x.SubTotal)
-                                                                   - nonMovableAsset.Costs.Sum(x => x.Total)
-                                                                   - nonMovableAsset.Losses.Sum(x => x.Total)
-                                                                   - nonMovableAsset.PurchasePrice}";
+                    worksheet.Cells[$"E{currentRow}"].Value = $"${project.Gains.Sum(x => x.SubTotal)}";
+                    worksheet.Cells[$"F{currentRow}"].Value = $@"${project.Gains.Sum(x => x.SubTotal)
+                                                                   - project.Costs.Sum(x => x.Total)
+                                                                   - project.Losses.Sum(x => x.Total)
+                                                                   - project.PurchasePrice}";
                     currentRow++;
                 }
 
