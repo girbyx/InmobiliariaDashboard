@@ -53,8 +53,8 @@ else
                         <td>@record.Commission%</td>
                     }
                     <td>$@record.Total</td>
-                    <td>@record.CreatedOn.ToString("yyyy MMMM dd")</td>
-                    <td>@(record.UpdatedOn?.ToString("yyyy MMMM dd") ?? "-")</td>
+                    <td>@record.CreatedOn.ToString("G")</td>
+                    <td>@(record.UpdatedOn?.ToString("G") ?? "-")</td>
                     <td>
                         <a href="cost/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
