@@ -38,6 +38,9 @@ namespace InmobiliariaDashboard.Server.Services
                 .Include(x => x.Projects).ThenInclude(x => x.Costs).ThenInclude(x => x.CostType)
                 .Include(x => x.Projects).ThenInclude(x => x.Gains).ThenInclude(x => x.GainType)
                 .Include(x => x.Projects).ThenInclude(x => x.Losses).ThenInclude(x => x.LossType)
+                .Include(x => x.Projects).ThenInclude(x => x.Costs).ThenInclude(x => x.MonetaryAgent)
+                .Include(x => x.Projects).ThenInclude(x => x.Gains).ThenInclude(x => x.MonetaryAgent)
+                .Include(x => x.Projects).ThenInclude(x => x.Losses).ThenInclude(x => x.MonetaryAgent)
                 .Include(x => x.Projects).ThenInclude(x => x.ProjectSubType)
                 .Include(x => x.Assets)
                 .First(x => x.Id == id);
@@ -75,14 +78,15 @@ namespace InmobiliariaDashboard.Server.Services
 
                 // iterate losses
                 var losses = nonMovableAsset.Losses.ToList();
-                worksheet.Cells[$"A{currentRow}:G{currentRow}"].Style.Font.Bold = true;
+                worksheet.Cells[$"A{currentRow}:H{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"A{currentRow}"].Value = "";
                 worksheet.Cells[$"B{currentRow}"].Value = "$";
                 worksheet.Cells[$"C{currentRow}"].Value = "#";
                 worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
                 worksheet.Cells[$"E{currentRow}"].Value = "Comision";
                 worksheet.Cells[$"F{currentRow}"].Value = "Total";
-                worksheet.Cells[$"G{currentRow}"].Value = "Descripcion";
+                worksheet.Cells[$"G{currentRow}"].Value = "Agente monetario";
+                worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
                 currentRow++;
                 foreach (var loss in losses)
                 {
@@ -99,7 +103,8 @@ namespace InmobiliariaDashboard.Server.Services
                         : $"{loss.Commission}%";
                     worksheet.Cells[$"E{currentRow}"].Value = commission;
                     worksheet.Cells[$"F{currentRow}"].Value = $"${loss.Total}";
-                    worksheet.Cells[$"G{currentRow}"].Value = loss.Description;
+                    worksheet.Cells[$"G{currentRow}"].Value = loss.MonetaryAgent.Name;
+                    worksheet.Cells[$"H{currentRow}"].Value = loss.Description;
                     currentRow++;
                     projectValue -= loss.Total;
                 }
@@ -120,7 +125,8 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
                 worksheet.Cells[$"E{currentRow}"].Value = "Comision";
                 worksheet.Cells[$"F{currentRow}"].Value = "Total";
-                worksheet.Cells[$"G{currentRow}"].Value = "Descripcion";
+                worksheet.Cells[$"G{currentRow}"].Value = "Agente monetario";
+                worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
                 currentRow++;
                 foreach (var cost in costs)
                 {
@@ -137,7 +143,8 @@ namespace InmobiliariaDashboard.Server.Services
                         : $"{cost.Commission}%";
                     worksheet.Cells[$"E{currentRow}"].Value = commission;
                     worksheet.Cells[$"F{currentRow}"].Value = $"${cost.Total}";
-                    worksheet.Cells[$"G{currentRow}"].Value = cost.Description;
+                    worksheet.Cells[$"G{currentRow}"].Value = cost.MonetaryAgent.Name;
+                    worksheet.Cells[$"H{currentRow}"].Value = cost.Description;
                     currentRow++;
                     projectValue -= cost.Total;
                 }
@@ -158,7 +165,8 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
                 worksheet.Cells[$"E{currentRow}"].Value = "Comision";
                 worksheet.Cells[$"F{currentRow}"].Value = "Total";
-                worksheet.Cells[$"G{currentRow}"].Value = "Descripcion";
+                worksheet.Cells[$"G{currentRow}"].Value = "Agente monetario";
+                worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
                 currentRow++;
                 foreach (var gain in gains)
                 {
@@ -172,7 +180,8 @@ namespace InmobiliariaDashboard.Server.Services
                     worksheet.Cells[$"D{currentRow}"].Value = $"${gain.SubTotal}";
                     worksheet.Cells[$"E{currentRow}"].Value = "0%";
                     worksheet.Cells[$"F{currentRow}"].Value = $"${gain.SubTotal}";
-                    worksheet.Cells[$"G{currentRow}"].Value = gain.Description;
+                    worksheet.Cells[$"G{currentRow}"].Value = gain.MonetaryAgent.Name;
+                    worksheet.Cells[$"H{currentRow}"].Value = gain.Description;
                     currentRow++;
                     projectValue += gain.SubTotal;
                 }
