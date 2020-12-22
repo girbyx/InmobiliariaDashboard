@@ -261,7 +261,7 @@ namespace InmobiliariaDashboard.Server.Services
 
                 var movableAssets = projects.OrderBy(x => x.ProjectSubTypeId)
                     .Where(x => x.ProjectType == ProjectTypeEnum.MovableAsset.Code).ToList();
-                var projectSubTypes = movableAssets.Select(x => x.ProjectSubType.Name).ToList();
+                var projectSubTypes = movableAssets.Select(x => x.ProjectSubType.Name).Distinct().ToList();
                 foreach (var projectSubType in projectSubTypes)
                 {
                     var movableAssetsBySubType =
