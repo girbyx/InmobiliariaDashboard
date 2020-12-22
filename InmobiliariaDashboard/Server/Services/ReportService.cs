@@ -231,12 +231,19 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"B{currentRow}"].Value = "Egresos";
                 worksheet.Cells[$"C{currentRow}"].Value = "Costos";
                 worksheet.Cells[$"D{currentRow}"].Value = "Ingresos";
+                currentRow++;
 
                 foreach (var monetaryAgent in monetaryAgents)
                 {
-                    var monetaryAgentLosses = monetaryAgent.Losses?.Any() != null ? monetaryAgent.Losses.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.Total) : 0;
-                    var monetaryAgentCosts = monetaryAgent.Costs?.Any() != null ? monetaryAgent.Costs.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.Total) : 0;
-                    var monetaryAgentGains = monetaryAgent.Gains?.Any() != null ? monetaryAgent.Gains.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.SubTotal) : 0;
+                    var monetaryAgentLosses = monetaryAgent.Losses?.Any() != null
+                        ? monetaryAgent.Losses.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.Total)
+                        : 0;
+                    var monetaryAgentCosts = monetaryAgent.Costs?.Any() != null
+                        ? monetaryAgent.Costs.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.Total)
+                        : 0;
+                    var monetaryAgentGains = monetaryAgent.Gains?.Any() != null
+                        ? monetaryAgent.Gains.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.SubTotal)
+                        : 0;
                     worksheet.Cells[$"A{currentRow}:D{currentRow}"].Style.Font.Bold = true;
                     worksheet.Cells[$"A{currentRow}:D{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                     worksheet.Cells[$"A{currentRow}"].Value = monetaryAgent.Name;
@@ -245,12 +252,12 @@ namespace InmobiliariaDashboard.Server.Services
                     worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleVioletRed);
                     worksheet.Cells[$"B{currentRow}"].Value = monetaryAgentLosses;
 
-                    worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGoldenrod);
+                    worksheet.Cells[$"C{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[$"C{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGoldenrod);
                     worksheet.Cells[$"C{currentRow}"].Value = monetaryAgentCosts;
 
-                    worksheet.Cells[$"B{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    worksheet.Cells[$"B{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGreen);
+                    worksheet.Cells[$"D{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[$"D{currentRow}"].Style.Fill.BackgroundColor.SetColor(Color.PaleGreen);
                     worksheet.Cells[$"D{currentRow}"].Value = monetaryAgentGains;
                     currentRow++;
                 }
