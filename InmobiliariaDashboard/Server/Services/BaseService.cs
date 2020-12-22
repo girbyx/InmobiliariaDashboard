@@ -135,7 +135,6 @@ namespace InmobiliariaDashboard.Server.Services
                     // prepare string
                     var splitString = file.Split("||");
                     var fileBase64String = splitString.First();
-                    var extension = splitString.Last();
 
                     // prepare file
                     var bytes = Convert.FromBase64String(fileBase64String);
@@ -144,7 +143,7 @@ namespace InmobiliariaDashboard.Server.Services
                     stream.Seek(0, SeekOrigin.Begin);
 
                     // determine file name
-                    var fileName = Guid.NewGuid().ToString();
+                    var fileName = splitString.Length > 2 ? splitString[1] : Guid.NewGuid().ToString();
 
                     // save file to mega.nz
                     var folderPath = $"{folderPathConst}{id}";
@@ -158,6 +157,7 @@ namespace InmobiliariaDashboard.Server.Services
                         cloudFolder = client.CreateFolder(folderPath, root);
                     }
 
+                    var extension = splitString.Last();
                     INode cloudFile = client.Upload(stream, $"{fileName}.{extension}", cloudFolder);
                     Uri downloadLink = client.GetDownloadLink(cloudFile);
 
