@@ -35,6 +35,8 @@ namespace InmobiliariaDashboard.Server.Services
         {
             // get selected enterprise and setup vars
             var enterprise = _dbContext.Set<Enterprise>()
+                .Include(x => x.Assets)
+                .Include(x => x.MonetaryAgents)
                 .Include(x => x.Projects).ThenInclude(x => x.Costs).ThenInclude(x => x.CostType)
                 .Include(x => x.Projects).ThenInclude(x => x.Gains).ThenInclude(x => x.GainType)
                 .Include(x => x.Projects).ThenInclude(x => x.Losses).ThenInclude(x => x.LossType)
@@ -42,7 +44,6 @@ namespace InmobiliariaDashboard.Server.Services
                 .Include(x => x.Projects).ThenInclude(x => x.Gains).ThenInclude(x => x.MonetaryAgent)
                 .Include(x => x.Projects).ThenInclude(x => x.Losses).ThenInclude(x => x.MonetaryAgent)
                 .Include(x => x.Projects).ThenInclude(x => x.ProjectSubType)
-                .Include(x => x.Assets)
                 .First(x => x.Id == id);
             var projects = enterprise.Projects.OrderBy(x => x.ProjectType).ThenBy(x => x.ProjectSubType)
                 .ThenBy(x => x.Code).ToList();
@@ -224,10 +225,7 @@ namespace InmobiliariaDashboard.Server.Services
                 currentRow++;
 
                 // monetary agents for project
-                var monetaryAgents = enterprise.MonetaryAgents.Where(x =>
-                    x.Losses.Any(y => y.ProjectId == nonMovableAsset.Id)
-                    || x.Costs.Any(y => y.ProjectId == nonMovableAsset.Id)
-                    || x.Gains.Any(y => y.ProjectId == nonMovableAsset.Id));
+                var monetaryAgents = enterprise.MonetaryAgents.ToList();
 
                 worksheet.Cells[$"A{currentRow}"].Value = "Agente Monetario";
                 worksheet.Cells[$"B{currentRow}"].Value = "Egresos";
@@ -236,12 +234,9 @@ namespace InmobiliariaDashboard.Server.Services
 
                 foreach (var monetaryAgent in monetaryAgents)
                 {
-                    var monetaryAgentLosses = monetaryAgent.Losses.Where(x => x.ProjectId == nonMovableAsset.Id)
-                        .Sum(x => x.Total);
-                    var monetaryAgentCosts = monetaryAgent.Costs.Where(x => x.ProjectId == nonMovableAsset.Id)
-                        .Sum(x => x.Total);
-                    var monetaryAgentGains = monetaryAgent.Gains.Where(x => x.ProjectId == nonMovableAsset.Id)
-                        .Sum(x => x.SubTotal);
+                    var monetaryAgentLosses = monetaryAgent.Losses?.Any() != null ? monetaryAgent.Losses.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.Total) : 0;
+                    var monetaryAgentCosts = monetaryAgent.Costs?.Any() != null ? monetaryAgent.Costs.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.Total) : 0;
+                    var monetaryAgentGains = monetaryAgent.Gains?.Any() != null ? monetaryAgent.Gains.Where(x => x.ProjectId == nonMovableAsset.Id).Sum(x => x.SubTotal) : 0;
                     worksheet.Cells[$"A{currentRow}:D{currentRow}"].Style.Font.Bold = true;
                     worksheet.Cells[$"A{currentRow}:D{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                     worksheet.Cells[$"A{currentRow}"].Value = monetaryAgent.Name;
