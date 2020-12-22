@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class MonetaryAgentViewModel : ISelectableViewModel
+    public class MonetaryAgentViewModel : IISelectableViewModel
     {
         public int Id { get; set; }
         [Required]

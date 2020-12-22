@@ -1,6 +1,6 @@
 ﻿namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class SendProjectInformationViewModel : ISendEmailWithAttachments
+    public class SendProjectInformationViewModel : IISendEmailWithAttachments
     {
         public int ProjectId { get; set; }
         public int ContactId { get; set; }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class ContactViewModel : ISelectableViewModel
+    public class ContactViewModel : IISelectableViewModel
     {
         public int Id { get; set; }
         public string SuffixName { get; set; }

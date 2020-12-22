@@ -1,6 +1,6 @@
 ﻿namespace InmobiliariaDashboard.Shared
 {
-    public interface  ISendEmail
+    public interface  IISendEmail
     {
         string ToEmail { get; set; }
         string Subject { get; set; }

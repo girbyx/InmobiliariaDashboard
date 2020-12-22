@@ -1,6 +1,6 @@
 ﻿namespace InmobiliariaDashboard.Shared
 {
-    public interface  ISelectableViewModel
+    public interface  IISelectableViewModel
     {
         int Id { get; set; }
         string Name { get; set; }

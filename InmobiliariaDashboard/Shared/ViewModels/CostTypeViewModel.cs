@@ -2,7 +2,7 @@
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class CostTypeViewModel : ISelectableViewModel
+    public class CostTypeViewModel : IISelectableViewModel
     {
         public int Id { get; set; }
         [Required]
