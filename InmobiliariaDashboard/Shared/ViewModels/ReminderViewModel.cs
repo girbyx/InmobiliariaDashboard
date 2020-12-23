@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
@@ -13,5 +14,12 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required]
         public string ReminderFrequency { get; set; }
         public string Description { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]
+        public int EnterpriseId { get; set; }
+        public string EnterpriseName { get; set; }
+
+        // select lists
+        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
     }
 }

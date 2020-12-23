@@ -12,11 +12,15 @@
             <label>Nombre</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
+        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
+    </div>
+
+    <div class="form-row">
         <div class="col form-group">
             <label>Cada</label>
             <input type="datetime-local" class="form-control" @bind="Record.RecurrentOn" />
         </div>
-        <FormSelectEnum @bind-Value="Record.ReminderFrequency" Records="ReminderFrequencies" Title="Frecuencia"></FormSelectEnum>
+        <FormSelectEnum @bind-Value="Record.ReminderFrequency" Records="ReminderFrequencies" Title="Frecuencias"></FormSelectEnum>
     </div>
 
     <div class="form-row">

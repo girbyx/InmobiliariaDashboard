@@ -14,6 +14,14 @@ namespace InmobiliariaDashboard.Client.Pages.Reminder
         public ReminderViewModel Record { get; set; } = new ReminderViewModel();
         public IEnumerable<ReminderFrequencyEnum> ReminderFrequencies => BaseEnumeration.GetAll<ReminderFrequencyEnum>();
 
+        protected override async Task OnInitializedAsync()
+        {
+            Record = await Service.GetEmpty();
+
+            // defaults
+            Record.ReminderFrequency = ReminderFrequencyEnum.Monthly.Code;
+        }
+
         protected async Task HandleValidSubmit()
         {
             await Service.Add(Record);

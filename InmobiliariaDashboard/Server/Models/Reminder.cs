@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Server.Resolvers;
 using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Models
@@ -21,16 +21,14 @@ namespace InmobiliariaDashboard.Server.Models
         public string CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public string UpdatedBy { get; set; }
-
-        // collections
-        public virtual ICollection<Gain> Gains { get; set; }
     }
 
     public class ReminderProfile : Profile
     {
         public ReminderProfile()
         {
-            CreateMap<Reminder, ReminderViewModel>();
+            CreateMap<Reminder, ReminderViewModel>()
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>());
             CreateMap<ReminderViewModel, Reminder>();
         }
     }
