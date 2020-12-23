@@ -12,6 +12,10 @@
             <label>Nombre</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
+        <div class="col form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" @bind="Record.Email" />
+        </div>
         <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
     </div>
 
@@ -20,7 +24,7 @@
             <label>Cada</label>
             <input type="datetime-local" class="form-control" @bind="Record.RecurrentOn" />
         </div>
-        <FormSelectEnum @bind-Value="Record.ReminderFrequency" Records="ReminderFrequencies" Title="Frecuencias"></FormSelectEnum>
+        <FormSelectEnum @bind-Value="Record.ReminderFrequency" Records="ReminderFrequencies" Title="Frecuencia"></FormSelectEnum>
     </div>
 
     <div class="form-row">
