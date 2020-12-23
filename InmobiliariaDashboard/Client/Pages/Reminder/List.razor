@@ -1,0 +1,49 @@
+﻿@page "/reminder/list"
+@using InmobiliariaDashboard.Shared
+@using InmobiliariaDashboard.Shared.Enumerations
+@inherits ListBase
+
+<h1>Recordatorios</h1>
+
+<div class="text-right">
+    <a href="reminder/add" class="btn btn-primary"><span class="oi oi-plus"></span> Agregar recordatorio</a>
+</div>
+
+@if (Records == null)
+{
+    <p>
+        <em>Cargando...</em>
+    </p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cada</th>
+                <th>Frecuencia</th>
+                <th>Descripcion</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.Name</td>
+                    <td>@record.RecurrentOn.ToString("d")</td>
+                    <td>@(BaseEnumeration.FromCode<ReminderFrequencyEnum>(record.ReminderFrequency).DisplayName)</td>
+                    <td>@record.Description</td>
+                    <td>
+                        <a href="reminder/edit/@record.Id">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
