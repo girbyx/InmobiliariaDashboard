@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
-using Microsoft.EntityFrameworkCore;
+using InmobiliariaDashboard.Shared;
 using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
 {
     public interface IReminderService : IBaseService<Reminder, object>
     {
-        IEnumerable<Reminder> GetCurrent(int take = 3);
+        IEnumerable<Reminder> GetCurrent();
     }
 
     public class ReminderService : BaseService<Reminder, object>, IReminderService
@@ -25,13 +26,13 @@ namespace InmobiliariaDashboard.Server.Services
             _configuration = configuration;
         }
 
-        public IEnumerable<Reminder> GetCurrent(int take = 3)
+        public IEnumerable<Reminder> GetCurrent()
         {
+            var daysToOccurrence = Convert.ToInt32(_configuration[Constants.DaysToOccurrence]);
             var records = _dbContext.Set<Reminder>()
-                .Include(x => x.Enterprise)
+                .ToList()
                 .OrderByDescending(x => x.NextOccurrence)
-                .Take(take)
-                .ToList();
+                .Where(x => x.DaysForNextOccurrence <= daysToOccurrence);
             return records;
         }
     }

@@ -15,5 +15,7 @@
         public static string SendGridApiKey = "SendGrid:SENDGRID_API_KEY";
         public static string ReplyEmail = "SendGrid:ReplyEmail";
         public static string ReplyName = "SendGrid:ReplyName";
+
+        public static string DaysToOccurrence = "Notifications:DaysToOccurrence";
     }
 }
