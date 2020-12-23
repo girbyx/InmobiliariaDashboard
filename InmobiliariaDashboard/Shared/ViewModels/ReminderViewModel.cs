@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required]
         public DateTime RecurrentOn { get; set; }
         [Required]
-        public string ReminderType { get; set; }
+        public string ReminderFrequency { get; set; }
         public string Description { get; set; }
     }
 }
