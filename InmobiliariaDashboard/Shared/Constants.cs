@@ -17,5 +17,6 @@
         public static string ReplyName = "SendGrid:ReplyName";
 
         public static string DaysToOccurrence = "Notifications:DaysToOccurrence";
+        public static string HoursToOccurrence = "Notifications:HoursToOccurrence";
     }
 }

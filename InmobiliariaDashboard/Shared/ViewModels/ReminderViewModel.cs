@@ -10,9 +10,10 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required] public string Name { get; set; }
         [Required] public string Email { get; set; }
         [Required] public DateTime RecurrentOn { get; set; }
+        [Required] public string ReminderFrequency { get; set; }
         public DateTime NextOccurrence { get; set; }
         public double DaysForNextOccurrence { get; set; }
-        [Required] public string ReminderFrequency { get; set; }
+        public double HoursForNextOccurrence { get; set; }
         public string Description { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]

@@ -16,7 +16,8 @@ namespace InmobiliariaDashboard.Server.Models
         public DateTime RecurrentOn { get; set; }
         public string ReminderFrequency { get; set; }
         [NotMapped] public DateTime NextOccurrence => RecurrentOn.NextOccurrence(ReminderFrequency);
-        [NotMapped] public double DaysForNextOccurrence => (NextOccurrence - DateTime.Now).Days;
+        [NotMapped] public double DaysForNextOccurrence => (NextOccurrence - DateTime.Now).TotalDays;
+        [NotMapped] public double HoursForNextOccurrence => (NextOccurrence - DateTime.Now).TotalHours;
         public string Description { get; set; }
 
         // audit & relationships

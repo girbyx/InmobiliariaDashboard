@@ -5,7 +5,7 @@
     @foreach (var record in Records)
     {
         <div class="text-center alert alert-info mt-4">
-            <p>@record.Name - @record.NextOccurrence.ToString("F")</p>
+            <p>@record.Name - @record.NextOccurrence.ToString("F") - @record.Description</p>
         </div>
     }
 }

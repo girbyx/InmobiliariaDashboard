@@ -26,7 +26,8 @@ namespace InmobiliariaDashboard.Server.Extensions
         {
             var stillDayOfWeek = DateTime.Now.TimeOfDay <= originalDate.TimeOfDay;
             if (stillDayOfWeek && originalDate.DayOfWeek == DateTime.Now.DayOfWeek)
-                return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, originalDate.Hour, originalDate.Minute, originalDate.Second);
+                return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, originalDate.Hour,
+                    originalDate.Minute, originalDate.Second);
 
             var i = 1;
             while (true)
@@ -34,7 +35,8 @@ namespace InmobiliariaDashboard.Server.Extensions
                 var datePlus = DateTime.Now.AddDays(i);
                 if (originalDate.DayOfWeek == datePlus.DayOfWeek)
                 {
-                    return new DateTime(datePlus.Year, datePlus.Month, datePlus.Day, originalDate.Hour, originalDate.Minute, originalDate.Second);
+                    return new DateTime(datePlus.Year, datePlus.Month, datePlus.Day, originalDate.Hour,
+                        originalDate.Minute, originalDate.Second);
                 }
 
                 i++;
@@ -50,39 +52,50 @@ namespace InmobiliariaDashboard.Server.Extensions
         // next occurrence
         public static DateTime NextOccurrence(this DateTime originalDate, string frequencyCode)
         {
-            var reminderFrequency = BaseEnumeration.FromCode<ReminderFrequencyEnum>(frequencyCode);
-
-            if (Equals(reminderFrequency, ReminderFrequencyEnum.WorkingDays))
+            if (!string.IsNullOrEmpty(frequencyCode))
             {
-                var nextDay = DateTime.Now.TimeOfDay <= originalDate.TimeOfDay ? DateTime.Now.Day : DateTime.Now.Day + 1;
-                var nextWorkingDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, nextDay, originalDate.Hour, originalDate.Minute, originalDate.Second);
-                nextWorkingDate = nextWorkingDate.DayOfWeek == DayOfWeek.Saturday ? nextWorkingDate.AddDays(2)
-                    : nextWorkingDate.DayOfWeek == DayOfWeek.Sunday ? nextWorkingDate.AddDays(1)
-                    : nextWorkingDate;
-                return nextWorkingDate;
-            }
+                var reminderFrequency = BaseEnumeration.FromCode<ReminderFrequencyEnum>(frequencyCode);
 
-            if (Equals(reminderFrequency, ReminderFrequencyEnum.Daily))
-            {
-                var nextDay = DateTime.Now.TimeOfDay <= originalDate.TimeOfDay ? DateTime.Now.Day : DateTime.Now.Day + 1;
-                return new DateTime(DateTime.Now.Year, DateTime.Now.Month, nextDay, originalDate.Hour, originalDate.Minute, originalDate.Second);
-            }
+                if (Equals(reminderFrequency, ReminderFrequencyEnum.WorkingDays))
+                {
+                    var nextDay = DateTime.Now.TimeOfDay <= originalDate.TimeOfDay
+                        ? DateTime.Now.Day
+                        : DateTime.Now.Day + 1;
+                    var nextWorkingDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, nextDay,
+                        originalDate.Hour, originalDate.Minute, originalDate.Second);
+                    nextWorkingDate = nextWorkingDate.DayOfWeek == DayOfWeek.Saturday ? nextWorkingDate.AddDays(2)
+                        : nextWorkingDate.DayOfWeek == DayOfWeek.Sunday ? nextWorkingDate.AddDays(1)
+                        : nextWorkingDate;
+                    return nextWorkingDate;
+                }
 
-            if (Equals(reminderFrequency, ReminderFrequencyEnum.Weekly))
-            {
-                return originalDate.NextDayOfWeek();
-            }
+                if (Equals(reminderFrequency, ReminderFrequencyEnum.Daily))
+                {
+                    var nextDay = DateTime.Now.TimeOfDay <= originalDate.TimeOfDay
+                        ? DateTime.Now.Day
+                        : DateTime.Now.Day + 1;
+                    return new DateTime(DateTime.Now.Year, DateTime.Now.Month, nextDay, originalDate.Hour,
+                        originalDate.Minute, originalDate.Second);
+                }
 
-            if (Equals(reminderFrequency, ReminderFrequencyEnum.Monthly))
-            {
-                var nextMonth = DateTime.Now.Day <= originalDate.Day ? DateTime.Now.Month : DateTime.Now.Month + 1;
-                return new DateTime(DateTime.Now.Year, nextMonth, originalDate.Day, originalDate.Hour, originalDate.Minute, originalDate.Second);
-            }
+                if (Equals(reminderFrequency, ReminderFrequencyEnum.Weekly))
+                {
+                    return originalDate.NextDayOfWeek();
+                }
 
-            if (Equals(reminderFrequency, ReminderFrequencyEnum.Annually))
-            {
-                var nextYear = DateTime.Now.Month <= originalDate.Month ? DateTime.Now.Year : DateTime.Now.Year + 1;
-                return new DateTime(nextYear, originalDate.Month, originalDate.Day, originalDate.Hour, originalDate.Minute, originalDate.Second);
+                if (Equals(reminderFrequency, ReminderFrequencyEnum.Monthly))
+                {
+                    var nextMonth = DateTime.Now.Day <= originalDate.Day ? DateTime.Now.Month : DateTime.Now.Month + 1;
+                    return new DateTime(DateTime.Now.Year, nextMonth, originalDate.Day, originalDate.Hour,
+                        originalDate.Minute, originalDate.Second);
+                }
+
+                if (Equals(reminderFrequency, ReminderFrequencyEnum.Annually))
+                {
+                    var nextYear = DateTime.Now.Month <= originalDate.Month ? DateTime.Now.Year : DateTime.Now.Year + 1;
+                    return new DateTime(nextYear, originalDate.Month, originalDate.Day, originalDate.Hour,
+                        originalDate.Minute, originalDate.Second);
+                }
             }
 
             return DateTime.Now;
