@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Server.Resolvers;
@@ -11,6 +12,7 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime RecurrentOn { get; set; }
+        [NotMapped] public DateTime NextOccurrence => DateTime.Now;
         public string ReminderFrequency { get; set; }
         public string Description { get; set; }
 

@@ -1,0 +1,14 @@
+﻿@inherits CurrentRemindersBase
+
+@if (Records != null && Records.Any())
+{
+    <div class="text-center alert alert-secondary mt-4">
+        <h3>Recordatorios</h3>
+    </div>
+    @foreach (var record in Records)
+    {
+        <div class="text-center alert alert-secondary mt-4">
+            <p>@record.Name</p>
+        </div>
+    }
+}
