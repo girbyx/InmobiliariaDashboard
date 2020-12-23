@@ -22,12 +22,15 @@ namespace InmobiliariaDashboard.Server.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
 
-        public ProjectService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
+        public ProjectService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration,
+            IEmailService emailService) : base(
             dbContext, mapper, configuration)
         {
             _dbContext = dbContext;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
         public override Project Get(int id)
@@ -71,16 +74,7 @@ namespace InmobiliariaDashboard.Server.Services
             message += @"</body>" +
                        "</html>";
 
-            // setup email client
-            var apiKey = _configuration[Constants.SendGridApiKey];
-            var replyEmail = _configuration[Constants.ReplyEmail];
-            var replyName = _configuration[Constants.ReplyName];
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(replyEmail, replyName);
-            var to = new EmailAddress(contact.Email, contact.Name);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, string.Empty, message);
-            var response = await client.SendEmailAsync(msg);
-            return response.IsSuccessStatusCode;
+            return await _emailService.SendEmail(contact.Email, contact.Name, subject, message);
         }
     }
 }
