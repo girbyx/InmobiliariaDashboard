@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared;
 using InmobiliariaDashboard.Shared.Enumerations;
@@ -19,6 +20,7 @@ namespace InmobiliariaDashboard.Client.Pages.Reminder
             Record = await Service.GetEmpty();
 
             // defaults
+            Record.RecurrentOn = DateTime.Now;
             Record.ReminderFrequency = ReminderFrequencyEnum.Monthly.Code;
         }
 

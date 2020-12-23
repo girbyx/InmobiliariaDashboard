@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime RecurrentOn { get; set; }
-        public string ReminderType { get; set; }
+        public string ReminderFrequency { get; set; }
         public string Description { get; set; }
 
         // audit & relationships
