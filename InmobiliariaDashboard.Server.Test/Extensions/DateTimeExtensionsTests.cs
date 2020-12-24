@@ -68,63 +68,38 @@ namespace InmobiliariaDashboard.Server.Test.Extensions
         [TestMethod]
         public void NextOccurrenceWorkingDays()
         {
-            int addDays = 0;
             var frequencyCode = ReminderFrequencyEnum.WorkingDays.Code;
 
             // startDate = DateTime.Now, timePassed = false
             var originalDatePrev = DateTime.Now.AddDays(-10).AddSeconds(1);
-            addDays = originalDatePrev.DayOfWeek switch
-            {
-                DayOfWeek.Saturday => 2,
-                DayOfWeek.Sunday => 1,
-                _ => 0
-            };
             var originalDatePrevNext = originalDatePrev.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDatePrev.AddDays(7).AddDays(addDays).ToLongTimeString(), originalDatePrevNext.ToLongTimeString());
+            Assert.AreEqual(DateTime.Now.Date, originalDatePrevNext.Date);
 
             // startDate = DateTime.Now, timePassed = true
             var originalDatePrev2 = DateTime.Now.AddDays(-10).AddSeconds(-1);
-            addDays = originalDatePrev2.DayOfWeek switch
-            {
-                DayOfWeek.Saturday => 2,
-                DayOfWeek.Sunday => 1,
-                _ => 0
-            };
             var originalDatePrevNext2 = originalDatePrev2.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDatePrev2.AddDays(8).AddDays(addDays).ToLongTimeString(), originalDatePrevNext2.ToLongTimeString());
+            Assert.AreEqual(DateTime.Now.AddDays(1).Date, originalDatePrevNext2.Date);
 
             // startDate = originalDate, timePassed = false
             var originalDate = DateTime.Now.AddSeconds(1);
-            addDays = originalDate.DayOfWeek switch
-            {
-                DayOfWeek.Saturday => 2,
-                DayOfWeek.Sunday => 1,
-                _ => 0
-            };
             var originalDateNext = originalDate.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDate.AddDays(addDays).ToLongTimeString(), originalDateNext.ToLongTimeString());
+            Assert.AreEqual(DateTime.Now.Date, originalDateNext.Date);
 
             // startDate = DateTime.Now, timePassed = true
             var originalDate2 = DateTime.Now.AddSeconds(-1);
-            addDays = originalDate2.DayOfWeek switch
-            {
-                DayOfWeek.Saturday => 2,
-                DayOfWeek.Sunday => 1,
-                _ => 0
-            };
             var originalDateNext2 = originalDate2.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDate2.AddDays(1).AddDays(addDays).ToLongTimeString(), originalDateNext2.ToLongTimeString());
+            Assert.AreEqual(DateTime.Now.AddDays(1).Date, originalDateNext2.Date);
 
             // startDate = originalDate, timePassed = false
             var originalDate3 = DateTime.Now.AddDays(10).AddSeconds(1);
-            addDays = originalDate3.DayOfWeek switch
+            var addDays = originalDate3.DayOfWeek switch
             {
                 DayOfWeek.Saturday => 2,
                 DayOfWeek.Sunday => 1,
                 _ => 0
             };
             var originalDateNext3 = originalDate3.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDate3.AddDays(addDays).ToLongTimeString(), originalDateNext3.ToLongTimeString());
+            Assert.AreEqual(originalDate3.AddDays(addDays).Date, originalDateNext3.Date);
 
             // startDate = originalDate, timePassed = true
             var originalDate4 = DateTime.Now.AddDays(10).AddSeconds(-1);
@@ -135,7 +110,7 @@ namespace InmobiliariaDashboard.Server.Test.Extensions
                 _ => 0
             };
             var originalDateNext4 = originalDate4.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDate4.AddDays(addDays).ToLongTimeString(), originalDateNext4.ToLongTimeString());
+            Assert.AreEqual(originalDate4.AddDays(addDays).Date, originalDateNext4.Date);
         }
 
         [TestMethod]
@@ -146,32 +121,32 @@ namespace InmobiliariaDashboard.Server.Test.Extensions
             // startDate = DateTime.Now, timePassed = false
             var originalDatePrev = DateTime.Now.AddDays(-10).AddSeconds(1);
             var originalDatePrevNext = originalDatePrev.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDatePrev.AddDays(7).ToLongTimeString(), originalDatePrevNext.ToLongTimeString());
+            Assert.AreEqual(originalDatePrev.AddDays(10).Date, originalDatePrevNext.Date);
 
             // startDate = DateTime.Now, timePassed = true
             var originalDatePrev2 = DateTime.Now.AddDays(-10).AddSeconds(-1);
             var originalDatePrevNext2 = originalDatePrev2.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDatePrev2.AddDays(8).ToLongTimeString(), originalDatePrevNext2.ToLongTimeString());
+            Assert.AreEqual(originalDatePrev2.AddDays(11).Date, originalDatePrevNext2.Date);
 
             // startDate = originalDate, timePassed = false
             var originalDate = DateTime.Now.AddSeconds(1);
             var originalDateNext = originalDate.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDate.ToLongTimeString(), originalDateNext.ToLongTimeString());
+            Assert.AreEqual(originalDate.Date, originalDateNext.Date);
 
             // startDate = DateTime.Now, timePassed = true
             var originalDate2 = DateTime.Now.AddSeconds(-1);
             var originalDateNext2 = originalDate2.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDate2.AddDays(1).ToLongTimeString(), originalDateNext2.ToLongTimeString());
+            Assert.AreEqual(originalDate2.AddDays(1).Date, originalDateNext2.Date);
 
             // startDate = originalDate, timePassed = false
             var originalDate3 = DateTime.Now.AddDays(10).AddSeconds(1);
             var originalDateNext3 = originalDate3.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDate3.ToLongTimeString(), originalDateNext3.ToLongTimeString());
+            Assert.AreEqual(originalDate3.Date, originalDateNext3.Date);
 
             // startDate = originalDate, timePassed = true
             var originalDate4 = DateTime.Now.AddDays(10).AddSeconds(-1);
             var originalDateNext4 = originalDate4.NextOccurrence(frequencyCode);
-            Assert.AreEqual(originalDate4.ToLongTimeString(), originalDateNext4.ToLongTimeString());
+            Assert.AreEqual(originalDate4.Date, originalDateNext4.Date);
         }
 
         [TestMethod]
