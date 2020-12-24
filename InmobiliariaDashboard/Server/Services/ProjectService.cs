@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
@@ -59,22 +60,23 @@ namespace InmobiliariaDashboard.Server.Services
             var contact = _dbContext.Set<Contact>().First(x => x.Id == dto.ContactId);
 
             // build message
-            var subject =
-                $"{dto.Subject} || {BaseEnumeration.FromCode<ProjectTypeEnum>(project.ProjectType)} - {project.Name}";
+            var subject = $"{project.Code} - {project.Name} || {dto.Subject}";
             var message = "<html>" +
                           "<body>" +
                           $"<div>{dto.Message}</div>" +
-                          "<h3>Adjuntos:</h3>";
+                          "<div>----------------------------</div>";
+
             foreach (var attachment in project.Attachments)
             {
-                message += $"<a href='{attachment.Url}'>{attachment.Name}.{attachment.ExtensionType}</a>" +
-                           "<br/>";
+                message += "<div>" +
+                           $"<a href='{attachment.Url}'>{attachment.Name}.{attachment.ExtensionType}</a>" +
+                           "</div>";
             }
 
-            message += @"</body>" +
+            message += "</body>" +
                        "</html>";
 
-            return await _emailService.SendEmail(contact.Email, contact.Name, subject, message);
+            return await _emailService.SendEmail(contact.Email, contact.Name, subject, string.Empty, message);
         }
     }
 }

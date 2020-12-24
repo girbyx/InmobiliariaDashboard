@@ -34,11 +34,15 @@ namespace InmobiliariaDashboard.Server.HostedServices
         {
             _logger.LogInformation("Timed Hosted Service running.");
 
-            // always start on the next exact hour
-            var currentDateNextHour = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
-                DateTime.Now.Hour + 1, 0, 0);
+            // next exact hour
+            var currentDateNextHour = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            currentDateNextHour = currentDateNextHour.AddHours(DateTime.Now.Hour + 1);
+
+            // time span to next exact hour
             var timeToExactHour = currentDateNextHour.Subtract(DateTime.Now);
-            _timer = new Timer(DoWork, null, timeToExactHour, TimeSpan.FromMinutes(50));
+
+            //_timer = new Timer(DoWork, null, timeToExactHour, TimeSpan.FromHours(1));
+            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
             return Task.CompletedTask;
         }
 
@@ -46,15 +50,25 @@ namespace InmobiliariaDashboard.Server.HostedServices
         {
             var maxHoursToNextOccurrence = Convert.ToDouble(_configuration[Constants.MaxHoursToNextOccurrence]);
             var maxMinutesToNextOccurrence = Convert.ToDouble(_configuration[Constants.MaxMinutesToNextOccurrence]);
+
+            // send notification email
             using var scope = _scopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
             var reminders = dbContext.Set<Reminder>().ToList().OrderBy(x => x.NextOccurrence)
                 .Where(x => x.HoursForNextOccurrence <= maxHoursToNextOccurrence || x.MinutesForNextOccurrence <= maxMinutesToNextOccurrence);
+
             foreach (var reminder in reminders)
             {
                 // send notification email
-                _emailService.SendEmail(reminder.Email, "Recordatorio", $"Recordatorio: {reminder.Name}",
-                    $"{reminder.Name} - {reminder.RecurrentOn} - {reminder.Description}");
+                var subject = $"Recordatorio: {reminder.RecurrentOn.ToLongDateString()} {reminder.RecurrentOn.ToShortTimeString()} - {reminder.Name}";
+                var message = $"<html>" +
+                              $"<body>" +
+                              $"<div>{reminder.RecurrentOn.ToLongDateString()} {reminder.RecurrentOn.ToShortTimeString()}</div>" +
+                              $"<div>{reminder.Name}</div>" +
+                              $"<div>{reminder.Description}</div>" +
+                              $"</body>" +
+                              $"</html>";
+                _emailService.SendEmail(reminder.Email, "Recordatorio", subject, string.Empty, message);
             }
         }
 

@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Server.Services
 {
     public interface IEmailService
     {
-        Task<bool> SendEmail(string toEmail, string toName, string subject, string message);
+        Task<bool> SendEmail(string toEmail, string toName, string subject, string message, string html);
     }
 
     public class EmailService : IEmailService
@@ -20,15 +20,20 @@ namespace InmobiliariaDashboard.Server.Services
             _configuration = configuration;
         }
 
-        public async Task<bool> SendEmail(string toEmail, string toName, string subject, string message)
+        public async Task<bool> SendEmail(string toEmail, string toName, string subject, string message, string html)
         {
+            // setup
             var apiKey = _configuration[Constants.SendGridApiKey];
             var replyEmail = _configuration[Constants.ReplyEmail];
             var replyName = _configuration[Constants.ReplyName];
+
+            // client instance
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(replyEmail, replyName);
             var to = new EmailAddress(toEmail, toName);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, string.Empty, message);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, message, html);
+
+            // response
             var response = await client.SendEmailAsync(msg);
             return response.IsSuccessStatusCode;
         }
