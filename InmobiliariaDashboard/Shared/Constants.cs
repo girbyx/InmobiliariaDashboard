@@ -18,5 +18,6 @@
 
         public static string MaxDaysToNextOccurrence = "Notifications:MaxDaysToNextOccurrence";
         public static string MaxHoursToNextOccurrence = "Notifications:MaxHoursToNextOccurrence";
+        public static string MaxMinutesToNextOccurrence = "Notifications:MaxMinutesToNextOccurrence";
     }
 }

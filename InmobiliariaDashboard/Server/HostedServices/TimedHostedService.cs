@@ -38,17 +38,18 @@ namespace InmobiliariaDashboard.Server.HostedServices
             var currentDateNextHour = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
                 DateTime.Now.Hour + 1, 0, 0);
             var timeToExactHour = currentDateNextHour.Subtract(DateTime.Now);
-            _timer = new Timer(DoWork, null, timeToExactHour, TimeSpan.FromHours(1));
+            _timer = new Timer(DoWork, null, timeToExactHour, TimeSpan.FromMinutes(50));
             return Task.CompletedTask;
         }
 
         private void DoWork(object state)
         {
             var maxHoursToNextOccurrence = Convert.ToDouble(_configuration[Constants.MaxHoursToNextOccurrence]);
+            var maxMinutesToNextOccurrence = Convert.ToDouble(_configuration[Constants.MaxMinutesToNextOccurrence]);
             using var scope = _scopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
             var reminders = dbContext.Set<Reminder>().ToList().OrderBy(x => x.NextOccurrence)
-                .Where(x => x.HoursForNextOccurrence <= maxHoursToNextOccurrence);
+                .Where(x => x.HoursForNextOccurrence <= maxHoursToNextOccurrence || x.MinutesForNextOccurrence <= maxMinutesToNextOccurrence);
             foreach (var reminder in reminders)
             {
                 // send notification email
