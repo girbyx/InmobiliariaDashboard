@@ -44,11 +44,11 @@ namespace InmobiliariaDashboard.Server.HostedServices
 
         private void DoWork(object state)
         {
-            var hoursToOccurrence = Convert.ToDouble(_configuration[Constants.HoursToOccurrence]);
+            var maxHoursToNextOccurrence = Convert.ToDouble(_configuration[Constants.MaxHoursToNextOccurrence]);
             using var scope = _scopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
             var reminders = dbContext.Set<Reminder>().ToList().OrderBy(x => x.NextOccurrence)
-                .Where(x => x.HoursForNextOccurrence <= hoursToOccurrence);
+                .Where(x => x.HoursForNextOccurrence <= maxHoursToNextOccurrence);
             foreach (var reminder in reminders)
             {
                 // send notification email

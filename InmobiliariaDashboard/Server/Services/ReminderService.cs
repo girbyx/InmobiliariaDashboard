@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Server.Services
 {
     public interface IReminderService : IBaseService<Reminder, object>
     {
-        IEnumerable<Reminder> GetCurrent();
+        IEnumerable<Reminder> GetCurrent(bool includeAll = true);
     }
 
     public class ReminderService : BaseService<Reminder, object>, IReminderService
@@ -26,13 +26,14 @@ namespace InmobiliariaDashboard.Server.Services
             _configuration = configuration;
         }
 
-        public IEnumerable<Reminder> GetCurrent()
+        public IEnumerable<Reminder> GetCurrent(bool includeAll = true)
         {
-            var daysToOccurrence = Convert.ToInt32(_configuration[Constants.DaysToOccurrence]);
+            var maxDaysToNextOccurrence = Convert.ToInt32(_configuration[Constants.MaxDaysToNextOccurrence]);
             var records = _dbContext.Set<Reminder>()
                 .ToList()
                 .OrderByDescending(x => x.NextOccurrence)
-                .Where(x => x.DaysForNextOccurrence <= daysToOccurrence);
+                .Where(x => includeAll || x.DaysForNextOccurrence <= maxDaysToNextOccurrence)
+                .ToList();
             return records;
         }
     }
