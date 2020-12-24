@@ -24,6 +24,7 @@ else
                 <th>Nombre</th>
                 <th>Cada</th>
                 <th>Frecuencia</th>
+                <th>Siguiente</th>
                 <th>Descripcion</th>
                 <th></th>
             </tr>
@@ -35,6 +36,7 @@ else
                     <td>@record.Name</td>
                     <td>@record.RecurrentOn.ToString("d")</td>
                     <td>@(BaseEnumeration.FromCode<ReminderFrequencyEnum>(record.ReminderFrequency).DisplayName)</td>
+                    <td>@record.NextOccurrence.ToString("d")</td>
                     <td>@record.Description</td>
                     <td>
                         <a href="reminder/edit/@record.Id">

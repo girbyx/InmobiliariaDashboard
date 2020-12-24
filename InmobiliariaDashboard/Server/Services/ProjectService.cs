@@ -1,16 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
 using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Shared;
-using InmobiliariaDashboard.Shared.Enumerations;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 
 namespace InmobiliariaDashboard.Server.Services
 {
