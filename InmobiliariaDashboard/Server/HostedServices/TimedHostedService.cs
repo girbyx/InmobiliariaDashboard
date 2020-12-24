@@ -63,9 +63,9 @@ namespace InmobiliariaDashboard.Server.HostedServices
                 var subject = $"Recordatorio: {reminder.RecurrentOn.ToLongDateString()} {reminder.RecurrentOn.ToShortTimeString()} - {reminder.Name}";
                 var message = $"<html>" +
                               $"<body>" +
-                              $"<div>{reminder.RecurrentOn.ToLongDateString()} {reminder.RecurrentOn.ToShortTimeString()}</div>" +
-                              $"<div>{reminder.Name}</div>" +
-                              $"<div>{reminder.Description}</div>" +
+                              $"<div>Fecha: {reminder.RecurrentOn.ToLongDateString()} {reminder.RecurrentOn.ToShortTimeString()}</div>" +
+                              $"<div>Titulo: {reminder.Name}</div>" +
+                              $"<div>Descripcion: {reminder.Description}</div>" +
                               $"</body>" +
                               $"</html>";
                 _emailService.SendEmail(reminder.Email, "Recordatorio", subject, string.Empty, message);
