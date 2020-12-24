@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
 using InmobiliariaDashboard.Client.Pages.Enterprise;
@@ -22,6 +23,10 @@ namespace InmobiliariaDashboard.Client
                     .FromAssemblies(typeof(IService).Assembly)
                     .AddClasses()
                     .AsImplementedInterfaces());
+
+            var cultureInfo = new CultureInfo("es-MX") { NumberFormat = { CurrencySymbol = "$" } };
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
             await builder.Build().RunAsync();
         }
