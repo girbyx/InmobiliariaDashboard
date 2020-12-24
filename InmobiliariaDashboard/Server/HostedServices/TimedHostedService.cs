@@ -41,8 +41,7 @@ namespace InmobiliariaDashboard.Server.HostedServices
             // time span to next exact hour
             var timeToExactHour = currentDateNextHour.Subtract(DateTime.Now);
 
-            //_timer = new Timer(DoWork, null, timeToExactHour, TimeSpan.FromHours(1));
-            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+            _timer = new Timer(DoWork, null, timeToExactHour, TimeSpan.FromMinutes(30));
             return Task.CompletedTask;
         }
 
@@ -60,10 +59,10 @@ namespace InmobiliariaDashboard.Server.HostedServices
             foreach (var reminder in reminders)
             {
                 // send notification email
-                var subject = $"Recordatorio: {reminder.RecurrentOn.ToLongDateString()} {reminder.RecurrentOn.ToShortTimeString()} - {reminder.Name}";
+                var subject = $"Recordatorio: {reminder.RecurrentOn:f} - {reminder.Name}";
                 var message = $"<html>" +
                               $"<body>" +
-                              $"<div>Fecha: {reminder.RecurrentOn.ToLongDateString()} {reminder.RecurrentOn.ToShortTimeString()}</div>" +
+                              $"<div>Fecha: {reminder.RecurrentOn:f}</div>" +
                               $"<div>Titulo: {reminder.Name}</div>" +
                               $"<div>Descripcion: {reminder.Description}</div>" +
                               $"</body>" +
