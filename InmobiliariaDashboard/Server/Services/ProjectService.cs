@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
@@ -22,12 +23,15 @@ namespace InmobiliariaDashboard.Server.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
 
-        public ProjectService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
+        public ProjectService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration,
+            IEmailService emailService) : base(
             dbContext, mapper, configuration)
         {
             _dbContext = dbContext;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
         public override Project Get(int id)
@@ -56,31 +60,23 @@ namespace InmobiliariaDashboard.Server.Services
             var contact = _dbContext.Set<Contact>().First(x => x.Id == dto.ContactId);
 
             // build message
-            var subject =
-                $"{dto.Subject} || {BaseEnumeration.FromCode<ProjectTypeEnum>(project.ProjectType)} - {project.Name}";
+            var subject = $"{project.Code} - {project.Name} || {dto.Subject}";
             var message = "<html>" +
                           "<body>" +
                           $"<div>{dto.Message}</div>" +
-                          "<h3>Adjuntos:</h3>";
+                          "<div>----------------------------</div>";
+
             foreach (var attachment in project.Attachments)
             {
-                message += $"<a href='{attachment.Url}'>{attachment.Name}.{attachment.ExtensionType}</a>" +
-                           "<br/>";
+                message += "<div>" +
+                           $"<a href='{attachment.Url}'>{attachment.Name}.{attachment.ExtensionType}</a>" +
+                           "</div>";
             }
 
-            message += @"</body>" +
+            message += "</body>" +
                        "</html>";
 
-            // setup email client
-            var apiKey = _configuration[Constants.SendGridApiKey];
-            var replyEmail = _configuration[Constants.ReplyEmail];
-            var replyName = _configuration[Constants.ReplyName];
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(replyEmail, replyName);
-            var to = new EmailAddress(contact.Email, contact.Name);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, string.Empty, message);
-            var response = await client.SendEmailAsync(msg);
-            return response.IsSuccessStatusCode;
+            return await _emailService.SendEmail(contact.Email, contact.Name, subject, string.Empty, message);
         }
     }
 }

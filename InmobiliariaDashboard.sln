@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InmobiliariaDashboard.Clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InmobiliariaDashboard.Shared", "InmobiliariaDashboard\Shared\InmobiliariaDashboard.Shared.csproj", "{307E51FA-F5D4-4BC5-AA9C-D674A2DF9D0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InmobiliariaDashboard.Server.Test", "InmobiliariaDashboard.Server.Test\InmobiliariaDashboard.Server.Test.csproj", "{B829DA61-8298-49FE-80D2-9082579BBFCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{307E51FA-F5D4-4BC5-AA9C-D674A2DF9D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{307E51FA-F5D4-4BC5-AA9C-D674A2DF9D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{307E51FA-F5D4-4BC5-AA9C-D674A2DF9D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B829DA61-8298-49FE-80D2-9082579BBFCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B829DA61-8298-49FE-80D2-9082579BBFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B829DA61-8298-49FE-80D2-9082579BBFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B829DA61-8298-49FE-80D2-9082579BBFCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

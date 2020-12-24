@@ -54,6 +54,7 @@
         width: 250px;
         height: 100vh;
         position: sticky;
+        overflow-y: auto;
         top: 0;
     }
 

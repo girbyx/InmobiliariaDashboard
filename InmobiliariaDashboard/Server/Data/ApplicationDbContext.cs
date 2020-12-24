@@ -32,6 +32,7 @@ namespace InmobiliariaDashboard.Server.Data
         public DbSet<MonetaryAgent> MonetaryAgents { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectHistory> ProjectsHistory { get; set; }
+        public DbSet<Reminder> Reminders { get; set; }
 
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
