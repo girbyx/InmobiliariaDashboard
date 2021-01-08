@@ -9,6 +9,7 @@ namespace InmobiliariaDashboard.Server.Services
 {
     public interface IMonetaryAgentService : IBaseService<MonetaryAgent, object>
     {
+        IEnumerable<MonetaryAgent> GetByEnterprise(int id);
         IEnumerable<MonetaryAgent> GetByProject(int id);
     }
 
@@ -20,6 +21,14 @@ namespace InmobiliariaDashboard.Server.Services
             base(dbContext, mapper, configuration)
         {
             _dbContext = dbContext;
+        }
+
+        public IEnumerable<MonetaryAgent> GetByEnterprise(int id)
+        {
+            var records = _dbContext.Set<MonetaryAgent>()
+                .Where(x => x.Enterprise.Id == id)
+                .ToList();
+            return records;
         }
 
         public IEnumerable<MonetaryAgent> GetByProject(int id)
