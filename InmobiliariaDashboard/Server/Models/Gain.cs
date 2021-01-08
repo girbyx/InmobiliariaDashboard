@@ -20,7 +20,9 @@ namespace InmobiliariaDashboard.Server.Models
         // audit & relationships
         public int GainTypeId { get; set; }
         public virtual GainType GainType { get; set; }
-        public int ProjectId { get; set; }
+        public int EnterpriseId { get; set; }
+        public virtual Enterprise Enterprise { get; set; }
+        public int? ProjectId { get; set; }
         public virtual Project Project { get; set; }
         public int MonetaryAgentId { get; set; }
         public virtual MonetaryAgent MonetaryAgent { get; set; }
@@ -39,6 +41,7 @@ namespace InmobiliariaDashboard.Server.Models
         {
             CreateMap<Gain, GainViewModel>()
                 .ForMember(dest => dest.GainTypes, opt => opt.MapFrom<GainTypesResolver>())
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>())
                 .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
             CreateMap<GainViewModel, Gain>();
         }

@@ -26,7 +26,9 @@ namespace InmobiliariaDashboard.Server.Models
         // audit & relationships
         public int CostTypeId { get; set; }
         public virtual CostType CostType { get; set; }
-        public int ProjectId { get; set; }
+        public int EnterpriseId { get; set; }
+        public virtual Enterprise Enterprise { get; set; }
+        public int? ProjectId { get; set; }
         public virtual Project Project { get; set; }
         public int MonetaryAgentId { get; set; }
         public virtual MonetaryAgent MonetaryAgent { get; set; }
@@ -45,6 +47,7 @@ namespace InmobiliariaDashboard.Server.Models
         {
             CreateMap<Cost, CostViewModel>()
                 .ForMember(dest => dest.CostTypes, opt => opt.MapFrom<CostTypesResolver>())
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>())
                 .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
             CreateMap<CostViewModel, Cost>();
         }

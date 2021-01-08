@@ -35,6 +35,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
 
         // select lists
         public IEnumerable<LossTypeViewModel> LossTypes { get; set; }
+        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
         public IEnumerable<ProjectViewModel> Projects { get; set; }
         public IEnumerable<MonetaryAgentViewModel> MonetaryAgents { get; set; }
 
