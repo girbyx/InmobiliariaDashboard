@@ -40,10 +40,12 @@ namespace InmobiliariaDashboard.Server.Models
         public GainProfile()
         {
             CreateMap<Gain, GainViewModel>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId ?? 0))
                 .ForMember(dest => dest.GainTypes, opt => opt.MapFrom<GainTypesResolver>())
                 .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>())
                 .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
-            CreateMap<GainViewModel, Gain>();
+            CreateMap<GainViewModel, Gain>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId == 0 ? null : (int?)src.ProjectId));
         }
     }
 }

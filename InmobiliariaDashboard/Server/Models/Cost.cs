@@ -46,10 +46,12 @@ namespace InmobiliariaDashboard.Server.Models
         public CostProfile()
         {
             CreateMap<Cost, CostViewModel>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId ?? 0))
                 .ForMember(dest => dest.CostTypes, opt => opt.MapFrom<CostTypesResolver>())
                 .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>())
                 .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
-            CreateMap<CostViewModel, Cost>();
+            CreateMap<CostViewModel, Cost>()
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId == 0 ? null : (int?)src.ProjectId));
         }
     }
 }
