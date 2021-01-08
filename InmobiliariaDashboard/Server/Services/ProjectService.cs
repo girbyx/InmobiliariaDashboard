@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
@@ -13,6 +14,7 @@ namespace InmobiliariaDashboard.Server.Services
     public interface IProjectService : IBaseService<Project, ProjectHistory>
     {
         Task<bool> EmailProjectInformation(SendProjectInformationViewModel dto);
+        IEnumerable<Project> GetByEnterprise(int id);
     }
 
     public class ProjectService : BaseService<Project, ProjectHistory>, IProjectService
@@ -28,6 +30,14 @@ namespace InmobiliariaDashboard.Server.Services
             _dbContext = dbContext;
             _configuration = configuration;
             _emailService = emailService;
+        }
+
+        public IEnumerable<Project> GetByEnterprise(int id)
+        {
+            var records = _dbContext.Set<Project>()
+                .Where(x => x.Enterprise.Id == id)
+                .ToList();
+            return records;
         }
 
         public override Project Get(int id)

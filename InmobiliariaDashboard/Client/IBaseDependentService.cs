@@ -7,6 +7,7 @@ namespace InmobiliariaDashboard.Client
     public interface IBaseDependentService
     {
         Task<bool> EmailProjectInformation(SendProjectInformationViewModel id);
+        Task<IEnumerable<ProjectViewModel>> GetProjectsByEnterprise(int id);
         Task<IEnumerable<MonetaryAgentViewModel>> GetMonetaryAgentsByEnterprise(int id);
         Task<IEnumerable<MonetaryAgentViewModel>> GetMonetaryAgentsByProject(int id);
     }

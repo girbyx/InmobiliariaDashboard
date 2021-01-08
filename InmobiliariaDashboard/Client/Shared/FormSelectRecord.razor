@@ -3,7 +3,7 @@
 
 <div class="col form-group">
     <label>@Title</label>
-    @if (Records != null && Records.Any())
+    @if (Value != 0 && Records != null && Records.Any())
     {
         <select class="custom-select" value="@Value" @onchange="OnValueChanged">
             @foreach (var item in Records)
