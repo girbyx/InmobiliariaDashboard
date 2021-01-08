@@ -30,6 +30,9 @@ namespace InmobiliariaDashboard.Server.Models
         public string UpdatedBy { get; set; }
 
         // collections
+        public virtual ICollection<Cost> Costs { get; set; }
+        public virtual ICollection<Gain> Gains { get; set; }
+        public virtual ICollection<Loss> Losses { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<Contact> Contacts { get; set; }
         public virtual ICollection<MonetaryAgent> MonetaryAgents { get; set; }

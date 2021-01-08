@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using Z.EntityFramework.Plus;
 
 namespace InmobiliariaDashboard.Server.Services
 {
@@ -35,6 +36,9 @@ namespace InmobiliariaDashboard.Server.Services
         {
             // get selected enterprise and setup vars
             var enterprise = _dbContext.Set<Enterprise>()
+                .IncludeFilter(x => x.Costs.Where(y => y.ProjectId == null))
+                .IncludeFilter(x => x.Gains.Where(y => y.ProjectId == null))
+                .IncludeFilter(x => x.Losses.Where(y => y.ProjectId == null))
                 .Include(x => x.Assets)
                 .Include(x => x.MonetaryAgents)
                 .Include(x => x.Projects).ThenInclude(x => x.Costs).ThenInclude(x => x.CostType)
