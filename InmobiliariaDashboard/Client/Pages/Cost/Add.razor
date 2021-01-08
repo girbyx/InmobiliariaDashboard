@@ -40,7 +40,8 @@
     </div>
 
     <div class="form-row">
-        <FormSelectRecord OnChangeCallback="OnProjectChange" @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Proyectos"></FormSelectRecord>
+        <FormSelectRecord OnChangeCallback="OnEnterpriseChange" @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Proyectos"></FormSelectRecord>
         <FormSelectRecord @bind-Value="Record.MonetaryAgentId" Records="Record.MonetaryAgents" Title="Agentes"></FormSelectRecord>
     </div>
 

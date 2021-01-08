@@ -21,7 +21,8 @@ namespace InmobiliariaDashboard.Client.Pages.Gain
             Record = await Service.Get(id);
 
             // defaults
-            Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(Record.ProjectId);
+            Record.MonetaryAgents = await Service.GetMonetaryAgentsByEnterprise(Record.EnterpriseId);
+            Record.Projects = await Service.GetProjectsByEnterprise(Record.EnterpriseId);
         }
 
         protected async Task HandleFileSelection(InputFileChangeEventArgs e)
@@ -47,9 +48,10 @@ namespace InmobiliariaDashboard.Client.Pages.Gain
             Saving = false;
         }
 
-        protected async Task OnProjectChange(int id)
+        protected async Task OnEnterpriseChange(int id)
         {
-            Record.MonetaryAgents = await Service.GetMonetaryAgentsByProject(id);
+            Record.MonetaryAgents = await Service.GetMonetaryAgentsByEnterprise(id);
+            Record.Projects = await Service.GetProjectsByEnterprise(id);
         }
 
         protected async Task OnDeleteClick(MouseEventArgs e)
