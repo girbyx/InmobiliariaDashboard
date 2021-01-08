@@ -3,9 +3,13 @@
 
 <div class="col form-group">
     <label>@Title</label>
-    @if (Value != 0 && Records != null && Records.Any())
+    @if (Records != null && Records.Any())
     {
         <select class="custom-select" value="@Value" @onchange="OnValueChanged">
+            @if (WithEmptyOption)
+            {
+                <option value="0">--</option>
+            }
             @foreach (var item in Records)
             {
                 <option value="@((item as IISelectableViewModel)?.Id)">@((item as IISelectableViewModel)?.Name)</option>
@@ -25,6 +29,9 @@
 
     [Parameter]
     public IEnumerable<TViewModel> Records { get; set; }
+
+    [Parameter]
+    public bool WithEmptyOption { get; set; }
 
     [Parameter]
     public int Value { get; set; }
