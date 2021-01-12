@@ -20,7 +20,7 @@ namespace InmobiliariaDashboard.Client.Pages.ProjectSubType
             Records = OriginalRecords.Where(x =>
                 x.Name.ToLower().Contains(searchValue)
                 || x.Description.ToLower().Contains(searchValue)
-                || BaseEnumeration.FromCode<ProjectTypeEnum>(x.ProjectType).DisplayName.Contains(searchValue));
+                || BaseEnumeration.FromCode<ProjectTypeEnum>(x.ProjectType).DisplayName.ToLower().Contains(searchValue));
         }
 
         protected override async Task OnInitializedAsync()

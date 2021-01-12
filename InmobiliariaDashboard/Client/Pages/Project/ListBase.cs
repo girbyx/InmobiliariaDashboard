@@ -21,7 +21,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
                 x.EnterpriseName.ToLower().Contains(searchValue)
                 || x.Code.ToLower().Contains(searchValue)
                 || x.Name.ToLower().Contains(searchValue)
-                || BaseEnumeration.FromCode<ProjectTypeEnum>(x.ProjectType).DisplayName.Contains(searchValue)
+                || BaseEnumeration.FromCode<ProjectTypeEnum>(x.ProjectType).DisplayName.ToLower().Contains(searchValue)
                 || x.PurchasePrice.ToString("N").ToLower().Contains(searchValue)
                 || x.MinimumSellingPrice.ToString("N").ToLower().Contains(searchValue)
                 || x.MaximumSellingPrice.ToString("N").ToLower().Contains(searchValue)
