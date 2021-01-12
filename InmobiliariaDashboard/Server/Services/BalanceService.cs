@@ -24,6 +24,10 @@ namespace InmobiliariaDashboard.Server.Services
         public IEnumerable<Enterprise> GetEnterpriseBalances()
         {
             var records = _dbContext.Set<Enterprise>()
+                .Include(x => x.Assets)
+                .Include(x => x.Costs)
+                .Include(x => x.Gains)
+                .Include(x => x.Losses)
                 .Include(x => x.Projects).ThenInclude(x => x.Costs)
                 .Include(x => x.Projects).ThenInclude(x => x.Gains)
                 .Include(x => x.Projects).ThenInclude(x => x.Losses)
