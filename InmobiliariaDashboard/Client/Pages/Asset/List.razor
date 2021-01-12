@@ -15,15 +15,18 @@
 }
 else
 {
+    <div class="text-left">
+        <input placeholder="Buscar..." type="text" @oninput="FilterRecords" />
+    </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
             <tr>
+                <th>Persona</th>
                 <th>Activo</th>
                 <th>Valor</th>
                 <th>Cantidad</th>
                 <th>Sub total</th>
-                <th>Persona</th>
                 <th>Tipo</th>
                 <th></th>
             </tr>
@@ -32,16 +35,19 @@ else
             @foreach (var record in Records)
             {
                 <tr>
-                    <td>@record.Name</td>
-                    <td>$@record.Value</td>
-                    <td>@record.Quantity</td>
-                    <td>$@record.SubTotal</td>
                     <td>@record.EnterpriseName</td>
+                    <td>@record.Name</td>
+                    <td>@(record.Value.ToString("C"))</td>
+                    <td>@record.Quantity</td>
+                    <td>@(record.SubTotal.ToString("C"))</td>
                     <td>@record.AssetTypeName</td>
-                    <td>
-                        <a href="asset/edit/@record.Id">
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-outline-primary" href="asset/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
                         </a>
+                    </td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-outline-danger" @onclick="() => OnDeleteClick(record.Id)"><span class="oi oi-x"></span></button>
                     </td>
                 </tr>
             }
