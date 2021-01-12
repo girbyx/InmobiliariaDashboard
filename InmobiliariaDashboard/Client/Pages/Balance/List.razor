@@ -14,7 +14,7 @@
         <br />
         @foreach (var item in EnterpriseRecords)
         {
-            <div class="col-3">
+            <div class="col-3" style="margin-bottom: 10px;">
                 <div class="card text-center">
                     <div class="card-header">
                         <div class="card-title">
@@ -22,19 +22,15 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="card-title text-left">Costos adquisicion</div>
+                        <div class="card-title text-left">Costos adquisicion:</div>
                         <div class="card-text">@($"{item.ProjectPurchasePrice:C}")</div>
-                        <br />
-                        <div class="card-title text-left">Egresos</div>
+                        <div class="card-title text-left">Egresos:</div>
                         <div class="card-text">@($"{item.LossValue:C}")</div>
-                        <br />
-                        <div class="card-title text-left">Costos</div>
+                        <div class="card-title text-left">Costos:</div>
                         <div class="card-text">@($"{item.CostValue:C}")</div>
-                        <br />
-                        <div class="card-title text-left">Ingresos</div>
+                        <div class="card-title text-left">Ingresos:</div>
                         <div class="card-text">@($"{item.GainValue:C}")</div>
-                        <br />
-                        <div class="card-title text-left">Activos</div>
+                        <div class="card-title text-left">Activos:</div>
                         <div class="card-text">@($"{item.AssetValue:C}")</div>
                     </div>
                     <div class="card-footer text-right">
@@ -56,7 +52,7 @@
         </div>
         @foreach (var item in MonetaryAgentRecords)
         {
-            <div class="col-3">
+            <div class="col-3" style="margin-bottom: 10px;">
                 <div class="card text-center">
                     <div class="card-header">
                         <div class="card-title">
@@ -64,13 +60,11 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="card-title text-left">Egresos</div>
+                        <div class="card-title text-left">Egresos:</div>
                         <div class="card-text">@($"{item.LossValue:C}")</div>
-                        <br />
-                        <div class="card-title text-left">Costos</div>
+                        <div class="card-title text-left">Costos:</div>
                         <div class="card-text">@($"{item.CostValue:C}")</div>
-                        <br />
-                        <div class="card-title text-left">Ingresos</div>
+                        <div class="card-title text-left">Ingresos:</div>
                         <div class="card-text">@($"{item.GainValue:C}")</div>
                     </div>
                     <div class="card-footer text-right">
