@@ -22,12 +22,13 @@ else
         <table class="table table-hover">
             <thead>
             <tr>
+                <th>Persona</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Celular</th>
                 <th>Direccion</th>
-                <th>Persona</th>
                 <th>Prospecto</th>
+                <th></th>
                 <th></th>
             </tr>
             </thead>
@@ -35,16 +36,19 @@ else
             @foreach (var record in Records)
             {
                 <tr class="@(record.Prospect ? "table-info" : "")">
+                    <td>@record.EnterpriseName</td>
                     <td>@record.Name</td>
                     <td>@record.Email</td>
                     <td>@record.Cellphone</td>
                     <td>@record.Address</td>
-                    <td>@record.EnterpriseName</td>
                     <td>@(record.Prospect ? "Si" : "No")</td>
-                    <td>
-                        <a href="contact/edit/@record.Id">
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-outline-primary" href="contact/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
                         </a>
+                    </td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-outline-danger" @onclick="() => OnDeleteClick(record.Id)"><span class="oi oi-x"></span></button>
                     </td>
                 </tr>
             }
