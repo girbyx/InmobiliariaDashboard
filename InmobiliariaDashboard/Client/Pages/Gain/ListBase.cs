@@ -16,14 +16,23 @@ namespace InmobiliariaDashboard.Client.Pages.Gain
         {
             var searchValue = e.Value.ToString().ToLower();
             Records = OriginalRecords.Where(x =>
-                x.ProjectName.ToLower().Contains(searchValue)
+                x.EnterpriseName.ToLower().Contains(searchValue)
+                || (x.ProjectName?.ToLower().Contains(searchValue) ?? false)
+                || x.MonetaryAgentName.ToLower().Contains(searchValue)
                 || x.GainTypeName.ToLower().Contains(searchValue)
-                || x.MonetaryAgentName.ToLower().Contains(searchValue));
+                || x.Date.ToString("D").ToLower().Contains(searchValue));
         }
 
         protected override async Task OnInitializedAsync()
         {
             Records = OriginalRecords = await Service.GetList();
+        }
+
+        protected async Task OnDeleteClick(int id)
+        {
+            await Service.Delete(id);
+            OriginalRecords = OriginalRecords.Where(x => x.Id != id);
+            Records = Records.Where(x => x.Id != id);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public string GainTypeName { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]
         public int EnterpriseId { get; set; }
-        public int EnterpriseName { get; set; }
+        public string EnterpriseName { get; set; }
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una cuenta")]
