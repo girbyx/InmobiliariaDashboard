@@ -23,15 +23,15 @@ else
         <table class="table table-hover">
             <thead>
             <tr>
+                <th>Persona</th>
                 <th>Proyecto</th>
-                <th>Agente monetario</th>
+                <th>Cuenta</th>
                 <th>Valor</th>
                 <th>Cantidad</th>
                 <th>Sub total</th>
                 <th>Comision</th>
                 <th>Total</th>
                 <th>Fecha</th>
-                <th>Actualizado en</th>
                 <th></th>
             </tr>
             </thead>
@@ -39,22 +39,22 @@ else
             @foreach (var record in Records)
             {
                 <tr>
-                    <td>@record.ProjectName</td>
+                    <td>@record.EnterpriseName</td>
+                    <td>@(record.ProjectName ?? "-")</td>
                     <td>@record.MonetaryAgentName</td>
-                    <td>$@record.Value</td>
-                    <td>@record.Quantity</td>
-                    <td>$@record.SubTotal</td>
+                    <td>@record.Value.ToString("C")</td>
+                    <td>@record.Quantity.ToString("N")</td>
+                    <td>@record.SubTotal.ToString("C")</td>
                     @if (CommissionTypeEnum.Money.Code == record.CommissionType)
                     {
-                        <td>$@record.Commission</td>
+                        <td>@record.Commission.ToString("C")</td>
                     }
                     else if (CommissionTypeEnum.Percentage.Code == record.CommissionType)
                     {
-                        <td>@record.Commission%</td>
+                        <td>@record.Commission.ToString("P")</td>
                     }
                     <td>$@record.Total</td>
-                    <td>@record.Date.ToString("d")</td>
-                    <td>@(record.UpdatedOn?.ToString("d") ?? "-")</td>
+                    <td>@record.Date.ToString("D")</td>
                     <td>
                         <a href="loss/edit/@record.Id">
                             <span class="oi oi-pencil"></span>

@@ -90,7 +90,7 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
                 worksheet.Cells[$"E{currentRow}"].Value = "Comision";
                 worksheet.Cells[$"F{currentRow}"].Value = "Total";
-                worksheet.Cells[$"G{currentRow}"].Value = "Agente monetario";
+                worksheet.Cells[$"G{currentRow}"].Value = "Cuenta";
                 worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
                 currentRow++;
                 foreach (var loss in losses)
@@ -130,7 +130,7 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
                 worksheet.Cells[$"E{currentRow}"].Value = "Comision";
                 worksheet.Cells[$"F{currentRow}"].Value = "Total";
-                worksheet.Cells[$"G{currentRow}"].Value = "Agente monetario";
+                worksheet.Cells[$"G{currentRow}"].Value = "Cuenta";
                 worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
                 currentRow++;
                 foreach (var cost in costs)
@@ -170,7 +170,7 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
                 worksheet.Cells[$"E{currentRow}"].Value = "Comision";
                 worksheet.Cells[$"F{currentRow}"].Value = "Total";
-                worksheet.Cells[$"G{currentRow}"].Value = "Agente monetario";
+                worksheet.Cells[$"G{currentRow}"].Value = "Cuenta";
                 worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
                 currentRow++;
                 foreach (var gain in gains)
@@ -230,7 +230,7 @@ namespace InmobiliariaDashboard.Server.Services
                 // monetary agents for project
                 var monetaryAgents = enterprise.MonetaryAgents.ToList();
 
-                worksheet.Cells[$"A{currentRow}"].Value = "Agente Monetario";
+                worksheet.Cells[$"A{currentRow}"].Value = "Cuenta";
                 worksheet.Cells[$"B{currentRow}"].Value = "Egresos";
                 worksheet.Cells[$"C{currentRow}"].Value = "Costos";
                 worksheet.Cells[$"D{currentRow}"].Value = "Ingresos";
