@@ -14,6 +14,12 @@ namespace InmobiliariaDashboard.Client.Pages.ProjectSubType
         public ProjectSubTypeViewModel Record { get; set; } = new ProjectSubTypeViewModel();
         public IEnumerable<ProjectTypeEnum> ProjectTypes => BaseEnumeration.GetAll<ProjectTypeEnum>();
 
+        protected override async Task OnInitializedAsync()
+        {
+            // defaults
+            Record.ProjectType = ProjectTypeEnum.FixedAsset.Code;
+        }
+
         protected async Task HandleValidSubmit()
         {
             await Service.Add(Record);
