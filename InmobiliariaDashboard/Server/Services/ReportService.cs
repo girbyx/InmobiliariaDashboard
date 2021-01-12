@@ -52,7 +52,7 @@ namespace InmobiliariaDashboard.Server.Services
                 .ThenBy(x => x.Code).ToList();
 
             // iterate by project non-movable assets
-            var nonMovableAssets = projects.Where(x => x.ProjectType != ProjectTypeEnum.MovableAsset.Code).ToList();
+            var nonMovableAssets = projects.Where(x => x.ProjectType == ProjectTypeEnum.FixedAsset.Code).ToList();
             foreach (var nonMovableAsset in nonMovableAssets)
             {
                 var currentRow = 1;
@@ -430,6 +430,121 @@ namespace InmobiliariaDashboard.Server.Services
                 currentRow++;
                 currentRow++;
 
+                // iterate losses
+                var losses = enterprise.Losses.ToList();
+                worksheet.Cells[$"A{currentRow}:H{currentRow}"].Style.Font.Bold = true;
+                worksheet.Cells[$"A{currentRow}"].Value = "";
+                worksheet.Cells[$"B{currentRow}"].Value = "$";
+                worksheet.Cells[$"C{currentRow}"].Value = "#";
+                worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
+                worksheet.Cells[$"E{currentRow}"].Value = "Comision";
+                worksheet.Cells[$"F{currentRow}"].Value = "Total";
+                worksheet.Cells[$"G{currentRow}"].Value = "Cuenta";
+                worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
+                currentRow++;
+                foreach (var loss in losses)
+                {
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Fill.BackgroundColor
+                        .SetColor(Color.PaleVioletRed);
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                    worksheet.Cells[$"A{currentRow}"].Value = loss.LossType.Name;
+                    worksheet.Cells[$"B{currentRow}"].Value = $"{loss.Value:C}";
+                    worksheet.Cells[$"C{currentRow}"].Value = loss.Quantity;
+                    worksheet.Cells[$"D{currentRow}"].Value = $"{loss.SubTotal:C}";
+                    var commission = loss.CommissionType == CommissionTypeEnum.Money.Code
+                        ? $"{loss.Commission:C}"
+                        : $"{loss.Commission:n}%";
+                    worksheet.Cells[$"E{currentRow}"].Value = commission;
+                    worksheet.Cells[$"F{currentRow}"].Value = $"{loss.Total:C}";
+                    worksheet.Cells[$"G{currentRow}"].Value = loss.MonetaryAgent.Name;
+                    worksheet.Cells[$"H{currentRow}"].Value = loss.Description;
+                    currentRow++;
+                }
+
+                worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
+                worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
+                worksheet.Cells[$"E{currentRow}"].Value = "Total egresos";
+                worksheet.Cells[$"F{currentRow}"].Value = $"{losses.Sum(x => x.Total):C}";
+                currentRow++;
+                currentRow++;
+
+                // iterate costs
+                var costs = enterprise.Costs.ToList();
+                worksheet.Cells[$"A{currentRow}:G{currentRow}"].Style.Font.Bold = true;
+                worksheet.Cells[$"A{currentRow}"].Value = "";
+                worksheet.Cells[$"B{currentRow}"].Value = "$";
+                worksheet.Cells[$"C{currentRow}"].Value = "#";
+                worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
+                worksheet.Cells[$"E{currentRow}"].Value = "Comision";
+                worksheet.Cells[$"F{currentRow}"].Value = "Total";
+                worksheet.Cells[$"G{currentRow}"].Value = "Cuenta";
+                worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
+                currentRow++;
+                foreach (var cost in costs)
+                {
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Fill.BackgroundColor
+                        .SetColor(Color.PaleGoldenrod);
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                    worksheet.Cells[$"A{currentRow}"].Value = cost.CostType.Name;
+                    worksheet.Cells[$"B{currentRow}"].Value = $"{cost.Value:C}";
+                    worksheet.Cells[$"C{currentRow}"].Value = cost.Quantity;
+                    worksheet.Cells[$"D{currentRow}"].Value = $"{cost.SubTotal:C}";
+                    var commission = cost.CommissionType == CommissionTypeEnum.Money.Code
+                        ? $"{cost.Commission:C}"
+                        : $"{cost.Commission:n}%";
+                    worksheet.Cells[$"E{currentRow}"].Value = commission;
+                    worksheet.Cells[$"F{currentRow}"].Value = $"{cost.Total:C}";
+                    worksheet.Cells[$"G{currentRow}"].Value = cost.MonetaryAgent.Name;
+                    worksheet.Cells[$"H{currentRow}"].Value = cost.Description;
+                    currentRow++;
+                }
+
+                worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
+                worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
+                worksheet.Cells[$"E{currentRow}"].Value = "Total costos";
+                worksheet.Cells[$"F{currentRow}"].Value = $"{costs.Sum(x => x.Total):C}";
+                currentRow++;
+                currentRow++;
+
+                // iterate gains
+                var gains = enterprise.Gains.ToList();
+                worksheet.Cells[$"A{currentRow}:G{currentRow}"].Style.Font.Bold = true;
+                worksheet.Cells[$"A{currentRow}"].Value = "";
+                worksheet.Cells[$"B{currentRow}"].Value = "$";
+                worksheet.Cells[$"C{currentRow}"].Value = "#";
+                worksheet.Cells[$"D{currentRow}"].Value = "Sub total";
+                worksheet.Cells[$"E{currentRow}"].Value = "Comision";
+                worksheet.Cells[$"F{currentRow}"].Value = "Total";
+                worksheet.Cells[$"G{currentRow}"].Value = "Cuenta";
+                worksheet.Cells[$"H{currentRow}"].Value = "Descripcion";
+                currentRow++;
+                foreach (var gain in gains)
+                {
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Fill.BackgroundColor
+                        .SetColor(Color.PaleGreen);
+                    worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                    worksheet.Cells[$"A{currentRow}"].Value = gain.GainType.Name;
+                    worksheet.Cells[$"B{currentRow}"].Value = $"{gain.Value:C}";
+                    worksheet.Cells[$"C{currentRow}"].Value = gain.Quantity;
+                    worksheet.Cells[$"D{currentRow}"].Value = $"{gain.SubTotal:C}";
+                    worksheet.Cells[$"E{currentRow}"].Value = "0%";
+                    worksheet.Cells[$"F{currentRow}"].Value = $"{gain.SubTotal:C}";
+                    worksheet.Cells[$"G{currentRow}"].Value = gain.MonetaryAgent.Name;
+                    worksheet.Cells[$"H{currentRow}"].Value = gain.Description;
+                    currentRow++;
+                }
+
+                worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
+                worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
+                worksheet.Cells[$"E{currentRow}"].Value = "Total ingresos";
+                worksheet.Cells[$"F{currentRow}"].Value = $"{gains.Sum(x => x.SubTotal):C}";
+                currentRow++;
+                currentRow++;
+
+                // assets
                 worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"A{currentRow}"].Value = "";
                 worksheet.Cells[$"B{currentRow}"].Value = "Costo adquisicion";
