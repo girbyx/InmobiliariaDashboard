@@ -25,6 +25,7 @@ else
                 <th>Celular</th>
                 <th>Direccion</th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +41,9 @@ else
                         <a href="enterprise/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
                         </a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-danger" @onclick="() => OnDeleteClick(record.Id)"><span class="oi oi-x"></span></button>
                     </td>
                 </tr>
             }

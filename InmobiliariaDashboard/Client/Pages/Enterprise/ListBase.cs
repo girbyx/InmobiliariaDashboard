@@ -14,5 +14,11 @@ namespace InmobiliariaDashboard.Client.Pages.Enterprise
         {
             Records = await Service.GetList();
         }
+
+        protected async Task OnDeleteClick(int id)
+        {
+            await Service.Delete(id);
+            await Service.Return();
+        }
     }
 }
