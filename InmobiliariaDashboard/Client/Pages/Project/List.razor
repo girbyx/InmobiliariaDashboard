@@ -45,9 +45,9 @@ else
                     <td>@record.Code</td>
                     <td>@record.Name</td>
                     <td>@(BaseEnumeration.FromCode<ProjectTypeEnum>(record.ProjectType).DisplayName)</td>
-                    <td>$@record.PurchasePrice.ToString("N")</td>
-                    <td>$@record.MinimumSellingPrice.ToString("N")</td>
-                    <td>$@record.MaximumSellingPrice.ToString("N")</td>
+                    <td>@record.PurchasePrice.ToString("C")</td>
+                    <td>@record.MinimumSellingPrice.ToString("C")</td>
+                    <td>@record.MaximumSellingPrice.ToString("C")</td>
                     <td>@record.StartDate.ToString("D")</td>
                     <td class="text-center">
                         <a class="btn btn-sm btn-outline-primary" href="project/edit/@record.Id">

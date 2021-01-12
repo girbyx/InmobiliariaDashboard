@@ -6,6 +6,10 @@
     @if (Records != null && Records.Any())
     {
         <select class="custom-select" value="@Value" @onchange="OnValueChanged">
+            @if (WithEmptyOption)
+            {
+                <option value="0">--</option>
+            }
             @foreach (var item in Records)
             {
                 <option value="@((item as IBaseEnumeration)?.Code)">@((item as IBaseEnumeration)?.DisplayName)</option>
@@ -27,15 +31,22 @@
     public IEnumerable<TEnumeration> Records { get; set; }
 
     [Parameter]
+    public bool WithEmptyOption { get; set; }
+
+    [Parameter]
     public string Value { get; set; }
 
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
+    [Parameter]
+    public EventCallback<string> OnCodeChangeCallback { get; set; }
+
     private Task OnValueChanged(ChangeEventArgs e)
     {
         Value = e.Value.ToString();
+        OnCodeChangeCallback.InvokeAsync(Value);
         return ValueChanged.InvokeAsync(Value);
-    } 
+    }
 
 }
