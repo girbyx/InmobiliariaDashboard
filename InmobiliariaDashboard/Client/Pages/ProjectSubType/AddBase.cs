@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using InmobiliariaDashboard.Shared;
+using InmobiliariaDashboard.Shared.Enumerations;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -9,6 +12,7 @@ namespace InmobiliariaDashboard.Client.Pages.ProjectSubType
     {
         [Inject] public IService Service { get; set; }
         public ProjectSubTypeViewModel Record { get; set; } = new ProjectSubTypeViewModel();
+        public IEnumerable<ProjectTypeEnum> ProjectTypes => BaseEnumeration.GetAll<ProjectTypeEnum>();
 
         protected async Task HandleValidSubmit()
         {

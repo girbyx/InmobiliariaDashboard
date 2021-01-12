@@ -12,6 +12,7 @@
             <label>Nombre</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
+        <FormSelectEnum @bind-Value="Record.ProjectType" Records="ProjectTypes" Title="Tipos"></FormSelectEnum>
     </div>
 
     <div class="form-row">

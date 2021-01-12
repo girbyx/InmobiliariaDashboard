@@ -11,6 +11,7 @@ namespace InmobiliariaDashboard.Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ProjectType { get; set; }
 
         // audit & relationships
         public DateTime CreatedOn { get; set; }
