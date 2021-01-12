@@ -15,6 +15,9 @@
 }
 else
 {
+    <div class="text-left">
+        <input placeholder="Buscar..." type="text" @oninput="FilterRecords" />
+    </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -37,13 +40,13 @@ else
                     <td>@record.Email</td>
                     <td>@record.Cellphone</td>
                     <td>@record.Address</td>
-                    <td>
-                        <a href="enterprise/edit/@record.Id">
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-outline-primary" href="enterprise/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
                         </a>
                     </td>
-                    <td>
-                        <button type="button" class="btn btn-outline-danger" @onclick="() => OnDeleteClick(record.Id)"><span class="oi oi-x"></span></button>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-outline-danger" @onclick="() => OnDeleteClick(record.Id)"><span class="oi oi-x"></span></button>
                     </td>
                 </tr>
             }

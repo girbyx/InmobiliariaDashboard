@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InmobiliariaDashboard.Shared;
+using InmobiliariaDashboard.Shared.Enumerations;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 
@@ -16,14 +18,26 @@ namespace InmobiliariaDashboard.Client.Pages.Project
         {
             var searchValue = e.Value.ToString().ToLower();
             Records = OriginalRecords.Where(x =>
-                x.Name.ToLower().Contains(searchValue)
+                x.EnterpriseName.ToLower().Contains(searchValue)
                 || x.Code.ToLower().Contains(searchValue)
-                || x.EnterpriseName.ToLower().Contains(searchValue));
+                || x.Name.ToLower().Contains(searchValue)
+                || BaseEnumeration.FromCode<ProjectTypeEnum>(x.ProjectType).DisplayName.Contains(searchValue)
+                || x.PurchasePrice.ToString("N").ToLower().Contains(searchValue)
+                || x.MinimumSellingPrice.ToString("N").ToLower().Contains(searchValue)
+                || x.MaximumSellingPrice.ToString("N").ToLower().Contains(searchValue)
+                || x.StartDate.ToString("D").ToLower().Contains(searchValue));
         }
 
         protected override async Task OnInitializedAsync()
         {
             Records = OriginalRecords = await Service.GetList();
+        }
+
+        protected async Task OnDeleteClick(int id)
+        {
+            await Service.Delete(id);
+            OriginalRecords = OriginalRecords.Where(x => x.Id != id);
+            Records = Records.Where(x => x.Id != id);
         }
     }
 }

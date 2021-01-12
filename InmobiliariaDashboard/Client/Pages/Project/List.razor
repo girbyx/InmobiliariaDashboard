@@ -34,6 +34,7 @@ else
                 <th>Inicio</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -44,17 +45,20 @@ else
                     <td>@record.Code</td>
                     <td>@record.Name</td>
                     <td>@(BaseEnumeration.FromCode<ProjectTypeEnum>(record.ProjectType).DisplayName)</td>
-                    <td>$@record.PurchasePrice</td>
-                    <td>$@record.MinimumSellingPrice</td>
-                    <td>$@record.MaximumSellingPrice</td>
-                    <td>@record.StartDate.ToString("d")</td>
+                    <td>$@record.PurchasePrice.ToString("N")</td>
+                    <td>$@record.MinimumSellingPrice.ToString("N")</td>
+                    <td>$@record.MaximumSellingPrice.ToString("N")</td>
+                    <td>@record.StartDate.ToString("D")</td>
                     <td>
-                        <a href="project/edit/@record.Id">
+                        <a class="btn btn-sm btn-outline-primary" href="project/edit/@record.Id">
                             <span class="oi oi-pencil"></span>
                         </a>
                     </td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-outline-danger" @onclick="() => OnDeleteClick(record.Id)"><span class="oi oi-x"></span></button>
+                    </td>
                     <td>
-                        <a href="project/history/@record.Id">
+                        <a class="btn btn-sm btn-outline-success" href="project/history/@record.Id">
                             <span class="oi oi-file"></span>
                         </a>
                     </td>
