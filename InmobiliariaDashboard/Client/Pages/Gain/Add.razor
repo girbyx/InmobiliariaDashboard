@@ -34,10 +34,10 @@
         </div>
         <FormSelectRecord OnChangeCallback="OnEnterpriseChange" @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Empresas"></FormSelectRecord>
         <FormSelectRecord @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Proyectos" WithEmptyOption="true"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.MonetaryAgentId" Records="Record.MonetaryAgents" Title="Agentes"></FormSelectRecord>
     </div>
 
     <div class="form-row">
-        <FormSelectRecord @bind-Value="Record.MonetaryAgentId" Records="Record.MonetaryAgents" Title="Agentes"></FormSelectRecord>
         <div class="col form-group">
             <label>Descripcion</label>
             <textarea rows="5" class="form-control" @bind="Record.Description"></textarea>
