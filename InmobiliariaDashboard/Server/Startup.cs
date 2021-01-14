@@ -60,7 +60,7 @@ namespace InmobiliariaDashboard.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            var cultureInfo = new CultureInfo("es-MX") { NumberFormat = { CurrencySymbol = "$" } };
+            var cultureInfo = new CultureInfo("es-MX") {NumberFormat = {CurrencySymbol = "$"}};
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 

@@ -24,7 +24,7 @@ namespace InmobiliariaDashboard.Client
                     .AddClasses()
                     .AsImplementedInterfaces());
 
-            var cultureInfo = new CultureInfo("es-MX") { NumberFormat = { CurrencySymbol = "$" } };
+            var cultureInfo = new CultureInfo("es-MX") {NumberFormat = {CurrencySymbol = "$"}};
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
