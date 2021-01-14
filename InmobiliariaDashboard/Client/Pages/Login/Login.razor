@@ -1,0 +1,25 @@
+﻿@page "/login"
+@inherits LoginBase
+
+<h1>Login</h1>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" @bind="Record.Username" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" @bind="Record.Password" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Log in</button>
+</EditForm>
