@@ -28,7 +28,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public string City { get; set; }
         public int? Zip { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una empresa")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
         public int EnterpriseId { get; set; }
         public string EnterpriseName { get; set; }
 
