@@ -64,6 +64,8 @@ namespace InmobiliariaDashboard.Server.Data
 
             // base users
             modelBuilder.Entity<LoginUser>().HasData(new LoginUser { Id = 1, Username = "admin", Password = "admin", Email = "admin@admin.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
+            modelBuilder.Entity<LoginUser>().HasData(new LoginUser { Id = 2, Username = "mdominguez", Password = "gorillaz1", Email = "marco.3292@gmail.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
+            modelBuilder.Entity<LoginUser>().HasData(new LoginUser { Id = 3, Username = "ngutierrez", Password = "guayas1", Email = "noe.gutierrez90@gmail.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
 
             base.OnModelCreating(modelBuilder);
         }
