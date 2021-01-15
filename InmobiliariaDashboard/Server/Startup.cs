@@ -91,6 +91,7 @@ namespace InmobiliariaDashboard.Server
 
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

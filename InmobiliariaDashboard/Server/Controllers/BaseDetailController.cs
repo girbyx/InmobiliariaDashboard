@@ -2,6 +2,7 @@
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -24,6 +25,7 @@ namespace InmobiliariaDashboard.Server.Controllers
             _baseService = baseService;
         }
 
+        [Authorize]
         [HttpGet]
         public TViewModel Get(int id)
         {
@@ -31,6 +33,7 @@ namespace InmobiliariaDashboard.Server.Controllers
             return result;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetEmpty")]
         public TViewModel GetEmpty()
@@ -39,6 +42,7 @@ namespace InmobiliariaDashboard.Server.Controllers
             return result;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetHistory")]
         public IEnumerable<TViewModel> GetHistory(int id)

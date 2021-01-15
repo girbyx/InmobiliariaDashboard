@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using AutoMapper;
+using InmobiliariaDashboard.Server.Data;
+using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -15,14 +18,15 @@ namespace InmobiliariaDashboard.Server.Controllers.Account
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;
-        private readonly IMapper _mapper;
+        private readonly IApplicationDbContext _dbContext;
 
-        public AccountController(ILogger<AccountController> logger, IMapper mapper)
+        public AccountController(ILogger<AccountController> logger, IApplicationDbContext dbContext)
         {
             _logger = logger;
-            _mapper = mapper;
+            _dbContext = dbContext;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("GetCurrentUserName")]
         public async Task<string> GetCurrentUserName()
@@ -30,13 +34,22 @@ namespace InmobiliariaDashboard.Server.Controllers.Account
             return HttpContext.User?.Identity?.Name;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login(LoginUserViewModel dto)
         {
+            await HttpContext.SignOutAsync();
+
+            var user = _dbContext.Set<LoginUser>()
+                .FirstOrDefault(x => x.Username == dto.Username && x.Password == dto.Password);
+            if (user == null)
+                return Unauthorized();
+
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, dto.Username)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Email, user.Email)
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -53,6 +66,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Account
             return Ok();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("Logout")]
         public async Task<IActionResult> Logout()

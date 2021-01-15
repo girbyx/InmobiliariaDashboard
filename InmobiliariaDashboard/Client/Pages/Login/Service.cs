@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared.ViewModels;
@@ -8,7 +9,7 @@ namespace InmobiliariaDashboard.Client.Pages.Login
 {
     public interface IService
     {
-        Task Login(LoginUserViewModel record);
+        Task<HttpStatusCode> Login(LoginUserViewModel record);
         Task Logout();
         Task GoBackHome();
     }
@@ -24,9 +25,10 @@ namespace InmobiliariaDashboard.Client.Pages.Login
             _navigationManager = navigationManager;
         }
 
-        public async Task Login(LoginUserViewModel record)
+        public async Task<HttpStatusCode> Login(LoginUserViewModel record)
         {
-            await _httpClient.PostAsJsonAsync("api/Account/Login", record);
+            var result = await _httpClient.PostAsJsonAsync("api/Account/Login", record);
+            return result.StatusCode;
         }
 
         public async Task Logout()

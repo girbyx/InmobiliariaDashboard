@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -25,6 +26,7 @@ namespace InmobiliariaDashboard.Server.Controllers
             _baseService = baseService;
         }
 
+        [Authorize]
         [HttpGet]
         public IEnumerable<TViewModel> Get()
         {
@@ -33,6 +35,7 @@ namespace InmobiliariaDashboard.Server.Controllers
             return result;
         }
 
+        [Authorize]
         [HttpPost]
         public int Post(TViewModel dto)
         {
@@ -40,6 +43,7 @@ namespace InmobiliariaDashboard.Server.Controllers
             return id;
         }
 
+        [Authorize]
         [HttpPost]
         [Route("PostFiles")]
         public int PostFiles([FromForm] string id, [FromForm] string[] files)
@@ -50,12 +54,14 @@ namespace InmobiliariaDashboard.Server.Controllers
             return result;
         }
 
+        [Authorize]
         [HttpDelete]
         public int Delete(int id)
         {
             return _baseService.Delete(id);
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("Archive")]
         public int Archive(int id)
@@ -63,6 +69,7 @@ namespace InmobiliariaDashboard.Server.Controllers
             return _baseService.Archive(id);
         }
 
+        [Authorize]
         [HttpPut]
         public int Put(TViewModel dto)
         {

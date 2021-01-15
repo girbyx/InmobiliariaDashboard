@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 
@@ -11,8 +12,9 @@ namespace InmobiliariaDashboard.Client.Pages.Login
 
         protected async Task HandleValidSubmit()
         {
-            await Service.Login(Record);
-            await Service.GoBackHome();
+            var statusCode = await Service.Login(Record);
+            if(statusCode == HttpStatusCode.OK)
+                await Service.GoBackHome();
         }
 
         protected async Task Logout()
