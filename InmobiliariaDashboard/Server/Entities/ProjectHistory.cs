@@ -21,7 +21,7 @@ namespace InmobiliariaDashboard.Server.Entities
 
         // audit & relationships
         public int EnterpriseId { get; set; }
-        public virtual Enterprise Enterprise { get; set; }
+        public virtual People People { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }

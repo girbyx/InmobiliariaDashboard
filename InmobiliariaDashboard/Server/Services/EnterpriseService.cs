@@ -5,11 +5,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IEnterpriseService : IBaseService<Enterprise, object>
+    public interface IEnterpriseService : IBaseService<People, object>
     {
     }
 
-    public class EnterpriseService : BaseService<Enterprise, object>, IEnterpriseService
+    public class EnterpriseService : BaseService<People, object>, IEnterpriseService
     {
         public EnterpriseService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
             dbContext, mapper, configuration)

@@ -7,13 +7,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace InmobiliariaDashboard.Server.Services
 {
-    public interface IMonetaryAgentService : IBaseService<MonetaryAgent, object>
+    public interface IMonetaryAgentService : IBaseService<BankAccount, object>
     {
-        IEnumerable<MonetaryAgent> GetByEnterprise(int id);
-        IEnumerable<MonetaryAgent> GetByProject(int id);
+        IEnumerable<BankAccount> GetByEnterprise(int id);
+        IEnumerable<BankAccount> GetByProject(int id);
     }
 
-    public class MonetaryAgentService : BaseService<MonetaryAgent, object>, IMonetaryAgentService
+    public class MonetaryAgentService : BaseService<BankAccount, object>, IMonetaryAgentService
     {
         private readonly IApplicationDbContext _dbContext;
 
@@ -23,18 +23,18 @@ namespace InmobiliariaDashboard.Server.Services
             _dbContext = dbContext;
         }
 
-        public IEnumerable<MonetaryAgent> GetByEnterprise(int id)
+        public IEnumerable<BankAccount> GetByEnterprise(int id)
         {
-            var records = _dbContext.Set<MonetaryAgent>()
-                .Where(x => x.Enterprise.Id == id)
+            var records = _dbContext.Set<BankAccount>()
+                .Where(x => x.People.Id == id)
                 .ToList();
             return records;
         }
 
-        public IEnumerable<MonetaryAgent> GetByProject(int id)
+        public IEnumerable<BankAccount> GetByProject(int id)
         {
-            var records = _dbContext.Set<MonetaryAgent>()
-                .Where(x => x.Enterprise.Projects.Any(y => y.Id == id))
+            var records = _dbContext.Set<BankAccount>()
+                .Where(x => x.People.Projects.Any(y => y.Id == id))
                 .ToList();
             return records;
         }

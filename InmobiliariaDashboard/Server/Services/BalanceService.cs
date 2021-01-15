@@ -8,8 +8,8 @@ namespace InmobiliariaDashboard.Server.Services
 {
     public interface IBalanceService
     {
-        IEnumerable<Enterprise> GetEnterpriseBalances();
-        IEnumerable<MonetaryAgent> GetMonetaryAgentBalances();
+        IEnumerable<People> GetEnterpriseBalances();
+        IEnumerable<BankAccount> GetMonetaryAgentBalances();
     }
 
     public class BalanceService : IBalanceService
@@ -21,9 +21,9 @@ namespace InmobiliariaDashboard.Server.Services
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Enterprise> GetEnterpriseBalances()
+        public IEnumerable<People> GetEnterpriseBalances()
         {
-            var records = _dbContext.Set<Enterprise>()
+            var records = _dbContext.Set<People>()
                 .Include(x => x.Assets)
                 .Include(x => x.Costs)
                 .Include(x => x.Gains)
@@ -35,9 +35,9 @@ namespace InmobiliariaDashboard.Server.Services
             return records;
         }
 
-        public IEnumerable<MonetaryAgent> GetMonetaryAgentBalances()
+        public IEnumerable<BankAccount> GetMonetaryAgentBalances()
         {
-            var records = _dbContext.Set<MonetaryAgent>()
+            var records = _dbContext.Set<BankAccount>()
                 .Include(x => x.Costs)
                 .Include(x => x.Gains)
                 .Include(x => x.Losses)

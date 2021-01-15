@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Enterprise
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EnterpriseDetailController : BaseDetailController<EnterpriseDetailController, Entities.Enterprise, object
+    public class EnterpriseDetailController : BaseDetailController<EnterpriseDetailController, Entities.People, object
         , EnterpriseViewModel>
     {
         public EnterpriseDetailController(ILogger<EnterpriseDetailController> logger, IMapper mapper,

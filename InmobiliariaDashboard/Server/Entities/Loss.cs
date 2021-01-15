@@ -27,11 +27,11 @@ namespace InmobiliariaDashboard.Server.Entities
         public int LossTypeId { get; set; }
         public virtual LossType LossType { get; set; }
         public int EnterpriseId { get; set; }
-        public virtual Enterprise Enterprise { get; set; }
+        public virtual People People { get; set; }
         public int? ProjectId { get; set; }
         public virtual Project Project { get; set; }
         public int MonetaryAgentId { get; set; }
-        public virtual MonetaryAgent MonetaryAgent { get; set; }
+        public virtual BankAccount BankAccount { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }

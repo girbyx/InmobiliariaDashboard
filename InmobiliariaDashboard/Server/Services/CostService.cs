@@ -25,7 +25,7 @@ namespace InmobiliariaDashboard.Server.Services
         public override Cost Get(int id)
         {
             var records = _dbContext.Set<Cost>()
-                .Include(x => x.MonetaryAgent)
+                .Include(x => x.BankAccount)
                 .Include(x => x.Attachments)
                 .Single(x => x.Id == id);
             return records;

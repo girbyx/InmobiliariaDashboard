@@ -35,7 +35,7 @@ namespace InmobiliariaDashboard.Server.Services
         public IEnumerable<Project> GetByEnterprise(int id)
         {
             var records = _dbContext.Set<Project>()
-                .Where(x => x.Enterprise.Id == id)
+                .Where(x => x.People.Id == id)
                 .ToList();
             return records;
         }
@@ -43,7 +43,7 @@ namespace InmobiliariaDashboard.Server.Services
         public override Project Get(int id)
         {
             var records = _dbContext.Set<Project>()
-                .Include(x => x.Enterprise.Contacts)
+                .Include(x => x.People.Contacts)
                 .Include(x => x.Attachments)
                 .Single(x => x.Id == id);
             return records;

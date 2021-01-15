@@ -3,7 +3,7 @@ using InmobiliariaDashboard.Server.Entities.Interfaces;
 
 namespace InmobiliariaDashboard.Server.Entities
 {
-    public class LoginUser : IIdentityFields, IAuditFields
+    public class ApplicationUser : IIdentityFields, IAuditFields
     {
         public int Id { get; set; }
         public string Username { get; set; }

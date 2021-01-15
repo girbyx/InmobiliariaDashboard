@@ -7,7 +7,7 @@ using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.Entities
 {
-    public class Enterprise : IIdentityFields, IAuditFields
+    public class People : IIdentityFields, IAuditFields
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -35,7 +35,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public virtual ICollection<Loss> Losses { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<Contact> Contacts { get; set; }
-        public virtual ICollection<MonetaryAgent> MonetaryAgents { get; set; }
+        public virtual ICollection<BankAccount> MonetaryAgents { get; set; }
         public virtual ICollection<Asset> Assets { get; set; }
     }
 
@@ -43,9 +43,9 @@ namespace InmobiliariaDashboard.Server.Entities
     {
         public EnterpriseProfile()
         {
-            CreateMap<Enterprise, EnterpriseViewModel>();
-            CreateMap<EnterpriseViewModel, Enterprise>();
-            CreateMap<Enterprise, EnterpriseBalanceViewModel>()
+            CreateMap<People, EnterpriseViewModel>();
+            CreateMap<EnterpriseViewModel, People>();
+            CreateMap<People, EnterpriseBalanceViewModel>()
                 .ForMember(dest => dest.AssetValue, opt => opt.MapFrom(src => src.Assets.Sum(y => y.SubTotal)))
                 .ForMember(dest => dest.ProjectPurchasePrice, opt => opt.MapFrom(src => src.Projects.Sum(y => y.PurchasePrice)))
                 .ForMember(dest => dest.LossValue, opt => opt.MapFrom(src =>

@@ -34,7 +34,7 @@ namespace InmobiliariaDashboard.Server.Services
         public async Task<string> DetailBaseEnterpriseReport(ExcelPackage package, int id)
         {
             // get selected enterprise and setup vars
-            var enterprise = _dbContext.Set<Enterprise>()
+            var enterprise = _dbContext.Set<People>()
                 .Include(x => x.Costs).ThenInclude(x => x.CostType)
                 .Include(x => x.Gains).ThenInclude(x => x.GainType)
                 .Include(x => x.Losses).ThenInclude(x => x.LossType)
@@ -43,9 +43,9 @@ namespace InmobiliariaDashboard.Server.Services
                 .Include(x => x.Projects).ThenInclude(x => x.Costs).ThenInclude(x => x.CostType)
                 .Include(x => x.Projects).ThenInclude(x => x.Gains).ThenInclude(x => x.GainType)
                 .Include(x => x.Projects).ThenInclude(x => x.Losses).ThenInclude(x => x.LossType)
-                .Include(x => x.Projects).ThenInclude(x => x.Costs).ThenInclude(x => x.MonetaryAgent)
-                .Include(x => x.Projects).ThenInclude(x => x.Gains).ThenInclude(x => x.MonetaryAgent)
-                .Include(x => x.Projects).ThenInclude(x => x.Losses).ThenInclude(x => x.MonetaryAgent)
+                .Include(x => x.Projects).ThenInclude(x => x.Costs).ThenInclude(x => x.BankAccount)
+                .Include(x => x.Projects).ThenInclude(x => x.Gains).ThenInclude(x => x.BankAccount)
+                .Include(x => x.Projects).ThenInclude(x => x.Losses).ThenInclude(x => x.BankAccount)
                 .Include(x => x.Projects).ThenInclude(x => x.ProjectSubType)
                 .First(x => x.Id == id);
             var projects = enterprise.Projects.OrderBy(x => x.ProjectType).ThenBy(x => x.ProjectSubType)
@@ -108,7 +108,7 @@ namespace InmobiliariaDashboard.Server.Services
                         : $"{loss.Commission:n}%";
                     worksheet.Cells[$"E{currentRow}"].Value = commission;
                     worksheet.Cells[$"F{currentRow}"].Value = $"{loss.Total:C}";
-                    worksheet.Cells[$"G{currentRow}"].Value = loss.MonetaryAgent.Name;
+                    worksheet.Cells[$"G{currentRow}"].Value = loss.BankAccount.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = loss.Description;
                     currentRow++;
                     projectValue -= loss.Total;
@@ -148,7 +148,7 @@ namespace InmobiliariaDashboard.Server.Services
                         : $"{cost.Commission:n}%";
                     worksheet.Cells[$"E{currentRow}"].Value = commission;
                     worksheet.Cells[$"F{currentRow}"].Value = $"{cost.Total:C}";
-                    worksheet.Cells[$"G{currentRow}"].Value = cost.MonetaryAgent.Name;
+                    worksheet.Cells[$"G{currentRow}"].Value = cost.BankAccount.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = cost.Description;
                     currentRow++;
                     projectValue -= cost.Total;
@@ -185,7 +185,7 @@ namespace InmobiliariaDashboard.Server.Services
                     worksheet.Cells[$"D{currentRow}"].Value = $"{gain.SubTotal:C}";
                     worksheet.Cells[$"E{currentRow}"].Value = "0%";
                     worksheet.Cells[$"F{currentRow}"].Value = $"{gain.SubTotal:C}";
-                    worksheet.Cells[$"G{currentRow}"].Value = gain.MonetaryAgent.Name;
+                    worksheet.Cells[$"G{currentRow}"].Value = gain.BankAccount.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = gain.Description;
                     currentRow++;
                     projectValue += gain.SubTotal;
@@ -457,7 +457,7 @@ namespace InmobiliariaDashboard.Server.Services
                         : $"{loss.Commission:n}%";
                     worksheet.Cells[$"E{currentRow}"].Value = commission;
                     worksheet.Cells[$"F{currentRow}"].Value = $"{loss.Total:C}";
-                    worksheet.Cells[$"G{currentRow}"].Value = loss.MonetaryAgent.Name;
+                    worksheet.Cells[$"G{currentRow}"].Value = loss.BankAccount.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = loss.Description;
                     currentRow++;
                 }
@@ -496,7 +496,7 @@ namespace InmobiliariaDashboard.Server.Services
                         : $"{cost.Commission:n}%";
                     worksheet.Cells[$"E{currentRow}"].Value = commission;
                     worksheet.Cells[$"F{currentRow}"].Value = $"{cost.Total:C}";
-                    worksheet.Cells[$"G{currentRow}"].Value = cost.MonetaryAgent.Name;
+                    worksheet.Cells[$"G{currentRow}"].Value = cost.BankAccount.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = cost.Description;
                     currentRow++;
                 }
@@ -532,7 +532,7 @@ namespace InmobiliariaDashboard.Server.Services
                     worksheet.Cells[$"D{currentRow}"].Value = $"{gain.SubTotal:C}";
                     worksheet.Cells[$"E{currentRow}"].Value = "0%";
                     worksheet.Cells[$"F{currentRow}"].Value = $"{gain.SubTotal:C}";
-                    worksheet.Cells[$"G{currentRow}"].Value = gain.MonetaryAgent.Name;
+                    worksheet.Cells[$"G{currentRow}"].Value = gain.BankAccount.Name;
                     worksheet.Cells[$"H{currentRow}"].Value = gain.Description;
                     currentRow++;
                 }

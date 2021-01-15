@@ -27,16 +27,16 @@ namespace InmobiliariaDashboard.Server.Data
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Cost> Costs { get; set; }
         public DbSet<CostType> CostTypes { get; set; }
-        public DbSet<Enterprise> Enterprises { get; set; }
+        public DbSet<People> Peoples { get; set; }
         public DbSet<Gain> Gains { get; set; }
         public DbSet<GainType> GainTypes { get; set; }
         public DbSet<Loss> Losses { get; set; }
         public DbSet<LossType> LossTypes { get; set; }
-        public DbSet<MonetaryAgent> MonetaryAgents { get; set; }
+        public DbSet<BankAccount> BankAccounts { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectHistory> ProjectsHistory { get; set; }
         public DbSet<Reminder> Reminders { get; set; }
-        public DbSet<LoginUser> LoginUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public ApplicationDbContext(DbContextOptions options, UserResolverService userResolver)
             : base(options)
@@ -52,20 +52,20 @@ namespace InmobiliariaDashboard.Server.Data
             modelBuilder.Entity<Contact>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<Cost>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<CostType>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
-            modelBuilder.Entity<Enterprise>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<People>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<Gain>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<GainType>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<Loss>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<LossType>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
-            modelBuilder.Entity<MonetaryAgent>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<BankAccount>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<Project>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<ProjectHistory>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<Reminder>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
 
             // base users
-            modelBuilder.Entity<LoginUser>().HasData(new LoginUser { Id = 1, Username = "admin", Password = "admin", Email = "admin@admin.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
-            modelBuilder.Entity<LoginUser>().HasData(new LoginUser { Id = 2, Username = "mdominguez", Password = "gorillaz1", Email = "marco.3292@gmail.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
-            modelBuilder.Entity<LoginUser>().HasData(new LoginUser { Id = 3, Username = "ngutierrez", Password = "guayas1", Email = "noe.gutierrez90@gmail.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = 1, Username = "admin", Password = "admin", Email = "admin@admin.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = 2, Username = "mdominguez", Password = "gorillaz1", Email = "marco.3292@gmail.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = 3, Username = "ngutierrez", Password = "guayas1", Email = "noe.gutierrez90@gmail.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
 
             base.OnModelCreating(modelBuilder);
         }

@@ -41,7 +41,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Account
         {
             await HttpContext.SignOutAsync();
 
-            var user = _dbContext.Set<LoginUser>()
+            var user = _dbContext.Set<ApplicationUser>()
                 .FirstOrDefault(x => x.Username == dto.Username && x.Password == dto.Password);
             if (user == null)
                 return Unauthorized();
