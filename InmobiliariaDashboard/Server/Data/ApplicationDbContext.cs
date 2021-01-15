@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Shared.Resolvers;
@@ -45,12 +44,36 @@ namespace InmobiliariaDashboard.Server.Data
             _userResolver = userResolver;
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Asset>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<AssetType>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<Attachment>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<Contact>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<Cost>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<CostType>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<Enterprise>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<Gain>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<GainType>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<Loss>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<LossType>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<MonetaryAgent>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<Project>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<ProjectHistory>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+            modelBuilder.Entity<Reminder>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
+
+            // base users
+            modelBuilder.Entity<LoginUser>().HasData(new LoginUser { Id = 1, Username = "admin", Password = "admin", Email = "admin@admin.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public override EntityEntry<TEntity> Add<TEntity>(TEntity entity)
         {
-            if (entity is IAuditFields)
+            if (entity is IAuditFields fields)
             {
-                (entity as IAuditFields).CreatedOn = DateTime.Now;
-                (entity as IAuditFields).CreatedBy = _userResolver.GetCurrentUserName();
+                fields.CreatedOn = DateTime.Now;
+                fields.CreatedBy = _userResolver.GetCurrentUserName();
             }
 
             return base.Add(entity);
@@ -58,11 +81,11 @@ namespace InmobiliariaDashboard.Server.Data
 
         public EntityEntry<TEntity> Archive<TEntity>(TEntity entity) where TEntity : class
         {
-            if (entity is ICanBeArchived)
+            if (entity is ICanBeArchived archived)
             {
-                (entity as ICanBeArchived).Archived = true;
-                (entity as ICanBeArchived).ArchivedOn = DateTime.Now;
-                (entity as ICanBeArchived).ArchivedBy = _userResolver.GetCurrentUserName();
+                archived.Archived = true;
+                archived.ArchivedOn = DateTime.Now;
+                archived.ArchivedBy = _userResolver.GetCurrentUserName();
             }
 
             return Update(entity);
@@ -70,10 +93,12 @@ namespace InmobiliariaDashboard.Server.Data
 
         public override EntityEntry<TEntity> Update<TEntity>(TEntity entity)
         {
-            if (entity is IAuditFields)
+            if (entity is IAuditFields fields)
             {
-                (entity as IAuditFields).UpdatedOn = DateTime.Now;
-                (entity as IAuditFields).UpdatedBy = _userResolver.GetCurrentUserName();
+                fields.CreatedOn = DateTime.Now;
+                fields.CreatedBy = _userResolver.GetCurrentUserName();
+                fields.UpdatedOn = DateTime.Now;
+                fields.UpdatedBy = _userResolver.GetCurrentUserName();
             }
 
             return base.Update(entity);
