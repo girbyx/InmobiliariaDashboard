@@ -34,7 +34,7 @@ namespace InmobiliariaDashboard.Server.Services
         public async Task<string> DetailBaseEnterpriseReport(ExcelPackage package, int id)
         {
             // get selected enterprise and setup vars
-            var enterprise = _dbContext.Set<People>()
+            var enterprise = await _dbContext.Set<People>()
                 .Include(x => x.Costs).ThenInclude(x => x.CostType)
                 .Include(x => x.Gains).ThenInclude(x => x.GainType)
                 .Include(x => x.Losses).ThenInclude(x => x.LossType)
@@ -47,7 +47,7 @@ namespace InmobiliariaDashboard.Server.Services
                 .Include(x => x.Projects).ThenInclude(x => x.Gains).ThenInclude(x => x.BankAccount)
                 .Include(x => x.Projects).ThenInclude(x => x.Losses).ThenInclude(x => x.BankAccount)
                 .Include(x => x.Projects).ThenInclude(x => x.ProjectSubType)
-                .First(x => x.Id == id);
+                .FirstAsync(x => x.Id == id);
             var projects = enterprise.Projects.OrderBy(x => x.ProjectType).ThenBy(x => x.ProjectSubType)
                 .ThenBy(x => x.Code).ToList();
 
