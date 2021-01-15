@@ -1,6 +1,6 @@
 {
-  "name": "InmobiliariaDashboard",
-  "short_name": "InmobiliariaDashboard",
+  "name": "Inmobiliaria Dashboard",
+  "short_name": "InMoDash",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
