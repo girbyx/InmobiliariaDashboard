@@ -6,6 +6,7 @@ namespace InmobiliariaDashboard.Client
 {
     public interface IBaseCatalogService<TViewModel> where TViewModel : class
     {
+        Task<string> GetCurrentUserName();
         Task<IEnumerable<TViewModel>> GetList();
         Task<IEnumerable<TViewModel>> GetHistory(int id);
         Task<TViewModel> Get(int id);

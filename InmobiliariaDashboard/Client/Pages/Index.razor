@@ -1,10 +1,8 @@
 ﻿@page "/"
-@using InmobiliariaDashboard.Client.Shared.CurrentReminders
+@inherits IndexBase
 
-<h1>¡Bienvenido!</h1>
+<h1>¡Bienvenido, @CurrentUserName!</h1>
 
 ¿Que desea hacer hoy?
-
-<CurrentReminders></CurrentReminders>
 
 <QuickLinks></QuickLinks>

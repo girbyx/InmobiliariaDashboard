@@ -27,6 +27,11 @@ namespace InmobiliariaDashboard.Client
             DetailControllerName = "";
         }
 
+        public async Task<string> GetCurrentUserName()
+        {
+            return await HttpClient.GetStringAsync("api/Account/GetCurrentUserName");
+        }
+
         public async Task<IEnumerable<TViewModel>> GetList()
         {
             return await HttpClient.GetFromJsonAsync<IEnumerable<TViewModel>>($"api/{ControllerName}");

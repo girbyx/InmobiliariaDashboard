@@ -8,23 +8,31 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace InmobiliariaDashboard.Server.Controllers.Login
+namespace InmobiliariaDashboard.Server.Controllers.Account
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LoginController : ControllerBase
+    public class AccountController : ControllerBase
     {
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogger<AccountController> _logger;
         private readonly IMapper _mapper;
 
-        public LoginController(ILogger<LoginController> logger, IMapper mapper)
+        public AccountController(ILogger<AccountController> logger, IMapper mapper)
         {
             _logger = logger;
             _mapper = mapper;
         }
 
+        [HttpGet]
+        [Route("GetCurrentUserName")]
+        public async Task<string> GetCurrentUserName()
+        {
+            return HttpContext.User?.Identity?.Name;
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Post(LoginUserViewModel dto)
+        [Route("Login")]
+        public async Task<IActionResult> Login(LoginUserViewModel dto)
         {
             var claims = new List<Claim>
             {
@@ -46,7 +54,8 @@ namespace InmobiliariaDashboard.Server.Controllers.Login
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        [Route("Logout")]
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
             return Ok();

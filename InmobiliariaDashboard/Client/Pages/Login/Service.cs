@@ -26,12 +26,12 @@ namespace InmobiliariaDashboard.Client.Pages.Login
 
         public async Task Login(LoginUserViewModel record)
         {
-            await _httpClient.PostAsJsonAsync("api/Login", record);
+            await _httpClient.PostAsJsonAsync("api/Account/Login", record);
         }
 
         public async Task Logout()
         {
-            await _httpClient.GetAsync("api/Login");
+            await _httpClient.GetAsync("api/Account/Logout");
         }
 
         public async Task GoBackHome()

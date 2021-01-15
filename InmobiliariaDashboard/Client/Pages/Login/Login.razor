@@ -2,7 +2,7 @@
 @inherits LoginBase
 
 <div class="text-center">
-    <h1>Log in</h1>
+    <h1>Acceder</h1>
 </div>
 
 <EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
@@ -25,8 +25,8 @@
 
     <div class="form-row">
         <div class="col offset-3 col-md-6 form-group">
-            <button type="submit" class="btn btn-success">Log in</button>
-            <button type="button" class="btn btn-secondary" @onclick="Logout">Log out</button>
+            <button type="submit" class="btn btn-success">Acceder</button>
+            <button type="button" class="btn btn-secondary" @onclick="Logout">Cerrar sesion</button>
         </div>
     </div>
 </EditForm>
