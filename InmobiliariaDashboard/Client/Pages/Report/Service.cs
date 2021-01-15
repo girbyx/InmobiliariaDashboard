@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Client.Pages.Report
 {
     public interface IService
     {
-        Task<IEnumerable<PeopleViewModel>> GetEnterpriseList();
+        Task<IEnumerable<PeopleViewModel>> GetPeopleList();
     }
 
     public class Service : IService
@@ -20,7 +20,7 @@ namespace InmobiliariaDashboard.Client.Pages.Report
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<PeopleViewModel>> GetEnterpriseList()
+        public async Task<IEnumerable<PeopleViewModel>> GetPeopleList()
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<PeopleViewModel>>("api/Enterprise");
         }

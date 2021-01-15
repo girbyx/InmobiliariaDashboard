@@ -1,26 +1,15 @@
 ﻿using System;
-using InmobiliariaDashboard.Shared;
 using InmobiliariaDashboard.Shared.Enumerations;
 
 namespace InmobiliariaDashboard.Server.Extensions
 {
     public static class DateTimeExtensions
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="originalDate"></param>
-        /// <returns></returns>
         public static bool IsItWeekend(this DateTime originalDate)
         {
             return originalDate.DayOfWeek == DayOfWeek.Saturday || originalDate.DayOfWeek == DayOfWeek.Sunday;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="originalDate"></param>
-        /// <returns></returns>
         public static DateTime NextDayOfWeek(this DateTime originalDate)
         {
             var startDate = DateTime.Now > originalDate ? DateTime.Now : originalDate;
@@ -36,12 +25,6 @@ namespace InmobiliariaDashboard.Server.Extensions
             } while (true);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="originalDate"></param>
-        /// <param name="frequencyCode"></param>
-        /// <returns></returns>
         public static DateTime NextOccurrence(this DateTime originalDate, string frequencyCode)
         {
             if (!string.IsNullOrEmpty(frequencyCode))

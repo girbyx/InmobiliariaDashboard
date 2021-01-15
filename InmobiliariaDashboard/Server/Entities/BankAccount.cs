@@ -36,7 +36,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public MonetaryAgentProfile()
         {
             CreateMap<BankAccount, BankAccountViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>());
+                .ForMember(dest => dest.Peoples, opt => opt.MapFrom<PeoplesResolver>());
             CreateMap<BankAccountViewModel, BankAccount>();
             CreateMap<BankAccount, BankAccountBalanceViewModel>()
                 .ForMember(dest => dest.LossValue, opt => opt.MapFrom(src => src.Losses.Sum(x => x.Total)))

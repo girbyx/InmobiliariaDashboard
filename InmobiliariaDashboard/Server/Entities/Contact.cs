@@ -40,7 +40,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public ContactProfile()
         {
             CreateMap<Contact, ContactViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>());
+                .ForMember(dest => dest.Peoples, opt => opt.MapFrom<PeoplesResolver>());
             CreateMap<ContactViewModel, Contact>();
         }
     }

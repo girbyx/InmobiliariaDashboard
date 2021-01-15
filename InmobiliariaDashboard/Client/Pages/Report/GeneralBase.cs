@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Client.Pages.Report
 
         protected override async Task OnInitializedAsync()
         {
-            Record.Enterprises = await Service.GetEnterpriseList();
+            Record.Peoples = await Service.GetPeopleList();
         }
     }
 }

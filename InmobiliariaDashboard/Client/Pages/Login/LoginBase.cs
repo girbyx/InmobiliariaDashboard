@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Client.Pages.Login
     public class LoginBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public LoginUserViewModel Record { get; set; } = new LoginUserViewModel();
+        public ApplicationUserViewModel Record { get; set; } = new ApplicationUserViewModel();
 
         protected async Task HandleValidSubmit()
         {

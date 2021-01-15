@@ -35,7 +35,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public ReminderProfile()
         {
             CreateMap<Reminder, ReminderViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>());
+                .ForMember(dest => dest.Peoples, opt => opt.MapFrom<PeoplesResolver>());
             CreateMap<ReminderViewModel, Reminder>();
         }
     }

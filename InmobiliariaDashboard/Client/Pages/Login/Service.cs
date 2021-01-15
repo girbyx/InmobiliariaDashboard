@@ -9,7 +9,7 @@ namespace InmobiliariaDashboard.Client.Pages.Login
 {
     public interface IService
     {
-        Task<HttpStatusCode> Login(LoginUserViewModel record);
+        Task<HttpStatusCode> Login(ApplicationUserViewModel record);
         Task Logout();
         Task GoBackHome();
     }
@@ -25,7 +25,7 @@ namespace InmobiliariaDashboard.Client.Pages.Login
             _navigationManager = navigationManager;
         }
 
-        public async Task<HttpStatusCode> Login(LoginUserViewModel record)
+        public async Task<HttpStatusCode> Login(ApplicationUserViewModel record)
         {
             var result = await _httpClient.PostAsJsonAsync("api/Account/Login", record);
             return result.StatusCode;

@@ -32,7 +32,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public AssetProfile()
         {
             CreateMap<Asset, AssetViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>())
+                .ForMember(dest => dest.Peoples, opt => opt.MapFrom<PeoplesResolver>())
                 .ForMember(dest => dest.AssetTypes, opt => opt.MapFrom<AssetTypesResolver>());
             CreateMap<AssetViewModel, Asset>();
         }

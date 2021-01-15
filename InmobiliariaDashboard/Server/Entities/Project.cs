@@ -49,7 +49,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public ProjectProfile()
         {
             CreateMap<Project, ProjectViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>())
+                .ForMember(dest => dest.Peoples, opt => opt.MapFrom<PeoplesResolver>())
                 .ForMember(dest => dest.ProjectSubTypes, opt => opt.MapFrom<ProjectSubTypesResolver>());
             CreateMap<ProjectViewModel, Project>();
         }

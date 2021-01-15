@@ -1,6 +1,6 @@
 ﻿namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class LoginUserViewModel
+    public class ApplicationUserViewModel
     {
         public string Username { get; set; }
         public string Password { get; set; }

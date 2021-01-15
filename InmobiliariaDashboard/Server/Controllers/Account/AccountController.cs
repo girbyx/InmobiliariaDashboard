@@ -37,7 +37,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Account
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login(LoginUserViewModel dto)
+        public async Task<IActionResult> Login(ApplicationUserViewModel dto)
         {
             await HttpContext.SignOutAsync();
 

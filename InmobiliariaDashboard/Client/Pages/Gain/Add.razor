@@ -32,7 +32,7 @@
             <label>Fecha</label>
             <input type="date" class="form-control" @bind="Record.Date" />
         </div>
-        <FormSelectRecord OnChangeCallback="OnEnterpriseChange" @bind-Value="Record.PeopleId" Records="Record.Enterprises" Title="Personas"></FormSelectRecord>
+        <FormSelectRecord OnChangeCallback="OnEnterpriseChange" @bind-Value="Record.PeopleId" Records="Record.Peoples" Title="Personas"></FormSelectRecord>
         <FormSelectRecord @bind-Value="Record.ProjectId" Records="Record.Projects" Title="Proyectos" WithEmptyOption="true"></FormSelectRecord>
         <FormSelectRecord @bind-Value="Record.BankAccountId" Records="Record.MonetaryAgents" Title="Agentes"></FormSelectRecord>
     </div>

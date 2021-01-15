@@ -33,6 +33,6 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public string PeopleName { get; set; }
 
         // select lists
-        public IEnumerable<PeopleViewModel> Enterprises { get; set; }
+        public IEnumerable<PeopleViewModel> Peoples { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace InmobiliariaDashboard.Server.Entities
             CreateMap<Loss, LossViewModel>()
                 .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId ?? 0))
                 .ForMember(dest => dest.LossTypes, opt => opt.MapFrom<LossTypesResolver>())
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>())
+                .ForMember(dest => dest.Peoples, opt => opt.MapFrom<PeoplesResolver>())
                 .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
             CreateMap<LossViewModel, Loss>()
                 .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId == 0 ? null : (int?)src.ProjectId));
