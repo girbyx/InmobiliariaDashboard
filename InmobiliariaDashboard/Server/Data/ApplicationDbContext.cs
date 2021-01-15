@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading;
 using InmobiliariaDashboard.Server.Models;
 using InmobiliariaDashboard.Server.Models.Interfaces;
+using InmobiliariaDashboard.Shared.Resolvers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -18,6 +20,8 @@ namespace InmobiliariaDashboard.Server.Data
 
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
+        private readonly UserResolverService _userResolver;
+
         public DbSet<Asset> Assets { get; set; }
         public DbSet<AssetType> AssetTypes { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
@@ -33,10 +37,12 @@ namespace InmobiliariaDashboard.Server.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectHistory> ProjectsHistory { get; set; }
         public DbSet<Reminder> Reminders { get; set; }
+        public DbSet<LoginUser> LoginUsers { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options)
+        public ApplicationDbContext(DbContextOptions options, UserResolverService userResolver)
             : base(options)
         {
+            _userResolver = userResolver;
         }
 
         public override EntityEntry<TEntity> Add<TEntity>(TEntity entity)
@@ -44,7 +50,7 @@ namespace InmobiliariaDashboard.Server.Data
             if (entity is IAuditFields)
             {
                 (entity as IAuditFields).CreatedOn = DateTime.Now;
-                (entity as IAuditFields).CreatedBy = string.Empty;
+                (entity as IAuditFields).CreatedBy = _userResolver.GetCurrentUserName();
             }
 
             return base.Add(entity);
@@ -56,7 +62,7 @@ namespace InmobiliariaDashboard.Server.Data
             {
                 (entity as ICanBeArchived).Archived = true;
                 (entity as ICanBeArchived).ArchivedOn = DateTime.Now;
-                (entity as ICanBeArchived).ArchivedBy = string.Empty;
+                (entity as ICanBeArchived).ArchivedBy = _userResolver.GetCurrentUserName();
             }
 
             return Update(entity);
@@ -67,7 +73,7 @@ namespace InmobiliariaDashboard.Server.Data
             if (entity is IAuditFields)
             {
                 (entity as IAuditFields).UpdatedOn = DateTime.Now;
-                (entity as IAuditFields).UpdatedBy = string.Empty;
+                (entity as IAuditFields).UpdatedBy = _userResolver.GetCurrentUserName();
             }
 
             return base.Update(entity);

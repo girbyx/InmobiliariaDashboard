@@ -9,9 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using InmobiliariaDashboard.Server.Data;
+using InmobiliariaDashboard.Shared.Resolvers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using OfficeOpenXml;
 
 namespace InmobiliariaDashboard.Server
@@ -40,6 +43,9 @@ namespace InmobiliariaDashboard.Server
                     .FromAssemblies(typeof(IApplicationDbContext).Assembly)
                     .AddClasses()
                     .AsImplementedInterfaces());
+
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<UserResolverService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
