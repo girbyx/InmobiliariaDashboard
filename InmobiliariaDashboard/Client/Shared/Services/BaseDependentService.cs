@@ -28,14 +28,14 @@ namespace InmobiliariaDashboard.Client.Shared.Services
             return await HttpClient.GetFromJsonAsync<IEnumerable<ProjectViewModel>>($"api/Project/ByEnterprise?id={id}");
         }
 
-        public async Task<IEnumerable<MonetaryAgentViewModel>> GetMonetaryAgentsByEnterprise(int id)
+        public async Task<IEnumerable<BankAccountViewModel>> GetMonetaryAgentsByEnterprise(int id)
         {
-            return await HttpClient.GetFromJsonAsync<IEnumerable<MonetaryAgentViewModel>>($"api/MonetaryAgent/ByEnterprise?id={id}");
+            return await HttpClient.GetFromJsonAsync<IEnumerable<BankAccountViewModel>>($"api/MonetaryAgent/ByEnterprise?id={id}");
         }
 
-        public async Task<IEnumerable<MonetaryAgentViewModel>> GetMonetaryAgentsByProject(int id)
+        public async Task<IEnumerable<BankAccountViewModel>> GetMonetaryAgentsByProject(int id)
         {
-            return await HttpClient.GetFromJsonAsync<IEnumerable<MonetaryAgentViewModel>>($"api/MonetaryAgent/ByProject?id={id}");
+            return await HttpClient.GetFromJsonAsync<IEnumerable<BankAccountViewModel>>($"api/MonetaryAgent/ByProject?id={id}");
         }
     }
 }

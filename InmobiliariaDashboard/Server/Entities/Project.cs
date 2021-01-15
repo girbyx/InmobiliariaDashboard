@@ -22,7 +22,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public DateTime? EndDate { get; set; }
 
         // audit & relationships
-        public int EnterpriseId { get; set; }
+        public int PeopleId { get; set; }
         public virtual People People { get; set; }
         public int ProjectSubTypeId { get; set; }
         public virtual ProjectSubType ProjectSubType { get; set; }
@@ -49,7 +49,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public ProjectProfile()
         {
             CreateMap<Project, ProjectViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>())
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>())
                 .ForMember(dest => dest.ProjectSubTypes, opt => opt.MapFrom<ProjectSubTypesResolver>());
             CreateMap<ProjectViewModel, Project>();
         }

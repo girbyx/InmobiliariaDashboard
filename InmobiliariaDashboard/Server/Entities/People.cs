@@ -43,9 +43,9 @@ namespace InmobiliariaDashboard.Server.Entities
     {
         public EnterpriseProfile()
         {
-            CreateMap<People, EnterpriseViewModel>();
-            CreateMap<EnterpriseViewModel, People>();
-            CreateMap<People, EnterpriseBalanceViewModel>()
+            CreateMap<People, PeopleViewModel>();
+            CreateMap<PeopleViewModel, People>();
+            CreateMap<People, PeopleBalanceViewModel>()
                 .ForMember(dest => dest.AssetValue, opt => opt.MapFrom(src => src.Assets.Sum(y => y.SubTotal)))
                 .ForMember(dest => dest.ProjectPurchasePrice, opt => opt.MapFrom(src => src.Projects.Sum(y => y.PurchasePrice)))
                 .ForMember(dest => dest.LossValue, opt => opt.MapFrom(src =>

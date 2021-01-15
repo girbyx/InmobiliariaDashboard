@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Server.Controllers.MonetaryAgent
     [ApiController]
     [Route("api/[controller]")]
     public class MonetaryAgentController : BaseCatalogController<MonetaryAgentController, Entities.BankAccount, object,
-        MonetaryAgentViewModel>
+        BankAccountViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IMonetaryAgentService _baseService;
@@ -26,17 +26,17 @@ namespace InmobiliariaDashboard.Server.Controllers.MonetaryAgent
 
         [HttpGet]
         [Route("ByEnterprise")]
-        public IEnumerable<MonetaryAgentViewModel> ByEnterprise(int id)
+        public IEnumerable<BankAccountViewModel> ByEnterprise(int id)
         {
-            var result = _baseService.GetByEnterprise(id).Select(_mapper.Map<MonetaryAgentViewModel>);
+            var result = _baseService.GetByEnterprise(id).Select(_mapper.Map<BankAccountViewModel>);
             return result;
         }
 
         [HttpGet]
         [Route("ByProject")]
-        public IEnumerable<MonetaryAgentViewModel> ByProject(int id)
+        public IEnumerable<BankAccountViewModel> ByProject(int id)
         {
-            var result = _baseService.GetByProject(id).Select(_mapper.Map<MonetaryAgentViewModel>);
+            var result = _baseService.GetByProject(id).Select(_mapper.Map<BankAccountViewModel>);
             return result;
         }
     }

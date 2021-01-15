@@ -20,15 +20,15 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public DateTime? EndDate { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
-        public int EnterpriseId { get; set; }
-        public string EnterpriseName { get; set; }
+        public int PeopleId { get; set; }
+        public string PeopleName { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un sub-tipo")]
         public int ProjectSubTypeId { get; set; }
         public string ProjectSubTypeName { get; set; }
 
         // select lists
-        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
+        public IEnumerable<PeopleViewModel> Enterprises { get; set; }
         public IEnumerable<ProjectSubTypeViewModel> ProjectSubTypes { get; set; }
 
         // lists

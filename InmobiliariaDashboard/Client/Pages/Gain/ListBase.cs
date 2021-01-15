@@ -16,9 +16,9 @@ namespace InmobiliariaDashboard.Client.Pages.Gain
         {
             var searchValue = e.Value.ToString().ToLower();
             Records = OriginalRecords.Where(x =>
-                x.EnterpriseName.ToLower().Contains(searchValue)
+                x.PeopleName.ToLower().Contains(searchValue)
                 || (x.ProjectName?.ToLower().Contains(searchValue) ?? false)
-                || x.MonetaryAgentName.ToLower().Contains(searchValue)
+                || x.BankAccountName.ToLower().Contains(searchValue)
                 || x.GainTypeName.ToLower().Contains(searchValue)
                 || x.Date.ToString("D").ToLower().Contains(searchValue));
         }

@@ -38,9 +38,9 @@ else
             @foreach (var record in Records)
             {
                 <tr>
-                    <td>@record.EnterpriseName</td>
+                    <td>@record.PeopleName</td>
                     <td>@(record.ProjectName ?? "-")</td>
-                    <td>@record.MonetaryAgentName</td>
+                    <td>@record.BankAccountName</td>
                     <td>@record.GainTypeName</td>
                     <td>@record.Value.ToString("C")</td>
                     <td>@record.Quantity.ToString("N")</td>

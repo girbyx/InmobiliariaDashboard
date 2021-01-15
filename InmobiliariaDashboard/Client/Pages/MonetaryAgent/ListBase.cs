@@ -11,18 +11,18 @@ namespace InmobiliariaDashboard.Client.Pages.MonetaryAgent
     public class ListBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public IEnumerable<MonetaryAgentViewModel> OriginalRecords;
-        public IEnumerable<MonetaryAgentViewModel> Records;
+        public IEnumerable<BankAccountViewModel> OriginalRecords;
+        public IEnumerable<BankAccountViewModel> Records;
 
         protected async Task FilterRecords(ChangeEventArgs e)
         {
             var searchValue = e.Value.ToString().ToLower();
             Records = OriginalRecords.Where(x =>
-                x.EnterpriseName.ToLower().Contains(searchValue)
+                x.PeopleName.ToLower().Contains(searchValue)
                 || x.Name.ToLower().Contains(searchValue)
                 || (x.AccountNumber?.ToString().ToLower().Contains(searchValue) ?? false)
                 || (x.CardNumber?.ToString().ToLower().Contains(searchValue) ?? false)
-                || BaseEnumeration.FromCode<MonetaryAgentTypeEnum>(x.MonetaryAgentType).DisplayName.ToLower().Contains(searchValue));
+                || BaseEnumeration.FromCode<BankAccountTypeEnum>(x.MonetaryAgentType).DisplayName.ToLower().Contains(searchValue));
         }
 
         protected override async Task OnInitializedAsync()

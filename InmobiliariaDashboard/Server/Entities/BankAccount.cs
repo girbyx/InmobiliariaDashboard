@@ -18,7 +18,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public string MonetaryAgentType { get; set; }
 
         // audit & relationships
-        public int EnterpriseId { get; set; }
+        public int PeopleId { get; set; }
         public virtual People People { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
@@ -35,10 +35,10 @@ namespace InmobiliariaDashboard.Server.Entities
     {
         public MonetaryAgentProfile()
         {
-            CreateMap<BankAccount, MonetaryAgentViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>());
-            CreateMap<MonetaryAgentViewModel, BankAccount>();
-            CreateMap<BankAccount, MonetaryAgentBalanceViewModel>()
+            CreateMap<BankAccount, BankAccountViewModel>()
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>());
+            CreateMap<BankAccountViewModel, BankAccount>();
+            CreateMap<BankAccount, BankAccountBalanceViewModel>()
                 .ForMember(dest => dest.LossValue, opt => opt.MapFrom(src => src.Losses.Sum(x => x.Total)))
                 .ForMember(dest => dest.CostValue, opt => opt.MapFrom(src => src.Costs.Sum(x => x.Total)))
                 .ForMember(dest => dest.GainValue, opt => opt.MapFrom(src => src.Gains.Sum(x => x.SubTotal)));

@@ -25,8 +25,8 @@ namespace InmobiliariaDashboard.Client.Pages.Loss
 
             // defaults
             Record.CommissionType = CommissionTypeEnum.Money.Code;
-            Record.MonetaryAgents = await Service.GetMonetaryAgentsByEnterprise(Record.EnterpriseId);
-            Record.Projects = await Service.GetProjectsByEnterprise(Record.EnterpriseId);
+            Record.MonetaryAgents = await Service.GetMonetaryAgentsByEnterprise(Record.PeopleId);
+            Record.Projects = await Service.GetProjectsByEnterprise(Record.PeopleId);
             Record.Date = DateTime.Now;
         }
 

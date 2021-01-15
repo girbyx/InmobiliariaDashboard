@@ -16,7 +16,7 @@ namespace InmobiliariaDashboard.Client.Pages.Contact
         {
             var searchValue = e.Value.ToString().ToLower();
             Records = OriginalRecords.Where(x =>
-                x.EnterpriseName.ToLower().Contains(searchValue)
+                x.PeopleName.ToLower().Contains(searchValue)
                 || x.Name.ToLower().Contains(searchValue)
                 || x.Email.ToLower().Contains(searchValue)
                 || x.Cellphone.ToLower().Contains(searchValue)

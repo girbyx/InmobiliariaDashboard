@@ -13,11 +13,11 @@ namespace InmobiliariaDashboard.Server.Services
         IEnumerable<BankAccount> GetByProject(int id);
     }
 
-    public class MonetaryAgentService : BaseService<BankAccount, object>, IMonetaryAgentService
+    public class BankAccountService : BaseService<BankAccount, object>, IMonetaryAgentService
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public MonetaryAgentService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) :
+        public BankAccountService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) :
             base(dbContext, mapper, configuration)
         {
             _dbContext = dbContext;

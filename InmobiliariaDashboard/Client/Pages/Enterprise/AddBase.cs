@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Client.Pages.Enterprise
     public class AddBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public EnterpriseViewModel Record { get; set; } = new EnterpriseViewModel();
+        public PeopleViewModel Record { get; set; } = new PeopleViewModel();
 
         protected async Task HandleValidSubmit()
         {

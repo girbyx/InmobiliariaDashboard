@@ -8,8 +8,8 @@ namespace InmobiliariaDashboard.Client.Pages.Balance
     public class ListBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public IEnumerable<EnterpriseBalanceViewModel> EnterpriseRecords;
-        public IEnumerable<MonetaryAgentBalanceViewModel> MonetaryAgentRecords;
+        public IEnumerable<PeopleBalanceViewModel> EnterpriseRecords;
+        public IEnumerable<BankAccountBalanceViewModel> MonetaryAgentRecords;
 
         protected override async Task OnInitializedAsync()
         {

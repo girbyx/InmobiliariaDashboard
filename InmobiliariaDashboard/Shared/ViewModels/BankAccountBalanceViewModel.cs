@@ -1,6 +1,6 @@
 ﻿namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class MonetaryAgentBalanceViewModel
+    public class BankAccountBalanceViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -37,11 +37,11 @@ else
             @foreach (var record in Records)
             {
                 <tr>
-                    <td>@record.EnterpriseName</td>
+                    <td>@record.PeopleName</td>
                     <td>@record.Name</td>
                     <td>@(record.AccountNumber?.ToString() ?? "-")</td>
                     <td>@(record.CardNumber?.ToString() ?? "-")</td>
-                    <td>@(BaseEnumeration.FromCode<MonetaryAgentTypeEnum>(record.MonetaryAgentType).DisplayName)</td>
+                    <td>@(BaseEnumeration.FromCode<BankAccountTypeEnum>(record.MonetaryAgentType).DisplayName)</td>
                     <td class="text-center">
                         <a class="btn btn-sm btn-outline-primary" href="monetaryagent/edit/@record.Id">
                             <span class="oi oi-pencil"></span>

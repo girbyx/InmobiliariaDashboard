@@ -18,7 +18,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
         {
             var searchValue = e.Value.ToString().ToLower();
             Records = OriginalRecords.Where(x =>
-                x.EnterpriseName.ToLower().Contains(searchValue)
+                x.PeopleName.ToLower().Contains(searchValue)
                 || x.Code.ToLower().Contains(searchValue)
                 || x.Name.ToLower().Contains(searchValue)
                 || BaseEnumeration.FromCode<ProjectTypeEnum>(x.ProjectType).DisplayName.ToLower().Contains(searchValue)

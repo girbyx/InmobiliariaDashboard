@@ -3,7 +3,7 @@ using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class EnterpriseViewModel : ISelectableViewModel
+    public class PeopleViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         [Required] public string Name { get; set; }

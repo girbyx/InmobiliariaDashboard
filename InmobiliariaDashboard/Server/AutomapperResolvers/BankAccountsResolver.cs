@@ -6,22 +6,22 @@ using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Server.AutomapperResolvers
 {
-    public class MonetaryAgentsResolver : IValueResolver<object, object, IEnumerable<MonetaryAgentViewModel>>
+    public class BankAccountsResolver : IValueResolver<object, object, IEnumerable<BankAccountViewModel>>
     {
         private readonly IMapper _mapper;
         private readonly IMonetaryAgentService _service;
 
-        public MonetaryAgentsResolver(IMapper mapper, IMonetaryAgentService service)
+        public BankAccountsResolver(IMapper mapper, IMonetaryAgentService service)
         {
             _mapper = mapper;
             _service = service;
         }
 
-        public IEnumerable<MonetaryAgentViewModel> Resolve(object source, object destination,
-            IEnumerable<MonetaryAgentViewModel> destMember,
+        public IEnumerable<BankAccountViewModel> Resolve(object source, object destination,
+            IEnumerable<BankAccountViewModel> destMember,
             ResolutionContext context)
         {
-            return _service.GetAllForResolver().Select(_mapper.Map<MonetaryAgentViewModel>);
+            return _service.GetAllForResolver().Select(_mapper.Map<BankAccountViewModel>);
         }
     }
 }

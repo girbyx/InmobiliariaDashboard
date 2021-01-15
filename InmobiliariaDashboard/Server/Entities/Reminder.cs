@@ -22,7 +22,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public string Description { get; set; }
 
         // audit & relationships
-        public int EnterpriseId { get; set; }
+        public int PeopleId { get; set; }
         public virtual People People { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
@@ -35,7 +35,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public ReminderProfile()
         {
             CreateMap<Reminder, ReminderViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>());
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>());
             CreateMap<ReminderViewModel, Reminder>();
         }
     }

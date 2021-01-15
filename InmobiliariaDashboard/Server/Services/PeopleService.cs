@@ -9,9 +9,9 @@ namespace InmobiliariaDashboard.Server.Services
     {
     }
 
-    public class EnterpriseService : BaseService<People, object>, IEnterpriseService
+    public class PeopleService : BaseService<People, object>, IEnterpriseService
     {
-        public EnterpriseService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
+        public PeopleService(IApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration) : base(
             dbContext, mapper, configuration)
         {
         }

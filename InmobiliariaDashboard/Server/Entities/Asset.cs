@@ -17,7 +17,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public string Description { get; set; }
 
         // audit & relationships
-        public int EnterpriseId { get; set; }
+        public int PeopleId { get; set; }
         public virtual People People { get; set; }
         public int AssetTypeId { get; set; }
         public virtual AssetType AssetType { get; set; }
@@ -32,7 +32,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public AssetProfile()
         {
             CreateMap<Asset, AssetViewModel>()
-                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<EnterprisesResolver>())
+                .ForMember(dest => dest.Enterprises, opt => opt.MapFrom<PeoplesResolver>())
                 .ForMember(dest => dest.AssetTypes, opt => opt.MapFrom<AssetTypesResolver>());
             CreateMap<AssetViewModel, Asset>();
         }

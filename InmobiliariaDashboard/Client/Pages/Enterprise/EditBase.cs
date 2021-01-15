@@ -9,7 +9,7 @@ namespace InmobiliariaDashboard.Client.Pages.Enterprise
     {
         [Inject] public IService Service { get; set; }
         [Parameter] public string Id { get; set; }
-        public EnterpriseViewModel Record { get; set; } = new EnterpriseViewModel();
+        public PeopleViewModel Record { get; set; } = new PeopleViewModel();
 
         protected override async Task OnInitializedAsync()
         {

@@ -9,8 +9,8 @@ namespace InmobiliariaDashboard.Client.Pages.Enterprise
     public class ListBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public IEnumerable<EnterpriseViewModel> OriginalRecords;
-        public IEnumerable<EnterpriseViewModel> Records;
+        public IEnumerable<PeopleViewModel> OriginalRecords;
+        public IEnumerable<PeopleViewModel> Records;
 
         protected async Task FilterRecords(ChangeEventArgs e)
         {

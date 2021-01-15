@@ -20,8 +20,8 @@ namespace InmobiliariaDashboard.Client.Pages.Gain
             Record = await Service.GetEmpty();
 
             // defaults
-            Record.MonetaryAgents = await Service.GetMonetaryAgentsByEnterprise(Record.EnterpriseId);
-            Record.Projects = await Service.GetProjectsByEnterprise(Record.EnterpriseId);
+            Record.MonetaryAgents = await Service.GetMonetaryAgentsByEnterprise(Record.PeopleId);
+            Record.Projects = await Service.GetProjectsByEnterprise(Record.PeopleId);
             Record.Date = DateTime.Now;
         }
 

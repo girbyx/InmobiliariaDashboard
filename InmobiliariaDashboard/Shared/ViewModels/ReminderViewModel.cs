@@ -17,11 +17,11 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public string Description { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
-        public int EnterpriseId { get; set; }
+        public int PeopleId { get; set; }
 
-        public string EnterpriseName { get; set; }
+        public string PeopleName { get; set; }
 
         // select lists
-        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
+        public IEnumerable<PeopleViewModel> Enterprises { get; set; }
     }
 }

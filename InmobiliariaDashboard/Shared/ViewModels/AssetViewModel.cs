@@ -14,15 +14,15 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required] public string Description { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
-        public int EnterpriseId { get; set; }
-        public string EnterpriseName { get; set; }
+        public int PeopleId { get; set; }
+        public string PeopleName { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione tipo de activo")]
         public int AssetTypeId { get; set; }
         public string AssetTypeName { get; set; }
 
         // select lists
-        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
+        public IEnumerable<PeopleViewModel> Enterprises { get; set; }
         public IEnumerable<AssetTypeViewModel> AssetTypes { get; set; }
     }
 }

@@ -27,19 +27,19 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public int LossTypeId { get; set; }
         public string LossTypeName { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
-        public int EnterpriseId { get; set; }
-        public string EnterpriseName { get; set; }
+        public int PeopleId { get; set; }
+        public string PeopleName { get; set; }
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una cuenta")]
-        public int MonetaryAgentId { get; set; }
-        public string MonetaryAgentName { get; set; }
+        public int BankAccountId { get; set; }
+        public string BankAccountName { get; set; }
 
         // select lists
         public IEnumerable<LossTypeViewModel> LossTypes { get; set; }
-        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
+        public IEnumerable<PeopleViewModel> Enterprises { get; set; }
         public IEnumerable<ProjectViewModel> Projects { get; set; }
-        public IEnumerable<MonetaryAgentViewModel> MonetaryAgents { get; set; }
+        public IEnumerable<BankAccountViewModel> MonetaryAgents { get; set; }
 
         // lists
         public IEnumerable<AttachmentViewModel> Attachments { get; set; }

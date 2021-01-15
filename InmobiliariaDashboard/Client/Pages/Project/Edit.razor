@@ -46,7 +46,7 @@
     </div>
 
     <div class="form-row">
-        <FormSelectRecord @bind-Value="Record.EnterpriseId" Records="Record.Enterprises" Title="Personas"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.PeopleId" Records="Record.Enterprises" Title="Personas"></FormSelectRecord>
         <FormSelectEnum OnCodeChangeCallback="OnProjectTypeChange" @bind-Value="Record.ProjectType" Records="ProjectTypes" Title="Tipos"></FormSelectEnum>
         <FormSelectRecord @bind-Value="Record.ProjectSubTypeId" Records="ProjectSubTypes" Title="Sub-tipos"></FormSelectRecord>
     </div>

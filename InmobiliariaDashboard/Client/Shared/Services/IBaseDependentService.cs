@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Client.Shared.Services
     {
         Task<bool> EmailProjectInformation(SendProjectInformationViewModel id);
         Task<IEnumerable<ProjectViewModel>> GetProjectsByEnterprise(int id);
-        Task<IEnumerable<MonetaryAgentViewModel>> GetMonetaryAgentsByEnterprise(int id);
-        Task<IEnumerable<MonetaryAgentViewModel>> GetMonetaryAgentsByProject(int id);
+        Task<IEnumerable<BankAccountViewModel>> GetMonetaryAgentsByEnterprise(int id);
+        Task<IEnumerable<BankAccountViewModel>> GetMonetaryAgentsByProject(int id);
     }
 }

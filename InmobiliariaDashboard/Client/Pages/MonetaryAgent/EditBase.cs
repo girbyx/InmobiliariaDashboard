@@ -12,8 +12,8 @@ namespace InmobiliariaDashboard.Client.Pages.MonetaryAgent
     {
         [Inject] public IService Service { get; set; }
         [Parameter] public string Id { get; set; }
-        public MonetaryAgentViewModel Record { get; set; } = new MonetaryAgentViewModel();
-        public IEnumerable<MonetaryAgentTypeEnum> MonetaryAgentTypes => BaseEnumeration.GetAll<MonetaryAgentTypeEnum>();
+        public BankAccountViewModel Record { get; set; } = new BankAccountViewModel();
+        public IEnumerable<BankAccountTypeEnum> MonetaryAgentTypes => BaseEnumeration.GetAll<BankAccountTypeEnum>();
 
         protected override async Task OnInitializedAsync()
         {

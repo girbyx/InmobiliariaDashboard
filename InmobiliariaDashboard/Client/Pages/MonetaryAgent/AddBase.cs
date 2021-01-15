@@ -11,15 +11,15 @@ namespace InmobiliariaDashboard.Client.Pages.MonetaryAgent
     public class AddBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public MonetaryAgentViewModel Record { get; set; } = new MonetaryAgentViewModel();
-        public IEnumerable<MonetaryAgentTypeEnum> MonetaryAgentTypes => BaseEnumeration.GetAll<MonetaryAgentTypeEnum>();
+        public BankAccountViewModel Record { get; set; } = new BankAccountViewModel();
+        public IEnumerable<BankAccountTypeEnum> MonetaryAgentTypes => BaseEnumeration.GetAll<BankAccountTypeEnum>();
 
         protected override async Task OnInitializedAsync()
         {
             Record = await Service.GetEmpty();
 
             // defaults
-            Record.MonetaryAgentType = MonetaryAgentTypeEnum.Money.Code;
+            Record.MonetaryAgentType = BankAccountTypeEnum.Cash.Code;
         }
 
         protected async Task HandleValidSubmit()

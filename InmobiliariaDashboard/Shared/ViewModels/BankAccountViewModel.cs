@@ -4,7 +4,7 @@ using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class MonetaryAgentViewModel : ISelectableViewModel
+    public class BankAccountViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         [Required]
@@ -15,10 +15,10 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required] public string MonetaryAgentType { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
-        public int EnterpriseId { get; set; }
-        public string EnterpriseName { get; set; }
+        public int PeopleId { get; set; }
+        public string PeopleName { get; set; }
 
         // select lists
-        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
+        public IEnumerable<PeopleViewModel> Enterprises { get; set; }
     }
 }

@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Components;
 
 namespace InmobiliariaDashboard.Client.Pages.Enterprise
 {
-    public interface IService : IBaseCatalogService<EnterpriseViewModel>
+    public interface IService : IBaseCatalogService<PeopleViewModel>
     {
 
     }
 
-    public class Service : BaseCatalogService<EnterpriseViewModel>, IService
+    public class Service : BaseCatalogService<PeopleViewModel>, IService
     {
         public Service(HttpClient httpClient, NavigationManager navigationManager)
             : base(httpClient, navigationManager)

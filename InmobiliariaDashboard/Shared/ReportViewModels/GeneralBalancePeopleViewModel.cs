@@ -3,9 +3,9 @@ using InmobiliariaDashboard.Shared.ViewModels;
 
 namespace InmobiliariaDashboard.Shared.ReportViewModels
 {
-    public class GeneralBalanceEnterpriseViewModel
+    public class GeneralBalancePeopleViewModel
     {
         public int Id { get; set; }
-        public IEnumerable<EnterpriseViewModel> Enterprises { get; set; }
+        public IEnumerable<PeopleViewModel> Enterprises { get; set; }
     }
 }

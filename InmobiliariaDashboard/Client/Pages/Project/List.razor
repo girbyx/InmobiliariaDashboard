@@ -41,7 +41,7 @@ else
             @foreach (var record in Records)
             {
                 <tr>
-                    <td>@record.EnterpriseName</td>
+                    <td>@record.PeopleName</td>
                     <td>@record.Code</td>
                     <td>@record.Name</td>
                     <td>@(BaseEnumeration.FromCode<ProjectTypeEnum>(record.ProjectType).DisplayName)</td>

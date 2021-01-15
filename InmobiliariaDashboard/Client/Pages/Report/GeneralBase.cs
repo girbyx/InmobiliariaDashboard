@@ -7,7 +7,7 @@ namespace InmobiliariaDashboard.Client.Pages.Report
     public class GeneralBase : ComponentBase
     {
         [Inject] public IService Service { get; set; }
-        public GeneralBalanceEnterpriseViewModel Record { get; set; } = new GeneralBalanceEnterpriseViewModel();
+        public GeneralBalancePeopleViewModel Record { get; set; } = new GeneralBalancePeopleViewModel();
 
         protected override async Task OnInitializedAsync()
         {
