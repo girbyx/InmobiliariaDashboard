@@ -9,7 +9,7 @@ namespace InmobiliariaDashboard.Server.Controllers.CostType
     [ApiController]
     [Route("api/[controller]")]
     public class
-        CostTypeDetailController : BaseDetailController<CostTypeDetailController, Models.CostType, object,
+        CostTypeDetailController : BaseDetailController<CostTypeDetailController, Entities.CostType, object,
             CostTypeViewModel>
     {
         public CostTypeDetailController(ILogger<CostTypeDetailController> logger, IMapper mapper,

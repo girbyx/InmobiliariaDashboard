@@ -9,11 +9,11 @@ namespace InmobiliariaDashboard.Server.Controllers.Reminder
     [ApiController]
     [Route("api/[controller]")]
     public class
-        ReminderDetailController : BaseDetailController<ReminderDetailController, Models.Reminder, object,
+        ReminderDetailController : BaseDetailController<ReminderDetailController, Entities.Reminder, object,
             ReminderViewModel>
     {
         public ReminderDetailController(ILogger<ReminderDetailController> logger, IMapper mapper,
-            IBaseService<Models.Reminder, object> baseService) : base(logger, mapper, baseService)
+            IBaseService<Entities.Reminder, object> baseService) : base(logger, mapper, baseService)
         {
         }
     }

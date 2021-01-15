@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Contact
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ContactController : BaseCatalogController<ContactController, Models.Contact, object,
+    public class ContactController : BaseCatalogController<ContactController, Entities.Contact, object,
         ContactViewModel>
     {
         public ContactController(ILogger<ContactController> logger, IMapper mapper, IContactService baseService)

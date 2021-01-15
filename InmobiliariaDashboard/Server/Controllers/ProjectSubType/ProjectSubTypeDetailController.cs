@@ -9,7 +9,7 @@ namespace InmobiliariaDashboard.Server.Controllers.ProjectSubType
     [ApiController]
     [Route("api/[controller]")]
     public class
-        ProjectSubTypeDetailController : BaseDetailController<ProjectSubTypeDetailController, Models.ProjectSubType, object,
+        ProjectSubTypeDetailController : BaseDetailController<ProjectSubTypeDetailController, Entities.ProjectSubType, object,
             ProjectSubTypeViewModel>
     {
         public ProjectSubTypeDetailController(ILogger<ProjectSubTypeDetailController> logger, IMapper mapper,

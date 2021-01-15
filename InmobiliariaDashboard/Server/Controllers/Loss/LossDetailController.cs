@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Loss
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LossDetailController : BaseDetailController<LossDetailController, Models.Loss, object, LossViewModel>
+    public class LossDetailController : BaseDetailController<LossDetailController, Entities.Loss, object, LossViewModel>
     {
         public LossDetailController(ILogger<LossDetailController> logger, IMapper mapper, ILossService baseService)
             : base(logger, mapper, baseService)

@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Attachment
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AttachmentController : BaseCatalogController<AttachmentController, Models.Attachment, object,
+    public class AttachmentController : BaseCatalogController<AttachmentController, Entities.Attachment, object,
         AttachmentViewModel>
     {
         public AttachmentController(ILogger<AttachmentController> logger, IMapper mapper,

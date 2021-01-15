@@ -9,10 +9,10 @@ namespace InmobiliariaDashboard.Server.Controllers.Asset
     [ApiController]
     [Route("api/[controller]")]
     public class
-        AssetDetailController : BaseDetailController<AssetDetailController, Models.Asset, object, AssetViewModel>
+        AssetDetailController : BaseDetailController<AssetDetailController, Entities.Asset, object, AssetViewModel>
     {
         public AssetDetailController(ILogger<AssetDetailController> logger, IMapper mapper,
-            IBaseService<Models.Asset, object> baseService)
+            IBaseService<Entities.Asset, object> baseService)
             : base(logger, mapper, baseService)
         {
         }

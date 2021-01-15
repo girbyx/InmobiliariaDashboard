@@ -9,7 +9,7 @@ namespace InmobiliariaDashboard.Server.Controllers.AssetType
     [ApiController]
     [Route("api/[controller]")]
     public class
-        AssetTypeController : BaseCatalogController<AssetTypeController, Models.AssetType, object, AssetTypeViewModel>
+        AssetTypeController : BaseCatalogController<AssetTypeController, Entities.AssetType, object, AssetTypeViewModel>
     {
         public AssetTypeController(ILogger<AssetTypeController> logger, IMapper mapper, IAssetTypeService baseService)
             : base(logger, mapper, baseService)

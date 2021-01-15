@@ -3,7 +3,7 @@ using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class CostTypeViewModel : IISelectableViewModel
+    public class CostTypeViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         [Required]

@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using InmobiliariaDashboard.Client.Shared.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Components;
 

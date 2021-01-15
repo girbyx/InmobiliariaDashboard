@@ -4,7 +4,7 @@ using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class AssetViewModel : IISelectableViewModel
+    public class AssetViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         [Required] public string Name { get; set; }

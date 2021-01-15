@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Reminder
     [ApiController]
     [Route("api/[controller]")]
     public class
-        ReminderController : BaseCatalogController<ReminderController, Models.Reminder, object, ReminderViewModel>
+        ReminderController : BaseCatalogController<ReminderController, Entities.Reminder, object, ReminderViewModel>
     {
         private readonly IMapper _mapper;
         private readonly IReminderService _baseService;

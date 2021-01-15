@@ -4,7 +4,7 @@ using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class ContactViewModel : IISelectableViewModel
+    public class ContactViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         public string SuffixName { get; set; }

@@ -5,9 +5,9 @@ using System.Linq;
 using AutoMapper;
 using CG.Web.MegaApiClient;
 using InmobiliariaDashboard.Server.Data;
+using InmobiliariaDashboard.Server.Entities;
+using InmobiliariaDashboard.Server.Entities.Interfaces;
 using InmobiliariaDashboard.Server.Extensions;
-using InmobiliariaDashboard.Server.Models;
-using InmobiliariaDashboard.Server.Models.Interfaces;
 using InmobiliariaDashboard.Shared;
 using Microsoft.Extensions.Configuration;
 

@@ -9,11 +9,11 @@ namespace InmobiliariaDashboard.Server.Controllers.GainType
     [ApiController]
     [Route("api/[controller]")]
     public class
-        GainTypeDetailController : BaseDetailController<GainTypeDetailController, Models.GainType, object,
+        GainTypeDetailController : BaseDetailController<GainTypeDetailController, Entities.GainType, object,
             GainTypeViewModel>
     {
         public GainTypeDetailController(ILogger<GainTypeDetailController> logger, IMapper mapper,
-            IBaseService<Models.GainType, object> baseService) : base(logger, mapper, baseService)
+            IBaseService<Entities.GainType, object> baseService) : base(logger, mapper, baseService)
         {
         }
     }

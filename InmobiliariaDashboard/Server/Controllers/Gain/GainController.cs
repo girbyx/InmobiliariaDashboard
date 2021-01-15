@@ -8,7 +8,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Gain
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class GainController : BaseCatalogController<GainController, Models.Gain, object, GainViewModel>
+    public class GainController : BaseCatalogController<GainController, Entities.Gain, object, GainViewModel>
     {
         public GainController(ILogger<GainController> logger, IMapper mapper, IGainService baseService)
             : base(logger, mapper, baseService)

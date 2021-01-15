@@ -12,7 +12,7 @@
             }
             @foreach (var item in Records)
             {
-                <option value="@((item as IISelectableViewModel)?.Id)">@((item as IISelectableViewModel)?.Name)</option>
+                <option value="@((item as ISelectableViewModel)?.Id)">@((item as ISelectableViewModel)?.Name)</option>
             }
         </select>
     }

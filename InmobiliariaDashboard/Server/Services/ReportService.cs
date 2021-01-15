@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using InmobiliariaDashboard.Server.Data;
-using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Server.Entities;
 using InmobiliariaDashboard.Shared.Enumerations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

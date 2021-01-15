@@ -9,11 +9,11 @@ namespace InmobiliariaDashboard.Server.Controllers.LossType
     [ApiController]
     [Route("api/[controller]")]
     public class
-        LossTypeDetailController : BaseDetailController<LossTypeDetailController, Models.LossType, object,
+        LossTypeDetailController : BaseDetailController<LossTypeDetailController, Entities.LossType, object,
             LossTypeViewModel>
     {
         public LossTypeDetailController(ILogger<LossTypeDetailController> logger, IMapper mapper,
-            IBaseService<Models.LossType, object> baseService) : base(logger, mapper, baseService)
+            IBaseService<Entities.LossType, object> baseService) : base(logger, mapper, baseService)
         {
         }
     }

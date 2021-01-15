@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using InmobiliariaDashboard.Server.Data;
-using InmobiliariaDashboard.Shared.Resolvers;
+using InmobiliariaDashboard.Shared.HttpResolvers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;

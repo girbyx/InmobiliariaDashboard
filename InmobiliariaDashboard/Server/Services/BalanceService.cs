@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using InmobiliariaDashboard.Server.Data;
-using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Server.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace InmobiliariaDashboard.Server.Services

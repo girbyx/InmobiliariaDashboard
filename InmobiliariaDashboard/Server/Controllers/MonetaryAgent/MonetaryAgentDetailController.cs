@@ -9,7 +9,7 @@ namespace InmobiliariaDashboard.Server.Controllers.MonetaryAgent
     [ApiController]
     [Route("api/[controller]")]
     public class
-        MonetaryAgentDetailController : BaseDetailController<MonetaryAgentDetailController, Models.MonetaryAgent, object
+        MonetaryAgentDetailController : BaseDetailController<MonetaryAgentDetailController, Entities.MonetaryAgent, object
             , MonetaryAgentViewModel>
     {
         public MonetaryAgentDetailController(ILogger<MonetaryAgentDetailController> logger, IMapper mapper,

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Server.Entities;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +12,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Project
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProjectController : BaseCatalogController<ProjectController, Models.Project, ProjectHistory,
+    public class ProjectController : BaseCatalogController<ProjectController, Entities.Project, ProjectHistory,
         ProjectViewModel>
     {
         private readonly IMapper _mapper;

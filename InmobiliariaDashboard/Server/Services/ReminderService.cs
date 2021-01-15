@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
-using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Server.Entities;
 using InmobiliariaDashboard.Shared;
 using Microsoft.Extensions.Configuration;
 

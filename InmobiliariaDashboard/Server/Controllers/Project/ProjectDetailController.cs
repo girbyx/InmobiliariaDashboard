@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Server.Entities;
 using InmobiliariaDashboard.Server.Services;
 using InmobiliariaDashboard.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Project
     [ApiController]
     [Route("api/[controller]")]
     public class
-        ProjectDetailController : BaseDetailController<ProjectDetailController, Models.Project, ProjectHistory,
+        ProjectDetailController : BaseDetailController<ProjectDetailController, Entities.Project, ProjectHistory,
             ProjectViewModel>
     {
         public ProjectDetailController(ILogger<ProjectDetailController> logger, IMapper mapper,

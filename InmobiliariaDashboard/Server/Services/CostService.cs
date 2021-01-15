@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using AutoMapper;
 using InmobiliariaDashboard.Server.Data;
-using InmobiliariaDashboard.Server.Models;
+using InmobiliariaDashboard.Server.Entities;
 using InmobiliariaDashboard.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

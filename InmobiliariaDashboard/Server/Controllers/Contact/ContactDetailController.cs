@@ -9,7 +9,7 @@ namespace InmobiliariaDashboard.Server.Controllers.Contact
     [ApiController]
     [Route("api/[controller]")]
     public class
-        ContactDetailController : BaseDetailController<ContactDetailController, Models.Contact, object,
+        ContactDetailController : BaseDetailController<ContactDetailController, Entities.Contact, object,
             ContactViewModel>
     {
         public ContactDetailController(ILogger<ContactDetailController> logger, IMapper mapper,

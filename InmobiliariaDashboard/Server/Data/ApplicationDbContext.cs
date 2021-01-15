@@ -1,7 +1,7 @@
 ﻿using System;
-using InmobiliariaDashboard.Server.Models;
-using InmobiliariaDashboard.Server.Models.Interfaces;
-using InmobiliariaDashboard.Shared.Resolvers;
+using InmobiliariaDashboard.Server.Entities;
+using InmobiliariaDashboard.Server.Entities.Interfaces;
+using InmobiliariaDashboard.Shared.HttpResolvers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 

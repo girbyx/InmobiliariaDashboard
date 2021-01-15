@@ -5,7 +5,7 @@ using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class LossViewModel : IIUploadFiles
+    public class LossViewModel : IFileUploader
     {
         public int Id { get; set; }
         [Required]

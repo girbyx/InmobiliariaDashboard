@@ -3,7 +3,7 @@ using InmobiliariaDashboard.Shared.Interfaces;
 
 namespace InmobiliariaDashboard.Shared.ViewModels
 {
-    public class LossTypeViewModel : IISelectableViewModel
+    public class LossTypeViewModel : ISelectableViewModel
     {
         public int Id { get; set; }
         [Required]
