@@ -193,7 +193,7 @@ namespace InmobiliariaDashboard.Server.Services
 
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
-                worksheet.Cells[$"E{currentRow}"].Value = "Total ingresos";
+                worksheet.Cells[$"E{currentRow}"].Value = "Total ganancias";
                 worksheet.Cells[$"F{currentRow}"].Value = $"{gains.Sum(x => x.SubTotal):C}";
                 currentRow++;
                 currentRow++;
@@ -233,7 +233,7 @@ namespace InmobiliariaDashboard.Server.Services
                 worksheet.Cells[$"A{currentRow}"].Value = "Cuenta";
                 worksheet.Cells[$"B{currentRow}"].Value = "Perdidas";
                 worksheet.Cells[$"C{currentRow}"].Value = "Gastos";
-                worksheet.Cells[$"D{currentRow}"].Value = "Ingresos";
+                worksheet.Cells[$"D{currentRow}"].Value = "Ganancias";
                 currentRow++;
 
                 foreach (var monetaryAgent in monetaryAgents)
@@ -539,7 +539,7 @@ namespace InmobiliariaDashboard.Server.Services
 
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
-                worksheet.Cells[$"E{currentRow}"].Value = "Total ingresos";
+                worksheet.Cells[$"E{currentRow}"].Value = "Total ganancias";
                 worksheet.Cells[$"F{currentRow}"].Value = $"{gains.Sum(x => x.SubTotal):C}";
                 currentRow++;
                 currentRow++;

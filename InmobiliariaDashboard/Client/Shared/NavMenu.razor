@@ -104,19 +104,19 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.GainSubMenu = !SubMenuNavigation.GainSubMenu" class="nav-link">
-                <span class="oi oi-expand-down" aria-hidden="true"></span> Ingresos
+                <span class="oi oi-expand-down" aria-hidden="true"></span> Ganancias
             </NavLink>
         </li>
         @if (SubMenuNavigation.GainSubMenu)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="gaintype/list">
-                    Tipos de ingresos
+                    Tipos de ganancias
                 </NavLink>
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="gain/list">
-                    <span class="oi oi-thumb-up" aria-hidden="true"></span> Alta ingresos
+                    <span class="oi oi-thumb-up" aria-hidden="true"></span> Alta ganancias
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>

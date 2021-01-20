@@ -19,7 +19,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un tipo de ingreso")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un tipo de ganancia")]
         public int GainTypeId { get; set; }
         public string GainTypeName { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una entidad")]
