@@ -6,7 +6,8 @@
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+@* <div class="@NavMenuCssClass" @onclick="ToggleNavMenu"> *@
+<div class="@NavMenuCssClass">
     <ul class="nav flex-column">
         @*<li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
@@ -32,7 +33,7 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.ProjectSubMenu = !SubMenuNavigation.ProjectSubMenu" class="nav-link">
-                <span class="oi oi-briefcase" aria-hidden="true"></span> Proyectos <span class="oi oi-caret-right" aria-hidden="true"></span>
+                <span class="oi oi-expand-down" aria-hidden="true"></span> Proyectos
             </NavLink>
         </li>
         @if (SubMenuNavigation.ProjectSubMenu)
@@ -44,7 +45,7 @@
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="project/list">
-                    Alta
+                    <span class="oi oi-briefcase" aria-hidden="true"></span> Alta proyectos
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
@@ -63,7 +64,7 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.AssetSubMenu = !SubMenuNavigation.AssetSubMenu" class="nav-link">
-                <span class="oi oi-briefcase" aria-hidden="true"></span> Activos <span class="oi oi-caret-right" aria-hidden="true"></span>
+                <span class="oi oi-expand-down" aria-hidden="true"></span> Activos
             </NavLink>
         </li>
         @if (SubMenuNavigation.AssetSubMenu)
@@ -75,7 +76,7 @@
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="asset/list">
-                    Alta
+                    <span class="oi oi-briefcase" aria-hidden="true"></span> Alta activos
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
@@ -83,7 +84,7 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.CostSubMenu = !SubMenuNavigation.CostSubMenu" class="nav-link">
-                <span class="oi oi-dollar" aria-hidden="true"></span> Gastos <span class="oi oi-caret-right" aria-hidden="true"></span>
+                <span class="oi oi-expand-down" aria-hidden="true"></span> Gastos
             </NavLink>
         </li>
         @if (SubMenuNavigation.CostSubMenu)
@@ -95,7 +96,7 @@
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="cost/list">
-                    Alta
+                    <span class="oi oi-dollar" aria-hidden="true"></span> Alta gastos
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
@@ -103,7 +104,7 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.GainSubMenu = !SubMenuNavigation.GainSubMenu" class="nav-link">
-                <span class="oi oi-thumb-up" aria-hidden="true"></span> Ingresos <span class="oi oi-caret-right" aria-hidden="true"></span>
+                <span class="oi oi-expand-down" aria-hidden="true"></span> Ingresos
             </NavLink>
         </li>
         @if (SubMenuNavigation.GainSubMenu)
@@ -115,7 +116,7 @@
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="gain/list">
-                    Alta
+                    <span class="oi oi-thumb-up" aria-hidden="true"></span> Alta ingresos
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
@@ -123,7 +124,7 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.LossSubMenu = !SubMenuNavigation.LossSubMenu" class="nav-link">
-                <span class="oi oi-thumb-down" aria-hidden="true"></span> Perdidas <span class="oi oi-caret-right" aria-hidden="true"></span>
+                <span class="oi oi-expand-down" aria-hidden="true"></span> Perdidas
             </NavLink>
         </li>
         @if (SubMenuNavigation.LossSubMenu)
@@ -135,7 +136,7 @@
             </li>
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="loss/list">
-                    Alta
+                    <span class="oi oi-thumb-down" aria-hidden="true"></span> Alta perdidas
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
@@ -143,14 +144,14 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="() => SubMenuNavigation.ReportSubMenu = !SubMenuNavigation.ReportSubMenu" class="nav-link">
-                <span class="oi oi-document" aria-hidden="true"></span> Reportes <span class="oi oi-caret-right" aria-hidden="true"></span>
+                <span class="oi oi-expand-down" aria-hidden="true"></span> Reportes
             </NavLink>
         </li>
         @if (SubMenuNavigation.ReportSubMenu)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="report/general">
-                    Balance general
+                    <span class="oi oi-document" aria-hidden="true"></span> Balance general
                 </NavLink>
             </li>
             <li class="nav-item px-3"><hr /></li>
