@@ -259,3 +259,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+InmobiliariaDashboard/Server/Properties/serviceDependencies.json
+InmobiliariaDashboard/Server/Properties/ServiceDependencies/InMoDash - Web Deploy/profile.arm.json
+InmobiliariaDashboard/Server/Properties/ServiceDependencies/InMoDash - Web Deploy/mssql1.arm.json
+InmobiliariaDashboard/Server/Properties/PublishProfiles/InMoDash - Web Deploy.pubxml
+InmobiliariaDashboard/Server/Properties/serviceDependencies.InMoDash - Web Deploy.json
