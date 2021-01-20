@@ -11,7 +11,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required]
         public double Value { get; set; }
         [Required]
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } = 1;
         public double SubTotal { get; set; }
         public double Commission { get; set; }
         [Required]
