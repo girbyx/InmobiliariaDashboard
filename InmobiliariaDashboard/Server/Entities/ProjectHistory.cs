@@ -28,7 +28,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public string UpdatedBy { get; set; }
 
         // history specific
-        public int OriginalId { get; set; }
+        public int? OriginalId { get; set; }
         public virtual Project Original { get; set; }
     }
 

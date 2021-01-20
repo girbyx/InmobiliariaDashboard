@@ -20,7 +20,7 @@ namespace InmobiliariaDashboard.Server.Entities
         // audit & relationships
         public int GainTypeId { get; set; }
         public virtual GainType GainType { get; set; }
-        public int PeopleId { get; set; }
+        public int? PeopleId { get; set; }
         public virtual People People { get; set; }
         public int? ProjectId { get; set; }
         public virtual Project Project { get; set; }

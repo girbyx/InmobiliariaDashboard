@@ -26,7 +26,7 @@ namespace InmobiliariaDashboard.Server.Entities
         // audit & relationships
         public int CostTypeId { get; set; }
         public virtual CostType CostType { get; set; }
-        public int PeopleId { get; set; }
+        public int? PeopleId { get; set; }
         public virtual People People { get; set; }
         public int? ProjectId { get; set; }
         public virtual Project Project { get; set; }
