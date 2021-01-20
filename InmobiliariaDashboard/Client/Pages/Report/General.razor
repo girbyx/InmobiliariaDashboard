@@ -5,7 +5,7 @@
 
 <form>
     <div class="form-row">
-        <FormSelectRecord @bind-Value="Record.Id" Records="Record.Peoples" Title="Personas"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.Id" Records="Record.Peoples" Title="Entidades"></FormSelectRecord>
     </div>
 
     <a href="api/Report/SimpleBaseEnterpriseReport?id=@(Record.Id)" download target="_top" class="btn btn-success">

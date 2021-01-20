@@ -1,7 +1,7 @@
 ﻿@page "/enterprise/edit/{id}"
 @inherits EditBase
 
-<h1>Editar persona</h1>
+<h1>Editar entidad</h1>
 
 <div class="text-right">
     <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Borrar</button>
@@ -15,7 +15,7 @@
 
     <div class="form-row">
         <div class="col form-group">
-            <label>Persona</label>
+            <label>Entidad</label>
             <input type="text" class="form-control" @bind="Record.Name" />
         </div>
         <div class="col form-group">

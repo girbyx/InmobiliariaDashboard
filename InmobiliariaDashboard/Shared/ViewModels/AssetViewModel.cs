@@ -13,7 +13,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public double SubTotal { get; set; }
         [Required] public string Description { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una entidad")]
         public int PeopleId { get; set; }
         public string PeopleName { get; set; }
 

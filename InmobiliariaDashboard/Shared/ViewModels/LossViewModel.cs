@@ -26,7 +26,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un tipo de perdida")]
         public int LossTypeId { get; set; }
         public string LossTypeName { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una entidad")]
         public int PeopleId { get; set; }
         public string PeopleName { get; set; }
         public int ProjectId { get; set; }

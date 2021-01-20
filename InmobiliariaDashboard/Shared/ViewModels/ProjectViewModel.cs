@@ -19,7 +19,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Required] public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una entidad")]
         public int PeopleId { get; set; }
         public string PeopleName { get; set; }
 
