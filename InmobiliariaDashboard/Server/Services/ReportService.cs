@@ -116,7 +116,7 @@ namespace InmobiliariaDashboard.Server.Services
 
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
-                worksheet.Cells[$"E{currentRow}"].Value = "Total egresos";
+                worksheet.Cells[$"E{currentRow}"].Value = "Total perdidas";
                 worksheet.Cells[$"F{currentRow}"].Value = $"{losses.Sum(x => x.Total):C}";
                 currentRow++;
                 currentRow++;
@@ -156,7 +156,7 @@ namespace InmobiliariaDashboard.Server.Services
 
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
-                worksheet.Cells[$"E{currentRow}"].Value = "Total costos";
+                worksheet.Cells[$"E{currentRow}"].Value = "Total gastos";
                 worksheet.Cells[$"F{currentRow}"].Value = $"{costs.Sum(x => x.Total):C}";
                 currentRow++;
                 currentRow++;
@@ -231,8 +231,8 @@ namespace InmobiliariaDashboard.Server.Services
                 var monetaryAgents = enterprise.MonetaryAgents.ToList();
 
                 worksheet.Cells[$"A{currentRow}"].Value = "Cuenta";
-                worksheet.Cells[$"B{currentRow}"].Value = "Egresos";
-                worksheet.Cells[$"C{currentRow}"].Value = "Costos";
+                worksheet.Cells[$"B{currentRow}"].Value = "Perdidas";
+                worksheet.Cells[$"C{currentRow}"].Value = "Gastos";
                 worksheet.Cells[$"D{currentRow}"].Value = "Ingresos";
                 currentRow++;
 
@@ -309,7 +309,7 @@ namespace InmobiliariaDashboard.Server.Services
 
                     worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                     worksheet.Cells[$"A{currentRow}"].Value = "";
-                    worksheet.Cells[$"B{currentRow}"].Value = "Costo adquisicion";
+                    worksheet.Cells[$"B{currentRow}"].Value = "Gasto adquisicion";
                     worksheet.Cells[$"C{currentRow}"].Value = "Perdida";
                     worksheet.Cells[$"D{currentRow}"].Value = "Inversion";
                     worksheet.Cells[$"E{currentRow}"].Value = "Ganancia";
@@ -464,7 +464,7 @@ namespace InmobiliariaDashboard.Server.Services
 
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
-                worksheet.Cells[$"E{currentRow}"].Value = "Total egresos";
+                worksheet.Cells[$"E{currentRow}"].Value = "Total perdidas";
                 worksheet.Cells[$"F{currentRow}"].Value = $"{losses.Sum(x => x.Total):C}";
                 currentRow++;
                 currentRow++;
@@ -503,7 +503,7 @@ namespace InmobiliariaDashboard.Server.Services
 
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"E{currentRow}:F{currentRow}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
-                worksheet.Cells[$"E{currentRow}"].Value = "Total costos";
+                worksheet.Cells[$"E{currentRow}"].Value = "Total gastos";
                 worksheet.Cells[$"F{currentRow}"].Value = $"{costs.Sum(x => x.Total):C}";
                 currentRow++;
                 currentRow++;
@@ -547,7 +547,7 @@ namespace InmobiliariaDashboard.Server.Services
                 // assets
                 worksheet.Cells[$"A{currentRow}:F{currentRow}"].Style.Font.Bold = true;
                 worksheet.Cells[$"A{currentRow}"].Value = "";
-                worksheet.Cells[$"B{currentRow}"].Value = "Costo adquisicion";
+                worksheet.Cells[$"B{currentRow}"].Value = "Gasto adquisicion";
                 worksheet.Cells[$"C{currentRow}"].Value = "Perdida";
                 worksheet.Cells[$"D{currentRow}"].Value = "Inversion";
                 worksheet.Cells[$"E{currentRow}"].Value = "Ganancia";

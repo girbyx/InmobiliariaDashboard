@@ -23,7 +23,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un tipo de egreso")]
+        [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione un tipo de perdida")]
         public int LossTypeId { get; set; }
         public string LossTypeName { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una persona")]

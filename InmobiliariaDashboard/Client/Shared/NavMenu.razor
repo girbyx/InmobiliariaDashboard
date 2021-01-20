@@ -83,14 +83,14 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.CostSubMenu = !SubMenuNavigation.CostSubMenu" class="nav-link">
-                <span class="oi oi-dollar" aria-hidden="true"></span> Costos <span class="oi oi-caret-right" aria-hidden="true"></span>
+                <span class="oi oi-dollar" aria-hidden="true"></span> Gastos <span class="oi oi-caret-right" aria-hidden="true"></span>
             </NavLink>
         </li>
         @if (SubMenuNavigation.CostSubMenu)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="costtype/list">
-                    Tipos de costos
+                    Tipos de gastos
                 </NavLink>
             </li>
             <li class="nav-item px-3">
@@ -123,14 +123,14 @@
 
         <li class="nav-item px-3">
             <NavLink @onclick="()=> SubMenuNavigation.LossSubMenu = !SubMenuNavigation.LossSubMenu" class="nav-link">
-                <span class="oi oi-thumb-down" aria-hidden="true"></span> Egresos <span class="oi oi-caret-right" aria-hidden="true"></span>
+                <span class="oi oi-thumb-down" aria-hidden="true"></span> Perdidas <span class="oi oi-caret-right" aria-hidden="true"></span>
             </NavLink>
         </li>
         @if (SubMenuNavigation.LossSubMenu)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="losstype/list">
-                    Tipos de egresos
+                    Tipos de perdidas
                 </NavLink>
             </li>
             <li class="nav-item px-3">
