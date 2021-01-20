@@ -46,6 +46,15 @@
     </div>
 
     <div class="form-row">
+        <div class="text-center col-2 form-group">
+            <label>Transferencia</label>
+            <input type="checkbox" class="form-control" @bind="Record.Transfer" />
+        </div>
+        <FormSelectRecord @bind-Value="Record.BankAccountId" Records="Record.MonetaryAgents" Title="Cuenta costo"></FormSelectRecord>
+        <FormSelectRecord @bind-Value="Record.GainBankAccountId" Records="Record.MonetaryAgents" Title="Cuenta ganancia"></FormSelectRecord>
+    </div>
+
+    <div class="form-row">
         <div class="col form-group">
             <label>Descripcion</label>
             <textarea rows="5" class="form-control" @bind="Record.Description"></textarea>
