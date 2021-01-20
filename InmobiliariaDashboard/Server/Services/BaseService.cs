@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using AutoMapper;
 using CG.Web.MegaApiClient;
 using InmobiliariaDashboard.Server.Data;
@@ -15,6 +16,7 @@ namespace InmobiliariaDashboard.Server.Services
 {
     public interface IBaseService<TEntity, out THistory> where TEntity : class where THistory : class
     {
+        IEnumerable<TEntity> GetByQuery(Expression<Func<TEntity, bool>> function);
         IEnumerable<TEntity> GetAll();
         IEnumerable<THistory> GetHistory(int id);
         IEnumerable<TEntity> GetAllForResolver();
@@ -38,6 +40,15 @@ namespace InmobiliariaDashboard.Server.Services
             _dbContext = dbContext;
             _mapper = mapper;
             _configuration = configuration;
+        }
+
+        public IEnumerable<TEntity> GetByQuery(Expression<Func<TEntity, bool>> function)
+        {
+            var records = _dbContext.Set<TEntity>()
+                .IncludeAll()
+                .Where(function)
+                .ToList();
+            return records;
         }
 
         public virtual IEnumerable<TEntity> GetAll()
