@@ -49,9 +49,11 @@ namespace InmobiliariaDashboard.Server.Entities
                 .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId ?? 0))
                 .ForMember(dest => dest.CostTypes, opt => opt.MapFrom<CostTypesResolver>())
                 .ForMember(dest => dest.Peoples, opt => opt.MapFrom<PeoplesResolver>())
-                .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>());
+                .ForMember(dest => dest.Projects, opt => opt.MapFrom<ProjectsResolver>())
+                .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity == 0 ? 1 : src.Quantity));
             CreateMap<CostViewModel, Cost>()
-                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId == 0 ? null : (int?)src.ProjectId));
+                .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId == 0 ? null : (int?)src.ProjectId))
+                .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity == 0 ? 1 : src.Quantity));
         }
     }
 }
