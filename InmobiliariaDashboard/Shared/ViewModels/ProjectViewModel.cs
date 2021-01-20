@@ -18,6 +18,7 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         public double MaximumSellingPrice { get; set; }
         [Required] public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public bool Prospect { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una entidad")]
         public int PeopleId { get; set; }

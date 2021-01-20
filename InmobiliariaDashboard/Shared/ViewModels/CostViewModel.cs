@@ -34,6 +34,8 @@ namespace InmobiliariaDashboard.Shared.ViewModels
         [Range(1, int.MaxValue, ErrorMessage = "Por favor, seleccione una cuenta")]
         public int BankAccountId { get; set; }
         public string BankAccountName { get; set; }
+        public bool Transfer { get; set; }
+        public int GainBankAccountId { get; set; }
 
         // select lists
         public IEnumerable<CostTypeViewModel> CostTypes { get; set; }
