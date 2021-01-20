@@ -20,6 +20,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public double MaximumSellingPrice { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public bool Prospect { get; set; }
 
         // audit & relationships
         public int PeopleId { get; set; }

@@ -62,6 +62,9 @@ namespace InmobiliariaDashboard.Server.Data
             modelBuilder.Entity<ProjectHistory>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
             modelBuilder.Entity<Reminder>().HasQueryFilter(p => p.CreatedBy == _userResolver.GetCurrentUserName());
 
+            modelBuilder.Entity<BankAccount>().HasMany(p => p.Costs).WithOne(x => x.BankAccount);
+            modelBuilder.Entity<BankAccount>().HasMany(p => p.Gains).WithOne(x => x.BankAccount);
+
             // base users
             modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = 1, Username = "admin", Password = "admin", Email = "admin@admin.com", CreatedOn = DateTime.Now, CreatedBy = "system" });
             modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser { Id = 2, Username = "mdominguez", Password = "gorillaz1", Email = "marco.3292@gmail.com", CreatedOn = DateTime.Now, CreatedBy = "system" });

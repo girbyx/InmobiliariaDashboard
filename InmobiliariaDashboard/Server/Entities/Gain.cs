@@ -16,6 +16,7 @@ namespace InmobiliariaDashboard.Server.Entities
         [NotMapped] public double SubTotal => Value * Quantity;
         public string Description { get; set; }
         public DateTime Date { get; set; }
+        public bool Transfer { get; set; }
 
         // audit & relationships
         public int GainTypeId { get; set; }
@@ -26,6 +27,8 @@ namespace InmobiliariaDashboard.Server.Entities
         public virtual Project Project { get; set; }
         public int BankAccountId { get; set; }
         public virtual BankAccount BankAccount { get; set; }
+        public int? CostBankAccountId { get; set; }
+        public virtual BankAccount CostBankAccount { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
@@ -48,6 +51,7 @@ namespace InmobiliariaDashboard.Server.Entities
             CreateMap<GainViewModel, Gain>()
                 .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId == 0 ? null : (int?)src.ProjectId))
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity == 0 ? 1 : src.Quantity));
+            CreateMap<Gain, Cost>();
         }
     }
 }

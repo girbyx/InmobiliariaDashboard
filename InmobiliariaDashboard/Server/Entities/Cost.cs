@@ -19,6 +19,7 @@ namespace InmobiliariaDashboard.Server.Entities
         public string CommissionType { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+        public bool Transfer { get; set; }
         [NotMapped]
         public double Total => CommissionTypeEnum.Money.Code == CommissionType ? (SubTotal + Commission) :
             CommissionTypeEnum.Percentage.Code == CommissionType ? (SubTotal * (1 + (Commission / 100))) : SubTotal;
@@ -32,6 +33,8 @@ namespace InmobiliariaDashboard.Server.Entities
         public virtual Project Project { get; set; }
         public int BankAccountId { get; set; }
         public virtual BankAccount BankAccount { get; set; }
+        public int? GainBankAccountId { get; set; }
+        public virtual BankAccount GainBankAccount { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
@@ -54,6 +57,7 @@ namespace InmobiliariaDashboard.Server.Entities
             CreateMap<CostViewModel, Cost>()
                 .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId == 0 ? null : (int?)src.ProjectId))
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity == 0 ? 1 : src.Quantity));
+            CreateMap<Cost, Gain>();
         }
     }
 }
