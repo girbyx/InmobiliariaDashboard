@@ -40,6 +40,7 @@ namespace InmobiliariaDashboard.Server.Services
             if (entity.Transfer)
             {
                 var cost = _mapper.Map<Cost>(entity);
+                cost.Id = 0;
 
                 // check transfer type
                 var costType = _dbContext.Set<GainType>()
