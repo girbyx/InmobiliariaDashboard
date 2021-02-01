@@ -18,7 +18,7 @@ namespace InmobiliariaDashboard.Client.Pages.Project
         {
             var id = int.Parse(Id);
             Record.ProjectId = id;
-            Contacts = (await Service.Get(id)).EnterpriseContacts;
+            Contacts = (await Service.Get(id)).PeopleContacts;
         }
 
         protected async Task HandleValidSubmit()
