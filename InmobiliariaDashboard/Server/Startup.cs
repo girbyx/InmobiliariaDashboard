@@ -102,7 +102,7 @@ namespace InmobiliariaDashboard.Server
 
             using var scope = app.ApplicationServices.CreateScope();
             using var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
-            context.Database.Migrate();
+            context?.Database.Migrate();
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }
